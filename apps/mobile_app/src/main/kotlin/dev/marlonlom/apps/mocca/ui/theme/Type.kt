@@ -26,6 +26,7 @@ import dev.marlonlom.apps.mocca.R
 @ExperimentalMaterial3Api
 object MoccaFont {
 
+  /** Application google font provider. */
   @ExperimentalMaterial3Api
   private val appFontProvider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -33,6 +34,7 @@ object MoccaFont {
     certificates = R.array.com_google_android_gms_fonts_certs
   )
 
+  /** Application font family. */
   private val appFontFamily = FontFamily(
     Font(
       googleFont = GoogleFont("Comfortaa"),
@@ -43,6 +45,7 @@ object MoccaFont {
     )
   )
 
+  /** Default text styles. */
   private val DEFAULT_TEXT_STYLE = TextStyle(
     fontFamily = appFontFamily,
     fontWeight = FontWeight.Normal,
