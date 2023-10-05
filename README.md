@@ -7,6 +7,15 @@
 
 Android application for mobile phones and smartwatches, that showcases money transfers cost calculation bases in Efecty related feature
 
+# Features
+
+Mocca shows an user interface for doing money transfers cost calculation, adding an amount to be sent in Efecty transfers and reviewing the calculation results.
+
+## Screenshots
+
+TBD
+
+# Documentation
 
 ## Code-of-Conduct
 
@@ -18,7 +27,7 @@ See the [Contributing](CONTRIBUTING.md) document for more information.
 
 <hr/>
 
-## License
+# License
 
 This application is distributed under the terms of the Apache License (Version 2.0). See the [license](LICENSE) for more
 information.
