@@ -1,6 +1,6 @@
 # Mocca
 
-![License](https://img.shields.io/github/license/marlonlom/mocca)
+![GitHub](https://img.shields.io/github/license/marlonlom/mocca)
 ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/marlonlom/mocca/main)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/marlonlom/mocca/build_debug.yml)
 
