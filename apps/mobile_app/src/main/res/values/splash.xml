@@ -10,7 +10,7 @@
   <style name="Theme.AppSplash" parent="Theme.SplashScreen">
     <item name="windowSplashScreenBackground">@color/brand_spring_wood</item>
     <item name="windowSplashScreenAnimatedIcon">@drawable/img_app_brand</item>
-    <item name="windowSplashScreenAnimationDuration">2000</item>
+    <item name="windowSplashScreenAnimationDuration">1000</item>
     <item name="postSplashScreenTheme">@style/Theme.Mocca</item>
   </style>
 </resources>
