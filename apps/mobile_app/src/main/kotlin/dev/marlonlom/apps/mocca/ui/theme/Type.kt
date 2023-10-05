@@ -26,6 +26,7 @@ import dev.marlonlom.apps.mocca.R
 @ExperimentalMaterial3Api
 object MoccaFont {
 
+  /** Application google font provider. */
   @ExperimentalMaterial3Api
   private val appFontProvider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -33,13 +34,18 @@ object MoccaFont {
     certificates = R.array.com_google_android_gms_fonts_certs
   )
 
+  /** Application font family. */
   private val appFontFamily = FontFamily(
     Font(
       googleFont = GoogleFont("Comfortaa"),
       fontProvider = appFontProvider
+    ),
+    androidx.compose.ui.text.font.Font(
+      resId = R.font.comfortaa_variablefont_wght
     )
   )
 
+  /** Default text styles. */
   private val DEFAULT_TEXT_STYLE = TextStyle(
     fontFamily = appFontFamily,
     fontWeight = FontWeight.Normal,
@@ -51,6 +57,7 @@ object MoccaFont {
 
   private const val NEGATIVE_ZERO_DOT_TWENTY_FIVE = -0.25
 
+  /** Application typography configuration. */
   val appTypography = Typography(
     displayLarge = DEFAULT_TEXT_STYLE.copy(
       fontSize = 57.sp,
