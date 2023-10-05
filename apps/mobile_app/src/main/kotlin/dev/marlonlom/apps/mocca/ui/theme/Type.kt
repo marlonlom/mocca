@@ -37,6 +37,9 @@ object MoccaFont {
     Font(
       googleFont = GoogleFont("Comfortaa"),
       fontProvider = appFontProvider
+    ),
+    androidx.compose.ui.text.font.Font(
+      resId = R.font.comfortaa_variablefont_wght
     )
   )
 
