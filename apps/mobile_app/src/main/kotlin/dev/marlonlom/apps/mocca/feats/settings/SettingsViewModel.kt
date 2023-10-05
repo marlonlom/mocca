@@ -68,7 +68,7 @@ class SettingsViewModel(
       aboutEfectyUrl = "",
       appVersion = "",
       darkTheme = false,
-      dynamicColors = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+      dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     )
 
     /**

@@ -101,7 +101,7 @@ fun RequiredAmountInputCard(
         .padding(textFieldBottomPadding),
       value = amountTextState.value,
       onValueChange = { txt ->
-        if ((txt.isEmpty()).or(txt.matches(numberPattern))) {
+        if (txt.isEmpty().or(txt.matches(numberPattern))) {
           amountTextState.value = txt
         }
       },

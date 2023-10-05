@@ -80,7 +80,7 @@ internal fun LazyGridScope.darkThemeSettingSlot(
       onCheckedChange = { toggle ->
         onBooleanSettingChanged("dark_theme", toggle)
       },
-      enabled = !(isSystemInDarkTheme()).and(darkThemeBooleanState.value)
+      enabled = !isSystemInDarkTheme() and darkThemeBooleanState.value
     )
   }
 }
