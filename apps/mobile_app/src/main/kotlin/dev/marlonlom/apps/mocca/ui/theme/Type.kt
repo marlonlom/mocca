@@ -54,6 +54,7 @@ object MoccaFont {
 
   private const val NEGATIVE_ZERO_DOT_TWENTY_FIVE = -0.25
 
+  /** Application typography configuration. */
   val appTypography = Typography(
     displayLarge = DEFAULT_TEXT_STYLE.copy(
       fontSize = 57.sp,
