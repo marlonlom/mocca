@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2023 Marlonlom
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<resources>
+
+  <style name="Theme.AppSplash" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/brand_spring_wood</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/img_app_brand</item>
+    <item name="windowSplashScreenAnimationDuration">2000</item>
+    <item name="postSplashScreenTheme">@style/Theme.Mocca</item>
+  </style>
+</resources>
