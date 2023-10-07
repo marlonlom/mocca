@@ -123,8 +123,8 @@ fun CalculatorPortraitScreen(
 
     Spacer(modifier = Modifier.weight(spacerWeight))
     CalculateButton(
-      isCalculateButtonEnabled = amountTextState.value.isNotEmpty(),
-      onCalculateButtonClicked = {
+      buttonEnabled = amountTextState.value.isNotEmpty(),
+      buttonClicked = {
         Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
         doCalculation(amountTextState.value)
       }
@@ -163,8 +163,8 @@ fun CalculatorLandscapeScreen(
       CalculatorTitleText(windowSizeUtil)
       Spacer(modifier = Modifier.weight(1.0f))
       CalculateButton(
-        isCalculateButtonEnabled = amountTextState.value.isNotEmpty(),
-        onCalculateButtonClicked = {
+        buttonEnabled = amountTextState.value.isNotEmpty(),
+        buttonClicked = {
           Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
           doCalculation(amountTextState.value)
         }
