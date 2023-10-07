@@ -20,9 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -43,21 +40,14 @@ fun CalculatorOutputCard(
   windowSizeUtil: WindowSizeUtil,
   calculationUiState: CalculatorUiState
 ) {
-  val feeTextState = remember { mutableStateOf("") }
-  val totalCostTextState = remember { mutableStateOf("") }
+  val feeTextState = if (calculationUiState is CalculatorUiState.WithSuccess) {
+    val resultFeeSum = calculationUiState.response.fixedFee + calculationUiState.response.variableFee
+    "${resultFeeSum.roundToInt()}"
+  } else ""
 
-  when (calculationUiState) {
-    is CalculatorUiState.WithSuccess -> {
-      val resultFeeSum = calculationUiState.response.fixedFee + calculationUiState.response.variableFee
-      feeTextState.value = "${resultFeeSum.roundToInt()}"
-      totalCostTextState.value = "${calculationUiState.response.total.roundToInt()}"
-    }
-
-    else -> {
-      feeTextState.value = ""
-      totalCostTextState.value = ""
-    }
-  }
+  val totalCostTextState = if (calculationUiState is CalculatorUiState.WithSuccess) {
+    "${calculationUiState.response.total.roundToInt()}"
+  } else ""
 
   Card(
     modifier = Modifier.fillMaxWidth(),
@@ -85,7 +75,7 @@ fun CalculatorOutputCard(
 @Composable
 internal fun OutputMoneyTextField(
   windowSizeUtil: WindowSizeUtil,
-  moneyTextState: MutableState<String>
+  moneyTextState: String
 ) {
 
   val textFieldStyle = when {
@@ -108,7 +98,7 @@ internal fun OutputMoneyTextField(
       .fillMaxWidth()
       .padding(textFieldHorizontalPadding)
       .padding(textFieldBottomPadding),
-    value = moneyTextState.value,
+    value = moneyTextState,
     onValueChange = { },
     colors = TextFieldDefaults.colors(
       disabledTextColor = MaterialTheme.colorScheme.onTertiaryContainer,
