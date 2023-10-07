@@ -16,11 +16,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
 import timber.log.Timber
 
@@ -30,32 +33,30 @@ import timber.log.Timber
  * @author marlonlom
  *
  * @param windowSizeUtil Window size utility.
- * @param calculationState Calculation ui state.
- * @param doCalculation Action for performing calculation.
- * @param onClearedAmountText Action for clearing amount text.
  */
 @Composable
 fun CalculatorRoute(
   windowSizeUtil: WindowSizeUtil,
-  calculationState: CalculatorUiState,
-  doCalculation: (String) -> Unit,
-  onClearedAmountText: () -> Unit
+  calculatorViewModel: CalculatorViewModel = viewModel(factory = CalculatorViewModel.Factory)
 ) {
+
+  val calculationState by calculatorViewModel.uiState.collectAsState()
+
   val calculationAmount = when (calculationState) {
+    is CalculatorUiState.WithFailure -> (calculationState as CalculatorUiState.WithFailure).amount
+    is CalculatorUiState.WithSuccess -> (calculationState as CalculatorUiState.WithSuccess).amount
     is CalculatorUiState.Empty -> ""
-    is CalculatorUiState.WithFailure -> calculationState.amount
-    is CalculatorUiState.WithSuccess -> calculationState.amount
   }
-  val amountTextState = remember { mutableStateOf(calculationAmount) }
+  val amountTextState = rememberSaveable { mutableStateOf(calculationAmount) }
 
   when {
     windowSizeUtil.isMobileLandscape -> {
       CalculatorLandscapeScreen(
         windowSizeUtil = windowSizeUtil,
         amountTextState = amountTextState,
-        onClearedAmountText = onClearedAmountText,
         calculationState = calculationState,
-        doCalculation = doCalculation
+        doCalculation = calculatorViewModel::calculate,
+        onClearedAmountText = calculatorViewModel::reset
       )
     }
 
@@ -63,9 +64,9 @@ fun CalculatorRoute(
       CalculatorPortraitScreen(
         windowSizeUtil = windowSizeUtil,
         amountTextState = amountTextState,
-        onClearedAmountText = onClearedAmountText,
         calculationState = calculationState,
-        doCalculation = doCalculation
+        doCalculation = calculatorViewModel::calculate,
+        onClearedAmountText = calculatorViewModel::reset
       )
     }
   }
@@ -108,12 +109,26 @@ fun CalculatorPortraitScreen(
   ) {
     CalculatorTitleText(windowSizeUtil)
     RequiredAmountInputCard(windowSizeUtil, amountTextState, onClearedAmountText)
-    CalculatorOutputCard(windowSizeUtil, calculationState)
-    Spacer(modifier = Modifier.weight(spacerWeight))
-    CalculateButton {
-      Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
-      doCalculation(amountTextState.value)
+    when (calculationState) {
+      is CalculatorUiState.WithFailure -> {
+        CalculatorErrorCard(windowSizeUtil, calculationState)
+      }
+
+      is CalculatorUiState.WithSuccess -> {
+        CalculatorResultsCard(windowSizeUtil, calculationState)
+      }
+
+      CalculatorUiState.Empty -> {}
     }
+
+    Spacer(modifier = Modifier.weight(spacerWeight))
+    CalculateButton(
+      isCalculateButtonEnabled = amountTextState.value.isNotEmpty(),
+      onCalculateButtonClicked = {
+        Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
+        doCalculation(amountTextState.value)
+      }
+    )
   }
 }
 
@@ -147,10 +162,13 @@ fun CalculatorLandscapeScreen(
     ) {
       CalculatorTitleText(windowSizeUtil)
       Spacer(modifier = Modifier.weight(1.0f))
-      CalculateButton {
-        Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
-        doCalculation(amountTextState.value)
-      }
+      CalculateButton(
+        isCalculateButtonEnabled = amountTextState.value.isNotEmpty(),
+        onCalculateButtonClicked = {
+          Timber.d("[CalculatorRoute] requestedQuantity=${amountTextState.value}")
+          doCalculation(amountTextState.value)
+        }
+      )
     }
     Column(
       modifier = Modifier
@@ -159,7 +177,17 @@ fun CalculatorLandscapeScreen(
       verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
       RequiredAmountInputCard(windowSizeUtil, amountTextState, onClearedAmountText)
-      CalculatorOutputCard(windowSizeUtil, calculationState)
+      when (calculationState) {
+        is CalculatorUiState.WithFailure -> {
+          CalculatorErrorCard(windowSizeUtil, calculationState)
+        }
+
+        is CalculatorUiState.WithSuccess -> {
+          CalculatorResultsCard(windowSizeUtil, calculationState)
+        }
+
+        CalculatorUiState.Empty -> {}
+      }
     }
   }
 }

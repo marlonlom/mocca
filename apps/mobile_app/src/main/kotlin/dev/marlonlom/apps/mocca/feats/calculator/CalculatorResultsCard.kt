@@ -30,13 +30,13 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
 import kotlin.math.roundToInt
 
 /**
- * Calculator output card composable ui.
+ * Calculator results card composable ui.
  *
  * @param windowSizeUtil Window size utility.
  * @param calculationUiState Calculation ui state.
  */
 @Composable
-fun CalculatorOutputCard(
+fun CalculatorResultsCard(
   windowSizeUtil: WindowSizeUtil,
   calculationUiState: CalculatorUiState
 ) {
