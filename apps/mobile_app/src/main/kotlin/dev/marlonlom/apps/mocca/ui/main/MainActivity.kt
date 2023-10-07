@@ -3,9 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca
+package dev.marlonlom.apps.mocca.ui.main
 
-import android.content.Intent
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,21 +15,22 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import dev.marlonlom.apps.mocca.feats.calculator.CalculatorViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
-import dev.marlonlom.apps.mocca.feats.settings.UserPreferences
 import dev.marlonlom.apps.mocca.ui.common.MainScaffold
 import dev.marlonlom.apps.mocca.ui.theme.MoccaTheme
-import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
-import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -42,64 +42,83 @@ import timber.log.Timber
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
 
-  /** Calculator view model reference. */
-  private val calculatorViewModel by viewModels<CalculatorViewModel> { CalculatorViewModel.Factory }
-
-  /** Settings view model reference. */
-  private val settingsViewModel by viewModels<SettingsViewModel> {
-    SettingsViewModel.factory(SettingsRepository(this.dataStore))
+  /** Main activity view model reference. */
+  private val mainViewModel by viewModels<MainViewModel> {
+    MainViewModel.factory(SettingsRepository(this.dataStore))
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    installSplashScreen()
+    val splashScreen = installSplashScreen()
+
+    var mainActivityUiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        mainViewModel.uiState.onEach { mainActivityUiState = it }.collect()
+      }
+    }
+
+    splashScreen.setKeepOnScreenCondition {
+      when (mainActivityUiState) {
+        MainActivityUiState.Loading -> true
+        is MainActivityUiState.Success -> false
+      }
+    }
 
     setContent {
-
       val windowSizeClass = calculateWindowSizeClass(activity = this)
       val windowSizeUtil = WindowSizeUtil(
         windowSizeClass = windowSizeClass,
         isLandscape = LocalConfiguration.current.orientation == ORIENTATION_LANDSCAPE,
         isTabletWidth = LocalConfiguration.current.smallestScreenWidthDp >= 600
       )
-      val settingsState = settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
-
-      AppContent(settingsState, windowSizeUtil)
+      Timber.d("[MainActivity] mainActivityUiState=$mainActivityUiState")
+      AppContent(mainActivityUiState, windowSizeUtil)
     }
   }
 
+  /**
+   * Returns `true` if the dynamic color is used, as a function of the [uiState].
+   *
+   * @param uiState Main activity ui state.
+   * @return true/false
+   */
+  @Composable
+  private fun shouldUseDynamicTheming(
+    uiState: MainActivityUiState,
+  ): Boolean = when (uiState) {
+    MainActivityUiState.Loading -> false
+    is MainActivityUiState.Success -> uiState.userData.dynamicColors
+  }
+
+  /**
+   * Returns `true` if the dark theme is used, as a function of the [uiState].
+   *
+   * @param uiState Main activity ui state.
+   * @return true/false.
+   */
+  @Composable
+  private fun shouldUseDarkTheme(
+    uiState: MainActivityUiState,
+  ): Boolean = if (isSystemInDarkTheme()) true else when (uiState) {
+    MainActivityUiState.Loading -> isSystemInDarkTheme()
+    is MainActivityUiState.Success -> uiState.userData.darkTheme
+  }
 
   @Composable
   private fun AppContent(
-    settingsState: State<UserPreferences>,
+    mainActivityUiState: MainActivityUiState,
     windowSizeUtil: WindowSizeUtil
   ) {
     MoccaTheme(
-      darkTheme = if (isSystemInDarkTheme()) true else settingsState.value.darkTheme,
-      dynamicColor = settingsState.value.dynamicColors
+      darkTheme = shouldUseDarkTheme(mainActivityUiState),
+      dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
     ) {
-      val calculationState by calculatorViewModel.uiState.collectAsStateWithLifecycle()
       MainScaffold(
-        windowSizeUtil = windowSizeUtil,
-        calculationState = calculationState,
-        doCalculation = calculatorViewModel::calculate,
-        onClearedAmountText = calculatorViewModel::reset,
-        settingsUiState = settingsState,
-        onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
-        onOssLicencesSettingLinkClicked = {
-          startActivity(Intent(this, OssLicensesMenuActivity::class.java))
-        },
-        onOpeningExternalUrlSettingClicked = { urlText ->
-          Timber.d("[AppContent] opening external url: $urlText")
-          if (urlText.isNotEmpty()) {
-            CustomTabsOpener.openUrl(this, urlText)
-          }
-        }
-      ) {
-        Timber.d("[AppContent] opening feedback window")
-        FeedbackOpener.rate(this)
-      }
+        windowSizeUtil = windowSizeUtil
+      )
     }
   }
 
