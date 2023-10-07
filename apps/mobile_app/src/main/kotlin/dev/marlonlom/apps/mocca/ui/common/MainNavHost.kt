@@ -5,19 +5,26 @@
 
 package dev.marlonlom.apps.mocca.ui.common
 
+import android.content.Intent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
-import dev.marlonlom.apps.mocca.feats.calculator.CalculatorUiState
+import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
-import dev.marlonlom.apps.mocca.feats.settings.UserPreferences
+import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
 import dev.marlonlom.apps.mocca.feats.twopane.CalculatorAndSettingsRoute
 import dev.marlonlom.apps.mocca.ui.navigation.AppRoute
+import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
+import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import timber.log.Timber
 
 /**
  * Main navigation host composable ui.
@@ -26,28 +33,12 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
  *
  * @param navController Navigation controller.
  * @param windowSizeUtil Window size class.
- * @param calculationState Calculation ui state.
- * @param doCalculation Action for perform calculation event.
- * @param onClearedAmountText Action for reset calculation event.
- * @param settingsUiState Settings ui state.
- * @param onBooleanSettingChanged  Action for changing boolean setting event.
- * @param onOssLicencesSettingLinkClicked  Action for displaying oss licenses setting click event.
- * @param onOpeningExternalUrlSettingClicked  Action for opening external url setting click event.
- * @param onFeedbackSettingLinkClicked Action for feedback setting clicked.
  * @param startDestination Start destination route name.
  */
 @Composable
 fun MainNavHost(
   navController: NavHostController,
   windowSizeUtil: WindowSizeUtil,
-  calculationState: CalculatorUiState,
-  doCalculation: (String) -> Unit,
-  onClearedAmountText: () -> Unit,
-  settingsUiState: State<UserPreferences>,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit,
   startDestination: String = AppRoute.Home.route
 ) {
   NavHost(
@@ -56,22 +47,9 @@ fun MainNavHost(
   ) {
     calculatorScreen(
       windowSizeUtil = windowSizeUtil,
-      calculationState = calculationState,
-      doCalculation = doCalculation,
-      onClearedAmountText = onClearedAmountText,
-      settingsUiState = settingsUiState,
-      onBooleanSettingChanged = onBooleanSettingChanged,
-      onOssLicencesSettingLinkClicked = onOssLicencesSettingLinkClicked,
-      onOpeningExternalUrlSettingClicked = onOpeningExternalUrlSettingClicked,
-      onFeedbackSettingLinkClicked = onFeedbackSettingLinkClicked
     )
     settingsScreen(
       windowSizeUtil = windowSizeUtil,
-      settingsUiState = settingsUiState,
-      onBooleanSettingChanged = onBooleanSettingChanged,
-      onOssLicencesSettingLinkClicked = onOssLicencesSettingLinkClicked,
-      onOpeningExternalUrlSettingClicked = onOpeningExternalUrlSettingClicked,
-      onFeedbackSettingLinkClicked = onFeedbackSettingLinkClicked
     )
   }
 }
@@ -80,46 +58,15 @@ fun MainNavHost(
  * Navigation graph builder extension for calculator screen composable route.
  *
  * @param windowSizeUtil Window size class.
- * @param calculationState Calculation ui state.
- * @param doCalculation Action for calculation event.
- * @param onClearedAmountText Action for calculation reset event.
- * @param settingsUiState Settings ui state.
- * @param onBooleanSettingChanged  Action for changing boolean setting event.
- * @param onOssLicencesSettingLinkClicked  Action for displaying oss licenses setting click event.
- * @param onOpeningExternalUrlSettingClicked  Action for opening external url setting click event.
- * @param onFeedbackSettingLinkClicked  Action for opening external url setting click event.
  */
 private fun NavGraphBuilder.calculatorScreen(
   windowSizeUtil: WindowSizeUtil,
-  calculationState: CalculatorUiState,
-  doCalculation: (String) -> Unit,
-  onClearedAmountText: () -> Unit,
-  settingsUiState: State<UserPreferences>,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit,
 ) {
   composable(AppRoute.Home.route) {
     if (windowSizeUtil.isTabletLandscape) {
-      CalculatorAndSettingsRoute(
-        windowSizeUtil = windowSizeUtil,
-        calculationState = calculationState,
-        doCalculation = doCalculation,
-        onClearedAmountText = onClearedAmountText,
-        settingsUiState = settingsUiState,
-        onBooleanSettingChanged = onBooleanSettingChanged,
-        onOssLicencesSettingLinkClicked = onOssLicencesSettingLinkClicked,
-        onOpeningExternalUrlSettingClicked = onOpeningExternalUrlSettingClicked,
-        onFeedbackSettingLinkClicked = onFeedbackSettingLinkClicked
-      )
+      CalculatorAndSettingsRoute(windowSizeUtil = windowSizeUtil)
     } else {
-      CalculatorRoute(
-        windowSizeUtil = windowSizeUtil,
-        calculationState = calculationState,
-        doCalculation = doCalculation,
-        onClearedAmountText = onClearedAmountText
-      )
+      CalculatorRoute(windowSizeUtil = windowSizeUtil)
     }
   }
 }
@@ -128,28 +75,34 @@ private fun NavGraphBuilder.calculatorScreen(
  * Navigation graph builder extension for settings screen composable route.
  *
  * @param windowSizeUtil Window size class.
- * @param settingsUiState Settings ui state.
- * @param onBooleanSettingChanged  Action for changing boolean setting event.
- * @param onOssLicencesSettingLinkClicked  Action for displaying oss licenses setting click event.
- * @param onOpeningExternalUrlSettingClicked  Action for opening external url setting click event.
- * @param onFeedbackSettingLinkClicked Action for feedback setting clicked.
  */
 private fun NavGraphBuilder.settingsScreen(
   windowSizeUtil: WindowSizeUtil,
-  settingsUiState: State<UserPreferences>,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit,
 ) {
   composable(AppRoute.Settings.route) {
+    val context = LocalContext.current
+    val settingsViewModel = SettingsViewModel.factory(
+      SettingsRepository(context.dataStore)
+    ).create(SettingsViewModel::class.java)
+    val settingsUiState = settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
+
     SettingsRoute(
       windowSizeUtil = windowSizeUtil,
       userPreferences = settingsUiState.value,
-      onBooleanSettingChanged = onBooleanSettingChanged,
-      onOssLicencesSettingLinkClicked = onOssLicencesSettingLinkClicked,
-      onOpeningExternalUrlSettingClicked = onOpeningExternalUrlSettingClicked,
-      onFeedbackSettingLinkClicked = onFeedbackSettingLinkClicked
+      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
+      onOssLicencesSettingLinkClicked = {
+        context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+      },
+      onOpeningExternalUrlSettingClicked = { urlText ->
+        Timber.d("[AppContent] opening external url: $urlText")
+        if (urlText.isNotEmpty()) {
+          CustomTabsOpener.openUrl(context, urlText)
+        }
+      },
+      onFeedbackSettingLinkClicked = {
+        Timber.d("[AppContent] opening feedback window")
+        FeedbackOpener.rate(context)
+      }
     )
   }
 }

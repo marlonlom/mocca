@@ -14,9 +14,6 @@ import dev.marlonlom.apps.mocca.calculator.model.CalculationException
 import dev.marlonlom.apps.mocca.calculator.model.CalculationResult
 import dev.marlonlom.apps.mocca.calculator.model.OrderResponse
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -66,16 +63,8 @@ sealed class CalculatorUiState {
  */
 class CalculatorViewModel : ViewModel() {
 
-  /** Private ui state for calculator view model. */
-  private val _uiStateFlow: MutableStateFlow<CalculatorUiState> = MutableStateFlow(CalculatorUiState.Empty)
-
   /** UI state for calculator view model. */
-  val uiState: StateFlow<CalculatorUiState> = _uiStateFlow
-    .stateIn(
-      scope = viewModelScope,
-      started = SharingStarted.Eagerly,
-      initialValue = CalculatorUiState.Empty
-    )
+  val uiState: MutableStateFlow<CalculatorUiState> = MutableStateFlow(CalculatorUiState.Empty)
 
   init {
     reset()
@@ -88,11 +77,10 @@ class CalculatorViewModel : ViewModel() {
    */
   fun calculate(amountText: String) {
     viewModelScope.launch {
-      val requestedQuantity = RequestedQuantity(amountText.toDouble())
-
-      _uiStateFlow.value = if (amountText.isEmpty()) {
+      uiState.value = if (amountText.isEmpty()) {
         CalculatorUiState.Empty
       } else {
+        val requestedQuantity = RequestedQuantity(amountText.toDouble())
         when (val response = Calculator.calculate(requestedQuantity)) {
           is OrderResponse.Failure -> CalculatorUiState.WithFailure(amountText, response.exception)
           is OrderResponse.Success -> CalculatorUiState.WithSuccess(amountText, response.item)
@@ -100,13 +88,13 @@ class CalculatorViewModel : ViewModel() {
         }
       }
 
-      Timber.d("[CalculatorViewModel:calculate] uiState.value=${_uiStateFlow.value}")
+      Timber.d("[CalculatorViewModel:calculate] uiState.value=${uiState.value}")
     }
   }
 
   /** Resets ui state to None. */
   fun reset() {
-    _uiStateFlow.value = CalculatorUiState.Empty
+    uiState.value = CalculatorUiState.Empty
   }
 
   companion object {

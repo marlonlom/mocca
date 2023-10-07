@@ -5,22 +5,34 @@
 
 package dev.marlonlom.apps.mocca.feats.twopane
 
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dev.marlonlom.apps.mocca.R
+import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorPortraitScreen
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorUiState
+import dev.marlonlom.apps.mocca.feats.calculator.CalculatorViewModel
+import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
-import dev.marlonlom.apps.mocca.feats.settings.UserPreferences
+import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
+import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
+import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import timber.log.Timber
 
 /**
  * Two pane layout that contains Calculator and Settings screen combination composable ui.
@@ -28,33 +40,15 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
  * @author marlonlom
  *
  * @param windowSizeUtil Window size utility.
- * @param calculationState Calculation ui state.
- * @param doCalculation Action for performing calculation.
- * @param onClearedAmountText Action for clearing amount text.
- * @param settingsUiState Settings ui state.
- * @param onBooleanSettingChanged Action for updating boolean setting.
- * @param onOssLicencesSettingLinkClicked Action for oss licenses display.
- * @param onOpeningExternalUrlSettingClicked Action for external url opening.
- * @param onFeedbackSettingLinkClicked Action for feedback setting clicked.
  */
 @Composable
 fun CalculatorAndSettingsRoute(
   windowSizeUtil: WindowSizeUtil,
-  calculationState: CalculatorUiState,
-  doCalculation: (String) -> Unit,
-  onClearedAmountText: () -> Unit,
-  settingsUiState: State<UserPreferences>,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit,
+  calculatorViewModel: CalculatorViewModel = viewModel(factory = CalculatorViewModel.Factory),
+  settingsViewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(SettingsRepository(LocalContext.current.dataStore)))
 ) {
-  val calculationAmount = when (calculationState) {
-    is CalculatorUiState.Empty -> ""
-    is CalculatorUiState.WithFailure -> calculationState.amount
-    is CalculatorUiState.WithSuccess -> calculationState.amount
-  }
-  val amountTextState = remember { mutableStateOf(calculationAmount) }
+
+  val context = LocalContext.current
 
   Row(modifier = Modifier.fillMaxSize()) {
     Column(
@@ -62,22 +56,44 @@ fun CalculatorAndSettingsRoute(
         .fillMaxWidth(0.4f)
         .padding(bottom = 20.dp)
     ) {
+      val calculationState by calculatorViewModel.uiState.collectAsState()
+
+      val calculationAmount = when (calculationState) {
+        is CalculatorUiState.WithFailure -> (calculationState as CalculatorUiState.WithFailure).amount
+        is CalculatorUiState.WithSuccess -> (calculationState as CalculatorUiState.WithSuccess).amount
+        is CalculatorUiState.Empty -> ""
+      }
+      val amountTextState = remember { mutableStateOf(calculationAmount) }
+
       CalculatorPortraitScreen(
         windowSizeUtil = windowSizeUtil,
         amountTextState = amountTextState,
         calculationState = calculationState,
-        doCalculation = doCalculation,
-        onClearedAmountText = onClearedAmountText
+        doCalculation = calculatorViewModel::calculate,
+        onClearedAmountText = calculatorViewModel::reset
       )
     }
 
+    val settingsUiState by settingsViewModel.settingsUiState.collectAsState()
+
     SettingsRoute(
       windowSizeUtil = windowSizeUtil,
-      userPreferences = settingsUiState.value,
-      onBooleanSettingChanged = onBooleanSettingChanged,
-      onOssLicencesSettingLinkClicked = onOssLicencesSettingLinkClicked,
-      onOpeningExternalUrlSettingClicked = onOpeningExternalUrlSettingClicked,
-      onFeedbackSettingLinkClicked = onFeedbackSettingLinkClicked
+      userPreferences = settingsUiState,
+      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
+      onOssLicencesSettingLinkClicked = {
+        OssLicensesMenuActivity.setActivityTitle(context.getString(R.string.text_settings_label_oss_licences))
+        context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+      },
+      onOpeningExternalUrlSettingClicked = { urlText ->
+        Timber.d("[AppContent] opening external url: $urlText")
+        if (urlText.isNotEmpty()) {
+          CustomTabsOpener.openUrl(context, urlText)
+        }
+      },
+      onFeedbackSettingLinkClicked = {
+        Timber.d("[AppContent] opening feedback window")
+        FeedbackOpener.rate(context)
+      }
     )
   }
 }

@@ -33,17 +33,6 @@ class SettingsViewModel(
   )
 
   /**
-   * Save default user preferences.
-   *
-   * @param prefs Default user preferences data class.
-   */
-  fun saveDefaults(prefs: UserPreferences) {
-    viewModelScope.launch {
-      repository.saveDefaults(prefs)
-    }
-  }
-
-  /**
    * Updates boolean preference using provided key.
    *
    * @param preferenceKey Preference key text.

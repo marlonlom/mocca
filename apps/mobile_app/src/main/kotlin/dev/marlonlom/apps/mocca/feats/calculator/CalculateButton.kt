@@ -23,10 +23,14 @@ import dev.marlonlom.apps.mocca.R
  *
  * @author marlonlom
  *
- * @param onCalculateButtonClicked Action for calculate button clicked.
+ * @param buttonEnabled true/false if button is enabled.
+ * @param buttonClicked Action for calculate button clicked.
  */
 @Composable
-fun CalculateButton(onCalculateButtonClicked: () -> Unit) {
+fun CalculateButton(
+  buttonEnabled: Boolean,
+  buttonClicked: () -> Unit,
+) {
   Button(
     modifier = Modifier.padding(4.dp),
     colors = ButtonDefaults.buttonColors(
@@ -35,7 +39,8 @@ fun CalculateButton(onCalculateButtonClicked: () -> Unit) {
     ),
     border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
     shape = MaterialTheme.shapes.small,
-    onClick = { onCalculateButtonClicked() }
+    onClick = { buttonClicked() },
+    enabled = buttonEnabled,
   ) {
     Text(
       text = stringResource(R.string.text_home_button_calculate),
