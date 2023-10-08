@@ -27,6 +27,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -94,11 +96,16 @@ fun RequiredAmountInputCard(
       else -> PaddingValues(bottom = 10.dp)
     }
 
+    val requiredAmountTextFieldCd = stringResource(R.string.text_home_input_amount_content_desc)
+    val clearAmountTextFieldCd = stringResource(R.string.text_home_clear_amount_content_desc)
     TextField(
       modifier = Modifier
         .fillMaxWidth()
         .padding(labelHorizontalPadding)
-        .padding(textFieldBottomPadding),
+        .padding(textFieldBottomPadding)
+        .semantics {
+          contentDescription = requiredAmountTextFieldCd
+        },
       value = amountTextState.value,
       onValueChange = { txt ->
         if (txt.isEmpty().or(txt.matches(numberPattern))) {
@@ -126,6 +133,9 @@ fun RequiredAmountInputCard(
       trailingIcon = {
         if (amountTextState.value.isNotBlank()) {
           IconButton(
+            modifier = Modifier.semantics {
+              contentDescription = clearAmountTextFieldCd
+            },
             onClick = {
               amountTextState.value = ""
               onClearedAmountText()
