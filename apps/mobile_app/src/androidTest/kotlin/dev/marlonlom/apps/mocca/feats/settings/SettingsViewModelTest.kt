@@ -6,10 +6,9 @@
 package dev.marlonlom.apps.mocca.feats.settings
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -21,39 +20,28 @@ import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-internal class SettingsRepositoryTest {
+internal class SettingsViewModelTest {
 
   private val testCoroutineDispatcher = StandardTestDispatcher()
   private val testCoroutineScope = TestScope(testCoroutineDispatcher + Job())
 
   private var repository: SettingsRepository? = null
+  private var viewModel: SettingsViewModel? = null
 
   @Before
   fun setUp() {
     repository = SettingsRepository(TestablePreferencesDataStore.getInstance(testCoroutineScope))
+    viewModel = SettingsViewModel(repository!!)
   }
 
   @After
   fun tearDown() {
-    testCoroutineScope.cancel()
     repository = null
+    viewModel = null
   }
 
   @Test
-  fun repository_testFetchInitialPreferences() {
-    testCoroutineScope.launch {
-      val preferences = repository!!.settingsFlow.first()
-      with(preferences) {
-        assertThat(appVersion).isEqualTo("")
-        assertThat(aboutEfectyUrl).isEqualTo("")
-        assertThat(darkTheme).isEqualTo(false)
-        assertThat(dynamicColors).isEqualTo(true)
-      }
-    }
-  }
-
-  @Test
-  fun repository_saveDefaultSettings() {
+  fun viewModel_saveDefaultSettings() {
     testCoroutineScope.launch {
       val expectedSettings = UserPreferences(
         aboutEfectyUrl = "https://efecty.com/about",
@@ -62,18 +50,18 @@ internal class SettingsRepositoryTest {
         dynamicColors = true
       )
       repository!!.saveDefaults(expectedSettings)
-      val preferences = repository!!.settingsFlow.first()
+      val preferences = viewModel!!.settingsUiState.first()
       with(preferences) {
-        assertThat(appVersion).isEqualTo(expectedSettings.appVersion)
-        assertThat(aboutEfectyUrl).isEqualTo(expectedSettings.aboutEfectyUrl)
-        assertThat(darkTheme).isEqualTo(expectedSettings.darkTheme)
-        assertThat(dynamicColors).isEqualTo(expectedSettings.dynamicColors)
+        Truth.assertThat(appVersion).isEqualTo(expectedSettings.appVersion)
+        Truth.assertThat(aboutEfectyUrl).isEqualTo(expectedSettings.aboutEfectyUrl)
+        Truth.assertThat(darkTheme).isEqualTo(expectedSettings.darkTheme)
+        Truth.assertThat(dynamicColors).isEqualTo(expectedSettings.dynamicColors)
       }
     }
   }
 
   @Test
-  fun repository_toggleBooleanSettings() {
+  fun viewModel_toggleBooleanSettings() {
     testCoroutineScope.launch {
       val expectedSettings = UserPreferences(
         aboutEfectyUrl = "https://efecty.com/about",
@@ -82,16 +70,16 @@ internal class SettingsRepositoryTest {
         dynamicColors = true
       )
       repository!!.saveDefaults(expectedSettings)
-      repository!!.toggleBooleanPreference("dark_theme", !expectedSettings.darkTheme)
-      repository!!.toggleBooleanPreference("dynamic_colors", !expectedSettings.dynamicColors)
-      val preferences = repository!!.settingsFlow.first()
+      viewModel!!.toggleBooleanPreference("dark_theme", !expectedSettings.darkTheme)
+      viewModel!!.toggleBooleanPreference("dynamic_colors", !expectedSettings.dynamicColors)
+
+      val preferences = viewModel!!.settingsUiState.first()
       with(preferences) {
-        assertThat(appVersion).isEqualTo(expectedSettings.appVersion)
-        assertThat(aboutEfectyUrl).isEqualTo(expectedSettings.aboutEfectyUrl)
-        assertThat(darkTheme).isEqualTo(!expectedSettings.darkTheme)
-        assertThat(dynamicColors).isEqualTo(!expectedSettings.dynamicColors)
+        Truth.assertThat(appVersion).isEqualTo(expectedSettings.appVersion)
+        Truth.assertThat(aboutEfectyUrl).isEqualTo(expectedSettings.aboutEfectyUrl)
+        Truth.assertThat(darkTheme).isEqualTo(!expectedSettings.darkTheme)
+        Truth.assertThat(dynamicColors).isEqualTo(!expectedSettings.dynamicColors)
       }
     }
   }
-
 }
