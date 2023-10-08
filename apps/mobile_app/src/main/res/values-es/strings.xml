@@ -11,6 +11,8 @@
   <string name="text_home_headline_02">Tu giro</string>
   <string name="text_home_button_calculate">Calcular</string>
   <string name="text_home_label_amount">¿Cuánto deseas enviar?</string>
+  <string name="text_home_input_amount_content_desc">Required amount text input field</string>
+  <string name="text_home_clear_amount_content_desc">Clear icon for amount text input field</string>
   <string name="text_home_label_fee">Costo del envío</string>
   <string name="text_home_label_total">Total a pagar</string>
   <string name="text_home_error_above_range">No puedes enviar mas de $3,000,000.</string>
@@ -28,5 +30,5 @@
   <string name="text_settings_label_about_efecty">Acerca de Efecty</string>
   <string name="text_settings_hint_about_efecty">Información sobre la empresa en la que se basa la calculadora de costos de transferencias de dinero.</string>
   <string name="text_settings_hint_system_dark_theme">Desactivado cuando se aplica por el sistema operativo.</string>
-    <string name="text_settings_label_feedback">Enviar comentarios</string>
+  <string name="text_settings_label_feedback">Enviar comentarios</string>
 </resources>
