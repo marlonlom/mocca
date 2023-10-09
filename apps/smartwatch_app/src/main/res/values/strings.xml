@@ -1,0 +1,9 @@
+<!--
+  ~ Copyright 2023 Marlonlom
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<resources>
+  <string name="app_name" translatable="false">Mocca</string>
+  <string name="hello_world">From the WearOS world,\nHello, %1$s!</string>
+</resources>
