@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2023 Marlonlom
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:width="@dimen/splash_screen_icon_width"
+    android:height="@dimen/splash_screen_icon_height"
+    android:drawable="@drawable/img_splash"
+    android:gravity="center" />
+</layer-list>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright 2023 Marlonlom
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<resources>
+  <string name="app_name" translatable="false">Mocca</string>
+  <string name="text_char_sequence_money_input" translatable="false">money_input</string>
+  <string name="text_calculator_input_money_amount">Money amount</string>
+  <string name="text_result_error_above_range">You cannot send more than $3,000,000.</string>
+  <string name="text_result_error_below_range">You cannot send less than $5,000.</string>
+  <string name="text_result_error_negative_amounts">You cannot send negative amounts.</string>
+  <string name="text_result_error_internal">Internal error</string>
+  <string name="text_result_label_fee">Transferring fee</string>
+  <string name="text_result_label_total">Total to pay</string>
+  <string name="text_cop_currency_value" translatable="false">COP $ %1$s</string>
+</resources>
