@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2023 Marlonlom
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<resources>
+  <string name="text_calculator_input_money_amount">Monto a enviar</string>
+  <string name="text_home_error_above_range">No puedes enviar más de $3,000,000.</string>
+  <string name="text_home_error_below_range">No puedes enviar menos de $5,000.</string>
+  <string name="text_home_error_negative_amounts">No puedes enviar cantidades negativas.</string>
+  <string name="text_general_internal_error">Internal error</string>
+</resources>
