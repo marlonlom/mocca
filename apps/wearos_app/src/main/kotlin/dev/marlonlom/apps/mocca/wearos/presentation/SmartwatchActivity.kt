@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation
+package dev.marlonlom.apps.mocca.wearos.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import dev.marlonlom.apps.mocca.smartwatch.presentation.feats.main.WearAppContent
+import dev.marlonlom.apps.mocca.wearos.presentation.feats.main.WearAppContent
 
 /**
  * Smartwatch activity class.

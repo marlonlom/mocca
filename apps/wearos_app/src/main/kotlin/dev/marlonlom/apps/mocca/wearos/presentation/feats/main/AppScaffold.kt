@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation.feats.main
+package dev.marlonlom.apps.mocca.wearos.presentation.feats.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +17,14 @@ import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 
+/**
+ * Application scaffold content composable.
+ *
+ * @author marlonlom
+ *
+ * @param listState Scaling lazy list state.
+ * @param appContent App composable content.
+ */
 @Composable
 fun AppScaffold(
   listState: ScalingLazyListState,
@@ -37,5 +45,11 @@ fun AppScaffold(
   )
 }
 
+/**
+ * Top and down vignettes composable.
+ *
+ * @author marlonlom
+ *
+ */
 @Composable
 internal fun TopAndBottomVignette() = Vignette(vignettePosition = VignettePosition.TopAndBottom)

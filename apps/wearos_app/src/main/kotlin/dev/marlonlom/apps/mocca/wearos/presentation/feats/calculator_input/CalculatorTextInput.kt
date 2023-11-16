@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation.feats.calculator_input
+package dev.marlonlom.apps.mocca.wearos.presentation.feats.calculator_input
 
 import android.app.RemoteInput
 import android.content.Intent
@@ -45,7 +45,7 @@ import androidx.wear.compose.material.OutlinedChip
 import androidx.wear.compose.material.Text
 import androidx.wear.input.RemoteInputIntentHelper
 import androidx.wear.input.wearableExtender
-import dev.marlonlom.apps.mocca.smartwatch.R
+import dev.marlonlom.apps.mocca.wearos.R
 
 /**
  * Calculator text input section composable.
