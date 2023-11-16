@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation.theme
+package dev.marlonlom.apps.mocca.wearos.presentation.theme
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Typography
-import dev.marlonlom.apps.mocca.smartwatch.R
+import dev.marlonlom.apps.mocca.wearos.R
 
 /**
  * Branded typography single object.

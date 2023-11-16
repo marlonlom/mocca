@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+package dev.marlonlom.apps.mocca.wearos.presentation.feats.calculator_output
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,7 +38,7 @@ import dev.marlonlom.apps.mocca.calculator.RequestedQuantity
 import dev.marlonlom.apps.mocca.calculator.model.CalculationException
 import dev.marlonlom.apps.mocca.calculator.model.CalculationResult
 import dev.marlonlom.apps.mocca.calculator.model.OrderResponse
-import dev.marlonlom.apps.mocca.smartwatch.R
+import dev.marlonlom.apps.mocca.wearos.R
 import kotlin.math.roundToLong
 
 @Composable

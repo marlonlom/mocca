@@ -11,11 +11,11 @@ plugins {
 }
 
 android {
-  namespace = "dev.marlonlom.apps.mocca.smartwatch"
+  namespace = "dev.marlonlom.apps.mocca.wearos"
   compileSdk = 34
 
   defaultConfig {
-    applicationId = "dev.marlonlom.apps.mocca.smartwatch"
+    applicationId = "dev.marlonlom.apps.mocca.wearos"
     minSdk = 30
     //noinspection EditedTargetSdkVersion
     targetSdk = 34

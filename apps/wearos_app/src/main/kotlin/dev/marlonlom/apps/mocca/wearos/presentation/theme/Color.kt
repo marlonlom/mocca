@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation.theme
-
+package dev.marlonlom.apps.mocca.wearos.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.wear.compose.material.Colors

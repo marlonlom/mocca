@@ -3,17 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.smartwatch.presentation.feats.main
+package dev.marlonlom.apps.mocca.wearos.presentation.feats.main
 
-import CalculatorOutput
 import androidx.compose.runtime.Composable
 import androidx.navigation.navArgument
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import dev.marlonlom.apps.mocca.smartwatch.presentation.feats.calculator_input.CalculatorTextInput
-import dev.marlonlom.apps.mocca.smartwatch.presentation.feats.main.NavigationRoutes.Home
-import dev.marlonlom.apps.mocca.smartwatch.presentation.feats.main.NavigationRoutes.Result
+import dev.marlonlom.apps.mocca.wearos.presentation.feats.calculator_input.CalculatorTextInput
+import dev.marlonlom.apps.mocca.wearos.presentation.feats.calculator_output.CalculatorOutput
+import dev.marlonlom.apps.mocca.wearos.presentation.feats.main.NavigationRoutes.Home
+import dev.marlonlom.apps.mocca.wearos.presentation.feats.main.NavigationRoutes.Result
 
 /**
  * Application navigation host composable.
