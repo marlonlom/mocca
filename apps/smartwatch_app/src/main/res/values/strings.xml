@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright 2023 Marlonlom
   ~ SPDX-License-Identifier: Apache-2.0
@@ -6,4 +8,6 @@
 <resources>
   <string name="app_name" translatable="false">Mocca</string>
   <string name="hello_world">From the WearOS world,\nHello, %1$s!</string>
+  <string name="text_char_sequence_money_input">money_input</string>
+  <string name="text_calculator_input_money_amount">Money amount</string>
 </resources>

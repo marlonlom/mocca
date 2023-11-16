@@ -6,6 +6,6 @@
   -->
 
 <resources>
-  <dimen name="splash_screen_icon_width">76dp</dimen>
-  <dimen name="splash_screen_icon_height">76dp</dimen>
+  <dimen name="splash_screen_icon_width">64dp</dimen>
+  <dimen name="splash_screen_icon_height">64dp</dimen>
 </resources>
