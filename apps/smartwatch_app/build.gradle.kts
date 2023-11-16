@@ -70,8 +70,7 @@ dependencies {
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.core.splashscreen)
   implementation(libs.androidx.lifecycle.runtime.ktx)
-  implementation(libs.androidx.compose.material3)
-
+  implementation(libs.androidx.compose.material.icons.extended)
   implementation(libs.google.play.services.wearable)
   implementation(libs.androidx.percentlayout)
   implementation(libs.androidx.legacy.support.v4)
@@ -81,6 +80,7 @@ dependencies {
   implementation(libs.androidx.compose.ui.tooling.preview)
   implementation(libs.androidx.wear.compose.material)
   implementation(libs.androidx.wear.compose.foundation)
+  implementation(libs.androidx.wear.input)
 
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
