@@ -7,7 +7,7 @@
 
 <resources>
 
-  <style name="Theme.AppSplash" parent="Theme.SplashScreen">
+  <style name="Theme.App.Starting" parent="Theme.SplashScreen">
     <item name="windowSplashScreenBackground">@color/brand_spring_wood</item>
     <item name="windowSplashScreenAnimatedIcon">@drawable/img_app_brand</item>
     <item name="windowSplashScreenAnimationDuration">1000</item>
