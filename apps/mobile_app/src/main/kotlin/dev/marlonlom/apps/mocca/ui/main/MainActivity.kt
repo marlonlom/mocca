@@ -25,7 +25,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.apps.mocca.ui.common.MainScaffold
+import dev.marlonlom.apps.mocca.ui.common.AppScaffold
 import dev.marlonlom.apps.mocca.ui.theme.MoccaTheme
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
 import kotlinx.coroutines.flow.collect
@@ -116,7 +116,7 @@ class MainActivity : ComponentActivity() {
       darkTheme = shouldUseDarkTheme(mainActivityUiState),
       dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
     ) {
-      MainScaffold(
+      AppScaffold(
         windowSizeUtil = windowSizeUtil
       )
     }
