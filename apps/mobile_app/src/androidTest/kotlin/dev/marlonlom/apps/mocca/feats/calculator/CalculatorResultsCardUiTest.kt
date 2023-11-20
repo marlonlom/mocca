@@ -16,6 +16,8 @@ import dev.marlonlom.apps.mocca.calculator.model.CalculationResult
 import dev.marlonlom.apps.mocca.feats.calculator.utils.WindowSizeUtilityDefaults
 import org.junit.Rule
 import org.junit.Test
+import java.text.NumberFormat
+import java.util.Locale
 
 @ExperimentalMaterial3WindowSizeClassApi
 internal class CalculatorResultsCardUiTest {
@@ -48,18 +50,22 @@ internal class CalculatorResultsCardUiTest {
         CalculatorUiState.WithSuccess(
           amount = "450000",
           response = CalculationResult(
-            total = 468000.0,
+            variableFee = 18000.0,
             fixedFee = 0.0,
-            variableFee = 18000.0
+            total = 468000.0
           )
         )
       )
     }
 
+    val numberFormat = NumberFormat.getCurrencyInstance(Locale("es", "co")).apply {
+      maximumFractionDigits = 0
+    }
+
     composeTestRule.onNodeWithText("Transferring fee").assertIsDisplayed()
-    composeTestRule.onNodeWithText("18000").assertIsDisplayed()
+    composeTestRule.onNodeWithText(numberFormat.format(18000.0)).assertIsDisplayed()
     composeTestRule.onNodeWithText("Total to pay").assertIsDisplayed()
-    composeTestRule.onNodeWithText("468000").assertIsDisplayed()
+    composeTestRule.onNodeWithText(numberFormat.format(468000.0)).assertIsDisplayed()
   }
 
 }
