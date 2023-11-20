@@ -73,19 +73,15 @@ fun CalculatorOutput(
       )
     }
 
-    OrderResponse.None -> {
-      FailureCalculatorOutput(
-        alertMessageText = errorTextInternal,
-        onBackNavigationAction = onBackNavigationAction
-      )
-    }
+    is OrderResponse.Success -> SuccessCalculatorOutput(
+      calculationResult = calculationResultState.item,
+      onBackNavigationAction = onBackNavigationAction
+    )
 
-    is OrderResponse.Success -> {
-      SuccessCalculatorOutput(
-        calculationResult = calculationResultState.item,
-        onBackNavigationAction = onBackNavigationAction
-      )
-    }
+    else -> FailureCalculatorOutput(
+      alertMessageText = errorTextInternal,
+      onBackNavigationAction = onBackNavigationAction
+    )
   }
 
 }
