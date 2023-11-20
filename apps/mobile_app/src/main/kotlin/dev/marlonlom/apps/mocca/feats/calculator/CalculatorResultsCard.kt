@@ -7,26 +7,26 @@ package dev.marlonlom.apps.mocca.feats.calculator
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.R
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import java.text.NumberFormat
+import java.util.Locale
 import kotlin.math.roundToInt
 
 /**
@@ -57,10 +57,35 @@ fun CalculatorResultsCard(
     ),
     border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary)
   ) {
-    OutputTitleText(windowSizeUtil, R.string.text_home_label_fee)
-    OutputMoneyTextField(windowSizeUtil, feeTextState)
-    OutputTitleText(windowSizeUtil, R.string.text_home_label_total)
-    OutputMoneyTextField(windowSizeUtil, totalCostTextState)
+    val rowPadding =
+      if (windowSizeUtil.isTabletLandscape) {
+        PaddingValues(bottom = 20.dp)
+      } else {
+        PaddingValues(bottom = 10.dp)
+      }
+    Row(
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(rowPadding),
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      Column(
+        modifier = Modifier
+          .fillMaxWidth(0.5f),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom
+      ) {
+        OutputTitleText(windowSizeUtil, R.string.text_home_label_fee)
+        OutputMoneyTextField(windowSizeUtil, feeTextState)
+      }
+      Column(
+        verticalArrangement = Arrangement.Bottom
+      ) {
+        OutputTitleText(windowSizeUtil, R.string.text_home_label_total)
+        OutputMoneyTextField(windowSizeUtil, totalCostTextState)
+      }
+    }
   }
 }
 
@@ -79,7 +104,7 @@ internal fun OutputMoneyTextField(
 ) {
 
   val textFieldStyle = when {
-    windowSizeUtil.isTabletLandscape -> MaterialTheme.typography.bodyLarge
+    windowSizeUtil.isTabletLandscape -> MaterialTheme.typography.titleMedium
     else -> MaterialTheme.typography.titleLarge
   }
 
@@ -93,32 +118,18 @@ internal fun OutputMoneyTextField(
     else -> PaddingValues(bottom = 10.dp)
   }
 
-  TextField(
+  Text(
+    text = moneyTextState.toDouble().let {
+      NumberFormat.getCurrencyInstance(Locale("es", "co")).apply {
+        maximumFractionDigits = 0
+      }.format(it)
+    },
     modifier = Modifier
       .fillMaxWidth()
       .padding(textFieldHorizontalPadding)
       .padding(textFieldBottomPadding),
-    value = moneyTextState,
-    onValueChange = { },
-    colors = TextFieldDefaults.colors(
-      disabledTextColor = MaterialTheme.colorScheme.onTertiaryContainer,
-      unfocusedContainerColor = Color.Transparent,
-      focusedContainerColor = Color.Transparent,
-      disabledContainerColor = Color.Transparent,
-      disabledIndicatorColor = Color.Transparent,
-      unfocusedIndicatorColor = Color.Transparent,
-      focusedIndicatorColor = Color.Transparent
-    ),
-    textStyle = textFieldStyle,
-    singleLine = true,
-    leadingIcon = {
-      Icon(
-        Icons.Rounded.AttachMoney,
-        contentDescription = null,
-        tint = MaterialTheme.colorScheme.onTertiaryContainer
-      )
-    },
-    enabled = false
+    style = textFieldStyle,
+    fontWeight = FontWeight.Bold,
   )
 }
 

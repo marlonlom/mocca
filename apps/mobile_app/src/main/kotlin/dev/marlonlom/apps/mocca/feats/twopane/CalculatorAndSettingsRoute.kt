@@ -53,7 +53,7 @@ fun CalculatorAndSettingsRoute(
   Row(modifier = Modifier.fillMaxSize()) {
     Column(
       modifier = Modifier
-        .fillMaxWidth(0.4f)
+        .fillMaxWidth(0.45f)
         .padding(bottom = 20.dp)
     ) {
       val calculationState by calculatorViewModel.uiState.collectAsState()
