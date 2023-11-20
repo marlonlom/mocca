@@ -21,6 +21,9 @@ android {
     targetSdk = 34
     versionCode = 1
     versionName = "1.0.0"
+
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     vectorDrawables {
       useSupportLibrary = true
     }
@@ -83,7 +86,12 @@ dependencies {
   implementation(libs.androidx.wear.input)
   implementation(libs.androidx.wear.navigation)
 
+  testImplementation(libs.junit)
+
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+  androidTestImplementation(libs.androidx.test.ext.junit)
+  androidTestImplementation(libs.androidx.test.espresso.core)
+  androidTestImplementation(libs.google.truth)
 
   debugImplementation(libs.androidx.compose.ui.tooling)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
