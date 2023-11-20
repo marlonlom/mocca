@@ -36,7 +36,7 @@ import timber.log.Timber
  * @param startDestination Start destination route name.
  */
 @Composable
-fun MainNavHost(
+fun AppNavHost(
   navController: NavHostController,
   windowSizeUtil: WindowSizeUtil,
   startDestination: String = AppRoute.Home.route

@@ -24,7 +24,7 @@ import androidx.compose.runtime.Composable
  */
 @ExperimentalMaterial3Api
 @Composable
-fun MainTopBar(
+fun AppTopBar(
   navigationIconVisible: Boolean,
   onNavigationIconClicked: () -> Unit,
   onSettingsIconClicked: () -> Unit

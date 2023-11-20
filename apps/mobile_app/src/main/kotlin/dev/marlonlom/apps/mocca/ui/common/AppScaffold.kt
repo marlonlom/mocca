@@ -32,7 +32,7 @@ import timber.log.Timber
  */
 @ExperimentalMaterial3Api
 @Composable
-fun MainScaffold(
+fun AppScaffold(
   windowSizeUtil: WindowSizeUtil,
   navController: NavHostController = rememberNavController(),
 ) {
@@ -46,7 +46,7 @@ fun MainScaffold(
     contentColor = MaterialTheme.colorScheme.onSurface,
     topBar = {
       if (!windowSizeUtil.isTabletLandscape) {
-        MainTopBar(
+        AppTopBar(
           navigationIconVisible = currentDestination != AppRoute.Home.route,
           onNavigationIconClicked = {
             Timber.d("[MainScaffold] onNavigationIconClicked")
@@ -66,7 +66,7 @@ fun MainScaffold(
           .fillMaxWidth(),
         contentAlignment = Alignment.Center
       ) {
-        MainNavHost(
+        AppNavHost(
           navController = navController,
           windowSizeUtil = windowSizeUtil,
         )
