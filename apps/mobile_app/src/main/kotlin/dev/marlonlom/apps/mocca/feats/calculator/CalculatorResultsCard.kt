@@ -118,12 +118,16 @@ internal fun OutputMoneyTextField(
     else -> PaddingValues(bottom = 10.dp)
   }
 
-  Text(
-    text = moneyTextState.toDouble().let {
+  val moneyTextOrEmpty = when {
+    moneyTextState.isEmpty() -> ""
+    else -> moneyTextState.toDouble().let {
       NumberFormat.getCurrencyInstance(Locale("es", "co")).apply {
         maximumFractionDigits = 0
       }.format(it)
-    },
+    }
+  }
+  Text(
+    text = moneyTextOrEmpty,
     modifier = Modifier
       .fillMaxWidth()
       .padding(textFieldHorizontalPadding)
