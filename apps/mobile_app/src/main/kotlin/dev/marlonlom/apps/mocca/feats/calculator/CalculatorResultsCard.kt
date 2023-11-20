@@ -121,7 +121,9 @@ internal fun OutputMoneyTextField(
   val moneyTextOrEmpty = when {
     moneyTextState.isEmpty() -> ""
     else -> moneyTextState.toDouble().let {
-      NumberFormat.getCurrencyInstance(Locale("es", "co")).apply {
+      NumberFormat.getCurrencyInstance(
+        Locale("es", "co")
+      ).apply {
         maximumFractionDigits = 0
       }.format(it)
     }
