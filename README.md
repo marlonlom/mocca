@@ -1,3 +1,5 @@
+![mocca-github_splash](https://github.com/marlonlom/mocca/assets/1868030/14308005-9cb8-48eb-ba66-703660d65a7b)
+
 # Mocca
 
 [![Android](https://img.shields.io/badge/API-33%2B-blue?logo=android-studio)]()
