@@ -8,15 +8,49 @@
 ![Build Status](https://img.shields.io/github/actions/workflow/status/marlonlom/mocca/build.yml)
 
 
-Android application for mobile phones and smartwatches, that showcases money transfers cost calculation bases in Efecty related feature
+Android application for mobile phones and smartwatches, that showcases money transfers cost calculation based in [Efecty](https://www.efecty.com.co/web/giros-nacionales) related calculator feature.
 
 # Features
 
-Mocca shows an user interface for doing money transfers cost calculation, adding an amount to be sent in Efecty transfers and reviewing the calculation results.
+**Mocca** shows an user interface for doing money transfers cost calculation, adding an amount to be sent in Efecty transfers and reviewing the calculation results, or the calculation error based on negative amounts and valid range values.
+
+## Modules
+
+**Mocca** contain tne following modules:
+
+| Module                  | Description                                                               |
+|-------------------------|---------------------------------------------------------------------------|
+| `:libraries:calculator` | Core money tramsfers cost calculation implementation                      |
+| `:apps:mobile_app`      | Contains the user interface applied to Android mobile phones and tablets. |
+| `:apps:wearos_app`      | Contains the user interface applied to WearOS smartwatches.               |
+
 
 ## Screenshots
 
-TBD
+![mocca-github_screenshots-all](https://github.com/marlonlom/mocca/assets/1868030/e6df18fe-60e0-4b4d-9939-8ed519aed88c)
+
+
+## Architecture
+
+**Mocca** is based on the MVVM architecture and the Repository pattern, which follows the Google's official architecture guidance.
+
+In detail, the app, specially the mobile app, it contains the following defined features:
+
+| Application feature | Description                                                                                                                                        |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Calculator          | Contains the UI for the money order cost calculator. Also, the calculation ui state for having a clean usage of the calculation input and outputs. |
+| Settings            | Includes the listing and modifications for the following settings: Dark theme, Dynamic colors                                                      |
+
+Both modules described here follows the convention for the already known layers that mvvm pattern include.
+
+```
+/* Calculator */
+[UI] -> [ViewModel]  // with UI state: CalculatorUiState <- {Empty, WithFailure, WithSuccess}  
+
+/* Settings */
+[UI] -> [ViewModel] -> [Repository] -> [Datastore]  // with UI state: UserPreferences
+
+```
 
 # Documentation
 
