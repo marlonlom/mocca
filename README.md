@@ -14,6 +14,10 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 **Mocca** shows an user interface for doing money transfers cost calculation, adding an amount to be sent in Efecty transfers and reviewing the calculation results, or the calculation error based on negative amounts and valid range values.
 
+## Screenshots
+
+![mocca-github_screenshots-all](https://github.com/marlonlom/mocca/assets/1868030/e6df18fe-60e0-4b4d-9939-8ed519aed88c)
+
 ## Modules
 
 **Mocca** contain tne following modules:
@@ -23,12 +27,6 @@ Android application for mobile phones and smartwatches, that showcases money tra
 | `:libraries:calculator` | Core money tramsfers cost calculation implementation                      |
 | `:apps:mobile_app`      | Contains the user interface applied to Android mobile phones and tablets. |
 | `:apps:wearos_app`      | Contains the user interface applied to WearOS smartwatches.               |
-
-
-## Screenshots
-
-![mocca-github_screenshots-all](https://github.com/marlonlom/mocca/assets/1868030/e6df18fe-60e0-4b4d-9939-8ed519aed88c)
-
 
 ## Architecture
 
