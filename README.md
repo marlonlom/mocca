@@ -32,7 +32,7 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 ## Architecture
 
-**Mocca** is based on the MVVM architecture and the Repository pattern, which follows the Google's official architecture guidance.
+**Mocca** is based on the MVVM architecture and the Repository pattern, which follows the [Google's official architecture guidance](https://developer.android.com/topic/architecture).
 
 In detail, the app, specially the mobile app, it contains the following defined features:
 
