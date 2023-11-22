@@ -18,9 +18,11 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 ![mocca-github_screenshots-all](https://github.com/marlonlom/mocca/assets/1868030/e6df18fe-60e0-4b4d-9939-8ed519aed88c)
 
-## Modules
+## Application modules
 
-**Mocca** contain tne following modules:
+**Mocca** contain tne following application modules:
+
+![mocca-github_screenshots-app_modules](https://github.com/marlonlom/mocca/assets/1868030/0cea31f4-f8f7-438c-9738-43387b03566a)
 
 | Module                  | Description                                                               |
 |-------------------------|---------------------------------------------------------------------------|
@@ -49,6 +51,15 @@ Both modules described here follows the convention for the already known layers 
 [UI] -> [ViewModel] -> [Repository] -> [Datastore]  // with UI state: UserPreferences
 
 ```
+
+
+### WearOS
+
+For the WearOS application module, you have the calculator functionality as a single module. which contains, in a simplified way, the calculator function already described.
+In the ui design aspect, the material design current implementation (the compose-material library for wearos) works fine, but, in the future, it will be applied the `material3` implementation for wearos whet it gets available.
+
+## Used Open-source libraries
+TBD
 
 # Documentation
 
