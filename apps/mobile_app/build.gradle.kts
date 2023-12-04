@@ -38,13 +38,19 @@ android {
         "proguard-rules.pro"
       )
     }
+    create("benchmark") {
+      initWith(buildTypes.getByName("release"))
+      signingConfig = signingConfigs.getByName("debug")
+      matchingFallbacks += listOf("release")
+      isDebuggable = false
+    }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
   kotlinOptions {
-    jvmTarget = "17"
+    jvmTarget = JavaVersion.VERSION_17.majorVersion
   }
   buildFeatures {
     compose = true
