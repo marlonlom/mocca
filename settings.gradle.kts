@@ -24,3 +24,4 @@ rootProject.name = "Mocca"
 include(":apps:mobile_app")
 include(":apps:wearos_app")
 include(":libraries:calculator")
+include(":benchmarks:macrobenchmark_mobile_app")
