@@ -39,7 +39,7 @@ junit = "junit:junit:4.13.2"
 # android-test-implementation
 androidx-test-ext-junit = "androidx.test.ext:junit:1.1.5"
 androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.5.1"
-google-truth = "com.google.truth:truth:1.1.5"
+google-truth = "com.google.truth:truth:1.3.0"
 
 # [smartwatch] implementation
 google-play-services-wearable = "com.google.android.gms:play-services-wearable:18.1.0"
