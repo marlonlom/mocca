@@ -9,6 +9,7 @@ import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -66,6 +67,8 @@ class MainActivity : ComponentActivity() {
         is MainActivityUiState.Success -> false
       }
     }
+
+    enableEdgeToEdge()
 
     setContent {
       val windowSizeClass = calculateWindowSizeClass(activity = this)

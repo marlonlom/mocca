@@ -24,11 +24,11 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 ![mocca-github_screenshots-app_modules](https://github.com/marlonlom/mocca/assets/1868030/0cea31f4-f8f7-438c-9738-43387b03566a)
 
-| Module                  | Description                                                               |
-|-------------------------|---------------------------------------------------------------------------|
-| `:libraries:calculator` | Core money tramsfers cost calculation implementation                      |
-| `:apps:mobile_app`      | Contains the user interface applied to Android mobile phones and tablets. |
-| `:apps:wearos_app`      | Contains the user interface applied to WearOS smartwatches.               |
+| Module                      | Description                                                               |
+|-----------------------------|---------------------------------------------------------------------------|
+| `:features:core:calculator` | Core money tramsfers cost calculation implementation                      |
+| `:apps:mobile-app`          | Contains the user interface applied to Android mobile phones and tablets. |
+| `:apps:wearos-app`          | Contains the user interface applied to WearOS smartwatches.               |
 
 ## Architecture
 
@@ -45,7 +45,7 @@ Both modules described here follows the convention for the already known layers 
 
 ```
 /* Calculator */
-[UI] -> [ViewModel]  // with UI state: CalculatorUiState <- {Empty, WithFailure, WithSuccess}  
+[UI] -> [ViewModel]  // with UI state: CalculatorUiState <- {Empty, WithFailure, WithSuccess}
 
 /* Settings */
 [UI] -> [ViewModel] -> [Repository] -> [Datastore]  // with UI state: UserPreferences

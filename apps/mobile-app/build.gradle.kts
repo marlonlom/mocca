@@ -68,7 +68,7 @@ android {
 
 dependencies {
 
-  implementation(project(":libraries:calculator"))
+  implementation(project(":features:core:calculator"))
 
   val composeBom = platform(libs.androidx.compose.bom)
   implementation(composeBom)
