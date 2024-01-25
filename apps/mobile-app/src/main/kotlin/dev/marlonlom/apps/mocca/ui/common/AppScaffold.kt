@@ -6,8 +6,10 @@
 package dev.marlonlom.apps.mocca.ui.common
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -42,6 +44,7 @@ fun AppScaffold(
 
   Scaffold(
     modifier = Modifier.fillMaxWidth(),
+    contentWindowInsets = WindowInsets(0, 0, 0, 0),
     containerColor = MaterialTheme.colorScheme.surface,
     contentColor = MaterialTheme.colorScheme.onSurface,
     topBar = {
@@ -62,6 +65,7 @@ fun AppScaffold(
     content = { paddingValues ->
       Box(
         modifier = Modifier
+          .safeDrawingPadding()
           .padding(paddingValues)
           .fillMaxWidth(),
         contentAlignment = Alignment.Center

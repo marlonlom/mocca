@@ -27,8 +27,8 @@ Android application for mobile phones and smartwatches, that showcases money tra
 | Module                  | Description                                                               |
 |-------------------------|---------------------------------------------------------------------------|
 | `:libraries:calculator` | Core money tramsfers cost calculation implementation                      |
-| `:apps:mobile_app`      | Contains the user interface applied to Android mobile phones and tablets. |
-| `:apps:wearos_app`      | Contains the user interface applied to WearOS smartwatches.               |
+| `:apps:mobile-app`      | Contains the user interface applied to Android mobile phones and tablets. |
+| `:apps:wearos-app`      | Contains the user interface applied to WearOS smartwatches.               |
 
 ## Architecture
 
@@ -45,7 +45,7 @@ Both modules described here follows the convention for the already known layers 
 
 ```
 /* Calculator */
-[UI] -> [ViewModel]  // with UI state: CalculatorUiState <- {Empty, WithFailure, WithSuccess}  
+[UI] -> [ViewModel]  // with UI state: CalculatorUiState <- {Empty, WithFailure, WithSuccess}
 
 /* Settings */
 [UI] -> [ViewModel] -> [Repository] -> [Datastore]  // with UI state: UserPreferences

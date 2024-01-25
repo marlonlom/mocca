@@ -40,7 +40,7 @@ android {
     }
   }
 
-  targetProjectPath = ":apps:mobile_app"
+  targetProjectPath = ":apps:mobile-app"
   experimentalProperties["android.experimental.self-instrumenting"] = true
 }
 
