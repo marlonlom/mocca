@@ -45,7 +45,7 @@ android {
     targetCompatibility = JavaVersion.VERSION_17
   }
   kotlinOptions {
-    jvmTarget = "17"
+    jvmTarget = JavaVersion.VERSION_17.majorVersion
   }
   buildFeatures {
     compose = true
@@ -63,7 +63,7 @@ android {
 
 dependencies {
 
-  implementation(project(":libraries:calculator"))
+  implementation(project(":features:core:calculator"))
 
   val composeBom = platform(libs.androidx.compose.bom)
   implementation(composeBom)
