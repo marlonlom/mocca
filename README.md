@@ -24,7 +24,7 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 | Module                      | Description                                                               |
 |-----------------------------|---------------------------------------------------------------------------|
-| `:features:core:calculator` | Core money tramsfers cost calculation implementation                      |
+| `:features:core:calculator` | Core money transfers cost calculation implementation                      |
 | `:apps:mobile-app`          | Contains the user interface applied to Android mobile phones and tablets. |
 | `:apps:wearos-app`          | Contains the user interface applied to WearOS smartwatches.               |
 
