@@ -8,7 +8,7 @@
 <resources>
 
   <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-    <item name="windowSplashScreenBackground">@color/brand_lavender_blush</item>
+    <item name="windowSplashScreenBackground">@color/brand_tutu</item>
     <item name="windowSplashScreenAnimatedIcon">@drawable/img_app_brand</item>
     <item name="windowSplashScreenAnimationDuration">1000</item>
     <item name="postSplashScreenTheme">@style/Theme.Mocca</item>

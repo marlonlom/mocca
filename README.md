@@ -1,12 +1,10 @@
-![mocca-github_splash](https://github.com/marlonlom/mocca/assets/1868030/14308005-9cb8-48eb-ba66-703660d65a7b)
-
 # Mocca
 
 [![Android](https://img.shields.io/badge/API-33%2B-blue?logo=android-studio)]()
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![CodeFactor](https://www.codefactor.io/repository/github/marlonlom/mocca/badge/main)](https://www.codefactor.io/repository/github/marlonlom/mocca/overview/main)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/marlonlom/mocca/build.yml)
-
+![GitHub repo size](https://img.shields.io/github/repo-size/marlonlom/mocca)
 
 Android application for mobile phones and smartwatches, that showcases money transfers cost calculation based in [Efecty](https://www.efecty.com.co/web/giros-nacionales) related calculator feature.
 
@@ -26,7 +24,7 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 | Module                      | Description                                                               |
 |-----------------------------|---------------------------------------------------------------------------|
-| `:features:core:calculator` | Core money tramsfers cost calculation implementation                      |
+| `:features:core:calculator` | Core money transfers cost calculation implementation                      |
 | `:apps:mobile-app`          | Contains the user interface applied to Android mobile phones and tablets. |
 | `:apps:wearos-app`          | Contains the user interface applied to WearOS smartwatches.               |
 
