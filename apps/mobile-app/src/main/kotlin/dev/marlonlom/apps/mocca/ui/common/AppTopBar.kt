@@ -6,6 +6,7 @@
 package dev.marlonlom.apps.mocca.ui.common
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,7 +35,7 @@ fun AppTopBar(
     navigationIcon = {
       if (navigationIconVisible) {
         IconButton(onClick = { onNavigationIconClicked() }) {
-          Icon(imageVector = Icons.Rounded.ArrowBack, contentDescription = null)
+          Icon(imageVector = Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = null)
         }
       }
     },

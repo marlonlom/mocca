@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.OpenInNew
 import androidx.compose.material.icons.rounded.Feedback
 import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.OpenInNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -169,7 +169,7 @@ internal fun LazyGridScope.aboutEfectySettingSlot(
       },
       icon = {
         Icon(
-          imageVector = Icons.Rounded.OpenInNew,
+          imageVector = Icons.AutoMirrored.Rounded.OpenInNew,
           contentDescription = null
         )
       },
