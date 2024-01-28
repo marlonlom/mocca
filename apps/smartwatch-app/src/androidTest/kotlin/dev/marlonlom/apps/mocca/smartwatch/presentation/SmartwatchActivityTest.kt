@@ -25,7 +25,7 @@ internal class SmartwatchActivityTest {
     createAndroidComposeRule()
 
   @Test
-  fun testEvent() {
+  fun shouldDisplayActivityContents() {
     with(rule) {
       activity.setContent {
         WearAppContent()
