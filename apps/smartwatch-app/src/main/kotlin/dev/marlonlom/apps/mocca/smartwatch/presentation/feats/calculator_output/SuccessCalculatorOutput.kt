@@ -42,8 +42,7 @@ internal fun SuccessCalculatorOutput(
 ) {
   Column(
     modifier = Modifier
-      .padding(top = 40.dp, bottom = 20.dp)
-      .padding(horizontal = 20.dp)
+      .padding(top = 40.dp, bottom = 10.dp)
       .verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.spacedBy(5.dp),
     horizontalAlignment = Alignment.CenterHorizontally
@@ -104,7 +103,8 @@ internal fun SuccessCalculationTexts(
 ) {
   Text(
     modifier = Modifier
-      .fillMaxWidth().padding(bottom = 2.dp),
+      .fillMaxWidth()
+      .padding(bottom = 2.dp),
     text = stringResource(titleRes),
     maxLines = 1,
     color = MaterialTheme.colors.secondary,
