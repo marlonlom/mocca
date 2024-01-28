@@ -6,12 +6,16 @@
 package dev.marlonlom.apps.mocca.smartwatch.presentation.feats.calculator_output
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpSize
@@ -51,32 +55,38 @@ fun CalculatorOutput(
     Calculator.calculate(RequestedQuantity(amountText.toDouble()))
   }
 
-  when (calculationResultState) {
-    is OrderResponse.Failure -> {
-      val alertMessageText = when (calculationResultState.exception) {
-        is CalculationException.AboveQuantityRange -> errorTextAboveRange
-        is CalculationException.BelowQuantityRange -> errorTextBelowRange
-        is CalculationException.NegativeQuantity -> errorTextNegative
-        else -> errorTextInternal
+  Box(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(horizontal = 20.dp),
+    contentAlignment = Alignment.Center,
+  ) {
+    when (calculationResultState) {
+      is OrderResponse.Failure -> {
+        val alertMessageText = when (calculationResultState.exception) {
+          is CalculationException.AboveQuantityRange -> errorTextAboveRange
+          is CalculationException.BelowQuantityRange -> errorTextBelowRange
+          is CalculationException.NegativeQuantity -> errorTextNegative
+          else -> errorTextInternal
+        }
+
+        FailureCalculatorOutput(
+          alertMessageText = alertMessageText,
+          onBackNavigationAction = onBackNavigationAction
+        )
       }
 
-      FailureCalculatorOutput(
-        alertMessageText = alertMessageText,
+      is OrderResponse.Success -> SuccessCalculatorOutput(
+        calculationResult = calculationResultState.item,
+        onBackNavigationAction = onBackNavigationAction
+      )
+
+      else -> FailureCalculatorOutput(
+        alertMessageText = errorTextInternal,
         onBackNavigationAction = onBackNavigationAction
       )
     }
-
-    is OrderResponse.Success -> SuccessCalculatorOutput(
-      calculationResult = calculationResultState.item,
-      onBackNavigationAction = onBackNavigationAction
-    )
-
-    else -> FailureCalculatorOutput(
-      alertMessageText = errorTextInternal,
-      onBackNavigationAction = onBackNavigationAction
-    )
   }
-
 }
 
 /**

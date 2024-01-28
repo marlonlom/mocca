@@ -14,10 +14,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -79,22 +79,27 @@ fun CalculatorTextInput(
     }
   }
 
-  Column(
-    modifier = Modifier.padding(20.dp),
-    verticalArrangement = Arrangement.spacedBy(10.dp),
-    horizontalAlignment = Alignment.CenterHorizontally
+  Box(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(20.dp),
+    contentAlignment = Alignment.Center,
   ) {
-    Spacer(modifier = Modifier.height(20.dp))
-    InputMoneyAmountOutlinedChip(
-      moneyInputState = moneyInputState,
-      moneyInputKey = moneyInputKey,
-      moneyInputTitle = moneyInputTitle,
-      moneyAmountInputActivityLauncher = moneyAmountInputActivityLauncher
-    )
-    PerformCalculationButton(
-      moneyInputState = moneyInputState,
-      onMoneyAmountReadyAction = onMoneyAmountReadyAction
-    )
+    Column(
+      verticalArrangement = Arrangement.spacedBy(10.dp),
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      InputMoneyAmountOutlinedChip(
+        moneyInputState = moneyInputState,
+        moneyInputKey = moneyInputKey,
+        moneyInputTitle = moneyInputTitle,
+        moneyAmountInputActivityLauncher = moneyAmountInputActivityLauncher
+      )
+      PerformCalculationButton(
+        moneyInputState = moneyInputState,
+        onMoneyAmountReadyAction = onMoneyAmountReadyAction
+      )
+    }
   }
 }
 
