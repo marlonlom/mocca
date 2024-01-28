@@ -97,7 +97,7 @@ internal fun SuccessCalculatorOutput(
  * @param calculationResultValue
  */
 @Composable
-internal fun SuccessCalculationTexts(
+private fun SuccessCalculationTexts(
   titleRes: Int,
   calculationResultValue: Double,
 ) {
