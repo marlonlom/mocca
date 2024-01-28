@@ -22,6 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mocca"
 include(":apps:mobile-app")
-include(":apps:wearos-app")
+include(":apps:smartwatch-app")
 include(":benchmarks:macro:mobile-app")
 include(":features:core:calculator")
