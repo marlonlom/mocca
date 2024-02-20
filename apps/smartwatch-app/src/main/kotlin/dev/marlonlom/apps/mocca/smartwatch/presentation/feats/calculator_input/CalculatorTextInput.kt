@@ -9,9 +9,7 @@ import android.app.RemoteInput
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -91,9 +90,19 @@ fun CalculatorTextInput(
     ) {
       InputMoneyAmountOutlinedChip(
         moneyInputState = moneyInputState,
-        moneyInputKey = moneyInputKey,
-        moneyInputTitle = moneyInputTitle,
-        moneyAmountInputActivityLauncher = moneyAmountInputActivityLauncher
+        onChipClicked = {
+          val intent: Intent = RemoteInputIntentHelper.createActionRemoteInputIntent()
+          val remoteInputs: List<RemoteInput> = listOf(
+            RemoteInput.Builder(moneyInputKey)
+              .setLabel(moneyInputTitle)
+              .wearableExtender {
+                setEmojisAllowed(false)
+                setInputActionType(EditorInfo.IME_ACTION_DONE)
+              }.build()
+          )
+          RemoteInputIntentHelper.putRemoteInputsExtra(intent, remoteInputs)
+          moneyAmountInputActivityLauncher.launch(intent)
+        },
       )
       PerformCalculationButton(
         moneyInputState = moneyInputState,
@@ -109,19 +118,17 @@ fun CalculatorTextInput(
  * @author marlonlom
  *
  * @param moneyInputState Money input state.
- * @param moneyInputKey Money input key for retrieval after using keyboard for adding amount text.
- * @param moneyInputTitle Money input title for amount text keyboard input.
- * @param moneyAmountInputActivityLauncher Activity launcher for amount text keyboard input.
+ * @param onChipClicked Action for chip clicked.
  */
 @Composable
-private fun InputMoneyAmountOutlinedChip(
+internal fun InputMoneyAmountOutlinedChip(
   moneyInputState: MutableState<String>,
-  moneyInputKey: String,
-  moneyInputTitle: String,
-  moneyAmountInputActivityLauncher: ManagedActivityResultLauncher<Intent, ActivityResult>
+  onChipClicked: () -> Unit
 ) {
   OutlinedChip(
-    modifier = Modifier.fillMaxWidth(),
+    modifier = Modifier
+      .fillMaxWidth()
+      .testTag("InputMoneyAmountOutlinedChip"),
     shape = RoundedCornerShape(12),
     icon = {
       Icon(
@@ -142,18 +149,8 @@ private fun InputMoneyAmountOutlinedChip(
       secondaryContentColor = MaterialTheme.colors.onSurface,
     ),
     onClick = {
-      val intent: Intent = RemoteInputIntentHelper.createActionRemoteInputIntent()
-      val remoteInputs: List<RemoteInput> = listOf(
-        RemoteInput.Builder(moneyInputKey)
-          .setLabel(moneyInputTitle)
-          .wearableExtender {
-            setEmojisAllowed(false)
-            setInputActionType(EditorInfo.IME_ACTION_DONE)
-          }.build()
-      )
-      RemoteInputIntentHelper.putRemoteInputsExtra(intent, remoteInputs)
-      moneyAmountInputActivityLauncher.launch(intent)
-    }
+      onChipClicked()
+    },
   )
 }
 
@@ -164,7 +161,7 @@ private fun InputMoneyAmountOutlinedChip(
  *
  */
 @Composable
-private fun InputMoneyAmountTitle() {
+internal fun InputMoneyAmountTitle() {
   Text(
     modifier = Modifier.fillMaxWidth(),
     text = stringResource(R.string.text_calculator_input_money_amount),
@@ -183,7 +180,7 @@ private fun InputMoneyAmountTitle() {
  * @param moneyInputState Money input state.
  */
 @Composable
-private fun MoneyInputValueLabel(
+internal fun MoneyInputValueLabel(
   moneyInputState: MutableState<String>
 ) {
   Text(
@@ -204,11 +201,12 @@ private fun MoneyInputValueLabel(
  * @param onMoneyAmountReadyAction Action for money amount ready for calculation.
  */
 @Composable
-private fun PerformCalculationButton(
+internal fun PerformCalculationButton(
   moneyInputState: MutableState<String>,
   onMoneyAmountReadyAction: (String) -> Unit
 ) {
   Button(
+    modifier = Modifier.testTag("PerformCalculationButton"),
     colors = ButtonDefaults.buttonColors(
       backgroundColor = MaterialTheme.colors.secondary,
       contentColor = MaterialTheme.colors.onSecondary,

@@ -108,7 +108,7 @@ private fun SuccessCalculationTexts(
     text = stringResource(titleRes),
     maxLines = 1,
     color = MaterialTheme.colors.secondary,
-    textAlign = TextAlign.Start,
+    textAlign = TextAlign.Center,
     fontWeight = FontWeight.Bold,
     style = MaterialTheme.typography.caption3
   )
@@ -121,7 +121,7 @@ private fun SuccessCalculationTexts(
     ),
     maxLines = 1,
     color = MaterialTheme.colors.secondary.copy(alpha = 0.75f),
-    textAlign = TextAlign.Start,
+    textAlign = TextAlign.Center,
     style = MaterialTheme.typography.body2
   )
 }
