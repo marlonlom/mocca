@@ -1,3 +1,8 @@
+/*
+ * Copyright 2024 Marlonlom
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 package dev.marlonlom.apps.mocca.smartwatch.presentation.feats.calculator_output
 
 import androidx.compose.foundation.layout.Arrangement
