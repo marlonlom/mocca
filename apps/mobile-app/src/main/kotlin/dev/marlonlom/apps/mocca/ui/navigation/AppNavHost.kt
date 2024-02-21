@@ -15,7 +15,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dev.marlonlom.apps.mocca.dataStore
-import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
 import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
@@ -66,7 +65,8 @@ private fun NavGraphBuilder.calculatorScreen(
     if (windowSizeUtil.isTabletLandscape) {
       CalculatorAndSettingsRoute(windowSizeUtil = windowSizeUtil)
     } else {
-      CalculatorRoute(windowSizeUtil = windowSizeUtil)
+      //CalculatorRoute(windowSizeUtil = windowSizeUtil)
+      dev.marlonlom.apps.mocca.feats.calculator_v2.CalculatorRoute()
     }
   }
 }
