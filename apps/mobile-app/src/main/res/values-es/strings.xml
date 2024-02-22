@@ -15,7 +15,7 @@
   <string name="text_home_clear_amount_content_desc">Clear icon for amount text input field</string>
   <string name="text_home_label_fee">Costo del envío</string>
   <string name="text_home_label_total">Total a pagar</string>
-  <string name="text_home_error_above_range">No puedes enviar mas de $3,000,000.</string>
+  <string name="text_home_error_above_range">No puedes enviar más de $3,000,000.</string>
   <string name="text_home_error_below_range">No puedes enviar menos de $5,000.</string>
   <string name="text_home_error_negative_amounts">No puedes enviar cantidades negativas.</string>
   <!-- settings screen -->
