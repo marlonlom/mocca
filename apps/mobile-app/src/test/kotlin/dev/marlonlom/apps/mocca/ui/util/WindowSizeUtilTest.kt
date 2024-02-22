@@ -22,6 +22,7 @@ internal class WindowSizeUtilTest {
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(360.dp, 640.dp)
       ),
+      devicePosture = DevicePosture.NormalPosture,
       isLandscape = false,
       isTabletWidth = false
     )
@@ -36,6 +37,7 @@ internal class WindowSizeUtilTest {
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(720.dp, 360.dp)
       ),
+      devicePosture = DevicePosture.NormalPosture,
       isLandscape = true,
       isTabletWidth = false
     )
@@ -50,6 +52,7 @@ internal class WindowSizeUtilTest {
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(640.dp, 1024.dp)
       ),
+      devicePosture = DevicePosture.NormalPosture,
       isLandscape = false,
       isTabletWidth = true
     )
@@ -64,6 +67,7 @@ internal class WindowSizeUtilTest {
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(1024.dp, 640.dp)
       ),
+      devicePosture = DevicePosture.NormalPosture,
       isLandscape = true,
       isTabletWidth = true
     )
