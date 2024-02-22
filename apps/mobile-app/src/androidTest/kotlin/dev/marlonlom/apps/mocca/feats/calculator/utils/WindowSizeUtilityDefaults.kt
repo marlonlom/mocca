@@ -11,7 +11,7 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.ui.util.DevicePosture
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Window size utility defaults for ui testing.
@@ -24,7 +24,7 @@ object WindowSizeUtilityDefaults {
   /** Mobile portrait reference for window size utility. */
   fun mobilePortrait(
     localConfiguration: Configuration
-  ) = WindowSizeUtil(
+  ) = WindowSizeInfo(
     windowSizeClass = WindowSizeClass.calculateFromSize(
       DpSize(360.dp, 640.dp)
     ),

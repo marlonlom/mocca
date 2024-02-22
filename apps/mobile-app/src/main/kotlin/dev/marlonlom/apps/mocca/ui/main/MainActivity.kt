@@ -29,7 +29,7 @@ import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.DevicePostureDetector
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
@@ -91,14 +91,14 @@ class MainActivity : ComponentActivity() {
       val configuration = LocalConfiguration.current
       val windowSizeClass = calculateWindowSizeClass(activity = this)
       val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle()
-      val windowSizeUtil = WindowSizeUtil(
+      val windowSizeInfo = WindowSizeInfo(
         windowSizeClass = windowSizeClass,
         devicePosture = devicePostureState,
         isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
         isTabletWidth = configuration.smallestScreenWidthDp >= 600
       )
       Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
-      MainContent(mainActivityUiState, windowSizeUtil)
+      MainContent(mainActivityUiState, windowSizeInfo)
     }
   }
 

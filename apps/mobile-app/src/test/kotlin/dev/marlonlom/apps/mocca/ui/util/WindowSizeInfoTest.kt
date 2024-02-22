@@ -14,11 +14,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 @ExperimentalMaterial3WindowSizeClassApi
-internal class WindowSizeUtilTest {
+internal class WindowSizeInfoTest {
 
   @Test
   fun `Should contain window size for mobile portrait`() {
-    val windowSizeUtility = WindowSizeUtil(
+    val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(360.dp, 640.dp)
       ),
@@ -33,7 +33,7 @@ internal class WindowSizeUtilTest {
 
   @Test
   fun `Should contain window size for mobile landscape`() {
-    val windowSizeUtility = WindowSizeUtil(
+    val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(720.dp, 360.dp)
       ),
@@ -48,7 +48,7 @@ internal class WindowSizeUtilTest {
 
   @Test
   fun `Should contain window size for tablet portrait`() {
-    val windowSizeUtility = WindowSizeUtil(
+    val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(640.dp, 1024.dp)
       ),
@@ -63,7 +63,7 @@ internal class WindowSizeUtilTest {
 
   @Test
   fun `Should contain window size for tablet landscape`() {
-    val windowSizeUtility = WindowSizeUtil(
+    val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
         DpSize(1024.dp, 640.dp)
       ),

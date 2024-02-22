@@ -30,7 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
 import dev.marlonlom.apps.mocca.ui.navigation.AppNavHost
 import dev.marlonlom.apps.mocca.ui.navigation.AppRoute
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 import timber.log.Timber
 
 /**
@@ -38,14 +38,14 @@ import timber.log.Timber
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size class.
+ * @param windowSizeInfo Window size class.
  * @param navController Navigation controller.
  */
 @ExperimentalMaterial3Api
 @Composable
 fun AppScaffold(
-  windowSizeUtil: WindowSizeUtil,
-  navController: NavHostController = rememberNavController(),
+    windowSizeInfo: WindowSizeInfo,
+    navController: NavHostController = rememberNavController(),
 ) {
 
   val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -57,7 +57,7 @@ fun AppScaffold(
     containerColor = MaterialTheme.colorScheme.surface,
     contentColor = MaterialTheme.colorScheme.onSurface,
     topBar = {
-      if (!windowSizeUtil.isTabletLandscape) {
+      if (!windowSizeInfo.isTabletLandscape) {
         AppTopBar(
           navigationIconVisible = currentDestination != AppRoute.Home.route,
           onNavigationIconClicked = {
@@ -78,16 +78,16 @@ fun AppScaffold(
           .padding(paddingValues),
         contentAlignment = Alignment.Center
       ) {
-        when (windowSizeUtil.indicateInnerContent) {
+        when (windowSizeInfo.indicateInnerContent) {
           ScaffoldInnerContentType.SinglePane -> {
             AppNavHost(
               navController = navController,
-              windowSizeUtil = windowSizeUtil,
+              windowSizeInfo = windowSizeInfo,
             )
           }
 
           is ScaffoldInnerContentType.TwoPane -> {
-            val fraction = (windowSizeUtil.indicateInnerContent as ScaffoldInnerContentType.TwoPane).hingeRatio
+            val fraction = (windowSizeInfo.indicateInnerContent as ScaffoldInnerContentType.TwoPane).hingeRatio
             Row(
               modifier = Modifier
                 .fillMaxHeight()
@@ -99,7 +99,7 @@ fun AppScaffold(
                   .fillMaxWidth(fraction)
                   .fillMaxHeight(),
               ) {
-                CalculatorRoute(windowSizeUtil)
+                CalculatorRoute(windowSizeInfo)
               }
               Column(
                 modifier = Modifier

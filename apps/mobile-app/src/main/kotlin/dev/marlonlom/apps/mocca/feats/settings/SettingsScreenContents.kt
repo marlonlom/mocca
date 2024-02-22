@@ -29,7 +29,7 @@ import com.alorma.compose.settings.storage.base.rememberBooleanSettingState
 import com.alorma.compose.settings.ui.SettingsMenuLink
 import com.alorma.compose.settings.ui.SettingsSwitch
 import dev.marlonlom.apps.mocca.R
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Settings headline section for lazy vertical grid.
@@ -55,16 +55,16 @@ internal fun LazyGridScope.settingsHeadline() {
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  * @param userPreferences User preferences.
  * @param onBooleanSettingChanged Action for dark theme setting changed.
  */
 internal fun LazyGridScope.darkThemeSettingSlot(
-  windowSizeUtil: WindowSizeUtil,
-  userPreferences: UserPreferences,
-  onBooleanSettingChanged: (String, Boolean) -> Unit
+    windowSizeInfo: WindowSizeInfo,
+    userPreferences: UserPreferences,
+    onBooleanSettingChanged: (String, Boolean) -> Unit
 ) {
-  item(span = { GridItemSpan(if (windowSizeUtil.isMobileLandscape) 1 else maxCurrentLineSpan) }) {
+  item(span = { GridItemSpan(if (windowSizeInfo.isMobileLandscape) 1 else maxCurrentLineSpan) }) {
     val darkThemeBooleanState = rememberBooleanSettingState(
       if (isSystemInDarkTheme()) true else userPreferences.darkTheme
     )
@@ -148,18 +148,18 @@ internal fun LazyGridScope.settingsGroupTitle(
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  * @param onOpeningExternalUrlSettingClicked Action for opening external url.
  * @param userPreferences User preferences.
  */
 internal fun LazyGridScope.aboutEfectySettingSlot(
-  windowSizeUtil: WindowSizeUtil,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  userPreferences: UserPreferences
+    windowSizeInfo: WindowSizeInfo,
+    onOpeningExternalUrlSettingClicked: (String) -> Unit,
+    userPreferences: UserPreferences
 ) {
   item(span = {
     GridItemSpan(
-      if (windowSizeUtil.isMobileLandscape) 1 else maxCurrentLineSpan
+      if (windowSizeInfo.isMobileLandscape) 1 else maxCurrentLineSpan
     )
   }) {
     SettingsMenuLink(

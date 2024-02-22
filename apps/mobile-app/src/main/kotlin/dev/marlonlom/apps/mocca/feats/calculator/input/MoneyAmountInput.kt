@@ -28,34 +28,34 @@ import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.R
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactHeight
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isMediumWidth
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Money amount input text composable ui.
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  * @param amountTextState Calculation amount ui state string value.
  */
 @Composable
 fun MoneyAmountInput(
-  windowSizeUtil: WindowSizeUtil,
+  windowSizeInfo: WindowSizeInfo,
   amountTextState: MutableState<String>,
 ) {
 
   val labelTextStyle = when {
-    (windowSizeUtil.windowSizeClass.isMediumWidth).and(windowSizeUtil.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
+    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.bodyLarge
   }
 
   val amountTextStyle = when {
-    (windowSizeUtil.windowSizeClass.isMediumWidth).and(windowSizeUtil.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
+    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
     else -> MaterialTheme.typography.headlineLarge
   }
 
   val moneyIconSize = when {
-    (windowSizeUtil.windowSizeClass.isMediumWidth).and(windowSizeUtil.windowSizeClass.isCompactHeight.not()) -> 64.dp
+    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp
     else -> 48.dp
   }
 

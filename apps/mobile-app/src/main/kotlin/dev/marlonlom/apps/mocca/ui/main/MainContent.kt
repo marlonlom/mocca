@@ -10,7 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import dev.marlonlom.apps.mocca.ui.main.scaffold.AppScaffold
 import dev.marlonlom.apps.mocca.ui.theme.MoccaTheme
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Main content composable ui.
@@ -18,20 +18,20 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
  * @author marlonlom
  *
  * @param mainActivityUiState Main activity ui state.
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  */
 @ExperimentalMaterial3Api
 @Composable
 internal fun MainContent(
   mainActivityUiState: MainActivityUiState,
-  windowSizeUtil: WindowSizeUtil
+  windowSizeInfo: WindowSizeInfo
 ) {
   MoccaTheme(
     darkTheme = shouldUseDarkTheme(mainActivityUiState),
     dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
   ) {
     AppScaffold(
-      windowSizeUtil = windowSizeUtil
+      windowSizeInfo = windowSizeInfo
     )
   }
 }

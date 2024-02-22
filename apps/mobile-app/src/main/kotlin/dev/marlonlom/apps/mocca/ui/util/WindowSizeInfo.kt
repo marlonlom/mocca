@@ -11,7 +11,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContents
 
 /**
- * Window size utility class.
+ * Window size information utility class.
  *
  * @author marlonlom
  *
@@ -20,7 +20,7 @@ import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContents
  * @property isLandscape True/False is device is in landscape orientation.
  * @property isTabletWidth True/False is device width is for tablets.
  */
-class WindowSizeUtil(
+data class WindowSizeInfo(
   val windowSizeClass: WindowSizeClass,
   private val devicePosture: DevicePosture,
   val isLandscape: Boolean,

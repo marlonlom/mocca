@@ -25,7 +25,7 @@ internal class MoneyAmountInputUiTest {
   fun shouldCheckAmountIsDisplayed() {
     composeTestRule.setContent {
       MoneyAmountInput(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
         amountTextState = mutableStateOf("123"),
       )
     }

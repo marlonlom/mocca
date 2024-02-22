@@ -15,14 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.R
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Settings screen route composable ui.
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size class.
+ * @param windowSizeInfo Window size class.
  * @param userPreferences User preferences ui state value.
  * @param onBooleanSettingChanged Action for boolean setting changed.
  * @param onOssLicencesSettingLinkClicked Action for oss licences setting clicked.
@@ -31,19 +31,19 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
  */
 @Composable
 fun SettingsRoute(
-  windowSizeUtil: WindowSizeUtil,
-  userPreferences: UserPreferences,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit
+    windowSizeInfo: WindowSizeInfo,
+    userPreferences: UserPreferences,
+    onBooleanSettingChanged: (String, Boolean) -> Unit,
+    onOssLicencesSettingLinkClicked: () -> Unit,
+    onOpeningExternalUrlSettingClicked: (String) -> Unit,
+    onFeedbackSettingLinkClicked: () -> Unit
 ) {
 
   val gridCells = GridCells.Fixed(2)
 
   val lazyVerticalListHorizontalPadding = when {
-    windowSizeUtil.isTabletLandscape -> PaddingValues(horizontal = 100.dp, vertical = 20.dp)
-    windowSizeUtil.isTabletWidth -> PaddingValues(horizontal = 80.dp)
+    windowSizeInfo.isTabletLandscape -> PaddingValues(horizontal = 100.dp, vertical = 20.dp)
+    windowSizeInfo.isTabletWidth -> PaddingValues(horizontal = 80.dp)
     else -> PaddingValues(horizontal = 20.dp)
   }
 
@@ -56,10 +56,10 @@ fun SettingsRoute(
     horizontalArrangement = Arrangement.Center
   ) {
     settingsHeadline()
-    darkThemeSettingSlot(windowSizeUtil, userPreferences, onBooleanSettingChanged)
+    darkThemeSettingSlot(windowSizeInfo, userPreferences, onBooleanSettingChanged)
     dynamicColorsSettingSlot(userPreferences, onBooleanSettingChanged)
     settingsGroupTitle(R.string.text_settings_title_legal)
-    aboutEfectySettingSlot(windowSizeUtil, onOpeningExternalUrlSettingClicked, userPreferences)
+    aboutEfectySettingSlot(windowSizeInfo, onOpeningExternalUrlSettingClicked, userPreferences)
     ossLicencesSettingSlot(onOssLicencesSettingLinkClicked)
     settingsGroupTitle(R.string.text_settings_title_app_info)
     feedbackSettingSlot(onFeedbackSettingLinkClicked)

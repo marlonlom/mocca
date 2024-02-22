@@ -29,7 +29,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "0"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
           LocalConfiguration.current
         ),
         calculationTextState = mutableStateOf(amountExpectedValue),
@@ -48,7 +48,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "450000"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
           LocalConfiguration.current
         ),
         calculationTextState = mutableStateOf(amountExpectedValue),
@@ -78,7 +78,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "123"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
@@ -100,7 +100,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "99999999"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
           LocalConfiguration.current
         ),
         calculationTextState = mutableStateOf(amountExpectedValue),
@@ -124,7 +124,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "-1"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeUtil = WindowSizeUtilityDefaults.mobilePortrait(
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
           LocalConfiguration.current
         ),
         calculationTextState = mutableStateOf(amountExpectedValue),

@@ -19,19 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.marlonlom.apps.mocca.feats.calculator.buttons.ButtonsSection
 import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Calculator route composable ui.
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  * @param calculatorViewModel Calculator viewmodel default instance.
  */
 @Composable
 fun CalculatorRoute(
-  windowSizeUtil: WindowSizeUtil,
+  windowSizeInfo: WindowSizeInfo,
   calculatorViewModel: CalculatorViewModel = viewModel(factory = CalculatorViewModel.Factory),
 ) {
 
@@ -46,10 +46,10 @@ fun CalculatorRoute(
   val numberTypingEnabledState = rememberSaveable { mutableStateOf(true) }
 
   when {
-    windowSizeUtil.indicateInnerContent == ScaffoldInnerContentType.SinglePane && windowSizeUtil.isMobileLandscape -> {
+    windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane && windowSizeInfo.isMobileLandscape -> {
       Row(modifier = Modifier.fillMaxSize()) {
         TopContentSection(
-          windowSizeUtil = windowSizeUtil,
+          windowSizeInfo = windowSizeInfo,
           calculationTextState = calculationTextState,
           calculatorUiState = calculationUiState,
           onSlotClosedAction = {
@@ -89,7 +89,7 @@ fun CalculatorRoute(
     else -> {
       Column(modifier = Modifier.fillMaxSize()) {
         TopContentSection(
-          windowSizeUtil = windowSizeUtil,
+          windowSizeInfo = windowSizeInfo,
           calculationTextState = calculationTextState,
           calculatorUiState = calculationUiState,
           onSlotClosedAction = {

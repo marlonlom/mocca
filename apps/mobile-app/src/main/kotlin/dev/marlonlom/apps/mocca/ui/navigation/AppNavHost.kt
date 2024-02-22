@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.ui.common
+package dev.marlonlom.apps.mocca.ui.navigation
 
 import android.content.Intent
 import androidx.compose.runtime.Composable
@@ -15,14 +15,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dev.marlonlom.apps.mocca.dataStore
+import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
 import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
-import dev.marlonlom.apps.mocca.feats.twopane.CalculatorAndSettingsRoute
-import dev.marlonlom.apps.mocca.ui.navigation.AppRoute
 import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
 import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 import timber.log.Timber
 
 /**
@@ -31,13 +30,13 @@ import timber.log.Timber
  * @author marlonlom
  *
  * @param navController Navigation controller.
- * @param windowSizeUtil Window size class.
+ * @param windowSizeInfo Window size class.
  * @param startDestination Start destination route name.
  */
 @Composable
 fun AppNavHost(
   navController: NavHostController,
-  windowSizeUtil: WindowSizeUtil,
+  windowSizeInfo: WindowSizeInfo,
   startDestination: String = AppRoute.Home.route
 ) {
   NavHost(
@@ -45,10 +44,10 @@ fun AppNavHost(
     startDestination = startDestination
   ) {
     calculatorScreen(
-      windowSizeUtil = windowSizeUtil,
+      windowSizeInfo = windowSizeInfo,
     )
     settingsScreen(
-      windowSizeUtil = windowSizeUtil,
+      windowSizeInfo = windowSizeInfo,
     )
   }
 }
@@ -56,28 +55,23 @@ fun AppNavHost(
 /**
  * Navigation graph builder extension for calculator screen composable route.
  *
- * @param windowSizeUtil Window size class.
+ * @param windowSizeInfo Window size class.
  */
 private fun NavGraphBuilder.calculatorScreen(
-  windowSizeUtil: WindowSizeUtil,
+  windowSizeInfo: WindowSizeInfo,
 ) {
   composable(AppRoute.Home.route) {
-    if (windowSizeUtil.isTabletLandscape) {
-      CalculatorAndSettingsRoute(windowSizeUtil = windowSizeUtil)
-    } else {
-      //CalculatorRoute(windowSizeUtil = windowSizeUtil)
-      dev.marlonlom.apps.mocca.feats.calculator_v2.CalculatorRoute()
-    }
+    CalculatorRoute(windowSizeInfo = windowSizeInfo)
   }
 }
 
 /**
  * Navigation graph builder extension for settings screen composable route.
  *
- * @param windowSizeUtil Window size class.
+ * @param windowSizeInfo Window size class.
  */
 private fun NavGraphBuilder.settingsScreen(
-  windowSizeUtil: WindowSizeUtil,
+  windowSizeInfo: WindowSizeInfo,
 ) {
   composable(AppRoute.Settings.route) {
     val context = LocalContext.current
@@ -87,7 +81,7 @@ private fun NavGraphBuilder.settingsScreen(
     val settingsUiState = settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
 
     SettingsRoute(
-      windowSizeUtil = windowSizeUtil,
+      windowSizeInfo = windowSizeInfo,
       userPreferences = settingsUiState.value,
       onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
       onOssLicencesSettingLinkClicked = {

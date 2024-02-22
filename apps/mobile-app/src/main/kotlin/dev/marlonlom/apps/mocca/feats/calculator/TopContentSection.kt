@@ -19,14 +19,14 @@ import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.feats.calculator.input.MoneyAmountInput
 import dev.marlonlom.apps.mocca.feats.calculator.output.FailureResultSlot
 import dev.marlonlom.apps.mocca.feats.calculator.output.SuccessResultSlot
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Top calculator content section composable ui.
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size utility.
+ * @param windowSizeInfo Window size information utility.
  * @param calculationTextState Calculation amount text state.
  * @param calculatorUiState Calculator ui state.
  * @param onSlotClosedAction Action for slot closed.
@@ -34,11 +34,11 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
  */
 @Composable
 internal fun TopContentSection(
-  windowSizeUtil: WindowSizeUtil,
-  calculationTextState: MutableState<String>,
-  calculatorUiState: CalculatorUiState,
-  onSlotClosedAction: () -> Unit,
-  isLandscapeSinglePane: Boolean = false
+    windowSizeInfo: WindowSizeInfo,
+    calculationTextState: MutableState<String>,
+    calculatorUiState: CalculatorUiState,
+    onSlotClosedAction: () -> Unit,
+    isLandscapeSinglePane: Boolean = false
 ) {
   val contentModifier = when {
     isLandscapeSinglePane -> Modifier
@@ -59,7 +59,7 @@ internal fun TopContentSection(
     Spacer(Modifier.weight(1f))
 
     MoneyAmountInput(
-      windowSizeUtil = windowSizeUtil,
+      windowSizeInfo = windowSizeInfo,
       amountTextState = calculationTextState
     )
 
