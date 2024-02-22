@@ -5,40 +5,46 @@
 
 package dev.marlonlom.apps.mocca.ui.main
 
-import android.content.res.Configuration.ORIENTATION_LANDSCAPE
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.window.layout.WindowInfoTracker
 import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.apps.mocca.ui.common.AppScaffold
-import dev.marlonlom.apps.mocca.ui.theme.MoccaTheme
+import dev.marlonlom.apps.mocca.ui.util.DevicePosture
+import dev.marlonlom.apps.mocca.ui.util.DevicePostureDetector
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.contracts.ExperimentalContracts
 
 /**
  * Main activity class.
  *
  * @author marlonlom
  */
+@ExperimentalContracts
 @ExperimentalMaterial3WindowSizeClassApi
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
@@ -47,6 +53,17 @@ class MainActivity : ComponentActivity() {
   private val mainViewModel by viewModels<MainViewModel> {
     MainViewModel.factory(SettingsRepository(this.dataStore))
   }
+
+  private val devicePostureFlow = WindowInfoTracker
+    .getOrCreate(this@MainActivity)
+    .windowLayoutInfo(this@MainActivity)
+    .flowWithLifecycle(lifecycle)
+    .map { layoutInfo -> DevicePostureDetector.fromLayoutInfo(layoutInfo) }
+    .stateIn(
+      scope = lifecycleScope,
+      started = SharingStarted.Eagerly,
+      initialValue = DevicePosture.NormalPosture
+    )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -71,57 +88,17 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
 
     setContent {
+      val configuration = LocalConfiguration.current
       val windowSizeClass = calculateWindowSizeClass(activity = this)
+      val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle()
       val windowSizeUtil = WindowSizeUtil(
         windowSizeClass = windowSizeClass,
-        isLandscape = LocalConfiguration.current.orientation == ORIENTATION_LANDSCAPE,
-        isTabletWidth = LocalConfiguration.current.smallestScreenWidthDp >= 600
+        devicePosture = devicePostureState,
+        isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
+        isTabletWidth = configuration.smallestScreenWidthDp >= 600
       )
-      Timber.d("[MainActivity] mainActivityUiState=$mainActivityUiState")
-      AppContent(mainActivityUiState, windowSizeUtil)
-    }
-  }
-
-  /**
-   * Returns `true` if the dynamic color is used, as a function of the [uiState].
-   *
-   * @param uiState Main activity ui state.
-   * @return true/false
-   */
-  @Composable
-  private fun shouldUseDynamicTheming(
-    uiState: MainActivityUiState,
-  ): Boolean = when (uiState) {
-    MainActivityUiState.Loading -> false
-    is MainActivityUiState.Success -> uiState.userData.dynamicColors
-  }
-
-  /**
-   * Returns `true` if the dark theme is used, as a function of the [uiState].
-   *
-   * @param uiState Main activity ui state.
-   * @return true/false.
-   */
-  @Composable
-  private fun shouldUseDarkTheme(
-    uiState: MainActivityUiState,
-  ): Boolean = if (isSystemInDarkTheme()) true else when (uiState) {
-    MainActivityUiState.Loading -> isSystemInDarkTheme()
-    is MainActivityUiState.Success -> uiState.userData.darkTheme
-  }
-
-  @Composable
-  private fun AppContent(
-    mainActivityUiState: MainActivityUiState,
-    windowSizeUtil: WindowSizeUtil
-  ) {
-    MoccaTheme(
-      darkTheme = shouldUseDarkTheme(mainActivityUiState),
-      dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
-    ) {
-      AppScaffold(
-        windowSizeUtil = windowSizeUtil
-      )
+      Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
+      MainContent(mainActivityUiState, windowSizeUtil)
     }
   }
 
