@@ -6,20 +6,17 @@
 package dev.marlonlom.apps.mocca.ui.main.scaffold
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -28,6 +25,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
+import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
+import dev.marlonlom.apps.mocca.ui.main.MainActions
 import dev.marlonlom.apps.mocca.ui.navigation.AppNavHost
 import dev.marlonlom.apps.mocca.ui.navigation.AppRoute
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
@@ -44,8 +43,9 @@ import timber.log.Timber
 @ExperimentalMaterial3Api
 @Composable
 fun AppScaffold(
-    windowSizeInfo: WindowSizeInfo,
-    navController: NavHostController = rememberNavController(),
+  windowSizeInfo: WindowSizeInfo,
+  mainActions: MainActions,
+  navController: NavHostController = rememberNavController(),
 ) {
 
   val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -57,7 +57,10 @@ fun AppScaffold(
     containerColor = MaterialTheme.colorScheme.surface,
     contentColor = MaterialTheme.colorScheme.onSurface,
     topBar = {
-      if (!windowSizeInfo.isTabletLandscape) {
+      val couldShowTopBar = windowSizeInfo.isTabletLandscape.not()
+        .and(windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane)
+
+      if (couldShowTopBar) {
         AppTopBar(
           navigationIconVisible = currentDestination != AppRoute.Home.route,
           onNavigationIconClicked = {
@@ -74,7 +77,7 @@ fun AppScaffold(
     content = { paddingValues ->
       Box(
         modifier = Modifier
-          .safeContentPadding()
+          .safeDrawingPadding()
           .padding(paddingValues),
         contentAlignment = Alignment.Center
       ) {
@@ -83,17 +86,13 @@ fun AppScaffold(
             AppNavHost(
               navController = navController,
               windowSizeInfo = windowSizeInfo,
+              mainActions = mainActions
             )
           }
 
           is ScaffoldInnerContentType.TwoPane -> {
             val fraction = (windowSizeInfo.indicateInnerContent as ScaffoldInnerContentType.TwoPane).hingeRatio
-            Row(
-              modifier = Modifier
-                .fillMaxHeight()
-                .padding(paddingValues),
-              verticalAlignment = Alignment.Top,
-            ) {
+            Row {
               Column(
                 modifier = Modifier
                   .fillMaxWidth(fraction)
@@ -101,14 +100,17 @@ fun AppScaffold(
               ) {
                 CalculatorRoute(windowSizeInfo)
               }
+
               Column(
                 modifier = Modifier
-                  .fillMaxSize()
+                  .fillMaxHeight()
                   .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.25f)),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
               ) {
-                Text("TwoPane 2")
+                SettingsRoute(
+                  windowSizeInfo = windowSizeInfo,
+                  mainActions = mainActions
+                )
               }
             }
           }
