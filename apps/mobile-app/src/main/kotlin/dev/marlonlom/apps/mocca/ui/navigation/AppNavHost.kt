@@ -5,24 +5,15 @@
 
 package dev.marlonlom.apps.mocca.ui.navigation
 
-import android.content.Intent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorRoute
-import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
-import dev.marlonlom.apps.mocca.feats.settings.SettingsViewModel
-import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
-import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
+import dev.marlonlom.apps.mocca.ui.main.MainActions
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
-import timber.log.Timber
 
 /**
  * Main navigation host composable ui.
@@ -37,6 +28,7 @@ import timber.log.Timber
 fun AppNavHost(
   navController: NavHostController,
   windowSizeInfo: WindowSizeInfo,
+  mainActions: MainActions,
   startDestination: String = AppRoute.Home.route
 ) {
   NavHost(
@@ -48,6 +40,7 @@ fun AppNavHost(
     )
     settingsScreen(
       windowSizeInfo = windowSizeInfo,
+      mainActions = mainActions
     )
   }
 }
@@ -72,9 +65,14 @@ private fun NavGraphBuilder.calculatorScreen(
  */
 private fun NavGraphBuilder.settingsScreen(
   windowSizeInfo: WindowSizeInfo,
+  mainActions: MainActions,
 ) {
   composable(AppRoute.Settings.route) {
-    val context = LocalContext.current
+    SettingsRoute(
+      windowSizeInfo = windowSizeInfo,
+      mainActions = mainActions
+    )
+    /*val context = LocalContext.current
     val settingsViewModel = SettingsViewModel.factory(
       SettingsRepository(context.dataStore)
     ).create(SettingsViewModel::class.java)
@@ -97,6 +95,6 @@ private fun NavGraphBuilder.settingsScreen(
         Timber.d("[AppContent] opening feedback window")
         FeedbackOpener.rate(context)
       }
-    )
+    )*/
   }
 }
