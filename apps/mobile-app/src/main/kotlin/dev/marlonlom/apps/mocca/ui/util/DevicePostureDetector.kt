@@ -98,49 +98,44 @@ object DevicePostureDetector {
   /**
    * Returns the device posture for selected layout information.
    *
-   * @param layoutInfo Window layout information.
+   * @param foldingFeature Folding feature from application window.
    */
   @JvmStatic
-  fun fromLayoutInfo(layoutInfo: WindowLayoutInfo): DevicePosture {
-    val foldingFeature =
-      layoutInfo.displayFeatures.filterIsInstance<FoldingFeature>().firstOrNull()
+  fun fromLayoutInfo(foldingFeature: FoldingFeature?): DevicePosture = when {
 
-    return when {
-
-      isBookPosture(foldingFeature) -> {
-        DevicePosture.BookPosture(
-          bounds = foldingFeature.bounds,
-          hingeRatio = getHingeRatio(foldingFeature),
-          orientation = foldingFeature.orientation,
-        )
-      }
-
-      isTableTopPosture(foldingFeature) -> {
-        DevicePosture.TableTopPosture(
-          bounds = foldingFeature.bounds,
-          hingeRatio = getHingeRatio(foldingFeature),
-          orientation = foldingFeature.orientation,
-        )
-      }
-
-      isClosedBookPosture(foldingFeature) -> {
-        DevicePosture.ClosedBookPosture(
-          bounds = foldingFeature.bounds,
-          hingeRatio = getHingeRatio(foldingFeature),
-          orientation = foldingFeature.orientation,
-        )
-      }
-
-      isClosedFlipPosture(foldingFeature) -> {
-        DevicePosture.ClosedFlipPosture(
-          bounds = foldingFeature.bounds,
-          hingeRatio = getHingeRatio(foldingFeature),
-          orientation = foldingFeature.orientation,
-        )
-      }
-
-      else -> DevicePosture.NormalPosture
+    isBookPosture(foldingFeature) -> {
+      DevicePosture.BookPosture(
+        bounds = foldingFeature.bounds,
+        hingeRatio = getHingeRatio(foldingFeature),
+        orientation = foldingFeature.orientation,
+      )
     }
+
+    isTableTopPosture(foldingFeature) -> {
+      DevicePosture.TableTopPosture(
+        bounds = foldingFeature.bounds,
+        hingeRatio = getHingeRatio(foldingFeature),
+        orientation = foldingFeature.orientation,
+      )
+    }
+
+    isClosedBookPosture(foldingFeature) -> {
+      DevicePosture.ClosedBookPosture(
+        bounds = foldingFeature.bounds,
+        hingeRatio = getHingeRatio(foldingFeature),
+        orientation = foldingFeature.orientation,
+      )
+    }
+
+    isClosedFlipPosture(foldingFeature) -> {
+      DevicePosture.ClosedFlipPosture(
+        bounds = foldingFeature.bounds,
+        hingeRatio = getHingeRatio(foldingFeature),
+        orientation = foldingFeature.orientation,
+      )
+    }
+
+    else -> DevicePosture.NormalPosture
   }
 
   private fun getHingeRatio(
@@ -159,25 +154,21 @@ object DevicePostureDetector {
 
   private fun isBookPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
-      foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
+    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating && foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
   }
 
   private fun isTableTopPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
-      foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
+    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating && foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
   }
 
   private fun isClosedBookPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.HALF_OPENED &&
-      foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
+    return foldFeature?.state == FoldingFeature.State.HALF_OPENED && foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
   }
 
   private fun isClosedFlipPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.HALF_OPENED &&
-      foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
+    return foldFeature?.state == FoldingFeature.State.HALF_OPENED && foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
   }
 }
