@@ -24,14 +24,16 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 @Composable
 internal fun MainContent(
   mainActivityUiState: MainActivityUiState,
-  windowSizeInfo: WindowSizeInfo
+  windowSizeInfo: WindowSizeInfo,
+  mainActions: MainActions
 ) {
   MoccaTheme(
     darkTheme = shouldUseDarkTheme(mainActivityUiState),
     dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
   ) {
     AppScaffold(
-      windowSizeInfo = windowSizeInfo
+      windowSizeInfo = windowSizeInfo,
+      mainActions = mainActions
     )
   }
 }
@@ -64,3 +66,18 @@ private fun shouldUseDarkTheme(
   MainActivityUiState.Loading -> isSystemInDarkTheme()
   is MainActivityUiState.Success -> uiState.userData.darkTheme
 }
+
+/**
+ * Main actions data class.
+ *
+ * @author marlonlom
+ *
+ * @property onOssLicencesSettingLinkClicked Action for oss licences setting clicked.
+ * @property onOpeningExternalUrlSettingClicked Action for opening external url.
+ * @property onFeedbackSettingLinkClicked Action for feedback setting clicked.
+ */
+data class MainActions(
+  val onOssLicencesSettingLinkClicked: () -> Unit,
+  val onOpeningExternalUrlSettingClicked: (String) -> Unit,
+  val onFeedbackSettingLinkClicked: () -> Unit
+)

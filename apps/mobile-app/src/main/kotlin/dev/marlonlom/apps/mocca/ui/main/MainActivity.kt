@@ -5,6 +5,7 @@
 
 package dev.marlonlom.apps.mocca.ui.main
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,10 +26,13 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.window.layout.WindowInfoTracker
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dev.marlonlom.apps.mocca.dataStore
 import dev.marlonlom.apps.mocca.feats.settings.SettingsRepository
+import dev.marlonlom.apps.mocca.ui.util.CustomTabsOpener
 import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.DevicePostureDetector
+import dev.marlonlom.apps.mocca.ui.util.FeedbackOpener
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
@@ -98,7 +102,28 @@ class MainActivity : ComponentActivity() {
         isTabletWidth = configuration.smallestScreenWidthDp >= 600
       )
       Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
-      MainContent(mainActivityUiState, windowSizeInfo)
+      MainContent(
+        mainActivityUiState = mainActivityUiState,
+        windowSizeInfo = windowSizeInfo,
+        mainActions = MainActions(
+          onOssLicencesSettingLinkClicked = {
+            Timber.d("[MainActivity] opening oss licenses window")
+            applicationContext.startActivity(
+              Intent(applicationContext, OssLicensesMenuActivity::class.java)
+            )
+          },
+          onOpeningExternalUrlSettingClicked = { urlText ->
+            Timber.d("[MainActivity] opening external url: $urlText")
+            if (urlText.isNotEmpty()) {
+              CustomTabsOpener.openUrl(applicationContext, urlText)
+            }
+          },
+          onFeedbackSettingLinkClicked = {
+            Timber.d("[MainActivity] opening feedback window")
+            FeedbackOpener.rate(applicationContext)
+          }
+        )
+      )
     }
   }
 
