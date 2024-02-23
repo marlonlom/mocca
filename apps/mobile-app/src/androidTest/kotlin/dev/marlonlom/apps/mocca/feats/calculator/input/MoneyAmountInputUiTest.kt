@@ -7,7 +7,6 @@ package dev.marlonlom.apps.mocca.feats.calculator.input
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -25,7 +24,7 @@ internal class MoneyAmountInputUiTest {
   fun shouldCheckAmountIsDisplayed() {
     composeTestRule.setContent {
       MoneyAmountInput(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         amountTextState = mutableStateOf("123"),
       )
     }

@@ -7,7 +7,6 @@ package dev.marlonlom.apps.mocca.feats.calculator
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -23,15 +22,12 @@ internal class TopContentSectionUiTest {
   @get:Rule
   val composeTestRule = createComposeRule()
 
-
   @Test
   fun shouldCheckResultsForEmptyUiState() {
     val amountExpectedValue = "0"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
-          LocalConfiguration.current
-        ),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.Empty,
         onSlotClosedAction = {}
@@ -48,9 +44,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "450000"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
-          LocalConfiguration.current
-        ),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithSuccess(
           amount = amountExpectedValue,
@@ -78,7 +72,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "123"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(LocalConfiguration.current),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
@@ -100,9 +94,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "99999999"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
-          LocalConfiguration.current
-        ),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
@@ -124,9 +116,7 @@ internal class TopContentSectionUiTest {
     val amountExpectedValue = "-1"
     composeTestRule.setContent {
       TopContentSection(
-        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait(
-          LocalConfiguration.current
-        ),
+        windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,

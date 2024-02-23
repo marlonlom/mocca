@@ -5,7 +5,6 @@
 
 package dev.marlonlom.apps.mocca.feats.calculator.utils
 
-import android.content.res.Configuration
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.ui.unit.DpSize
@@ -22,13 +21,13 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 object WindowSizeUtilityDefaults {
 
   /** Mobile portrait reference for window size utility. */
-  fun mobilePortrait(
-    localConfiguration: Configuration
-  ) = WindowSizeInfo(
-    windowSizeClass = WindowSizeClass.calculateFromSize(
-      DpSize(360.dp, 640.dp)
-    ),
-    devicePosture = DevicePosture.NormalPosture,
-    localConfiguration
-  )
+  val mobilePortrait
+    get() = WindowSizeInfo(
+      windowSizeClass = WindowSizeClass.calculateFromSize(
+        DpSize(360.dp, 640.dp)
+      ),
+      devicePosture = DevicePosture.NormalPosture,
+      isLandscape = false,
+      isTabletWidth = false,
+    )
 }
