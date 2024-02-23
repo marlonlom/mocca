@@ -92,7 +92,6 @@ dependencies {
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.navigation.runtime.ktx)
   implementation(libs.androidx.window)
-  implementation(libs.alorma.compose.settings.m3)
   implementation(libs.google.oss.licenses)
   implementation(libs.jakewharton.timber)
 
