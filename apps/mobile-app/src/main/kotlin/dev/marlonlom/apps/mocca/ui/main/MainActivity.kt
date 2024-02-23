@@ -25,6 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dev.marlonlom.apps.mocca.dataStore
@@ -62,7 +63,11 @@ class MainActivity : ComponentActivity() {
     .getOrCreate(this@MainActivity)
     .windowLayoutInfo(this@MainActivity)
     .flowWithLifecycle(lifecycle)
-    .map { layoutInfo -> DevicePostureDetector.fromLayoutInfo(layoutInfo) }
+    .map { layoutInfo ->
+      val foldingFeature =
+        layoutInfo.displayFeatures.filterIsInstance<FoldingFeature>().firstOrNull()
+      DevicePostureDetector.fromLayoutInfo(foldingFeature)
+    }
     .stateIn(
       scope = lifecycleScope,
       started = SharingStarted.Eagerly,
@@ -108,19 +113,19 @@ class MainActivity : ComponentActivity() {
         mainActions = MainActions(
           onOssLicencesSettingLinkClicked = {
             Timber.d("[MainActivity] opening oss licenses window")
-            applicationContext.startActivity(
-              Intent(applicationContext, OssLicensesMenuActivity::class.java)
+            startActivity(
+              Intent(this@MainActivity, OssLicensesMenuActivity::class.java)
             )
           },
           onOpeningExternalUrlSettingClicked = { urlText ->
             Timber.d("[MainActivity] opening external url: $urlText")
             if (urlText.isNotEmpty()) {
-              CustomTabsOpener.openUrl(applicationContext, urlText)
+              CustomTabsOpener.openUrl(this@MainActivity, urlText)
             }
           },
           onFeedbackSettingLinkClicked = {
             Timber.d("[MainActivity] opening feedback window")
-            FeedbackOpener.rate(applicationContext)
+            FeedbackOpener.rate(this@MainActivity)
           }
         )
       )
