@@ -10,10 +10,29 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 
+/**
+ * Scaffold inner content type sealed interface definition.
+ *
+ * @author marlonlom
+ *
+ */
 sealed interface ScaffoldInnerContentType {
 
+  /**
+   * Single pane scaffold inner content type data object.
+   *
+   * @author marlonlom
+   *
+   */
   data object SinglePane : ScaffoldInnerContentType
 
+  /**
+   * Two pane scaffold inner content type data object.
+   *
+   * @author marlonlom
+   *
+   * @property hingeRatio Hinge ratio as percentage number.
+   */
   data class TwoPane(
     val hingeRatio: Float = 0.5f
   ) : ScaffoldInnerContentType
@@ -28,8 +47,22 @@ val WindowSizeClass.isMediumWidth: Boolean
 val WindowSizeClass.isCompactHeight: Boolean
   get() = this.heightSizeClass == WindowHeightSizeClass.Compact
 
+/**
+ * Scaffold inner content classifier single object.
+ *
+ * @author marlonlom
+ *
+ */
 object ScaffoldInnerContents {
 
+  /**
+   * Indicated scaffold inner content type by window size information and device posture.
+   *
+   * @param windowSizeClass
+   * @param devicePosture
+   *
+   * @return Scaffold inner content type.
+   */
   @JvmStatic
   fun indicateInnerContent(
     windowSizeClass: WindowSizeClass,
