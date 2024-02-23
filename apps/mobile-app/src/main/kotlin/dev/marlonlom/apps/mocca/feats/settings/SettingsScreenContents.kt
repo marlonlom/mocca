@@ -60,9 +60,9 @@ internal fun LazyGridScope.settingsHeadline() {
  * @param onBooleanSettingChanged Action for dark theme setting changed.
  */
 internal fun LazyGridScope.darkThemeSettingSlot(
-    windowSizeInfo: WindowSizeInfo,
-    userPreferences: UserPreferences,
-    onBooleanSettingChanged: (String, Boolean) -> Unit
+  windowSizeInfo: WindowSizeInfo,
+  userPreferences: UserPreferences,
+  onBooleanSettingChanged: (String, Boolean) -> Unit
 ) {
   item(span = { GridItemSpan(if (windowSizeInfo.isMobileLandscape) 1 else maxCurrentLineSpan) }) {
     val darkThemeBooleanState = rememberBooleanSettingState(
@@ -153,9 +153,9 @@ internal fun LazyGridScope.settingsGroupTitle(
  * @param userPreferences User preferences.
  */
 internal fun LazyGridScope.aboutEfectySettingSlot(
-    windowSizeInfo: WindowSizeInfo,
-    onOpeningExternalUrlSettingClicked: (String) -> Unit,
-    userPreferences: UserPreferences
+  windowSizeInfo: WindowSizeInfo,
+  onOpeningExternalUrlSettingClicked: (String) -> Unit,
+  userPreferences: UserPreferences
 ) {
   item(span = {
     GridItemSpan(
