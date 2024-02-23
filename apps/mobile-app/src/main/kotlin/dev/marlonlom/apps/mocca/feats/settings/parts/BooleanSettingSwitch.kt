@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -61,6 +62,7 @@ internal fun BooleanSettingSwitch(
       text = annotatedString,
     )
     Switch(
+      modifier = Modifier.testTag("BooleanSettingSwitch"),
       enabled = enabled,
       checked = checked,
       onCheckedChange = { onChecked(it) }
@@ -68,30 +70,38 @@ internal fun BooleanSettingSwitch(
   }
 }
 
+/**
+ * Builds annotated title text with subtitle if [showSubtitle] is true, if not, only title.
+ *
+ * @author marlonlom
+ *
+ * @param title Title text as string resource.
+ * @param showSubtitle True/False is subtitle could be displayed.
+ * @param subtitle Subtitle text.
+ *
+ * @return Annotated string made for composable ui.
+ */
 @Composable
 internal fun buildAnnotatedTitleWithSubtitle(
-  title: Int,
-  showSubtitle: Boolean,
-  subtitle: String
-): AnnotatedString {
-  val annotatedString = buildAnnotatedString {
+  @StringRes title: Int,
+  subtitle: String,
+  showSubtitle: Boolean
+): AnnotatedString = buildAnnotatedString {
+  withStyle(
+    style = SpanStyle(
+      fontSize = MaterialTheme.typography.bodyMedium.fontSize
+    )
+  ) {
+    append(stringResource(title))
+  }
+  if (showSubtitle) {
+    append("\n")
     withStyle(
       style = SpanStyle(
-        fontSize = MaterialTheme.typography.bodyMedium.fontSize
+        fontSize = MaterialTheme.typography.labelMedium.fontSize
       )
     ) {
-      append(stringResource(title))
-    }
-    if (showSubtitle) {
-      append("\n")
-      withStyle(
-        style = SpanStyle(
-          fontSize = MaterialTheme.typography.labelMedium.fontSize
-        )
-      ) {
-        append(subtitle)
-      }
+      append(subtitle)
     }
   }
-  return annotatedString
 }
