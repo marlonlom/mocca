@@ -22,7 +22,7 @@ import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContents
  */
 data class WindowSizeInfo(
   val windowSizeClass: WindowSizeClass,
-  private val devicePosture: DevicePosture,
+  val devicePosture: DevicePosture,
   val isLandscape: Boolean,
   val isTabletWidth: Boolean,
 ) {
