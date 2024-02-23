@@ -7,7 +7,6 @@ package dev.marlonlom.apps.mocca.feats.calculator
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -34,11 +33,11 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
  */
 @Composable
 internal fun TopContentSection(
-    windowSizeInfo: WindowSizeInfo,
-    calculationTextState: MutableState<String>,
-    calculatorUiState: CalculatorUiState,
-    onSlotClosedAction: () -> Unit,
-    isLandscapeSinglePane: Boolean = false
+  windowSizeInfo: WindowSizeInfo,
+  calculationTextState: MutableState<String>,
+  calculatorUiState: CalculatorUiState,
+  onSlotClosedAction: () -> Unit,
+  isLandscapeSinglePane: Boolean = false
 ) {
   val contentModifier = when {
     isLandscapeSinglePane -> Modifier
@@ -56,7 +55,6 @@ internal fun TopContentSection(
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Bottom
   ) {
-    Spacer(Modifier.weight(1f))
 
     MoneyAmountInput(
       windowSizeInfo = windowSizeInfo,
