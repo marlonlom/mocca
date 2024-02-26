@@ -8,6 +8,8 @@ package dev.marlonlom.apps.mocca.feats.calculator.output
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import com.google.common.truth.Truth
 import dev.marlonlom.apps.mocca.calculator.model.CalculationResult
 import dev.marlonlom.apps.mocca.feats.calculator.CalculatorUiState
 import org.junit.Rule
@@ -18,25 +20,33 @@ internal class SuccessResultSlotUiTest {
   @get:Rule
   val composeTestRule = createComposeRule()
 
+  private var clicked = false
+
   @Test
   fun shouldCheckResultsForSuccessUiState() {
-    composeTestRule.setContent {
-      SuccessResultSlot(
-        successState = CalculatorUiState.WithSuccess(
-          amount = "450000",
-          response = CalculationResult(
-            variableFee = 18000.0,
-            fixedFee = 0.0,
-            total = 468000.0
-          )
-        ),
-        onSlotClosedAction = {}
-      )
-    }
+    with(composeTestRule) {
+      setContent {
+        SuccessResultSlot(
+          successState = CalculatorUiState.WithSuccess(
+            amount = "450000",
+            response = CalculationResult(
+              variableFee = 18000.0,
+              fixedFee = 0.0,
+              total = 468000.0
+            )
+          ),
+          onSlotClosedAction = {
+            clicked = true
+          }
+        )
+      }
 
-    composeTestRule.onNodeWithText("Transferring fee").assertIsDisplayed()
-    composeTestRule.onNodeWithText("\$ 18000").assertIsDisplayed()
-    composeTestRule.onNodeWithText("Total to pay").assertIsDisplayed()
-    composeTestRule.onNodeWithText("\$ 468000").assertIsDisplayed()
+      onNodeWithText("Transferring fee").assertIsDisplayed()
+      onNodeWithText("\$ 18000").assertIsDisplayed()
+      onNodeWithText("Total to pay").assertIsDisplayed()
+      onNodeWithText("\$ 468000").assertIsDisplayed()
+      onNodeWithText("Close").assertIsDisplayed().performClick()
+      Truth.assertThat(clicked).isTrue()
+    }
   }
 }

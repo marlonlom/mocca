@@ -89,7 +89,10 @@ fun SuccessResultSlot(
         shape = MaterialTheme.shapes.small,
         onClick = { onSlotClosedAction() },
       ) {
-        Text(text = "Nuevo", fontWeight = FontWeight.Bold)
+        Text(
+          text = stringResource(id = R.string.text_home_button_close),
+          fontWeight = FontWeight.Bold
+        )
       }
     }
 

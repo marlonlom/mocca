@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.R
+import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactHeight
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isMediumWidth
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
@@ -45,16 +46,25 @@ fun MoneyAmountInput(
 ) {
 
   val labelTextStyle = when {
+    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+      .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleSmall
+
     (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.bodyLarge
   }
 
   val amountTextStyle = when {
+    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+      .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displaySmall
+
     (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
     else -> MaterialTheme.typography.headlineLarge
   }
 
   val moneyIconSize = when {
+    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+      .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 48.dp
+
     (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp
     else -> 48.dp
   }

@@ -11,6 +11,7 @@
   <string name="text_home_headline_01">Calculate the cost of \n\n</string>
   <string name="text_home_headline_02">Your transfer</string>
   <string name="text_home_button_calculate">Calculate</string>
+  <string name="text_home_button_close">Close</string>
   <string name="text_home_label_amount">How much do you want to send?</string>
   <string name="text_home_input_amount_content_desc">Required amount text input field</string>
   <string name="text_home_clear_amount_content_desc">Clear icon for amount text input field</string>

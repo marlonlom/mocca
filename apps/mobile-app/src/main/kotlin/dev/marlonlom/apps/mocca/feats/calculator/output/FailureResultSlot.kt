@@ -8,16 +8,14 @@ package dev.marlonlom.apps.mocca.feats.calculator.output
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,10 +46,10 @@ fun FailureResultSlot(
     is CalculationException.NegativeQuantity -> R.string.text_home_error_negative_amounts
   }
 
-  Row(
+  Column(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(all = 20.dp)
+      .padding(horizontal = 20.dp, vertical = 10.dp)
       .border(
         width = 1.dp,
         color = MaterialTheme.colorScheme.error,
@@ -61,31 +59,40 @@ fun FailureResultSlot(
         color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.25f),
         shape = MaterialTheme.shapes.medium,
       ),
-    horizontalArrangement = Arrangement.spacedBy(10.dp),
-    verticalAlignment = Alignment.CenterVertically,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
     Text(
       modifier = Modifier
-        .fillMaxWidth(0.8f)
-        .padding(10.dp)
-        .padding(start = 20.dp),
-      style = MaterialTheme.typography.bodyLarge,
+        .fillMaxWidth()
+        .padding(horizontal = 20.dp)
+        .padding(top = 20.dp),
       text = stringResource(id = errorMessage),
       fontWeight = FontWeight.Bold,
       color = MaterialTheme.colorScheme.error,
-      maxLines = 2
+      style = MaterialTheme.typography.bodySmall,
     )
 
-    IconButton(
-      colors = IconButtonDefaults.iconButtonColors(
-        containerColor = MaterialTheme.colorScheme.errorContainer,
-        contentColor = MaterialTheme.colorScheme.onErrorContainer
-      ),
-      onClick = { onSlotClosedAction() },
+    Row(
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 20.dp, vertical = 10.dp),
+      horizontalArrangement = Arrangement.End,
+      verticalAlignment = Alignment.CenterVertically
     ) {
-      Icon(imageVector = Icons.Rounded.Close, contentDescription = null)
+      TextButton(
+        colors = ButtonDefaults.buttonColors(
+          containerColor = MaterialTheme.colorScheme.errorContainer,
+          contentColor = MaterialTheme.colorScheme.onErrorContainer
+        ),
+        shape = MaterialTheme.shapes.small,
+        onClick = { onSlotClosedAction() },
+      ) {
+        Text(
+          text = stringResource(id = R.string.text_home_button_close),
+          fontWeight = FontWeight.Bold
+        )
+      }
     }
-
   }
 }

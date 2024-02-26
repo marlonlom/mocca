@@ -10,6 +10,7 @@
   <string name="text_home_headline_01">"Calcula el costo de \n\n"</string>
   <string name="text_home_headline_02">Tu giro</string>
   <string name="text_home_button_calculate">Calcular</string>
+  <string name="text_home_button_close">Cerrar</string>
   <string name="text_home_label_amount">¿Cuánto deseas enviar?</string>
   <string name="text_home_input_amount_content_desc">Required amount text input field</string>
   <string name="text_home_clear_amount_content_desc">Clear icon for amount text input field</string>
