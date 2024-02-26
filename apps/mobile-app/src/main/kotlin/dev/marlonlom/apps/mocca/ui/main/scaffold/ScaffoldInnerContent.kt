@@ -44,6 +44,9 @@ val WindowSizeClass.isExpandedWidth: Boolean
 val WindowSizeClass.isMediumWidth: Boolean
   get() = this.widthSizeClass == WindowWidthSizeClass.Medium
 
+val WindowSizeClass.isCompactWidth: Boolean
+  get() = this.widthSizeClass == WindowWidthSizeClass.Compact
+
 val WindowSizeClass.isCompactHeight: Boolean
   get() = this.heightSizeClass == WindowHeightSizeClass.Compact
 
