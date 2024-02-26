@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -52,7 +52,10 @@ fun AppScaffold(
   val currentDestination = navBackStackEntry?.destination?.route ?: AppRoute.Home.route
 
   Scaffold(
-    modifier = Modifier.fillMaxWidth(),
+    modifier = Modifier
+      .background(MaterialTheme.colorScheme.surface)
+      .fillMaxWidth()
+      .safeContentPadding(),
     contentWindowInsets = WindowInsets(0, 0, 0, 0),
     containerColor = MaterialTheme.colorScheme.surface,
     contentColor = MaterialTheme.colorScheme.onSurface,
@@ -77,7 +80,6 @@ fun AppScaffold(
     content = { paddingValues ->
       Box(
         modifier = Modifier
-          .safeDrawingPadding()
           .padding(paddingValues),
         contentAlignment = Alignment.Center
       ) {
