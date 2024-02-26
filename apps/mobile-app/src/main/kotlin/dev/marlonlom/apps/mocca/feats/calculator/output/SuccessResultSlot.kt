@@ -57,7 +57,7 @@ fun SuccessResultSlot(
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
 
-    Row {
+    Row(verticalAlignment = Alignment.Bottom) {
       Column(
         modifier = Modifier.fillMaxWidth(0.5f),
         horizontalAlignment = Alignment.End
@@ -111,7 +111,7 @@ internal fun SuccessResultValue(
     text = "\$ ${amountNumber.roundToLong()}",
     fontWeight = FontWeight.Bold,
     color = MaterialTheme.colorScheme.tertiary,
-    style = MaterialTheme.typography.titleLarge,
+    style = MaterialTheme.typography.titleMedium,
   )
 }
 
