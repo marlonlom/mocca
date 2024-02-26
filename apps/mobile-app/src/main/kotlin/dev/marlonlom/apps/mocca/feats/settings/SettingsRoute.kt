@@ -5,65 +5,113 @@
 
 package dev.marlonlom.apps.mocca.feats.settings
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.marlonlom.apps.mocca.R
-import dev.marlonlom.apps.mocca.ui.util.WindowSizeUtil
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.marlonlom.apps.mocca.dataStore
+import dev.marlonlom.apps.mocca.feats.settings.parts.SettingsHeaderText
+import dev.marlonlom.apps.mocca.feats.settings.slots.AboutSettingsSlot
+import dev.marlonlom.apps.mocca.feats.settings.slots.AppearanceSettingsSlot
+import dev.marlonlom.apps.mocca.feats.settings.slots.LegalNotesSettingsSlot
+import dev.marlonlom.apps.mocca.ui.main.MainActions
+import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactHeight
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isExpandedWidth
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isMediumWidth
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Settings screen route composable ui.
  *
  * @author marlonlom
  *
- * @param windowSizeUtil Window size class.
- * @param userPreferences User preferences ui state value.
- * @param onBooleanSettingChanged Action for boolean setting changed.
- * @param onOssLicencesSettingLinkClicked Action for oss licences setting clicked.
- * @param onOpeningExternalUrlSettingClicked Action for opening external url.
- * @param onFeedbackSettingLinkClicked Action for feedback setting clicked.
+ * @param windowSizeInfo Window size info.
+ * @param mainActions Main actions data class.
+ * @param settingsViewModel Settings viewmodel default instance.
  */
 @Composable
 fun SettingsRoute(
-  windowSizeUtil: WindowSizeUtil,
-  userPreferences: UserPreferences,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-  onOssLicencesSettingLinkClicked: () -> Unit,
-  onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  onFeedbackSettingLinkClicked: () -> Unit
+  windowSizeInfo: WindowSizeInfo,
+  mainActions: MainActions,
+  onBackNavigationAction: () -> Unit = {},
+  settingsViewModel: SettingsViewModel = viewModel(
+    factory = SettingsViewModel.factory(
+      SettingsRepository(LocalContext.current.dataStore)
+    )
+  ),
 ) {
-
-  val gridCells = GridCells.Fixed(2)
-
-  val lazyVerticalListHorizontalPadding = when {
-    windowSizeUtil.isTabletLandscape -> PaddingValues(horizontal = 100.dp, vertical = 20.dp)
-    windowSizeUtil.isTabletWidth -> PaddingValues(horizontal = 80.dp)
-    else -> PaddingValues(horizontal = 20.dp)
+  BackHandler {
+    onBackNavigationAction()
   }
 
-  LazyVerticalGrid(
+  val userPreferences by settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
+
+  val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
+
+  Column(
     modifier = Modifier
-      .fillMaxWidth()
-      .padding(lazyVerticalListHorizontalPadding),
-    columns = gridCells,
-    verticalArrangement = Arrangement.SpaceBetween,
-    horizontalArrangement = Arrangement.Center
+      .verticalScroll(rememberScrollState())
+      .padding(horizontal = horizontalPadding),
+    verticalArrangement = Arrangement.Top,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    settingsHeadline()
-    darkThemeSettingSlot(windowSizeUtil, userPreferences, onBooleanSettingChanged)
-    dynamicColorsSettingSlot(userPreferences, onBooleanSettingChanged)
-    settingsGroupTitle(R.string.text_settings_title_legal)
-    aboutEfectySettingSlot(windowSizeUtil, onOpeningExternalUrlSettingClicked, userPreferences)
-    ossLicencesSettingSlot(onOssLicencesSettingLinkClicked)
-    settingsGroupTitle(R.string.text_settings_title_app_info)
-    feedbackSettingSlot(onFeedbackSettingLinkClicked)
-    appVersionSettingSlot(userPreferences)
+    SettingsHeaderText(windowSizeInfo)
+    AppearanceSettingsSlot(
+      userPreferences = userPreferences,
+      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference
+    )
+    LegalNotesSettingsSlot(
+      userPreferences = userPreferences,
+      onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked
+    )
+    AboutSettingsSlot(
+      userPreferences = userPreferences,
+      onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked
+    )
   }
+}
+
+/**
+ * Returns settings content horizontal padding value using [WindowSizeInfo].
+ *
+ * @param wsi Window size info.
+ *
+ * @return Horizontal padding value as DP.
+ */
+@Composable
+private fun getSettingsContentHorizontalPadding(
+  wsi: WindowSizeInfo
+): Dp = when {
+  (wsi.indicateInnerContent is ScaffoldInnerContentType.SinglePane)
+    .and(wsi.windowSizeClass.isCompactHeight) -> 100.dp
+
+  (wsi.indicateInnerContent is ScaffoldInnerContentType.SinglePane)
+    .and(wsi.windowSizeClass.isMediumWidth) -> 60.dp
+
+  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+    .and(wsi.windowSizeClass.isExpandedWidth)
+    .and(wsi.windowSizeClass.isCompactHeight.not())
+    .and(wsi.isTabletLandscape) -> 40.dp
+
+  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+    .and(wsi.windowSizeClass.isExpandedWidth)
+    .and(wsi.isTabletLandscape) -> 80.dp
+
+  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+    .and(wsi.windowSizeClass.isMediumWidth) -> 20.dp
+
+  else -> 20.dp
 }
 

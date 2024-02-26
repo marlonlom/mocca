@@ -10,22 +10,24 @@
   <string name="text_home_headline_01">"Calcula el costo de \n\n"</string>
   <string name="text_home_headline_02">Tu giro</string>
   <string name="text_home_button_calculate">Calcular</string>
+  <string name="text_home_button_close">Cerrar</string>
   <string name="text_home_label_amount">¿Cuánto deseas enviar?</string>
   <string name="text_home_input_amount_content_desc">Required amount text input field</string>
   <string name="text_home_clear_amount_content_desc">Clear icon for amount text input field</string>
   <string name="text_home_label_fee">Costo del envío</string>
   <string name="text_home_label_total">Total a pagar</string>
-  <string name="text_home_error_above_range">No puedes enviar mas de $3,000,000.</string>
+  <string name="text_home_error_above_range">No puedes enviar más de $3,000,000.</string>
   <string name="text_home_error_below_range">No puedes enviar menos de $5,000.</string>
   <string name="text_home_error_negative_amounts">No puedes enviar cantidades negativas.</string>
   <!-- settings screen -->
   <string name="text_settings_headline">Ajustes</string>
+  <string name="text_settings_title_appearance">Apariencia</string>
   <string name="text_settings_label_dark_theme">Tema oscuro</string>
   <string name="text_settings_label_dynamic_color">Colores dinámicos</string>
   <string name="text_settings_hint_dynamic_color">Habilitado en Android 12 o superior.</string>
   <string name="text_settings_title_legal">Notas legales</string>
   <string name="text_settings_label_oss_licences">Licencias de terceros</string>
-  <string name="text_settings_title_app_info">Información de la aplicación</string>
+  <string name="text_settings_title_app_info">Acerca de la aplicación</string>
   <string name="text_settings_label_app_version">Versión</string>
   <string name="text_settings_label_about_efecty">Acerca de Efecty</string>
   <string name="text_settings_hint_about_efecty">Información sobre la empresa en la que se basa la calculadora de costos de transferencias de dinero.</string>

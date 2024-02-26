@@ -18,7 +18,6 @@ android {
   defaultConfig {
     applicationId = "dev.marlonlom.apps.mocca"
     minSdk = 24
-    //noinspection EditedTargetSdkVersion
     targetSdk = 34
     versionCode = 1
     versionName = "1.0.0"
@@ -92,15 +91,17 @@ dependencies {
   implementation(libs.androidx.lifecycle.viewmodel.compose)
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.navigation.runtime.ktx)
-  implementation(libs.alorma.compose.settings.m3)
+  implementation(libs.androidx.window)
   implementation(libs.google.oss.licenses)
   implementation(libs.jakewharton.timber)
 
   testImplementation(libs.junit)
+  testImplementation(libs.kotlinx.coroutines.test)
 
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)
   androidTestImplementation(libs.androidx.test.ext.junit)
   androidTestImplementation(libs.androidx.test.espresso.core)
+  androidTestImplementation(libs.androidx.window.testing)
   androidTestImplementation(libs.google.truth)
 
   debugImplementation(libs.androidx.compose.ui.tooling)

@@ -15,6 +15,7 @@ androidx-lifecycle-runtime-compose = "androidx.lifecycle:lifecycle-runtime-compo
 androidx-lifecycle-runtime-ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.7.0"
 androidx-lifecycle-viewmodel-compose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0"
 androidx-navigation-runtime-ktx = "androidx.navigation:navigation-runtime-ktx:2.7.7"
+androidx-window = "androidx.window:window:1.2.0"
 google-oss-licenses = "com.google.android.gms:play-services-oss-licenses:17.0.1"
 google-oss-licenses-plugin = "com.google.android.gms:oss-licenses-plugin:0.10.6"
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
@@ -35,10 +36,12 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 
 # test-implementation
 junit = "junit:junit:4.13.2"
+kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0"
 
 # android-test-implementation
 androidx-test-ext-junit = "androidx.test.ext:junit:1.1.5"
 androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.5.1"
+androidx-window-testing = "androidx.window:window-testing:1.2.0"
 google-truth = "com.google.truth:truth:1.4.1"
 
 # [smartwatch] implementation
