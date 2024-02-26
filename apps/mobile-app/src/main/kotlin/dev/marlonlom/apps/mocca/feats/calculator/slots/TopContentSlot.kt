@@ -19,6 +19,10 @@ import dev.marlonlom.apps.mocca.feats.calculator.CalculatorUiState
 import dev.marlonlom.apps.mocca.feats.calculator.input.MoneyAmountInput
 import dev.marlonlom.apps.mocca.feats.calculator.output.FailureResultSlot
 import dev.marlonlom.apps.mocca.feats.calculator.output.SuccessResultSlot
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactHeight
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactWidth
+import dev.marlonlom.apps.mocca.ui.main.scaffold.isMediumWidth
+import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
@@ -44,6 +48,13 @@ internal fun TopContentSlot(
     isLandscapeSinglePane -> Modifier
       .fillMaxWidth(0.5f)
       .fillMaxHeight()
+
+    windowSizeInfo.windowSizeClass.isCompactWidth
+      .and(windowSizeInfo.devicePosture is DevicePosture.TableTopPosture)
+    -> Modifier
+      .fillMaxWidth()
+      .fillMaxHeight((windowSizeInfo.devicePosture as DevicePosture.TableTopPosture).hingeRatio)
+      .padding(bottom = 20.dp)
 
     else -> Modifier
       .fillMaxWidth()

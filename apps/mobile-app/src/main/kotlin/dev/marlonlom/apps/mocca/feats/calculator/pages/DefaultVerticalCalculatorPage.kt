@@ -32,6 +32,7 @@ fun DefaultVerticalCalculatorPage(
     )
 
     ButtonsContentSlot(
+      windowSizeInfo = pageData.windowSizeInfo,
       numberTypingEnabledState = pageData.numberTypingEnabledState,
       onPerformCalculationAction = pageData.actions.onPerformCalculationAction,
       onDeleteLastNumberAction = pageData.actions.onDeleteLastNumberAction,
