@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
  * Calculator buttons content slot composable ui.
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.dp
  */
 @Composable
 fun ButtonsContentSlot(
+  windowSizeInfo: WindowSizeInfo,
   numberTypingEnabledState: MutableState<Boolean>,
   onPerformCalculationAction: () -> Unit,
   onDeleteLastNumberAction: () -> Unit,
@@ -45,6 +47,12 @@ fun ButtonsContentSlot(
   val cols = listOf(
     listOf("7", "4", "1", "0"), listOf("8", "5", "2", "✔"), listOf("9", "6", "3", "⌫")
   )
+
+  val numberTextStyle = when {
+    windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
+    else -> MaterialTheme.typography.headlineLarge
+  }
+
   HorizontalDivider(
     modifier = Modifier
       .fillMaxWidth()
@@ -107,7 +115,7 @@ fun ButtonsContentSlot(
             Text(
               text = itm,
               fontWeight = FontWeight.Bold,
-              style = MaterialTheme.typography.headlineLarge
+              style = numberTextStyle
             )
           }
         }

@@ -5,15 +5,18 @@
 
 package dev.marlonlom.apps.mocca.feats.calculator.slots
 
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.google.common.truth.Truth
+import dev.marlonlom.apps.mocca.feats.calculator.utils.WindowSizeUtilityDefaults
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalMaterial3WindowSizeClassApi
 internal class ButtonsSectionUiTest {
 
   @get:Rule
@@ -28,13 +31,13 @@ internal class ButtonsSectionUiTest {
     with(composeTestRule) {
       setContent {
         ButtonsContentSlot(
+          windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = { },
-          onDeleteLastNumberAction = {},
-          onAppendNumberAction = {
-            numberText.append(it)
-          }
-        )
+          onDeleteLastNumberAction = {}
+        ) {
+          numberText.append(it)
+        }
       }
 
       expectedAmount.split("")
@@ -56,15 +59,15 @@ internal class ButtonsSectionUiTest {
     with(composeTestRule) {
       setContent {
         ButtonsContentSlot(
+          windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = { },
           onDeleteLastNumberAction = {
             numberText.deleteCharAt(numberText.length - 1)
-          },
-          onAppendNumberAction = {
-            numberText.append(it)
           }
-        )
+        ) {
+          numberText.append(it)
+        }
       }
 
       expectedAmount.split("")
@@ -88,17 +91,17 @@ internal class ButtonsSectionUiTest {
     with(composeTestRule) {
       setContent {
         ButtonsContentSlot(
+          windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = {
             calculationPerformed = true
           },
           onDeleteLastNumberAction = {
             numberText.deleteCharAt(numberText.length - 1)
-          },
-          onAppendNumberAction = {
-            numberText.append(it)
           }
-        )
+        ) {
+          numberText.append(it)
+        }
       }
 
       expectedAmount.split("").filterNot { it.isEmpty() }.forEach {
