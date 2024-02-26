@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.feats.calculator
+package dev.marlonlom.apps.mocca.feats.calculator.slots
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.marlonlom.apps.mocca.feats.calculator.CalculatorUiState
 import dev.marlonlom.apps.mocca.feats.calculator.input.MoneyAmountInput
 import dev.marlonlom.apps.mocca.feats.calculator.output.FailureResultSlot
 import dev.marlonlom.apps.mocca.feats.calculator.output.SuccessResultSlot

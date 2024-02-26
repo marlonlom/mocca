@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.feats.calculator.buttons
+package dev.marlonlom.apps.mocca.feats.calculator.slots
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
  * @param onAppendNumberAction Action for adding selected digit when using the buttons.
  */
 @Composable
-fun ButtonsSection(
+fun ButtonsContentSlot(
   numberTypingEnabledState: MutableState<Boolean>,
   onPerformCalculationAction: () -> Unit,
   onDeleteLastNumberAction: () -> Unit,

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.apps.mocca.feats.calculator.buttons
+package dev.marlonlom.apps.mocca.feats.calculator.slots
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
@@ -27,7 +27,7 @@ internal class ButtonsSectionUiTest {
 
     with(composeTestRule) {
       setContent {
-        ButtonsSection(
+        ButtonsContentSlot(
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = { },
           onDeleteLastNumberAction = {},
@@ -55,7 +55,7 @@ internal class ButtonsSectionUiTest {
 
     with(composeTestRule) {
       setContent {
-        ButtonsSection(
+        ButtonsContentSlot(
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = { },
           onDeleteLastNumberAction = {
@@ -87,7 +87,7 @@ internal class ButtonsSectionUiTest {
 
     with(composeTestRule) {
       setContent {
-        ButtonsSection(
+        ButtonsContentSlot(
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = {
             calculationPerformed = true
