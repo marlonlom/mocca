@@ -5,19 +5,17 @@
 
 package dev.marlonlom.apps.mocca.feats.calculator
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.marlonlom.apps.mocca.feats.calculator.buttons.ButtonsSection
+import dev.marlonlom.apps.mocca.feats.calculator.pages.CompactLandscapeCalculatorPage
+import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentActions
+import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentData
+import dev.marlonlom.apps.mocca.feats.calculator.pages.DefaultVerticalCalculatorPage
 import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
@@ -32,7 +30,9 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 @Composable
 fun CalculatorRoute(
   windowSizeInfo: WindowSizeInfo,
-  calculatorViewModel: CalculatorViewModel = viewModel(factory = CalculatorViewModel.Factory),
+  calculatorViewModel: CalculatorViewModel = viewModel(
+    factory = CalculatorViewModel.Factory
+  ),
 ) {
 
   val calculationUiState by calculatorViewModel.uiState.collectAsState()
@@ -50,84 +50,47 @@ fun CalculatorRoute(
     numberTypingEnabledState.value = false
   }
 
-  when {
-    windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane && windowSizeInfo.isMobileLandscape -> {
-      Row(modifier = Modifier.fillMaxSize()) {
-        TopContentSection(
-          windowSizeInfo = windowSizeInfo,
-          calculationTextState = calculationTextState,
-          calculatorUiState = calculationUiState,
-          onSlotClosedAction = {
-            numberTypingEnabledState.value = true
-            calculatorViewModel.reset()
-            calculationTextState.value = "0"
-          },
-          isLandscapeSinglePane = true
-        )
-
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-          ButtonsSection(
-            numberTypingEnabledState = numberTypingEnabledState,
-            onPerformCalculationAction = {
-              numberTypingEnabledState.value = false
-              calculatorViewModel.calculate(calculationTextState.value)
-            },
-            onDeleteLastNumberAction = {
-              val previousValue = calculationTextState.value
-              calculationTextState.value = when (previousValue.length) {
-                1 -> "0"
-                else -> previousValue.substring(0, previousValue.length - 1)
-              }
-            },
-            onAppendNumberAction = { numTxt ->
-              val previousValue = calculationTextState.value
-              calculationTextState.value = when {
-                previousValue == "0" -> numTxt
-                previousValue.matches(numberPattern) -> previousValue.plus(numTxt)
-                else -> previousValue
-              }
-            },
-          )
+  val pageContentData = PageContentData(
+    windowSizeInfo = windowSizeInfo,
+    calculationTextState = calculationTextState,
+    calculatorUiState = calculationUiState,
+    numberTypingEnabledState = numberTypingEnabledState,
+    actions = PageContentActions(
+      onSlotClosedAction = {
+        numberTypingEnabledState.value = true
+        calculatorViewModel.reset()
+        calculationTextState.value = "0"
+      },
+      onPerformCalculationAction = {
+        numberTypingEnabledState.value = false
+        calculatorViewModel.calculate(calculationTextState.value)
+      },
+      onDeleteLastNumberAction = {
+        val previousValue = calculationTextState.value
+        calculationTextState.value = when (previousValue.length) {
+          1 -> "0"
+          else -> previousValue.substring(0, previousValue.length - 1)
         }
-      }
+      },
+      onAppendNumberAction = { numTxt ->
+        val previousValue = calculationTextState.value
+        calculationTextState.value = when {
+          previousValue == "0" -> numTxt
+          previousValue.matches(numberPattern) -> previousValue.plus(numTxt)
+          else -> previousValue
+        }
+      },
+    )
+  )
+
+  when {
+    (windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane)
+      .and(windowSizeInfo.isMobileLandscape) -> {
+      CompactLandscapeCalculatorPage(pageData = pageContentData)
     }
 
     else -> {
-      Column(modifier = Modifier.fillMaxSize()) {
-        TopContentSection(
-          windowSizeInfo = windowSizeInfo,
-          calculationTextState = calculationTextState,
-          calculatorUiState = calculationUiState,
-          onSlotClosedAction = {
-            numberTypingEnabledState.value = true
-            calculatorViewModel.reset()
-            calculationTextState.value = "0"
-          },
-        )
-
-        ButtonsSection(
-          numberTypingEnabledState = numberTypingEnabledState,
-          onPerformCalculationAction = {
-            numberTypingEnabledState.value = false
-            calculatorViewModel.calculate(calculationTextState.value)
-          },
-          onDeleteLastNumberAction = {
-            val previousValue = calculationTextState.value
-            calculationTextState.value = when (previousValue.length) {
-              1 -> "0"
-              else -> previousValue.substring(0, previousValue.length - 1)
-            }
-          },
-          onAppendNumberAction = { numTxt ->
-            val previousValue = calculationTextState.value
-            calculationTextState.value = when {
-              previousValue == "0" -> numTxt
-              previousValue.matches(numberPattern) -> previousValue.plus(numTxt)
-              else -> previousValue
-            }
-          },
-        )
-      }
+      DefaultVerticalCalculatorPage(pageData = pageContentData)
     }
   }
 
