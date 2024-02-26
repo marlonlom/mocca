@@ -25,6 +25,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
+/**
+ * Calculator buttons content slot composable ui.
+ *
+ * @author marlonlom
+ *
+ * @param numberTypingEnabledState True/False as MutableState indicating if number appending is enabled.
+ * @param onPerformCalculationAction Action for calculation started action.
+ * @param onDeleteLastNumberAction Action for deleting last added digit when using the buttons.
+ * @param onAppendNumberAction Action for adding selected digit when using the buttons.
+ */
 @Composable
 fun ButtonsSection(
   numberTypingEnabledState: MutableState<Boolean>,

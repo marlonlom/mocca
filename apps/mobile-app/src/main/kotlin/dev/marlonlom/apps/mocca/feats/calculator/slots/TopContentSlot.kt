@@ -32,7 +32,7 @@ import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
  * @param isLandscapeSinglePane True/False if showing single pane layout in landscape orientation.
  */
 @Composable
-internal fun TopContentSection(
+internal fun TopContentSlot(
   windowSizeInfo: WindowSizeInfo,
   calculationTextState: MutableState<String>,
   calculatorUiState: CalculatorUiState,
