@@ -49,7 +49,7 @@ fun MoneyAmountInput(
     (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleSmall
 
-    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
+    windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.bodyLarge
   }
 
@@ -57,7 +57,7 @@ fun MoneyAmountInput(
     (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displaySmall
 
-    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
+    windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
     else -> MaterialTheme.typography.headlineLarge
   }
 
@@ -65,7 +65,7 @@ fun MoneyAmountInput(
     (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 48.dp
 
-    (windowSizeInfo.windowSizeClass.isMediumWidth).and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp
+    windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp
     else -> 48.dp
   }
 

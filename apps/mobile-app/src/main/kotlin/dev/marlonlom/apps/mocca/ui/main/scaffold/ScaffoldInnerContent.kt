@@ -72,7 +72,7 @@ object ScaffoldInnerContents {
     devicePosture: DevicePosture,
   ): ScaffoldInnerContentType = when {
 
-    (windowSizeClass.isExpandedWidth).and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
+    windowSizeClass.isExpandedWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
       DevicePosture.NormalPosture -> ScaffoldInnerContentType.TwoPane()
       is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
       is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
@@ -80,7 +80,7 @@ object ScaffoldInnerContents {
       is DevicePosture.BookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
     }
 
-    (windowSizeClass.isMediumWidth).and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
+    windowSizeClass.isMediumWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
       DevicePosture.NormalPosture -> ScaffoldInnerContentType.SinglePane
       is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
       is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
