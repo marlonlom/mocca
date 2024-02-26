@@ -41,9 +41,14 @@ fun CalculatorRoute(
     is CalculatorUiState.WithSuccess -> (calculationUiState as CalculatorUiState.WithSuccess).amount
     is CalculatorUiState.Empty -> "0"
   }
-  val numberPattern = remember { Regex("^\\d+\$") }
+  val numberPattern = remember { Regex("^\\d{1,7}\$") }
   val calculationTextState = rememberSaveable { mutableStateOf(calculationAmount) }
   val numberTypingEnabledState = rememberSaveable { mutableStateOf(true) }
+
+  if (calculationTextState.value.matches(numberPattern).not()) {
+    calculatorViewModel.calculate(calculationTextState.value)
+    numberTypingEnabledState.value = false
+  }
 
   when {
     windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane && windowSizeInfo.isMobileLandscape -> {
@@ -55,6 +60,7 @@ fun CalculatorRoute(
           onSlotClosedAction = {
             numberTypingEnabledState.value = true
             calculatorViewModel.reset()
+            calculationTextState.value = "0"
           },
           isLandscapeSinglePane = true
         )
@@ -95,6 +101,7 @@ fun CalculatorRoute(
           onSlotClosedAction = {
             numberTypingEnabledState.value = true
             calculatorViewModel.reset()
+            calculationTextState.value = "0"
           },
         )
 
@@ -123,6 +130,5 @@ fun CalculatorRoute(
       }
     }
   }
-
 
 }
