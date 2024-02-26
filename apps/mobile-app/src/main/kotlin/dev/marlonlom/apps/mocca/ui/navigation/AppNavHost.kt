@@ -40,7 +40,10 @@ fun AppNavHost(
     )
     settingsScreen(
       windowSizeInfo = windowSizeInfo,
-      mainActions = mainActions
+      mainActions = mainActions,
+      onBackNavigationAction = {
+        navController.popBackStack()
+      }
     )
   }
 }
@@ -66,35 +69,13 @@ private fun NavGraphBuilder.calculatorScreen(
 private fun NavGraphBuilder.settingsScreen(
   windowSizeInfo: WindowSizeInfo,
   mainActions: MainActions,
+  onBackNavigationAction: () -> Unit
 ) {
   composable(AppRoute.Settings.route) {
     SettingsRoute(
       windowSizeInfo = windowSizeInfo,
-      mainActions = mainActions
+      mainActions = mainActions,
+      onBackNavigationAction = onBackNavigationAction
     )
-    /*val context = LocalContext.current
-    val settingsViewModel = SettingsViewModel.factory(
-      SettingsRepository(context.dataStore)
-    ).create(SettingsViewModel::class.java)
-    val settingsUiState = settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
-
-    SettingsRoute(
-      windowSizeInfo = windowSizeInfo,
-      userPreferences = settingsUiState.value,
-      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
-      onOssLicencesSettingLinkClicked = {
-        context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
-      },
-      onOpeningExternalUrlSettingClicked = { urlText ->
-        Timber.d("[AppContent] opening external url: $urlText")
-        if (urlText.isNotEmpty()) {
-          CustomTabsOpener.openUrl(context, urlText)
-        }
-      },
-      onFeedbackSettingLinkClicked = {
-        Timber.d("[AppContent] opening feedback window")
-        FeedbackOpener.rate(context)
-      }
-    )*/
   }
 }
