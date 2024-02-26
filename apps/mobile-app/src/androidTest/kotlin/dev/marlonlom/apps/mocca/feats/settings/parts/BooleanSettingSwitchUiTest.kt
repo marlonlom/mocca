@@ -23,45 +23,47 @@ internal class BooleanSettingSwitchUiTest {
   @Test
   fun shouldDisplaySwitchWithTitleOnly() {
     var checked = false
+    with(composeTestRule) {
+      setContent {
+        BooleanSettingSwitch(
+          title = R.string.text_settings_label_dark_theme,
+          subtitle = R.string.text_settings_hint_system_dark_theme,
+          checked = checked,
+          onChecked = {
+            checked = it
+          },
+          showSubtitle = false
+        )
+      }
 
-    composeTestRule.setContent {
-      BooleanSettingSwitch(
-        title = R.string.text_settings_label_dark_theme,
-        subtitle = R.string.text_settings_hint_system_dark_theme,
-        checked = checked,
-        onChecked = {
-          checked = it
-        },
-        showSubtitle = false
-      )
+      onNodeWithText("Dark theme").assertIsDisplayed()
+      onNodeWithTag("BooleanSettingSwitch").assertIsDisplayed().performClick()
+      assertThat(checked).isTrue()
     }
-
-    composeTestRule.onNodeWithText("Dark theme")
-      .assertIsDisplayed()
-    composeTestRule.onNodeWithTag("BooleanSettingSwitch")
-      .assertIsDisplayed().performClick()
-    assertThat(checked).isTrue()
   }
 
   @Test
   fun shouldDisplaySwitchWithTitleAndSubtitle() {
     var checked = true
+    with(composeTestRule) {
+      setContent {
+        BooleanSettingSwitch(
+          title = R.string.text_settings_label_dark_theme,
+          subtitle = R.string.text_settings_hint_system_dark_theme,
+          checked = checked,
+          onChecked = {
+            checked = it
+          },
+        )
+      }
 
-    composeTestRule.setContent {
-      BooleanSettingSwitch(
-        title = R.string.text_settings_label_dark_theme,
-        subtitle = R.string.text_settings_hint_system_dark_theme,
-        checked = checked,
-        onChecked = {
-          checked = it
-        },
-      )
+      onNodeWithText("Dark theme")
+        .assertIsDisplayed()
+      onNodeWithText("Disabled when applied by the os.")
+        .assertIsDisplayed()
+      onNodeWithTag("BooleanSettingSwitch")
+        .assertIsDisplayed().performClick()
+      assertThat(checked).isFalse()
     }
-
-    composeTestRule.onNodeWithText("Dark theme\nDisabled when applied by the os.")
-      .assertIsDisplayed()
-    composeTestRule.onNodeWithTag("BooleanSettingSwitch")
-      .assertIsDisplayed().performClick()
-    assertThat(checked).isFalse()
   }
 }

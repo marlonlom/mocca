@@ -7,6 +7,7 @@ package dev.marlonlom.apps.mocca.feats.settings.parts
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
@@ -24,38 +25,41 @@ internal class ClickableTextRowUiTest {
   @Test
   fun shouldDisplaySwitchWithTitleOnly() {
     var clicked = false
-    composeTestRule.setContent {
-      ClickableTextRow(
-        title = R.string.text_settings_label_feedback,
-        onClicked = {
-          clicked = true
-        }
-      )
+    with(composeTestRule) {
+      setContent {
+        ClickableTextRow(
+          title = R.string.text_settings_label_feedback,
+          onClicked = {
+            clicked = true
+          }
+        )
+      }
+      val nodeWithText = onNodeWithText("Feedback")
+      nodeWithText.assertIsDisplayed()
+      nodeWithText.onParent().performClick()
+      Truth.assertThat(clicked).isTrue()
     }
-
-    val nodeWithText = composeTestRule.onNodeWithText("Feedback")
-    nodeWithText.assertIsDisplayed()
-    nodeWithText.onParent().performClick()
-    Truth.assertThat(clicked).isTrue()
   }
 
   @Test
   fun shouldDisplaySwitchWithTitleAndSubtitle() {
     var clicked = false
-    composeTestRule.setContent {
-      ClickableTextRow(
-        title = R.string.text_settings_label_app_version,
-        subtitle = BuildConfig.BUILD_TYPE,
-        onClicked = {
-          clicked = true
-        }
-      )
-    }
+    with(composeTestRule) {
+      setContent {
+        ClickableTextRow(
+          title = R.string.text_settings_label_app_version,
+          subtitle = BuildConfig.BUILD_TYPE,
+          onClicked = {
+            clicked = true
+          }
+        )
+      }
 
-    val nodeWithText = composeTestRule.onNodeWithText("Version\n${BuildConfig.BUILD_TYPE}")
-    nodeWithText.assertIsDisplayed()
-    nodeWithText.onParent().performClick()
-    Truth.assertThat(clicked).isTrue()
+      onNodeWithText("Version").assertIsDisplayed()
+      onNodeWithText(BuildConfig.BUILD_TYPE).assertIsDisplayed()
+      onNodeWithTag("ClickableTextRow").performClick()
+      Truth.assertThat(clicked).isTrue()
+    }
   }
 
 }

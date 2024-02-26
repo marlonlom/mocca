@@ -19,6 +19,14 @@ import dev.marlonlom.apps.mocca.R
 import dev.marlonlom.apps.mocca.feats.settings.UserPreferences
 import dev.marlonlom.apps.mocca.feats.settings.parts.ClickableTextRow
 
+/**
+ * About settings slot composable ui.
+ *
+ * @author marlonlom
+ *
+ * @param userPreferences User preferences information.
+ * @param onFeedbackSettingLinkClicked Action for feedback setting button clicked.
+ */
 @Composable
 fun AboutSettingsSlot(
   userPreferences: UserPreferences,

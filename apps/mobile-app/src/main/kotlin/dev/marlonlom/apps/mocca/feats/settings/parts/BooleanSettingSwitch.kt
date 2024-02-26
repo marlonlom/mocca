@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,11 +44,6 @@ internal fun BooleanSettingSwitch(
   enabled: Boolean = true,
   showSubtitle: Boolean = true
 ) {
-  val annotatedString = buildAnnotatedTitleWithSubtitle(
-    title = title,
-    showSubtitle = showSubtitle,
-    subtitle = stringResource(subtitle)
-  )
 
   Row(
     modifier = Modifier
@@ -58,8 +52,11 @@ internal fun BooleanSettingSwitch(
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween
   ) {
-    Text(
-      text = annotatedString,
+    SettingLabelText(
+      title = title,
+      subtitle = stringResource(subtitle),
+      showSubtitle = showSubtitle,
+      modifier = Modifier.fillMaxWidth(0.75f)
     )
     Switch(
       modifier = Modifier.testTag("BooleanSettingSwitch"),
@@ -98,7 +95,7 @@ internal fun buildAnnotatedTitleWithSubtitle(
     append("\n")
     withStyle(
       style = SpanStyle(
-        fontSize = MaterialTheme.typography.labelMedium.fontSize
+        fontSize = MaterialTheme.typography.labelSmall.fontSize,
       )
     ) {
       append(subtitle)

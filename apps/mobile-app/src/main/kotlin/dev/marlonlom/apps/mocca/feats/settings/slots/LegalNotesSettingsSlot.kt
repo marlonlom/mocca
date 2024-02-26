@@ -20,7 +20,8 @@ fun LegalNotesSettingsSlot(
   ) {
     ClickableTextRow(
       title = R.string.text_settings_label_oss_licences,
-    ) { onOssLicencesSettingLinkClicked() }
+      onClicked = { onOssLicencesSettingLinkClicked() },
+    )
   }
 }
 
