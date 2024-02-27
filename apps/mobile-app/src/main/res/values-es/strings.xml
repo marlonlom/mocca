@@ -23,14 +23,14 @@
   <string name="text_settings_headline">Ajustes</string>
   <string name="text_settings_title_appearance">Apariencia</string>
   <string name="text_settings_label_dark_theme">Tema oscuro</string>
+  <string name="text_settings_hint_system_dark_theme">Desactivado cuando se aplica por el sistema operativo.</string>
   <string name="text_settings_label_dynamic_color">Colores dinámicos</string>
   <string name="text_settings_hint_dynamic_color">Habilitado en Android 12 o superior.</string>
   <string name="text_settings_title_legal">Notas legales</string>
   <string name="text_settings_label_oss_licences">Licencias de terceros</string>
   <string name="text_settings_title_app_info">Acerca de la aplicación</string>
+  <string name="text_settings_label_feedback">Enviar comentarios</string>
   <string name="text_settings_label_app_version">Versión</string>
   <string name="text_settings_label_about_efecty">Acerca de Efecty</string>
   <string name="text_settings_hint_about_efecty">Información sobre la empresa en la que se basa la calculadora de costos de transferencias de dinero.</string>
-  <string name="text_settings_hint_system_dark_theme">Desactivado cuando se aplica por el sistema operativo.</string>
-  <string name="text_settings_label_feedback">Enviar comentarios</string>
 </resources>
