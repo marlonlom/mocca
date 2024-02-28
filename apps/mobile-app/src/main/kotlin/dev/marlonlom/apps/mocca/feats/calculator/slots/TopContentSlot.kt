@@ -21,7 +21,6 @@ import dev.marlonlom.apps.mocca.feats.calculator.output.FailureResultSlot
 import dev.marlonlom.apps.mocca.feats.calculator.output.SuccessResultSlot
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactHeight
 import dev.marlonlom.apps.mocca.ui.main.scaffold.isCompactWidth
-import dev.marlonlom.apps.mocca.ui.main.scaffold.isMediumWidth
 import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
@@ -45,6 +44,12 @@ internal fun TopContentSlot(
   isLandscapeSinglePane: Boolean = false
 ) {
   val contentModifier = when {
+    isLandscapeSinglePane.and(windowSizeInfo.windowSizeClass.isCompactHeight.not())
+      .and(windowSizeInfo.devicePosture is DevicePosture.TableTopPosture)
+    -> Modifier
+      .fillMaxWidth(0.5f)
+      .fillMaxHeight()
+
     isLandscapeSinglePane -> Modifier
       .fillMaxWidth(0.5f)
       .fillMaxHeight()
@@ -60,6 +65,7 @@ internal fun TopContentSlot(
       .fillMaxWidth()
       .fillMaxHeight(0.5f)
   }
+
   Column(
     modifier = contentModifier
       .padding(bottom = 20.dp)

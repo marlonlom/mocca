@@ -13,11 +13,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.marlonlom.apps.mocca.feats.calculator.pages.CompactLandscapeCalculatorPage
+import dev.marlonlom.apps.mocca.feats.calculator.pages.DefaultVerticalCalculatorPage
 import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentActions
 import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentData
-import dev.marlonlom.apps.mocca.feats.calculator.pages.DefaultVerticalCalculatorPage
 import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
+import timber.log.Timber
 
 /**
  * Calculator route composable ui.
@@ -84,6 +85,11 @@ fun CalculatorRoute(
   )
 
   when {
+    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+      .and(windowSizeInfo.isLandscape) -> {
+      CompactLandscapeCalculatorPage(pageData = pageContentData)
+    }
+
     (windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane)
       .and(windowSizeInfo.isMobileLandscape) -> {
       CompactLandscapeCalculatorPage(pageData = pageContentData)

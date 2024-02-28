@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -94,25 +95,54 @@ fun AppScaffold(
 
           is ScaffoldInnerContentType.TwoPane -> {
             val fraction = (windowSizeInfo.indicateInnerContent as ScaffoldInnerContentType.TwoPane).hingeRatio
-            Row {
-              Column(
-                modifier = Modifier
-                  .fillMaxWidth(fraction)
-                  .fillMaxHeight(),
-              ) {
-                CalculatorRoute(windowSizeInfo)
+            when {
+              windowSizeInfo.isLandscape -> {
+                Timber.d("[AppScaffold] TwoPane - landscape")
+                Column {
+                  Row(
+                    modifier = Modifier
+                      .fillMaxWidth()
+                      .fillMaxHeight(fraction)
+                  ) {
+                    CalculatorRoute(windowSizeInfo)
+                  }
+
+                  Row(
+                    modifier = Modifier
+                      .fillMaxWidth()
+                      .padding(top = 20.dp)
+                      .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.25f)),
+                  ) {
+                    SettingsRoute(
+                      windowSizeInfo = windowSizeInfo,
+                      mainActions = mainActions
+                    )
+                  }
+                }
               }
 
-              Column(
-                modifier = Modifier
-                  .fillMaxHeight()
-                  .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.25f)),
-                horizontalAlignment = Alignment.CenterHorizontally,
-              ) {
-                SettingsRoute(
-                  windowSizeInfo = windowSizeInfo,
-                  mainActions = mainActions
-                )
+              else -> {
+                Row {
+                  Column(
+                    modifier = Modifier
+                      .fillMaxWidth(fraction)
+                      .fillMaxHeight(),
+                  ) {
+                    CalculatorRoute(windowSizeInfo)
+                  }
+
+                  Column(
+                    modifier = Modifier
+                      .fillMaxHeight()
+                      .background(MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.25f)),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                  ) {
+                    SettingsRoute(
+                      windowSizeInfo = windowSizeInfo,
+                      mainActions = mainActions
+                    )
+                  }
+                }
               }
             }
           }
