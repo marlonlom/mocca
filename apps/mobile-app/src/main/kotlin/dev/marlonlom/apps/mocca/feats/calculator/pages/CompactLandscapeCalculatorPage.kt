@@ -8,11 +8,14 @@ package dev.marlonlom.apps.mocca.feats.calculator.pages
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import dev.marlonlom.apps.mocca.feats.calculator.slots.ButtonsContentSlot
 import dev.marlonlom.apps.mocca.feats.calculator.slots.TopContentSlot
+import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
 
 /**
  * Compact landscape calculator page composable ui.
@@ -25,8 +28,17 @@ import dev.marlonlom.apps.mocca.feats.calculator.slots.TopContentSlot
 fun CompactLandscapeCalculatorPage(
   pageData: PageContentData
 ) {
+  val contentModifier = when {
+    (pageData.windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+      .and(pageData.windowSizeInfo.isLandscape) -> Modifier
+      .fillMaxSize()
+      .padding(top = 20.dp)
+
+    else -> Modifier.fillMaxSize()
+  }
+
   Row(
-    modifier = Modifier.fillMaxSize()
+    modifier = contentModifier
   ) {
     TopContentSlot(
       windowSizeInfo = pageData.windowSizeInfo,
