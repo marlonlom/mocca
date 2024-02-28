@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 
 /**
@@ -49,6 +50,7 @@ fun ButtonsContentSlot(
   )
 
   val numberTextStyle = when {
+    windowSizeInfo.isLandscape.and(windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane) -> MaterialTheme.typography.headlineSmall
     windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.headlineLarge
   }
