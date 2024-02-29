@@ -85,12 +85,12 @@ fun CalculatorRoute(
   )
 
   when {
-    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
       .and(windowSizeInfo.isLandscape) -> {
       CompactLandscapeCalculatorPage(pageData = pageContentData)
     }
 
-    (windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane)
+    (windowSizeInfo.scaffoldInnerContentType == ScaffoldInnerContentType.SinglePane)
       .and(windowSizeInfo.isMobileLandscape) -> {
       CompactLandscapeCalculatorPage(pageData = pageContentData)
     }

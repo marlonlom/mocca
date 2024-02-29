@@ -62,7 +62,7 @@ fun AppScaffold(
     contentColor = MaterialTheme.colorScheme.onSurface,
     topBar = {
       val couldShowTopBar = windowSizeInfo.isTabletLandscape.not()
-        .and(windowSizeInfo.indicateInnerContent == ScaffoldInnerContentType.SinglePane)
+        .and(windowSizeInfo.scaffoldInnerContentType == ScaffoldInnerContentType.SinglePane)
 
       if (couldShowTopBar) {
         AppTopBar(
@@ -84,7 +84,7 @@ fun AppScaffold(
           .padding(paddingValues),
         contentAlignment = Alignment.Center
       ) {
-        when (windowSizeInfo.indicateInnerContent) {
+        when (windowSizeInfo.scaffoldInnerContentType) {
           ScaffoldInnerContentType.SinglePane -> {
             AppNavHost(
               navController = navController,
@@ -94,7 +94,7 @@ fun AppScaffold(
           }
 
           is ScaffoldInnerContentType.TwoPane -> {
-            val fraction = (windowSizeInfo.indicateInnerContent as ScaffoldInnerContentType.TwoPane).hingeRatio
+            val fraction = (windowSizeInfo.scaffoldInnerContentType as ScaffoldInnerContentType.TwoPane).hingeRatio
             when {
               windowSizeInfo.isLandscape -> {
                 Timber.d("[AppScaffold] TwoPane - landscape")
