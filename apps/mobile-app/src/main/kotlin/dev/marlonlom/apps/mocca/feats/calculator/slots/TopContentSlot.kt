@@ -46,6 +46,7 @@ internal fun TopContentSlot(
   val contentModifier = when {
     isLandscapeSinglePane.and(windowSizeInfo.windowSizeClass.isCompactHeight.not())
       .and(windowSizeInfo.devicePosture is DevicePosture.TableTopPosture)
+      .or(windowSizeInfo.devicePosture is DevicePosture.ClosedFlipPosture)
     -> Modifier
       .fillMaxWidth(0.5f)
       .fillMaxHeight()

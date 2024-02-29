@@ -30,6 +30,7 @@ import dev.marlonlom.apps.mocca.feats.settings.SettingsRoute
 import dev.marlonlom.apps.mocca.ui.main.MainActions
 import dev.marlonlom.apps.mocca.ui.navigation.AppNavHost
 import dev.marlonlom.apps.mocca.ui.navigation.AppRoute
+import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
 import timber.log.Timber
 
@@ -96,7 +97,11 @@ fun AppScaffold(
           is ScaffoldInnerContentType.TwoPane -> {
             val fraction = (windowSizeInfo.scaffoldInnerContentType as ScaffoldInnerContentType.TwoPane).hingeRatio
             when {
-              windowSizeInfo.isLandscape -> {
+              windowSizeInfo.isLandscape
+                .and(
+                  (windowSizeInfo.devicePosture is DevicePosture.TableTopPosture).or
+                    (windowSizeInfo.devicePosture is DevicePosture.ClosedFlipPosture)
+                ) -> {
                 Timber.d("[AppScaffold] TwoPane - landscape")
                 Column {
                   Row(

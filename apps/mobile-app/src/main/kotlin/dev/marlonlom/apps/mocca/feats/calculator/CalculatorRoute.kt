@@ -17,8 +17,8 @@ import dev.marlonlom.apps.mocca.feats.calculator.pages.DefaultVerticalCalculator
 import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentActions
 import dev.marlonlom.apps.mocca.feats.calculator.pages.PageContentData
 import dev.marlonlom.apps.mocca.ui.main.scaffold.ScaffoldInnerContentType
+import dev.marlonlom.apps.mocca.ui.util.DevicePosture
 import dev.marlonlom.apps.mocca.ui.util.WindowSizeInfo
-import timber.log.Timber
 
 /**
  * Calculator route composable ui.
@@ -86,7 +86,9 @@ fun CalculatorRoute(
 
   when {
     (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
-      .and(windowSizeInfo.isLandscape) -> {
+      .and(windowSizeInfo.isLandscape)
+      .and(windowSizeInfo.devicePosture is DevicePosture.TableTopPosture)
+      .or(windowSizeInfo.devicePosture is DevicePosture.ClosedFlipPosture) -> {
       CompactLandscapeCalculatorPage(pageData = pageContentData)
     }
 
