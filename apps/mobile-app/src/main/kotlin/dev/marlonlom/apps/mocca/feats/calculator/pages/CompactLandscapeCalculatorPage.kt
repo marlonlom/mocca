@@ -29,7 +29,7 @@ fun CompactLandscapeCalculatorPage(
   pageData: PageContentData
 ) {
   val contentModifier = when {
-    (pageData.windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+    (pageData.windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
       .and(pageData.windowSizeInfo.isLandscape) -> Modifier
       .fillMaxSize()
       .padding(top = 20.dp)

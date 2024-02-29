@@ -35,7 +35,7 @@ fun SettingsHeaderText(
       .fillMaxWidth()
       .padding(
         top = when {
-          (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+          (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
             .and(windowSizeInfo.windowSizeClass.isExpandedWidth)
             .and(windowSizeInfo.isTabletLandscape) -> 80.dp
 

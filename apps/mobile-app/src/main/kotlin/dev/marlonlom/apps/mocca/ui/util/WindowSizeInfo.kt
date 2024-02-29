@@ -34,6 +34,6 @@ data class WindowSizeInfo(
 
   val isTabletLandscape get() = isTabletWidth and isLandscape
 
-  val indicateInnerContent get() = ScaffoldInnerContents.indicateInnerContent(windowSizeClass, devicePosture)
+  val scaffoldInnerContentType get() = ScaffoldInnerContents.indicateInnerContent(windowSizeClass, devicePosture)
 
 }

@@ -50,7 +50,7 @@ fun ButtonsContentSlot(
   )
 
   val numberTextStyle = when {
-    windowSizeInfo.isLandscape.and(windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane) -> MaterialTheme.typography.headlineSmall
+    windowSizeInfo.isLandscape.and(windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane) -> MaterialTheme.typography.headlineSmall
     windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.headlineLarge
   }

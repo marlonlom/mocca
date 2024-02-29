@@ -46,7 +46,7 @@ fun MoneyAmountInput(
 ) {
 
   val labelTextStyle = when {
-    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleSmall
 
     windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
@@ -54,7 +54,7 @@ fun MoneyAmountInput(
   }
 
   val amountTextStyle = when {
-    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displaySmall
 
     windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
@@ -62,7 +62,7 @@ fun MoneyAmountInput(
   }
 
   val moneyIconSize = when {
-    (windowSizeInfo.indicateInnerContent is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 48.dp
 
     windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp

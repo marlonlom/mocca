@@ -94,22 +94,22 @@ fun SettingsRoute(
 private fun getSettingsContentHorizontalPadding(
   wsi: WindowSizeInfo
 ): Dp = when {
-  (wsi.indicateInnerContent is ScaffoldInnerContentType.SinglePane)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane)
     .and(wsi.windowSizeClass.isCompactHeight) -> 100.dp
 
-  (wsi.indicateInnerContent is ScaffoldInnerContentType.SinglePane)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane)
     .and(wsi.windowSizeClass.isMediumWidth) -> 60.dp
 
-  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
     .and(wsi.windowSizeClass.isExpandedWidth)
     .and(wsi.windowSizeClass.isCompactHeight.not())
     .and(wsi.isTabletLandscape) -> 40.dp
 
-  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
     .and(wsi.windowSizeClass.isExpandedWidth)
     .and(wsi.isTabletLandscape) -> 80.dp
 
-  (wsi.indicateInnerContent is ScaffoldInnerContentType.TwoPane)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
     .and(wsi.windowSizeClass.isMediumWidth) -> 20.dp
 
   else -> 20.dp
