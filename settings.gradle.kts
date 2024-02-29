@@ -24,4 +24,5 @@ rootProject.name = "Mocca"
 include(":apps:mobile-app")
 include(":apps:smartwatch-app")
 include(":benchmarks:macro:mobile-app")
+include(":benchmarks:macro:smartwatch-app")
 include(":features:core:calculator")

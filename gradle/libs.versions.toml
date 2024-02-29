@@ -1,10 +1,11 @@
 [versions]
 agp = "8.2.2"
 kotlin = "1.9.22"
+junit = "1.1.5"
+espresso-core = "3.5.1"
 
 [libraries]
 # implementation
-alorma-compose-settings-m3 = "com.github.alorma:compose-settings-ui-m3:1.0.3"
 androidx-activity-compose = "androidx.activity:activity-compose:1.8.2"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-browser = "androidx.browser:browser:1.7.0"
