@@ -17,7 +17,6 @@ android {
   defaultConfig {
     applicationId = "dev.marlonlom.apps.mocca.smartwatch"
     minSdk = 30
-    //noinspection EditedTargetSdkVersion
     targetSdk = 34
     versionCode = 1
     versionName = "1.0.0"
@@ -38,6 +37,12 @@ android {
         getDefaultProguardFile("proguard-android-optimize.txt"),
         "proguard-rules.pro"
       )
+    }
+    create("benchmark") {
+      initWith(buildTypes.getByName("release"))
+      signingConfig = signingConfigs.getByName("debug")
+      matchingFallbacks += listOf("release")
+      isDebuggable = false
     }
   }
   compileOptions {
