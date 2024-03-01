@@ -1,8 +1,6 @@
 [versions]
 agp = "8.3.0"
 kotlin = "1.9.22"
-junit = "1.1.5"
-espresso-core = "3.5.1"
 
 [libraries]
 # implementation
