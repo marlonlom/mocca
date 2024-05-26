@@ -99,7 +99,9 @@ class MainActivity : ComponentActivity() {
     setContent {
       val configuration = LocalConfiguration.current
       val windowSizeClass = calculateWindowSizeClass(activity = this)
-      val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle()
+      val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle(
+        lifecycleOwner = androidx.compose.ui.platform.LocalLifecycleOwner.current
+      )
       val windowSizeInfo = WindowSizeInfo(
         windowSizeClass = windowSizeClass,
         devicePosture = devicePostureState,
