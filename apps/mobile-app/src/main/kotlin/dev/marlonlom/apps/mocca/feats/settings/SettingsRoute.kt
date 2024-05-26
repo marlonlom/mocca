@@ -56,29 +56,28 @@ fun SettingsRoute(
     onBackNavigationAction()
   }
 
-  val userPreferences by settingsViewModel.settingsUiState.collectAsStateWithLifecycle()
+  val userPreferences by settingsViewModel.settingsUiState.collectAsStateWithLifecycle(
+    lifecycleOwner = androidx.compose.ui.platform.LocalLifecycleOwner.current
+  )
 
   val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
 
   Column(
     modifier = Modifier
-      .verticalScroll(rememberScrollState())
-      .padding(horizontal = horizontalPadding),
+        .verticalScroll(rememberScrollState())
+        .padding(horizontal = horizontalPadding),
     verticalArrangement = Arrangement.Top,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
     SettingsHeaderText(windowSizeInfo)
     AppearanceSettingsSlot(
-      userPreferences = userPreferences,
-      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference
+      userPreferences = userPreferences, onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference
     )
     LegalNotesSettingsSlot(
-      userPreferences = userPreferences,
-      onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked
+      userPreferences = userPreferences, onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked
     )
     AboutSettingsSlot(
-      userPreferences = userPreferences,
-      onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked
+      userPreferences = userPreferences, onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked
     )
   }
 }
@@ -94,23 +93,17 @@ fun SettingsRoute(
 private fun getSettingsContentHorizontalPadding(
   wsi: WindowSizeInfo
 ): Dp = when {
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane)
-    .and(wsi.windowSizeClass.isCompactHeight) -> 100.dp
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane).and(wsi.windowSizeClass.isCompactHeight) -> 100.dp
 
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane)
-    .and(wsi.windowSizeClass.isMediumWidth) -> 60.dp
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane).and(wsi.windowSizeClass.isMediumWidth) -> 60.dp
 
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
-    .and(wsi.windowSizeClass.isExpandedWidth)
-    .and(wsi.windowSizeClass.isCompactHeight.not())
-    .and(wsi.isTabletLandscape) -> 40.dp
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(wsi.windowSizeClass.isExpandedWidth)
+    .and(wsi.windowSizeClass.isCompactHeight.not()).and(wsi.isTabletLandscape) -> 40.dp
 
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
-    .and(wsi.windowSizeClass.isExpandedWidth)
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(wsi.windowSizeClass.isExpandedWidth)
     .and(wsi.isTabletLandscape) -> 80.dp
 
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
-    .and(wsi.windowSizeClass.isMediumWidth) -> 20.dp
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(wsi.windowSizeClass.isMediumWidth) -> 20.dp
 
   else -> 20.dp
 }
