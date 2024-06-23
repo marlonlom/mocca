@@ -27,9 +27,6 @@ internal object BrandColors {
   /** Brand color value: 	Turquoise Green. */
   private val turquoiseGreen = Color(0xFFADCFAE)
 
-  /** Brand color value: 	Eerie Black. */
-  private val eerieBlack = Color(0xFF1C1B17)
-
   /** Brand color value: White Coffee. */
   private val whiteCoffee = Color(0xFFE8E1D9)
 
@@ -47,10 +44,10 @@ internal object BrandColors {
     error = cinnamonSatin,
     onError = Color.Black,
 
-    background = eerieBlack,
+    background = Color.Black,
     onBackground = whiteCoffee,
 
-    surface = eerieBlack,
+    surface = Color.Black,
     onSurface = whiteCoffee
   )
 }
