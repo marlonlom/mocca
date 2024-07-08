@@ -19,7 +19,7 @@ android {
     applicationId = "dev.marlonlom.mocca.smartwatch"
     minSdk = 30
     targetSdk = 34
-    versionCode = 1
+    versionCode = 342100
     versionName = "1.0.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
