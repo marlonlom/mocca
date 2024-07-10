@@ -29,7 +29,7 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TitleCard
 import dev.marlonlom.mocca.calculator.model.CalculationResult
-import dev.marlonlom.mocca.smartwatch.R
+import dev.marlonlom.mocca.R
 import kotlin.math.roundToLong
 
 /**

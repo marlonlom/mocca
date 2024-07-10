@@ -28,7 +28,7 @@ import dev.marlonlom.mocca.calculator.Calculator
 import dev.marlonlom.mocca.calculator.RequestedQuantity
 import dev.marlonlom.mocca.calculator.model.CalculationException
 import dev.marlonlom.mocca.calculator.model.OrderResponse
-import dev.marlonlom.mocca.smartwatch.R
+import dev.marlonlom.mocca.R
 
 /**
  * Calculator output view composable ui.

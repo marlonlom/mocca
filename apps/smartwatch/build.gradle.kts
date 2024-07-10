@@ -12,15 +12,15 @@ plugins {
 }
 
 android {
-  namespace = "dev.marlonlom.mocca.smartwatch"
+  namespace = "dev.marlonlom.mocca"
   compileSdk = 34
 
   defaultConfig {
-    applicationId = "dev.marlonlom.mocca.smartwatch"
+    applicationId = "dev.marlonlom.mocca"
     minSdk = 30
     targetSdk = 34
-    versionCode = 342100
-    versionName = "1.0.0"
+    versionCode = 342101
+    versionName = "1.0.1"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
