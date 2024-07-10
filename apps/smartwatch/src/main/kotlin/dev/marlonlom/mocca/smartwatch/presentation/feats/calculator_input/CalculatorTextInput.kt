@@ -44,7 +44,7 @@ import androidx.wear.compose.material.OutlinedChip
 import androidx.wear.compose.material.Text
 import androidx.wear.input.RemoteInputIntentHelper
 import androidx.wear.input.wearableExtender
-import dev.marlonlom.mocca.smartwatch.R
+import dev.marlonlom.mocca.R
 
 /**
  * Calculator text input section composable.

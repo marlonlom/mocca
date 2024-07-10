@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Typography
-import dev.marlonlom.mocca.smartwatch.R
+import dev.marlonlom.mocca.R
 
 /**
  * Branded typography single object.
