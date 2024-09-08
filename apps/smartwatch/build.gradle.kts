@@ -13,12 +13,12 @@ plugins {
 
 android {
   namespace = "dev.marlonlom.mocca"
-  compileSdk = 34
+  compileSdk = 35
 
   defaultConfig {
     applicationId = "dev.marlonlom.mocca"
     minSdk = 30
-    targetSdk = 34
+    targetSdk = 35
     versionCode = 342101
     versionName = "1.0.1"
 
