@@ -5,8 +5,8 @@
 
 package dev.marlonlom.mocca.wearos.presentation.feats.main
 
-import dev.marlonlom.mocca.wearos.presentation.feats.main.NavigationRoutes.Home
-import dev.marlonlom.mocca.wearos.presentation.feats.main.NavigationRoutes.Result
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
