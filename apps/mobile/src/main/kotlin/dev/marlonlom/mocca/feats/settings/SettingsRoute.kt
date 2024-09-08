@@ -57,7 +57,7 @@ fun SettingsRoute(
   }
 
   val userPreferences by settingsViewModel.settingsUiState.collectAsStateWithLifecycle(
-    lifecycleOwner = androidx.compose.ui.platform.LocalLifecycleOwner.current
+    lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
   )
 
   val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
