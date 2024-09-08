@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-  namespace = "dev.marlonlom.mocca.macrobenchmarks.smartwatch"
+  namespace = "dev.marlonlom.mocca.macrobenchmarks.wearos"
   compileSdk = 35
 
   compileOptions {
@@ -42,7 +42,7 @@ android {
     }
   }
 
-  targetProjectPath = ":apps:smartwatch"
+  targetProjectPath = ":apps:wearos"
   experimentalProperties["android.experimental.self-instrumenting"] = true
 }
 

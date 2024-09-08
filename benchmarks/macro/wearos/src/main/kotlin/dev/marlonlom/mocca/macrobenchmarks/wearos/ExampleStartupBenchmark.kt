@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.mocca.macrobenchmarks.smartwatch
+package dev.marlonlom.mocca.macrobenchmarks.wearos
 
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
@@ -32,7 +32,7 @@ class ExampleStartupBenchmark {
 
   @Test
   fun startup() = benchmarkRule.measureRepeated(
-    packageName = "dev.marlonlom.mocca.smartwatch",
+    packageName = "dev.marlonlom.mocca.wearos",
     metrics = listOf(StartupTimingMetric()),
     iterations = 5,
     startupMode = StartupMode.COLD
