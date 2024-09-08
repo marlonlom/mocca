@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.mocca.wearos.presentation.feats.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator_output
 
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -22,7 +23,9 @@ internal class FailureCalculatorOutputUiTest {
     with(rule) {
 
       setContent {
+        val scrollState = rememberScrollState()
         FailureCalculatorOutput(
+          scrollState = scrollState,
           alertMessageText = alertMessageText,
           onBackNavigationAction = {}
         )
@@ -38,7 +41,9 @@ internal class FailureCalculatorOutputUiTest {
     with(rule) {
 
       setContent {
+        val scrollState = rememberScrollState()
         FailureCalculatorOutput(
+          scrollState = scrollState,
           alertMessageText = alertMessageText,
           onBackNavigationAction = {}
         )
@@ -54,7 +59,9 @@ internal class FailureCalculatorOutputUiTest {
     with(rule) {
 
       setContent {
+        val scrollState = rememberScrollState()
         FailureCalculatorOutput(
+          scrollState = scrollState,
           alertMessageText = alertMessageText,
           onBackNavigationAction = {}
         )
@@ -70,7 +77,9 @@ internal class FailureCalculatorOutputUiTest {
     with(rule) {
 
       setContent {
+        val scrollState = rememberScrollState()
         FailureCalculatorOutput(
+          scrollState = scrollState,
           alertMessageText = alertMessageText,
           onBackNavigationAction = {}
         )

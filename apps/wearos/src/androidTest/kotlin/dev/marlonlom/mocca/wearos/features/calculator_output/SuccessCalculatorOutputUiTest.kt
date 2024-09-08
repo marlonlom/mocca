@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.mocca.wearos.presentation.feats.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator_output
 
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
@@ -22,7 +23,9 @@ internal class SuccessCalculatorOutputUiTest {
     with(rule) {
 
       setContent {
+        val scrollState = rememberScrollState()
         SuccessCalculatorOutput(
+          scrollState = scrollState,
           calculationResult = CalculationResult(
             total = 9_700.0,
             fixedFee = 4_700.0,

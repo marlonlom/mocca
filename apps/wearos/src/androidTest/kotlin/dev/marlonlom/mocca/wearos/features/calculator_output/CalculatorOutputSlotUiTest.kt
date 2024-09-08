@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.mocca.wearos.presentation.feats.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator_output
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -43,7 +43,7 @@ internal class CalculatorOutputSlotUiTest {
         )
       }
 
-      onNodeWithText("You cannot send more than \$3,000,000.").assertIsDisplayed()
+      onNodeWithText("You cannot send more than COP \$3,000,000.").assertIsDisplayed()
     }
   }
 
@@ -58,7 +58,7 @@ internal class CalculatorOutputSlotUiTest {
         )
       }
 
-      onNodeWithText("You cannot send less than \$5,000.").assertIsDisplayed()
+      onNodeWithText("You cannot send less than COP \$5,000.").assertIsDisplayed()
     }
   }
 
