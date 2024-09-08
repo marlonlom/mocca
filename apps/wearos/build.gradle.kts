@@ -73,21 +73,17 @@ dependencies {
   androidTestImplementation(composeBom)
 
   implementation(libs.androidx.activity.compose)
+  implementation(libs.androidx.compose.material.icons.extended)
+  implementation(libs.androidx.compose.ui)
+  implementation(libs.androidx.compose.ui.tooling)
+  implementation(libs.androidx.compose.ui.tooling.preview)
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.core.splashscreen)
   implementation(libs.androidx.lifecycle.runtime.ktx)
-  implementation(libs.androidx.compose.material.icons.extended)
-  implementation(libs.google.play.services.wearable)
-  implementation(libs.androidx.percentlayout)
-  implementation(libs.androidx.legacy.support.v4)
-  implementation(libs.androidx.recyclerview)
-
-  implementation(libs.androidx.compose.ui)
-  implementation(libs.androidx.compose.ui.tooling.preview)
-  implementation(libs.androidx.wear.compose.material)
   implementation(libs.androidx.wear.compose.foundation)
-  implementation(libs.androidx.wear.input)
-  implementation(libs.androidx.wear.navigation)
+  implementation(libs.androidx.wear.compose.material3)
+  implementation(libs.androidx.wear.compose.navigation)
+  implementation(libs.google.play.services.wearable)
 
   testImplementation(libs.junit)
 
