@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.macrobenchmarks.wearos
 
 import androidx.benchmark.macro.StartupMode
@@ -35,7 +34,7 @@ class ExampleStartupBenchmark {
     packageName = "dev.marlonlom.mocca.wearos",
     metrics = listOf(StartupTimingMetric()),
     iterations = 5,
-    startupMode = StartupMode.COLD
+    startupMode = StartupMode.COLD,
   ) {
     pressHome()
     startActivityAndWait()

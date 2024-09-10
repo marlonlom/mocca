@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.macrobenchmarks.mobile
 
 import androidx.benchmark.macro.StartupMode
@@ -27,6 +26,7 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleStartupBenchmark {
+
   @get:Rule
   val benchmarkRule = MacrobenchmarkRule()
 
@@ -35,7 +35,7 @@ class ExampleStartupBenchmark {
     packageName = "dev.marlonlom.mocca",
     metrics = listOf(StartupTimingMetric()),
     iterations = 5,
-    startupMode = StartupMode.COLD
+    startupMode = StartupMode.COLD,
   ) {
     pressHome()
     startActivityAndWait()
