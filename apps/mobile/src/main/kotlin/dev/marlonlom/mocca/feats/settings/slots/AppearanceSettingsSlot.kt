@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -20,12 +19,9 @@ import dev.marlonlom.mocca.feats.settings.parts.BooleanSettingSwitch
  * @param onBooleanSettingChanged Action for boolean setting value changed.
  */
 @Composable
-fun AppearanceSettingsSlot(
-  userPreferences: UserPreferences,
-  onBooleanSettingChanged: (String, Boolean) -> Unit,
-) {
+fun AppearanceSettingsSlot(userPreferences: UserPreferences, onBooleanSettingChanged: (String, Boolean) -> Unit) {
   DefaultSettingsSlot(
-    title = R.string.text_settings_title_appearance
+    title = R.string.text_settings_title_appearance,
   ) {
     // Switch: dark theme
     BooleanSettingSwitch(

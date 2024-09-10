@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_input
+package dev.marlonlom.mocca.wearos.features.calculator.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,28 +29,25 @@ import androidx.wear.compose.material3.Text
  * @param onButtonClick Action for calculator button clicked.
  */
 @Composable
-fun CalculatorInputButtons(
-  onButtonClick: (String) -> Unit
-) {
-
+fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
   val buttonRows = listOf(
     listOf("6", "7", "8", "9", "⌫"),
     listOf("2", "3", "4", "5", "✔"),
-    listOf("", "0", "1", "", "")
+    listOf("", "0", "1", "", ""),
   )
 
   Column(
     modifier = Modifier
       .background(MaterialTheme.colorScheme.surfaceContainerLow)
       .fillMaxSize(),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     buttonRows.forEach { buttonRow ->
       Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-          .fillMaxWidth()
+          .fillMaxWidth(),
       ) {
         buttonRow.forEach { buttonTxt ->
           if (buttonTxt.isEmpty()) {
@@ -59,7 +55,7 @@ fun CalculatorInputButtons(
               modifier = Modifier
                 .heightIn(max = 32.dp),
               text = buttonTxt,
-              style = MaterialTheme.typography.bodyExtraSmall
+              style = MaterialTheme.typography.bodyExtraSmall,
             )
           } else {
             val buttonTextColor = when (buttonTxt) {
@@ -76,12 +72,13 @@ fun CalculatorInputButtons(
               modifier = Modifier
                 .heightIn(max = 32.dp),
               colors = ButtonDefaults.outlinedButtonColors(),
-              onClick = { onButtonClick(buttonTxt) }) {
+              onClick = { onButtonClick(buttonTxt) },
+            ) {
               Text(
                 text = buttonTxt,
                 style = MaterialTheme.typography.bodySmall,
                 fontWeight = buttonFontWeight,
-                color = buttonTextColor
+                color = buttonTextColor,
               )
             }
           }

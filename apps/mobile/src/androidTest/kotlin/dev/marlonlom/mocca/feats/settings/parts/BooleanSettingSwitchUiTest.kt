@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -32,7 +31,7 @@ internal class BooleanSettingSwitchUiTest {
           onChecked = {
             checked = it
           },
-          showSubtitle = false
+          showSubtitle = false,
         )
       }
 

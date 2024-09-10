@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.ui.main
 
 import androidx.compose.runtime.Composable
@@ -26,8 +25,8 @@ fun WearAppContent() {
       if (!scalingLazyListState.isScrollInProgress) {
         TimeText(
           timeTextStyle = TimeTextDefaults.timeTextStyle(
-            fontSize = MaterialTheme.typography.bodySmall.fontSize
-          )
+            fontSize = MaterialTheme.typography.bodySmall.fontSize,
+          ),
         ) {
           time()
         }
@@ -35,6 +34,6 @@ fun WearAppContent() {
     },
     content = {
       NavigationHost()
-    }
+    },
   )
 }

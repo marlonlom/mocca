@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import android.graphics.Rect
@@ -18,7 +17,7 @@ internal class DevicePostureDetectorTest {
 
   private fun getFoldingFeature(
     state: FoldingFeature.State = FoldingFeature.State.FLAT,
-    orientation: FoldingFeature.Orientation = FoldingFeature.Orientation.VERTICAL
+    orientation: FoldingFeature.Orientation = FoldingFeature.Orientation.VERTICAL,
   ) = object : FoldingFeature {
     override val bounds: Rect get() = Rect()
     override val isSeparating: Boolean get() = true
@@ -53,7 +52,7 @@ internal class DevicePostureDetectorTest {
   @Test
   fun `Should return a table top device posture`() {
     val foldingFeature = getFoldingFeature(
-      orientation = FoldingFeature.Orientation.HORIZONTAL
+      orientation = FoldingFeature.Orientation.HORIZONTAL,
     )
     val devicePosture = DevicePostureDetector.fromLayoutInfo(foldingFeature)
     assertNotNull(devicePosture)
@@ -64,11 +63,10 @@ internal class DevicePostureDetectorTest {
   fun `Should return a closed flip device posture`() {
     val foldingFeature = getFoldingFeature(
       state = FoldingFeature.State.HALF_OPENED,
-      orientation = FoldingFeature.Orientation.HORIZONTAL
+      orientation = FoldingFeature.Orientation.HORIZONTAL,
     )
     val devicePosture = DevicePostureDetector.fromLayoutInfo(foldingFeature)
     assertNotNull(devicePosture)
     assertTrue(devicePosture is DevicePosture.ClosedFlipPosture)
   }
-
 }

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main.scaffold
 
 import androidx.compose.material.icons.Icons
@@ -26,11 +25,7 @@ import androidx.compose.runtime.Composable
  */
 @ExperimentalMaterial3Api
 @Composable
-fun AppTopBar(
-  navigationIconVisible: Boolean,
-  onNavigationIconClicked: () -> Unit,
-  onSettingsIconClicked: () -> Unit
-) {
+fun AppTopBar(navigationIconVisible: Boolean, onNavigationIconClicked: () -> Unit, onSettingsIconClicked: () -> Unit) {
   TopAppBar(
     title = { },
     colors = TopAppBarDefaults.topAppBarColors(
@@ -51,6 +46,6 @@ fun AppTopBar(
           Icon(imageVector = Icons.Rounded.Settings, contentDescription = null)
         }
       }
-    }
+    },
   )
 }

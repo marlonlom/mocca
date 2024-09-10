@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main.scaffold
 
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
@@ -34,7 +33,7 @@ sealed interface ScaffoldInnerContentType {
    * @property hingeRatio Hinge ratio as percentage number.
    */
   data class TwoPane(
-    val hingeRatio: Float = 0.5f
+    val hingeRatio: Float = 0.5f,
   ) : ScaffoldInnerContentType
 }
 
@@ -67,29 +66,28 @@ object ScaffoldInnerContents {
    * @return Scaffold inner content type.
    */
   @JvmStatic
-  fun indicateInnerContent(
-    windowSizeClass: WindowSizeClass,
-    devicePosture: DevicePosture,
-  ): ScaffoldInnerContentType = when {
+  fun indicateInnerContent(windowSizeClass: WindowSizeClass, devicePosture: DevicePosture): ScaffoldInnerContentType =
+    when {
+      windowSizeClass.isExpandedWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
+        DevicePosture.NormalPosture -> ScaffoldInnerContentType.TwoPane()
+        is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.TableTopPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.BookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+      }
 
-    windowSizeClass.isExpandedWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
-      DevicePosture.NormalPosture -> ScaffoldInnerContentType.TwoPane()
-      is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.TableTopPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.BookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+      windowSizeClass.isMediumWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
+        DevicePosture.NormalPosture -> ScaffoldInnerContentType.SinglePane
+        is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.TableTopPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+        is DevicePosture.BookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
+      }
+
+      windowSizeClass.isCompactHeight.and(
+        devicePosture is DevicePosture.NormalPosture,
+      ) -> ScaffoldInnerContentType.SinglePane
+
+      else -> ScaffoldInnerContentType.SinglePane
     }
-
-    windowSizeClass.isMediumWidth.and(windowSizeClass.isCompactHeight.not()) -> when (devicePosture) {
-      DevicePosture.NormalPosture -> ScaffoldInnerContentType.SinglePane
-      is DevicePosture.ClosedBookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.ClosedFlipPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.TableTopPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-      is DevicePosture.BookPosture -> ScaffoldInnerContentType.TwoPane(devicePosture.hingeRatio)
-    }
-
-    windowSizeClass.isCompactHeight.and(devicePosture is DevicePosture.NormalPosture) -> ScaffoldInnerContentType.SinglePane
-
-    else -> ScaffoldInnerContentType.SinglePane
-  }
 }

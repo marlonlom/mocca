@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -45,6 +44,6 @@ internal object MoccaColorSchemes {
       error = Color(0xFFFFB4AB),
       onError = Color(0xFF690005),
       errorContainer = Color(0xFF93000A),
-      onErrorContainer = Color(0xFFFFDAD6)
+      onErrorContainer = Color(0xFFFFDAD6),
     )
 }

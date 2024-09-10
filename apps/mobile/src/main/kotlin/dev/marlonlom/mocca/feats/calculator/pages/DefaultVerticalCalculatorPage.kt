@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.pages
 
 import androidx.compose.foundation.layout.Column
@@ -20,9 +19,7 @@ import dev.marlonlom.mocca.feats.calculator.slots.TopContentSlot
  * @param pageData Content slot data.
  */
 @Composable
-fun DefaultVerticalCalculatorPage(
-  pageData: PageContentData
-) {
+fun DefaultVerticalCalculatorPage(pageData: PageContentData) {
   Column(modifier = Modifier.fillMaxSize()) {
     TopContentSlot(
       windowSizeInfo = pageData.windowSizeInfo,
@@ -40,4 +37,3 @@ fun DefaultVerticalCalculatorPage(
     )
   }
 }
-

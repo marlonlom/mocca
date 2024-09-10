@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.output
 
 import androidx.annotation.StringRes
@@ -36,11 +35,7 @@ import kotlin.math.roundToLong
  * @param onSlotClosedAction Action for success dialog closed.
  */
 @Composable
-fun SuccessResultSlot(
-  successState: CalculatorUiState.WithSuccess,
-  onSlotClosedAction: () -> Unit
-) {
-
+fun SuccessResultSlot(successState: CalculatorUiState.WithSuccess, onSlotClosedAction: () -> Unit) {
   Column(
     modifier = Modifier
       .fillMaxWidth()
@@ -54,20 +49,19 @@ fun SuccessResultSlot(
         color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.25f),
         shape = MaterialTheme.shapes.medium,
       ),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
-
     Row(verticalAlignment = Alignment.Bottom) {
       Column(
         modifier = Modifier.fillMaxWidth(0.5f),
-        horizontalAlignment = Alignment.End
+        horizontalAlignment = Alignment.End,
       ) {
         SuccessResultTitle(R.string.text_home_label_fee)
         SuccessResultValue(amountNumber = successState.response.fixedFee + successState.response.variableFee)
       }
       Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.End
+        horizontalAlignment = Alignment.End,
       ) {
         SuccessResultTitle(R.string.text_home_label_total)
         SuccessResultValue(amountNumber = successState.response.total)
@@ -79,30 +73,27 @@ fun SuccessResultSlot(
         .fillMaxWidth()
         .padding(horizontal = 20.dp, vertical = 10.dp),
       horizontalArrangement = Arrangement.End,
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       TextButton(
         colors = ButtonDefaults.buttonColors(
           containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-          contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+          contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
         ),
         shape = MaterialTheme.shapes.small,
         onClick = { onSlotClosedAction() },
       ) {
         Text(
           text = stringResource(id = R.string.text_home_button_close),
-          fontWeight = FontWeight.Bold
+          fontWeight = FontWeight.Bold,
         )
       }
     }
-
   }
 }
 
 @Composable
-internal fun SuccessResultValue(
-  amountNumber: Double
-) {
+internal fun SuccessResultValue(amountNumber: Double) {
   Text(
     modifier = Modifier
       .fillMaxWidth()
@@ -116,9 +107,7 @@ internal fun SuccessResultValue(
 }
 
 @Composable
-internal fun SuccessResultTitle(
-  @StringRes titleStringRes: Int
-) {
+internal fun SuccessResultTitle(@StringRes titleStringRes: Int) {
   Text(
     modifier = Modifier
       .fillMaxWidth()

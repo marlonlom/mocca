@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator.output
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -41,20 +40,19 @@ import kotlin.math.roundToLong
 internal fun SuccessCalculatorOutput(
   scrollState: ScrollState,
   calculationResult: CalculationResult,
-  onBackNavigationAction: () -> Unit
+  onBackNavigationAction: () -> Unit,
 ) {
   Column(
     modifier = Modifier
-        .padding(top = 30.dp, bottom = 10.dp)
-        .verticalScroll(scrollState),
+      .padding(top = 30.dp, bottom = 10.dp)
+      .verticalScroll(scrollState),
     verticalArrangement = Arrangement.spacedBy(5.dp),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
-
     Row(
       modifier = Modifier.fillMaxWidth(),
       horizontalArrangement = Arrangement.Center,
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       Icon(
         painter = painterResource(R.drawable.ic_rounded_check_circle),
@@ -67,7 +65,7 @@ internal fun SuccessCalculatorOutput(
 
     SuccessCalculationTexts(
       titleRes = R.string.text_result_label_fee,
-      calculationResultValue = calculationResult.fixedFee.plus(calculationResult.variableFee)
+      calculationResultValue = calculationResult.fixedFee.plus(calculationResult.variableFee),
     )
 
     Spacer(modifier = Modifier.height(4.dp))
@@ -81,7 +79,7 @@ internal fun SuccessCalculatorOutput(
 
     BackNavigationButton(
       isFailure = false,
-      onBackNavigationAction = onBackNavigationAction
+      onBackNavigationAction = onBackNavigationAction,
     )
   }
 }
@@ -93,31 +91,28 @@ internal fun SuccessCalculatorOutput(
  * @param calculationResultValue
  */
 @Composable
-private fun SuccessCalculationTexts(
-  titleRes: Int,
-  calculationResultValue: Double,
-) {
+private fun SuccessCalculationTexts(titleRes: Int, calculationResultValue: Double) {
   Text(
     modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 2.dp),
+      .fillMaxWidth()
+      .padding(bottom = 2.dp),
     text = stringResource(titleRes),
     maxLines = 1,
     color = MaterialTheme.colorScheme.tertiary,
     textAlign = TextAlign.Center,
     fontWeight = FontWeight.Bold,
-    style = MaterialTheme.typography.bodyExtraSmall
+    style = MaterialTheme.typography.bodyExtraSmall,
   )
 
   Text(
     modifier = Modifier.fillMaxWidth(),
     text = stringResource(
       R.string.text_cop_currency_value,
-      calculationResultValue.roundToLong()
+      calculationResultValue.roundToLong(),
     ),
     maxLines = 1,
     color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.75f),
     textAlign = TextAlign.Center,
-    style = MaterialTheme.typography.bodySmall
+    style = MaterialTheme.typography.bodySmall,
   )
 }

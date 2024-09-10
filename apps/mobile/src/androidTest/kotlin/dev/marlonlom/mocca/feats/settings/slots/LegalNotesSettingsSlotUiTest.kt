@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -31,11 +30,11 @@ internal class LegalNotesSettingsSlotUiTest {
             aboutEfectyUrl = "",
             appVersion = BuildConfig.VERSION_NAME,
             darkTheme = false,
-            dynamicColors = false
+            dynamicColors = false,
           ),
           onOssLicencesSettingLinkClicked = {
             settingClicked = true
-          }
+          },
         )
       }
 
@@ -45,5 +44,4 @@ internal class LegalNotesSettingsSlotUiTest {
       Truth.assertThat(settingClicked).isTrue()
     }
   }
-
 }

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca
 
 import kotlinx.coroutines.Dispatchers
@@ -26,5 +25,4 @@ class UnitTestsDispatcherRule(
   override fun finished(description: Description) {
     Dispatchers.resetMain()
   }
-
 }

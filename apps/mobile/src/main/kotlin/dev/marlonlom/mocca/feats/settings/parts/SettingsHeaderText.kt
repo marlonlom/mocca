@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,9 +26,7 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
  * @param windowSizeInfo Windows size info utility data.
  */
 @Composable
-fun SettingsHeaderText(
-  windowSizeInfo: WindowSizeInfo
-) {
+fun SettingsHeaderText(windowSizeInfo: WindowSizeInfo) {
   Text(
     modifier = Modifier
       .fillMaxWidth()
@@ -43,10 +40,10 @@ fun SettingsHeaderText(
 
           else -> 40.dp
         },
-        bottom = 20.dp
+        bottom = 20.dp,
       ),
     text = stringResource(R.string.text_settings_headline),
     style = MaterialTheme.typography.headlineLarge,
-    fontWeight = FontWeight.Bold
+    fontWeight = FontWeight.Bold,
   )
 }

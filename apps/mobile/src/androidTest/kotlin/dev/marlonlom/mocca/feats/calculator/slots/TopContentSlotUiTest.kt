@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.slots
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -31,7 +30,7 @@ internal class TopContentSlotUiTest {
         windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.Empty,
-        onSlotClosedAction = {}
+        onSlotClosedAction = {},
       )
     }
 
@@ -52,10 +51,10 @@ internal class TopContentSlotUiTest {
           response = CalculationResult(
             variableFee = 18000.0,
             fixedFee = 0.0,
-            total = 468000.0
-          )
+            total = 468000.0,
+          ),
         ),
-        onSlotClosedAction = {}
+        onSlotClosedAction = {},
       )
     }
 
@@ -77,7 +76,7 @@ internal class TopContentSlotUiTest {
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
-          exception = CalculationException.BelowQuantityRange()
+          exception = CalculationException.BelowQuantityRange(),
         ),
         onSlotClosedAction = {},
       )
@@ -99,9 +98,9 @@ internal class TopContentSlotUiTest {
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
-          exception = CalculationException.AboveQuantityRange()
+          exception = CalculationException.AboveQuantityRange(),
         ),
-        onSlotClosedAction = {}
+        onSlotClosedAction = {},
       )
     }
     composeTestRule
@@ -121,9 +120,9 @@ internal class TopContentSlotUiTest {
         calculationTextState = mutableStateOf(amountExpectedValue),
         calculatorUiState = CalculatorUiState.WithFailure(
           amount = amountExpectedValue,
-          exception = CalculationException.NegativeQuantity()
+          exception = CalculationException.NegativeQuantity(),
         ),
-        onSlotClosedAction = {}
+        onSlotClosedAction = {},
       )
     }
     composeTestRule

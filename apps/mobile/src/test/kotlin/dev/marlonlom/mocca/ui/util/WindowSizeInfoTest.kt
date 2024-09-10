@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -20,11 +19,11 @@ internal class WindowSizeInfoTest {
   fun `Should contain window size for mobile portrait`() {
     val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
-        DpSize(360.dp, 640.dp)
+        DpSize(360.dp, 640.dp),
       ),
       devicePosture = DevicePosture.NormalPosture,
       isLandscape = false,
-      isTabletWidth = false
+      isTabletWidth = false,
     )
 
     assertFalse(windowSizeUtility.isMobileLandscape)
@@ -35,11 +34,11 @@ internal class WindowSizeInfoTest {
   fun `Should contain window size for mobile landscape`() {
     val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
-        DpSize(720.dp, 360.dp)
+        DpSize(720.dp, 360.dp),
       ),
       devicePosture = DevicePosture.NormalPosture,
       isLandscape = true,
-      isTabletWidth = false
+      isTabletWidth = false,
     )
 
     assertTrue(windowSizeUtility.isMobileLandscape)
@@ -50,11 +49,11 @@ internal class WindowSizeInfoTest {
   fun `Should contain window size for tablet portrait`() {
     val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
-        DpSize(640.dp, 1024.dp)
+        DpSize(640.dp, 1024.dp),
       ),
       devicePosture = DevicePosture.NormalPosture,
       isLandscape = false,
-      isTabletWidth = true
+      isTabletWidth = true,
     )
 
     assertFalse(windowSizeUtility.isMobileLandscape)
@@ -65,11 +64,11 @@ internal class WindowSizeInfoTest {
   fun `Should contain window size for tablet landscape`() {
     val windowSizeUtility = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
-        DpSize(1024.dp, 640.dp)
+        DpSize(1024.dp, 640.dp),
       ),
       devicePosture = DevicePosture.NormalPosture,
       isLandscape = true,
-      isTabletWidth = true
+      isTabletWidth = true,
     )
 
     assertFalse(windowSizeUtility.isMobileLandscape)

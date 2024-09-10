@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.annotation.StringRes
@@ -42,27 +41,26 @@ internal fun BooleanSettingSwitch(
   checked: Boolean,
   onChecked: (Boolean) -> Unit,
   enabled: Boolean = true,
-  showSubtitle: Boolean = true
+  showSubtitle: Boolean = true,
 ) {
-
   Row(
     modifier = Modifier
       .fillMaxWidth()
       .padding(10.dp),
     verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.SpaceBetween
+    horizontalArrangement = Arrangement.SpaceBetween,
   ) {
     SettingLabelText(
       title = title,
       subtitle = stringResource(subtitle),
       showSubtitle = showSubtitle,
-      modifier = Modifier.fillMaxWidth(0.75f)
+      modifier = Modifier.fillMaxWidth(0.75f),
     )
     Switch(
       modifier = Modifier.testTag("BooleanSettingSwitch"),
       enabled = enabled,
       checked = checked,
-      onCheckedChange = { onChecked(it) }
+      onCheckedChange = { onChecked(it) },
     )
   }
 }
@@ -82,12 +80,12 @@ internal fun BooleanSettingSwitch(
 internal fun buildAnnotatedTitleWithSubtitle(
   @StringRes title: Int,
   subtitle: String,
-  showSubtitle: Boolean
+  showSubtitle: Boolean,
 ): AnnotatedString = buildAnnotatedString {
   withStyle(
     style = SpanStyle(
-      fontSize = MaterialTheme.typography.bodyMedium.fontSize
-    )
+      fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+    ),
   ) {
     append(stringResource(title))
   }
@@ -96,7 +94,7 @@ internal fun buildAnnotatedTitleWithSubtitle(
     withStyle(
       style = SpanStyle(
         fontSize = MaterialTheme.typography.labelSmall.fontSize,
-      )
+      ),
     ) {
       append(subtitle)
     }

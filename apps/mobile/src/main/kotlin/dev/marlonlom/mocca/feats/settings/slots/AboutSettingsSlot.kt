@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.foundation.layout.Spacer
@@ -28,12 +27,9 @@ import dev.marlonlom.mocca.feats.settings.parts.ClickableTextRow
  * @param onFeedbackSettingLinkClicked Action for feedback setting button clicked.
  */
 @Composable
-fun AboutSettingsSlot(
-  userPreferences: UserPreferences,
-  onFeedbackSettingLinkClicked: () -> Unit
-) {
+fun AboutSettingsSlot(userPreferences: UserPreferences, onFeedbackSettingLinkClicked: () -> Unit) {
   DefaultSettingsSlot(
-    title = R.string.text_settings_title_app_info
+    title = R.string.text_settings_title_app_info,
   ) {
     ClickableTextRow(
       title = R.string.text_settings_label_feedback,
@@ -42,11 +38,11 @@ fun AboutSettingsSlot(
           imageVector = Icons.TwoTone.Feedback,
           contentDescription = null,
           modifier = Modifier.size(24.dp),
-          tint = MaterialTheme.colorScheme.secondary
+          tint = MaterialTheme.colorScheme.secondary,
         )
         Spacer(
           Modifier
-            .size(20.dp)
+            .size(20.dp),
         )
       },
       onClicked = { onFeedbackSettingLinkClicked() },
@@ -59,11 +55,11 @@ fun AboutSettingsSlot(
           imageVector = Icons.TwoTone.Info,
           contentDescription = null,
           modifier = Modifier.size(24.dp),
-          tint = MaterialTheme.colorScheme.secondary
+          tint = MaterialTheme.colorScheme.secondary,
         )
         Spacer(
           Modifier
-            .size(20.dp)
+            .size(20.dp),
         )
       },
     )

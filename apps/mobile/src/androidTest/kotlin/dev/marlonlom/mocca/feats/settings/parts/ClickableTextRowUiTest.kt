@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -31,7 +30,7 @@ internal class ClickableTextRowUiTest {
           title = R.string.text_settings_label_feedback,
           onClicked = {
             clicked = true
-          }
+          },
         )
       }
       val nodeWithText = onNodeWithText("Feedback")
@@ -51,7 +50,7 @@ internal class ClickableTextRowUiTest {
           subtitle = BuildConfig.BUILD_TYPE,
           onClicked = {
             clicked = true
-          }
+          },
         )
       }
 
@@ -61,5 +60,4 @@ internal class ClickableTextRowUiTest {
       Truth.assertThat(clicked).isTrue()
     }
   }
-
 }

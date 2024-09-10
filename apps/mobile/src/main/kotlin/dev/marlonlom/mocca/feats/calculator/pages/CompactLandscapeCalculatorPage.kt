@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.pages
 
 import androidx.compose.foundation.layout.Column
@@ -25,31 +24,30 @@ import dev.marlonlom.mocca.ui.main.scaffold.ScaffoldInnerContentType
  * @param pageData Content slot data.
  */
 @Composable
-fun CompactLandscapeCalculatorPage(
-  pageData: PageContentData
-) {
+fun CompactLandscapeCalculatorPage(pageData: PageContentData) {
   val contentModifier = when {
     (pageData.windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane)
-      .and(pageData.windowSizeInfo.isLandscape) -> Modifier
-      .fillMaxSize()
-      .padding(top = 20.dp)
+      .and(pageData.windowSizeInfo.isLandscape) ->
+      Modifier
+        .fillMaxSize()
+        .padding(top = 20.dp)
 
     else -> Modifier.fillMaxSize()
   }
 
   Row(
-    modifier = contentModifier
+    modifier = contentModifier,
   ) {
     TopContentSlot(
       windowSizeInfo = pageData.windowSizeInfo,
       calculationTextState = pageData.calculationTextState,
       calculatorUiState = pageData.calculatorUiState,
       onSlotClosedAction = pageData.actions.onSlotClosedAction,
-      isLandscapeSinglePane = true
+      isLandscapeSinglePane = true,
     )
 
     Column(
-      horizontalAlignment = Alignment.CenterHorizontally
+      horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       ButtonsContentSlot(
         windowSizeInfo = pageData.windowSizeInfo,

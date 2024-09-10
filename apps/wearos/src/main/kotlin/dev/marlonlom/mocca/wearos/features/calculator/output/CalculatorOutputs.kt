@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator.output
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
@@ -38,10 +37,7 @@ import dev.marlonlom.mocca.calculator.model.OrderResponse
  * @param onBackNavigationAction Action for back navigation.
  */
 @Composable
-fun CalculatorOutput(
-  amountText: String,
-  onBackNavigationAction: () -> Unit
-) {
+fun CalculatorOutput(amountText: String, onBackNavigationAction: () -> Unit) {
   BackHandler {
     onBackNavigationAction()
   }
@@ -56,8 +52,8 @@ fun CalculatorOutput(
 
   Box(
     modifier = Modifier
-        .fillMaxSize()
-        .padding(horizontal = 20.dp),
+      .fillMaxSize()
+      .padding(horizontal = 20.dp),
     contentAlignment = Alignment.Center,
   ) {
     val scrollState = rememberScrollState()
@@ -74,20 +70,20 @@ fun CalculatorOutput(
         FailureCalculatorOutput(
           scrollState = scrollState,
           alertMessageText = alertMessageText,
-          onBackNavigationAction = onBackNavigationAction
+          onBackNavigationAction = onBackNavigationAction,
         )
       }
 
       is OrderResponse.Success -> SuccessCalculatorOutput(
         scrollState = scrollState,
         calculationResult = calculationResultState.item,
-        onBackNavigationAction = onBackNavigationAction
+        onBackNavigationAction = onBackNavigationAction,
       )
 
       else -> FailureCalculatorOutput(
         scrollState = scrollState,
         alertMessageText = errorTextInternal,
-        onBackNavigationAction = onBackNavigationAction
+        onBackNavigationAction = onBackNavigationAction,
       )
     }
   }
@@ -102,10 +98,7 @@ fun CalculatorOutput(
  * @param onBackNavigationAction Action for back navigation.
  */
 @Composable
-internal fun BackNavigationButton(
-  isFailure: Boolean,
-  onBackNavigationAction: () -> Unit
-) {
+internal fun BackNavigationButton(isFailure: Boolean, onBackNavigationAction: () -> Unit) {
   val buttonColors = ButtonDefaults.buttonColors(
     containerColor = if (isFailure) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.tertiary,
     contentColor = if (isFailure) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onTertiary,
@@ -119,9 +112,9 @@ internal fun BackNavigationButton(
     Icon(
       modifier = Modifier.size(DpSize(width = 20.dp, height = 20.dp)),
       painter = painterResource(
-        if (isFailure) R.drawable.ic_rounded_close else R.drawable.ic_rounded_refresh
+        if (isFailure) R.drawable.ic_rounded_close else R.drawable.ic_rounded_refresh,
       ),
-      contentDescription = null
+      contentDescription = null,
     )
   }
 }

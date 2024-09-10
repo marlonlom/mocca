@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main
 
 import androidx.lifecycle.ViewModel
@@ -26,7 +25,7 @@ import kotlinx.coroutines.flow.stateIn
  * @param repository Settings repository.
  */
 class MainViewModel(
-  repository: SettingsRepository
+  repository: SettingsRepository,
 ) : ViewModel() {
 
   /** Main ui state. */
@@ -39,7 +38,6 @@ class MainViewModel(
     )
 
   companion object {
-
 
     /**
      * Factory for creating main view model instances.
@@ -71,6 +69,6 @@ sealed interface MainActivityUiState {
    * @property userData User preferences data.
    */
   data class Success(
-    val userData: UserPreferences
+    val userData: UserPreferences,
   ) : MainActivityUiState
 }

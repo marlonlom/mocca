@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.input
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -30,5 +29,4 @@ internal class MoneyAmountInputUiTest {
     }
     composeTestRule.onNodeWithText("123").assertIsDisplayed()
   }
-
 }

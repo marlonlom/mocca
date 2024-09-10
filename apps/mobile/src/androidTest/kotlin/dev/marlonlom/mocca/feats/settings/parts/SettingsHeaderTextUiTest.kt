@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -23,7 +22,7 @@ internal class SettingsHeaderTextUiTest {
     with(composeTestRule) {
       setContent {
         SettingsHeaderText(
-          WindowSizeUtilityDefaults.mobilePortrait
+          WindowSizeUtilityDefaults.mobilePortrait,
         )
       }
 

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator
 
 import dev.marlonlom.mocca.UnitTestsDispatcherRule
@@ -55,12 +54,11 @@ internal class CalculatorViewModelTest {
             assertEquals(9700L, uiState.response.total.roundToLong())
             assertEquals(
               4700L,
-              uiState.response.fixedFee.roundToLong().plus(uiState.response.variableFee.roundToLong())
+              uiState.response.fixedFee.roundToLong().plus(uiState.response.variableFee.roundToLong()),
             )
           }
 
           else -> fail()
-
         }
       }
     }
@@ -83,7 +81,6 @@ internal class CalculatorViewModelTest {
           }
 
           else -> fail()
-
         }
       }
     }
@@ -106,7 +103,6 @@ internal class CalculatorViewModelTest {
           }
 
           else -> fail()
-
         }
       }
     }
@@ -129,7 +125,6 @@ internal class CalculatorViewModelTest {
           }
 
           else -> fail()
-
         }
       }
     }

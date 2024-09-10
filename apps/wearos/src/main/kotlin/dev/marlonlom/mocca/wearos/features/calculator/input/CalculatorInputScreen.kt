@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_input
+package dev.marlonlom.mocca.wearos.features.calculator.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,14 +29,14 @@ fun CalculatorInputScreen(
   calculatorInputState: CalculatorInputState = rememberCalculatorInputState(),
 ) = Column(
   modifier = Modifier
-      .fillMaxWidth()
-      .background(MaterialTheme.colorScheme.background)
-      .padding(0.dp),
+    .fillMaxWidth()
+    .background(MaterialTheme.colorScheme.background)
+    .padding(0.dp),
   horizontalAlignment = Alignment.CenterHorizontally,
-  verticalArrangement = Arrangement.Center
+  verticalArrangement = Arrangement.Center,
 ) {
   CalculatorTextField(
-    inputValue = calculatorInputState.textValue
+    inputValue = calculatorInputState.textValue,
   )
   CalculatorInputButtons(
     onButtonClick = { buttonTxt ->
@@ -53,8 +52,6 @@ fun CalculatorInputScreen(
           calculatorInputState.update(buttonTxt)
         }
       }
-
-    }
+    },
   )
 }
-

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.slots
 
 import androidx.compose.foundation.layout.Arrangement
@@ -41,7 +40,7 @@ internal fun TopContentSlot(
   calculationTextState: MutableState<String>,
   calculatorUiState: CalculatorUiState,
   onSlotClosedAction: () -> Unit,
-  isLandscapeSinglePane: Boolean = false
+  isLandscapeSinglePane: Boolean = false,
 ) {
   val contentModifier = when {
     isLandscapeSinglePane.and(windowSizeInfo.windowSizeClass.isCompactHeight.not())
@@ -51,9 +50,10 @@ internal fun TopContentSlot(
       .fillMaxWidth(0.5f)
       .fillMaxHeight()
 
-    isLandscapeSinglePane -> Modifier
-      .fillMaxWidth(0.5f)
-      .fillMaxHeight()
+    isLandscapeSinglePane ->
+      Modifier
+        .fillMaxWidth(0.5f)
+        .fillMaxHeight()
 
     windowSizeInfo.windowSizeClass.isCompactWidth
       .and(windowSizeInfo.devicePosture is DevicePosture.TableTopPosture)
@@ -62,9 +62,10 @@ internal fun TopContentSlot(
       .fillMaxHeight((windowSizeInfo.devicePosture as DevicePosture.TableTopPosture).hingeRatio)
       .padding(bottom = 20.dp)
 
-    else -> Modifier
-      .fillMaxWidth()
-      .fillMaxHeight(0.5f)
+    else ->
+      Modifier
+        .fillMaxWidth()
+        .fillMaxHeight(0.5f)
   }
 
   Column(
@@ -72,12 +73,11 @@ internal fun TopContentSlot(
       .padding(bottom = 20.dp)
       .fillMaxHeight(),
     horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Bottom
+    verticalArrangement = Arrangement.Bottom,
   ) {
-
     MoneyAmountInput(
       windowSizeInfo = windowSizeInfo,
-      amountTextState = calculationTextState
+      amountTextState = calculationTextState,
     )
 
     when (calculatorUiState) {

@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright 2024 Marlonlom
-  ~ SPDX-License-Identifier: Apache-2.0
-  -->
+<?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
 <resources>
   <string name="text_calculator_input_money_amount">Monto a enviar</string>
   <string name="text_result_error_above_range">No puedes enviar más de COP $3,000,000.</string>

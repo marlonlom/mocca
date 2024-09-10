@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.output
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -32,12 +31,12 @@ internal class SuccessResultSlotUiTest {
             response = CalculationResult(
               variableFee = 18000.0,
               fixedFee = 0.0,
-              total = 468000.0
-            )
+              total = 468000.0,
+            ),
           ),
           onSlotClosedAction = {
             clicked = true
-          }
+          },
         )
       }
 

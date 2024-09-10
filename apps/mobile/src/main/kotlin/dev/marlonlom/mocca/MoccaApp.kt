@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca
 
 import android.app.Application
@@ -36,11 +35,10 @@ class MoccaApp : Application() {
         aboutEfectyUrl = this.getString(R.string.text_settings_efecty_about_url),
         appVersion = BuildConfig.VERSION_NAME,
         darkTheme = false,
-        dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-      )
+        dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
+      ),
     )
   }
-
 
   /** Setup timber logging feature. */
   private fun setupTimber() {
@@ -48,5 +46,4 @@ class MoccaApp : Application() {
       Timber.plant(Timber.DebugTree())
     }
   }
-
 }

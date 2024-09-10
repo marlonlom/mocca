@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  ~ Copyright 2024 Marlonlom
-  ~ SPDX-License-Identifier: Apache-2.0
-  -->
-
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
 <resources>
   <color name="brand_akaroa">#FFD5C5A1</color>
   <color name="brand_armadillo">#FF4C4639</color>

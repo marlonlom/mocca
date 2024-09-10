@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.input
 
 import androidx.compose.foundation.layout.Arrangement
@@ -40,29 +39,35 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
  * @param amountTextState Calculation amount ui state string value.
  */
 @Composable
-fun MoneyAmountInput(
-  windowSizeInfo: WindowSizeInfo,
-  amountTextState: MutableState<String>,
-) {
-
+fun MoneyAmountInput(windowSizeInfo: WindowSizeInfo, amountTextState: MutableState<String>) {
   val labelTextStyle = when {
-    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(
+      windowSizeInfo.windowSizeClass.isMediumWidth,
+    )
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleSmall
 
-    windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.titleLarge
+    windowSizeInfo.windowSizeClass.isMediumWidth.and(
+      windowSizeInfo.windowSizeClass.isCompactHeight.not(),
+    ) -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.bodyLarge
   }
 
   val amountTextStyle = when {
-    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(
+      windowSizeInfo.windowSizeClass.isMediumWidth,
+    )
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displaySmall
 
-    windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> MaterialTheme.typography.displayLarge
+    windowSizeInfo.windowSizeClass.isMediumWidth.and(
+      windowSizeInfo.windowSizeClass.isCompactHeight.not(),
+    ) -> MaterialTheme.typography.displayLarge
     else -> MaterialTheme.typography.headlineLarge
   }
 
   val moneyIconSize = when {
-    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(windowSizeInfo.windowSizeClass.isMediumWidth)
+    (windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane).and(
+      windowSizeInfo.windowSizeClass.isMediumWidth,
+    )
       .and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 48.dp
 
     windowSizeInfo.windowSizeClass.isMediumWidth.and(windowSizeInfo.windowSizeClass.isCompactHeight.not()) -> 64.dp
@@ -72,7 +77,7 @@ fun MoneyAmountInput(
   Column(
     Modifier
       .fillMaxWidth()
-      .padding(horizontal = 20.dp)
+      .padding(horizontal = 20.dp),
   ) {
     Text(
       modifier = Modifier.fillMaxWidth(),
@@ -81,7 +86,7 @@ fun MoneyAmountInput(
       style = labelTextStyle,
       maxLines = 2,
       textAlign = TextAlign.End,
-      text = stringResource(id = R.string.text_home_label_amount)
+      text = stringResource(id = R.string.text_home_label_amount),
     )
     Row(
       modifier = Modifier
@@ -89,13 +94,13 @@ fun MoneyAmountInput(
         .padding(vertical = 4.dp)
         .heightIn(min = moneyIconSize),
       horizontalArrangement = Arrangement.spacedBy(20.dp),
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       Icon(
         imageVector = Icons.Rounded.AttachMoney,
         contentDescription = null,
         modifier = Modifier.size(moneyIconSize),
-        tint = MaterialTheme.colorScheme.secondary
+        tint = MaterialTheme.colorScheme.secondary,
       )
       Text(
         modifier = Modifier.fillMaxWidth(),
@@ -105,7 +110,7 @@ fun MoneyAmountInput(
         lineHeight = amountTextStyle.lineHeight,
         fontWeight = FontWeight.Bold,
         maxLines = 1,
-        textAlign = TextAlign.End
+        textAlign = TextAlign.End,
       )
     }
   }

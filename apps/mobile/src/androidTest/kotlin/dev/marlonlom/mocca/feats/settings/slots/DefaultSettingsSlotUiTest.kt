@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -19,12 +18,11 @@ internal class DefaultSettingsSlotUiTest {
 
   @Test
   fun shouldDisplayDefaultSettingSlot() {
-    with(composeTestRule)
-    {
+    with(composeTestRule) {
       setContent {
         DefaultSettingsSlot(
           title = R.string.text_settings_label_feedback,
-          content = {}
+          content = {},
         )
       }
 

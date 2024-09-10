@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main.scaffold
 
 import androidx.compose.foundation.background
@@ -49,7 +48,6 @@ fun AppScaffold(
   mainActions: MainActions,
   navController: NavHostController = rememberNavController(),
 ) {
-
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentDestination = navBackStackEntry?.destination?.route ?: AppRoute.Home.route
 
@@ -75,7 +73,7 @@ fun AppScaffold(
           onSettingsIconClicked = {
             Timber.d("[MainScaffold] onSettingsIconClicked")
             navController.navigate(AppRoute.Settings.route)
-          }
+          },
         )
       }
     },
@@ -83,14 +81,14 @@ fun AppScaffold(
       Box(
         modifier = Modifier
           .padding(paddingValues),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
       ) {
         when (windowSizeInfo.scaffoldInnerContentType) {
           ScaffoldInnerContentType.SinglePane -> {
             AppNavHost(
               navController = navController,
               windowSizeInfo = windowSizeInfo,
-              mainActions = mainActions
+              mainActions = mainActions,
             )
           }
 
@@ -100,14 +98,14 @@ fun AppScaffold(
               windowSizeInfo.isLandscape
                 .and(
                   (windowSizeInfo.devicePosture is DevicePosture.TableTopPosture).or
-                    (windowSizeInfo.devicePosture is DevicePosture.ClosedFlipPosture)
+                    (windowSizeInfo.devicePosture is DevicePosture.ClosedFlipPosture),
                 ) -> {
                 Timber.d("[AppScaffold] TwoPane - landscape")
                 Column {
                   Row(
                     modifier = Modifier
                       .fillMaxWidth()
-                      .fillMaxHeight(fraction)
+                      .fillMaxHeight(fraction),
                   ) {
                     CalculatorRoute(windowSizeInfo)
                   }
@@ -120,7 +118,7 @@ fun AppScaffold(
                   ) {
                     SettingsRoute(
                       windowSizeInfo = windowSizeInfo,
-                      mainActions = mainActions
+                      mainActions = mainActions,
                     )
                   }
                 }
@@ -144,7 +142,7 @@ fun AppScaffold(
                   ) {
                     SettingsRoute(
                       windowSizeInfo = windowSizeInfo,
-                      mainActions = mainActions
+                      mainActions = mainActions,
                     )
                   }
                 }

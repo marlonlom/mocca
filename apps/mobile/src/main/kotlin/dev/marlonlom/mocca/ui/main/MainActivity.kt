@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main
 
 import android.content.Intent
@@ -71,7 +70,7 @@ class MainActivity : ComponentActivity() {
     .stateIn(
       scope = lifecycleScope,
       started = SharingStarted.Eagerly,
-      initialValue = DevicePosture.NormalPosture
+      initialValue = DevicePosture.NormalPosture,
     )
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,13 +99,13 @@ class MainActivity : ComponentActivity() {
       val configuration = LocalConfiguration.current
       val windowSizeClass = calculateWindowSizeClass(activity = this)
       val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle(
-        lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+        lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current,
       )
       val windowSizeInfo = WindowSizeInfo(
         windowSizeClass = windowSizeClass,
         devicePosture = devicePostureState,
         isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
-        isTabletWidth = configuration.smallestScreenWidthDp >= 600
+        isTabletWidth = configuration.smallestScreenWidthDp >= 600,
       )
       Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
       MainContent(
@@ -116,7 +115,7 @@ class MainActivity : ComponentActivity() {
           onOssLicencesSettingLinkClicked = {
             Timber.d("[MainActivity] opening oss licenses window")
             startActivity(
-              Intent(this@MainActivity, OssLicensesMenuActivity::class.java)
+              Intent(this@MainActivity, OssLicensesMenuActivity::class.java),
             )
           },
           onOpeningExternalUrlSettingClicked = { urlText ->
@@ -128,10 +127,9 @@ class MainActivity : ComponentActivity() {
           onFeedbackSettingLinkClicked = {
             Timber.d("[MainActivity] opening feedback window")
             FeedbackOpener.rate(this@MainActivity)
-          }
-        )
+          },
+        ),
       )
     }
   }
-
 }

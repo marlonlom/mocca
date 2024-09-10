@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.output
+package dev.marlonlom.mocca.wearos.features.calculator.output
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -19,11 +18,10 @@ internal class CalculatorOutputSlotUiTest {
   @Test
   fun shouldDisplayCalculatorOutputInternalError() {
     with(rule) {
-
       setContent {
         CalculatorOutput(
           amountText = Double.NaN.toString(),
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 
@@ -31,15 +29,13 @@ internal class CalculatorOutputSlotUiTest {
     }
   }
 
-
   @Test
   fun shouldDisplayCalculatorOutputAboveRange() {
     with(rule) {
-
       setContent {
         CalculatorOutput(
           amountText = "9999999",
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 
@@ -50,11 +46,10 @@ internal class CalculatorOutputSlotUiTest {
   @Test
   fun shouldDisplayCalculatorOutputBelowRange() {
     with(rule) {
-
       setContent {
         CalculatorOutput(
           amountText = "1234",
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 
@@ -65,11 +60,10 @@ internal class CalculatorOutputSlotUiTest {
   @Test
   fun shouldDisplayCalculatorOutputNegativeAmounts() {
     with(rule) {
-
       setContent {
         CalculatorOutput(
           amountText = "-22",
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 
@@ -80,11 +74,10 @@ internal class CalculatorOutputSlotUiTest {
   @Test
   fun shouldDisplaySuccessCalculatorOutput() {
     with(rule) {
-
       setContent {
         CalculatorOutput(
           amountText = 5000.0.toString(),
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 
@@ -94,6 +87,4 @@ internal class CalculatorOutputSlotUiTest {
       onNodeWithText("COP \$ 9700").assertIsDisplayed()
     }
   }
-
-
 }

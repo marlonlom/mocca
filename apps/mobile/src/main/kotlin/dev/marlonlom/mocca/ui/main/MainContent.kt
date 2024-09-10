@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.main
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,19 +24,18 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
 internal fun MainContent(
   mainActivityUiState: MainActivityUiState,
   windowSizeInfo: WindowSizeInfo,
-  mainActions: MainActions
+  mainActions: MainActions,
 ) {
   MoccaTheme(
     darkTheme = shouldUseDarkTheme(mainActivityUiState),
-    dynamicColor = shouldUseDynamicTheming(mainActivityUiState)
+    dynamicColor = shouldUseDynamicTheming(mainActivityUiState),
   ) {
     AppScaffold(
       windowSizeInfo = windowSizeInfo,
-      mainActions = mainActions
+      mainActions = mainActions,
     )
   }
 }
-
 
 /**
  * Returns `true` if the dynamic color is used, as a function of the [uiState].
@@ -46,9 +44,7 @@ internal fun MainContent(
  * @return true/false
  */
 @Composable
-private fun shouldUseDynamicTheming(
-  uiState: MainActivityUiState,
-): Boolean = when (uiState) {
+private fun shouldUseDynamicTheming(uiState: MainActivityUiState): Boolean = when (uiState) {
   MainActivityUiState.Loading -> false
   is MainActivityUiState.Success -> uiState.userData.dynamicColors
 }
@@ -60,11 +56,13 @@ private fun shouldUseDynamicTheming(
  * @return true/false.
  */
 @Composable
-private fun shouldUseDarkTheme(
-  uiState: MainActivityUiState,
-): Boolean = if (isSystemInDarkTheme()) true else when (uiState) {
-  MainActivityUiState.Loading -> isSystemInDarkTheme()
-  is MainActivityUiState.Success -> uiState.userData.darkTheme
+private fun shouldUseDarkTheme(uiState: MainActivityUiState): Boolean = if (isSystemInDarkTheme()) {
+  true
+} else {
+  when (uiState) {
+    MainActivityUiState.Loading -> isSystemInDarkTheme()
+    is MainActivityUiState.Success -> uiState.userData.darkTheme
+  }
 }
 
 /**
@@ -79,5 +77,5 @@ private fun shouldUseDarkTheme(
 data class MainActions(
   val onOssLicencesSettingLinkClicked: () -> Unit,
   val onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  val onFeedbackSettingLinkClicked: () -> Unit
+  val onFeedbackSettingLinkClicked: () -> Unit,
 )
