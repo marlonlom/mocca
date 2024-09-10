@@ -10,7 +10,7 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import dev.marlonlom.mocca.wearos.features.calculator.input.CalculatorInputScreen
-import dev.marlonlom.mocca.wearos.features.output.CalculatorOutput
+import dev.marlonlom.mocca.wearos.features.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
 
@@ -38,7 +38,7 @@ fun NavigationHost(navController: NavHostController = rememberSwipeDismissableNa
       arguments = Result.navArguments,
     ) { navBackStackEntry ->
       val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
-      CalculatorOutput(
+      CalculatorOutputScreen(
         amountText = amountText,
         onBackNavigationAction = navController::popBackStack,
       )

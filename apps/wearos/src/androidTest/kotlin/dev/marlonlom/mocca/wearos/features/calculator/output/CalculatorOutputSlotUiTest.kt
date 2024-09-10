@@ -19,7 +19,7 @@ internal class CalculatorOutputSlotUiTest {
   fun shouldDisplayCalculatorOutputInternalError() {
     with(rule) {
       setContent {
-        CalculatorOutput(
+        CalculatorOutputScreen(
           amountText = Double.NaN.toString(),
           onBackNavigationAction = {},
         )
@@ -33,7 +33,7 @@ internal class CalculatorOutputSlotUiTest {
   fun shouldDisplayCalculatorOutputAboveRange() {
     with(rule) {
       setContent {
-        CalculatorOutput(
+        CalculatorOutputScreen(
           amountText = "9999999",
           onBackNavigationAction = {},
         )
@@ -47,7 +47,7 @@ internal class CalculatorOutputSlotUiTest {
   fun shouldDisplayCalculatorOutputBelowRange() {
     with(rule) {
       setContent {
-        CalculatorOutput(
+        CalculatorOutputScreen(
           amountText = "1234",
           onBackNavigationAction = {},
         )
@@ -61,7 +61,7 @@ internal class CalculatorOutputSlotUiTest {
   fun shouldDisplayCalculatorOutputNegativeAmounts() {
     with(rule) {
       setContent {
-        CalculatorOutput(
+        CalculatorOutputScreen(
           amountText = "-22",
           onBackNavigationAction = {},
         )
@@ -75,7 +75,7 @@ internal class CalculatorOutputSlotUiTest {
   fun shouldDisplaySuccessCalculatorOutput() {
     with(rule) {
       setContent {
-        CalculatorOutput(
+        CalculatorOutputScreen(
           amountText = 5000.0.toString(),
           onBackNavigationAction = {},
         )

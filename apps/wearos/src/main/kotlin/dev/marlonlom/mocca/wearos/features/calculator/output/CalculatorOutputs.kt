@@ -37,7 +37,7 @@ import dev.marlonlom.mocca.calculator.model.OrderResponse
  * @param onBackNavigationAction Action for back navigation.
  */
 @Composable
-fun CalculatorOutput(amountText: String, onBackNavigationAction: () -> Unit) {
+fun CalculatorOutputScreen(amountText: String, onBackNavigationAction: () -> Unit) {
   BackHandler {
     onBackNavigationAction()
   }
