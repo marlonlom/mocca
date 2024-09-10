@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator
 
 import dev.marlonlom.mocca.calculator.model.CalculationException.AboveQuantityRange
@@ -32,15 +31,11 @@ value class RequestedQuantity(val orderValue: Double)
  * @author marlonlom
  */
 object Calculator {
+  private fun orderValueIsNegative(request: RequestedQuantity) = request.orderValue < ZERO
 
-  private fun orderValueIsNegative(request: RequestedQuantity) =
-    request.orderValue < ZERO
+  private fun orderValueIsBelowRange(request: RequestedQuantity) = request.orderValue < MIN_VALUE
 
-  private fun orderValueIsBelowRange(request: RequestedQuantity) =
-    request.orderValue < MIN_VALUE
-
-  private fun orderValueIsAboveRange(request: RequestedQuantity) =
-    request.orderValue > MAX_VALUE
+  private fun orderValueIsAboveRange(request: RequestedQuantity) = request.orderValue > MAX_VALUE
 
   private fun orderValueIsInsideRange(request: RequestedQuantity) = request.orderValue.let {
     min(MIN_VALUE, it) == MIN_VALUE && max(MAX_VALUE, it) == MAX_VALUE
@@ -59,5 +54,4 @@ object Calculator {
     orderValueIsInsideRange(request) -> OrderFees.forValue(request.orderValue)
     else -> OrderResponse.None
   }
-
 }

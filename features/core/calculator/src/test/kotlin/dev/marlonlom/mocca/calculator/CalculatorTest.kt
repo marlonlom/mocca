@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator
 
 import dev.marlonlom.mocca.calculator.model.CalculationException.AboveQuantityRange
@@ -23,7 +22,6 @@ import org.junit.Test
 import kotlin.math.min
 
 internal class CalculatorTest {
-
   @Test
   fun `Should return none response`() {
     val requestedValue = RequestedQuantity(Double.NaN)

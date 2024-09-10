@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator.model
 
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.EIGHT_THOUSAND_THREE_HUNDRED
@@ -37,15 +36,14 @@ enum class OrderFees(
   val min: Double,
   val max: Double,
   val fixedFee: Double,
-  val haveVariableFee: Boolean
+  val haveVariableFee: Boolean,
 ) {
-
   /** First fee enum value */
   FIRST_FEE(
     min = MIN_VALUE,
     max = FIFTY_THOUSAND,
     fixedFee = FOUR_THOUSAND_SEVEN_HUNDRED,
-    haveVariableFee = false
+    haveVariableFee = false,
   ),
 
   /** Second fee enum value */
@@ -53,7 +51,7 @@ enum class OrderFees(
     min = FIFTY_THOUSAND.plus(ONE),
     max = ONE_HUNDRED_THOUSAND,
     fixedFee = SIX_THOUSAND,
-    haveVariableFee = false
+    haveVariableFee = false,
   ),
 
   /** Third fee enum value */
@@ -61,7 +59,7 @@ enum class OrderFees(
     min = ONE_HUNDRED_THOUSAND.plus(ONE),
     max = ONE_HUNDRED_FIFTY_THOUSAND,
     fixedFee = SEVEN_THOUSAND_FIVE_HUNDRED,
-    haveVariableFee = false
+    haveVariableFee = false,
   ),
 
   /** Fourth fee enum value */
@@ -69,7 +67,7 @@ enum class OrderFees(
     min = ONE_HUNDRED_FIFTY_THOUSAND.plus(ONE),
     max = TWO_HUNDRED_THOUSAND,
     fixedFee = EIGHT_THOUSAND_THREE_HUNDRED,
-    haveVariableFee = false
+    haveVariableFee = false,
   ),
 
   /** Fifth fee enum value */
@@ -77,11 +75,11 @@ enum class OrderFees(
     min = TWO_HUNDRED_THOUSAND.plus(ONE),
     max = MAX_VALUE,
     fixedFee = ZERO,
-    haveVariableFee = true
-  );
+    haveVariableFee = true,
+  ),
+  ;
 
   companion object {
-
     /**
      * Finds a money order fee using order value.
      *
@@ -92,7 +90,7 @@ enum class OrderFees(
       betweenInclusive(
         rangeStartValue = it.min,
         rangeFinalValue = it.max,
-        orderValue = orderValue
+        orderValue = orderValue,
       )
     }.let {
       when (it) {
@@ -103,8 +101,8 @@ enum class OrderFees(
             CalculationResult(
               fixedFee = it.fixedFee,
               variableFee = variableFeeAmount,
-              total = orderValue + it.fixedFee + variableFeeAmount
-            )
+              total = orderValue + it.fixedFee + variableFeeAmount,
+            ),
           )
         }
       }
@@ -113,18 +111,13 @@ enum class OrderFees(
     private fun getVariableFee(fee: OrderFees, orderValue: Double) =
       if (!fee.haveVariableFee) ZERO else calculateVariableFee(fee, orderValue)
 
-    private fun calculateVariableFee(fee: OrderFees, orderValue: Double) =
-      when (fee) {
-        FIFTH_FEE -> round(multiplyOrderValueByFour(orderValue) / ONE_HUNDRED)
-        else -> ZERO
-      }
+    private fun calculateVariableFee(fee: OrderFees, orderValue: Double) = when (fee) {
+      FIFTH_FEE -> round(multiplyOrderValueByFour(orderValue) / ONE_HUNDRED)
+      else -> ZERO
+    }
 
-    private fun betweenInclusive(
-      rangeStartValue: Double,
-      rangeFinalValue: Double,
-      orderValue: Double
-    ): Boolean = (min(rangeStartValue, orderValue) == rangeStartValue)
-      .and(max(rangeFinalValue, orderValue) == rangeFinalValue)
-
+    private fun betweenInclusive(rangeStartValue: Double, rangeFinalValue: Double, orderValue: Double): Boolean =
+      (min(rangeStartValue, orderValue) == rangeStartValue)
+        .and(max(rangeFinalValue, orderValue) == rangeFinalValue)
   }
 }
