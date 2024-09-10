@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator
 
 import androidx.compose.runtime.Composable
@@ -32,10 +31,9 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
 fun CalculatorRoute(
   windowSizeInfo: WindowSizeInfo,
   calculatorViewModel: CalculatorViewModel = viewModel(
-    factory = CalculatorViewModel.Factory
+    factory = CalculatorViewModel.Factory,
   ),
 ) {
-
   val calculationUiState by calculatorViewModel.uiState.collectAsState()
   val calculationAmount = when (calculationUiState) {
     is CalculatorUiState.WithFailure -> (calculationUiState as CalculatorUiState.WithFailure).amount
@@ -81,7 +79,7 @@ fun CalculatorRoute(
           else -> previousValue
         }
       },
-    )
+    ),
   )
 
   when {
@@ -101,5 +99,4 @@ fun CalculatorRoute(
       DefaultVerticalCalculatorPage(pageData = pageContentData)
     }
   }
-
 }

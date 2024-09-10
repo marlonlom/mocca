@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.slots
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -34,7 +33,7 @@ internal class ButtonsSectionUiTest {
           windowSizeInfo = WindowSizeUtilityDefaults.mobilePortrait,
           numberTypingEnabledState = numberTypingEnabledState,
           onPerformCalculationAction = { },
-          onDeleteLastNumberAction = {}
+          onDeleteLastNumberAction = {},
         ) {
           numberText.append(it)
         }
@@ -64,7 +63,7 @@ internal class ButtonsSectionUiTest {
           onPerformCalculationAction = { },
           onDeleteLastNumberAction = {
             numberText.deleteCharAt(numberText.length - 1)
-          }
+          },
         ) {
           numberText.append(it)
         }
@@ -98,7 +97,7 @@ internal class ButtonsSectionUiTest {
           },
           onDeleteLastNumberAction = {
             numberText.deleteCharAt(numberText.length - 1)
-          }
+          },
         ) {
           numberText.append(it)
         }
@@ -114,5 +113,4 @@ internal class ButtonsSectionUiTest {
       Truth.assertThat(calculationPerformed).isTrue()
     }
   }
-
 }

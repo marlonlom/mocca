@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.theme
 
 import android.app.Activity
@@ -26,7 +25,7 @@ import androidx.core.view.WindowCompat
  *
  * @author marlonlom
  */
-object MoccaColorScheme {
+internal object MoccaColorScheme {
 
   /** Dark color scheme. */
   val dark = darkColorScheme(
@@ -110,7 +109,7 @@ fun MoccaTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
   // Dynamic color is available on Android 12+
   dynamicColor: Boolean = true,
-  content: @Composable () -> Unit
+  content: @Composable () -> Unit,
 ) {
   val colorScheme = when {
     dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -134,6 +133,6 @@ fun MoccaTheme(
     colorScheme = colorScheme,
     typography = MoccaFont.appTypography,
     shapes = AppShapes,
-    content = content
+    content = content,
   )
 }

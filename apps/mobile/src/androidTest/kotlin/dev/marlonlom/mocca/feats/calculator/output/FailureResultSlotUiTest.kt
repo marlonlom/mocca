@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.output
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -29,7 +28,7 @@ internal class FailureResultSlotUiTest {
         FailureResultSlot(
           failureState = CalculatorUiState.WithFailure(
             amount = "123",
-            exception = CalculationException.BelowQuantityRange()
+            exception = CalculationException.BelowQuantityRange(),
           ),
           onSlotClosedAction = {
             clicked = true
@@ -50,7 +49,7 @@ internal class FailureResultSlotUiTest {
         FailureResultSlot(
           failureState = CalculatorUiState.WithFailure(
             amount = "99999999",
-            exception = CalculationException.AboveQuantityRange()
+            exception = CalculationException.AboveQuantityRange(),
           ),
           onSlotClosedAction = {
             clicked = true
@@ -71,7 +70,7 @@ internal class FailureResultSlotUiTest {
         FailureResultSlot(
           failureState = CalculatorUiState.WithFailure(
             amount = "-1",
-            exception = CalculationException.NegativeQuantity()
+            exception = CalculationException.NegativeQuantity(),
           ),
           onSlotClosedAction = {
             clicked = true

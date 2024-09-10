@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.slots
 
 import androidx.compose.foundation.background
@@ -46,11 +45,15 @@ fun ButtonsContentSlot(
   onAppendNumberAction: (String) -> Unit,
 ) {
   val cols = listOf(
-    listOf("7", "4", "1", "0"), listOf("8", "5", "2", "✔"), listOf("9", "6", "3", "⌫")
+    listOf("7", "4", "1", "0"),
+    listOf("8", "5", "2", "✔"),
+    listOf("9", "6", "3", "⌫"),
   )
 
   val numberTextStyle = when {
-    windowSizeInfo.isLandscape.and(windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane) -> MaterialTheme.typography.headlineSmall
+    windowSizeInfo.isLandscape.and(
+      windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane,
+    ) -> MaterialTheme.typography.headlineSmall
     windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
     else -> MaterialTheme.typography.headlineLarge
   }
@@ -59,15 +62,15 @@ fun ButtonsContentSlot(
     modifier = Modifier
       .fillMaxWidth()
       .background(
-        MaterialTheme.colorScheme.primaryContainer
-      )
+        MaterialTheme.colorScheme.primaryContainer,
+      ),
   )
   Row(
     modifier = Modifier
       .fillMaxSize()
       .border(1.dp, MaterialTheme.colorScheme.primaryContainer)
       .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.25f))
-      .padding(20.dp)
+      .padding(20.dp),
   ) {
     cols.forEach { col ->
       Column(modifier = Modifier.weight(1f)) {
@@ -96,7 +99,7 @@ fun ButtonsContentSlot(
             colors = ButtonDefaults.textButtonColors(
               containerColor = textBtnBg,
               contentColor = textColor,
-              disabledContentColor = textColor.copy(alpha = 0.25f)
+              disabledContentColor = textColor.copy(alpha = 0.25f),
             ),
             onClick = {
               when (itm) {
@@ -117,7 +120,7 @@ fun ButtonsContentSlot(
             Text(
               text = itm,
               fontWeight = FontWeight.Bold,
-              style = numberTextStyle
+              style = numberTextStyle,
             )
           }
         }

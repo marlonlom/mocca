@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-  ~ Copyright 2024 Marlonlom
-  ~ SPDX-License-Identifier: Apache-2.0
-  -->
-
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
 <resources>
   <dimen name="splash_screen_icon_width">48dp</dimen>
   <dimen name="splash_screen_icon_height">48dp</dimen>

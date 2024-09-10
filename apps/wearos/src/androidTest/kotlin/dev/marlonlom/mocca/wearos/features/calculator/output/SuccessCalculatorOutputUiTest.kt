@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator.output
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.test.assertIsDisplayed
@@ -21,7 +20,6 @@ internal class SuccessCalculatorOutputUiTest {
   @Test
   fun shouldDisplaySuccessCalculatorOutput() {
     with(rule) {
-
       setContent {
         val scrollState = rememberScrollState()
         SuccessCalculatorOutput(
@@ -31,7 +29,7 @@ internal class SuccessCalculatorOutputUiTest {
             fixedFee = 4_700.0,
             variableFee = 0.0,
           ),
-          onBackNavigationAction = {}
+          onBackNavigationAction = {},
         )
       }
 

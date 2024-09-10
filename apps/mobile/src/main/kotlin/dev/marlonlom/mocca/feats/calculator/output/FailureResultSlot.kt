@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.output
 
 import androidx.compose.foundation.background
@@ -35,11 +34,7 @@ import dev.marlonlom.mocca.feats.calculator.CalculatorUiState
  * @param onSlotClosedAction Action for failure dialog closed.
  */
 @Composable
-fun FailureResultSlot(
-  failureState: CalculatorUiState.WithFailure,
-  onSlotClosedAction: () -> Unit
-) {
-
+fun FailureResultSlot(failureState: CalculatorUiState.WithFailure, onSlotClosedAction: () -> Unit) {
   val errorMessage = when (failureState.exception) {
     is CalculationException.AboveQuantityRange -> R.string.text_home_error_above_range
     is CalculationException.BelowQuantityRange -> R.string.text_home_error_below_range
@@ -59,9 +54,8 @@ fun FailureResultSlot(
         color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.25f),
         shape = MaterialTheme.shapes.medium,
       ),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
-
     Text(
       modifier = Modifier
         .fillMaxWidth()
@@ -78,19 +72,19 @@ fun FailureResultSlot(
         .fillMaxWidth()
         .padding(horizontal = 20.dp, vertical = 10.dp),
       horizontalArrangement = Arrangement.End,
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       TextButton(
         colors = ButtonDefaults.buttonColors(
           containerColor = MaterialTheme.colorScheme.errorContainer,
-          contentColor = MaterialTheme.colorScheme.onErrorContainer
+          contentColor = MaterialTheme.colorScheme.onErrorContainer,
         ),
         shape = MaterialTheme.shapes.small,
         onClick = { onSlotClosedAction() },
       ) {
         Text(
           text = stringResource(id = R.string.text_home_button_close),
-          fontWeight = FontWeight.Bold
+          fontWeight = FontWeight.Bold,
         )
       }
     }

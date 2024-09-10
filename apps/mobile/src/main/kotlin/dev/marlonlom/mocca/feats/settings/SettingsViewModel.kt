@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings
 
 import android.os.Build
@@ -22,14 +21,14 @@ import kotlinx.coroutines.launch
  * @property repository Settings repository.
  */
 class SettingsViewModel(
-  private val repository: SettingsRepository
+  private val repository: SettingsRepository,
 ) : ViewModel() {
 
   /** Settings ui state. */
   val settingsUiState: StateFlow<UserPreferences> = repository.settingsFlow.stateIn(
     scope = viewModelScope,
     started = SharingStarted.Eagerly,
-    initialValue = Default
+    initialValue = Default,
   )
 
   /**
@@ -38,14 +37,11 @@ class SettingsViewModel(
    * @param preferenceKey Preference key text.
    * @param booleanValue true/false.
    */
-  fun toggleBooleanPreference(
-    preferenceKey: String,
-    booleanValue: Boolean
-  ) {
+  fun toggleBooleanPreference(preferenceKey: String, booleanValue: Boolean) {
     viewModelScope.launch {
       repository.toggleBooleanPreference(
         preferenceKey = preferenceKey,
-        newValue = booleanValue
+        newValue = booleanValue,
       )
     }
   }
@@ -57,7 +53,7 @@ class SettingsViewModel(
       aboutEfectyUrl = "",
       appVersion = "",
       darkTheme = false,
-      dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+      dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
     )
 
     /**
@@ -72,5 +68,4 @@ class SettingsViewModel(
       }
     }
   }
-
 }

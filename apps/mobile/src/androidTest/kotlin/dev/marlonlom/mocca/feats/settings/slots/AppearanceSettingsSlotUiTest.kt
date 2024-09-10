@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -34,12 +33,12 @@ internal class AppearanceSettingsSlotUiTest {
             aboutEfectyUrl = "",
             appVersion = BuildConfig.VERSION_NAME,
             darkTheme = false,
-            dynamicColors = false
+            dynamicColors = false,
           ),
           onBooleanSettingChanged = { key, switched ->
             settingKey = key
             settingSwitched = switched
-          }
+          },
         )
       }
 
@@ -61,12 +60,12 @@ internal class AppearanceSettingsSlotUiTest {
             aboutEfectyUrl = "",
             appVersion = BuildConfig.VERSION_NAME,
             darkTheme = false,
-            dynamicColors = false
+            dynamicColors = false,
           ),
           onBooleanSettingChanged = { key, switched ->
             settingKey = key
             settingSwitched = switched
-          }
+          },
         )
       }
 

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator.model
 
 import dev.marlonlom.mocca.calculator.model.OrderResponse.Success
@@ -14,7 +13,6 @@ import org.junit.Assert.fail
 import org.junit.Test
 
 internal class OrderFeesTest {
-
   @Test
   fun `Should obtain none response for value outside fee ranges`() {
     val response = OrderFees.forValue(25.0)
@@ -34,7 +32,6 @@ internal class OrderFeesTest {
         fail()
       }
     }
-
   }
 
   @Test

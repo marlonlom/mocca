@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -59,7 +58,7 @@ internal class SettingsRepositoryTest {
         aboutEfectyUrl = "https://efecty.com/about",
         appVersion = "1.0.0",
         darkTheme = false,
-        dynamicColors = true
+        dynamicColors = true,
       )
       repository!!.saveDefaults(expectedSettings)
       val preferences = repository!!.settingsFlow.first()
@@ -79,7 +78,7 @@ internal class SettingsRepositoryTest {
         aboutEfectyUrl = "https://efecty.com/about",
         appVersion = "1.0.0",
         darkTheme = false,
-        dynamicColors = true
+        dynamicColors = true,
       )
       repository!!.saveDefaults(expectedSettings)
       repository!!.toggleBooleanPreference("dark_theme", !expectedSettings.darkTheme)
@@ -93,5 +92,4 @@ internal class SettingsRepositoryTest {
       }
     }
   }
-
 }

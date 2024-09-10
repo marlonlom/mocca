@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_input
+package dev.marlonlom.mocca.wearos.features.calculator.input
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -23,11 +22,10 @@ import androidx.compose.runtime.setValue
  * @return Remembered value of the calculator input state.
  */
 @Composable
-fun rememberCalculatorInputState(
-  initialText: String = CalculatorInputState.TEXT_ZERO
-): CalculatorInputState = rememberSaveable(initialText, saver = CalculatorInputState.SAVER) {
-  CalculatorInputState(initialText)
-}
+fun rememberCalculatorInputState(initialText: String = CalculatorInputState.TEXT_ZERO): CalculatorInputState =
+  rememberSaveable(initialText, saver = CalculatorInputState.SAVER) {
+    CalculatorInputState(initialText)
+  }
 
 /**
  * Calculator input state.
@@ -41,7 +39,7 @@ fun rememberCalculatorInputState(
  */
 @Stable
 class CalculatorInputState(
-  initialText: String = TEXT_ZERO
+  initialText: String = TEXT_ZERO,
 ) {
 
   /** Text value for calculator input state. */
@@ -59,8 +57,11 @@ class CalculatorInputState(
       digitText == "⌫" -> if (textValue.length == 1) TEXT_ZERO else textValue.substring(0, textValue.length - 1)
       else -> {
         textValue.plus(
-          if ((textValue.length >= 7).or(isDeleteOrDoneButtonText(digitText))) TEXT_EMPTY
-          else digitText
+          if ((textValue.length >= 7).or(isDeleteOrDoneButtonText(digitText))) {
+            TEXT_EMPTY
+          } else {
+            digitText
+          },
         )
       }
     }
@@ -89,8 +90,7 @@ class CalculatorInputState(
     /** Configured Saver for being used when remembering the value of the calculator input state. */
     val SAVER: Saver<CalculatorInputState, *> = listSaver(
       save = { listOf(it.textValue) },
-      restore = { CalculatorInputState(it[0]) }
+      restore = { CalculatorInputState(it[0]) },
     )
   }
 }
-

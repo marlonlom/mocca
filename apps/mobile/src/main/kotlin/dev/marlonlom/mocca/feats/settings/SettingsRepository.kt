@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings
 
 import androidx.datastore.core.DataStore
@@ -40,7 +39,7 @@ data class UserPreferences(
  * @property dataStore Preferences datastore.
  */
 class SettingsRepository(
-  private val dataStore: DataStore<Preferences>
+  private val dataStore: DataStore<Preferences>,
 ) {
 
   private object PreferencesKeys {
@@ -101,10 +100,7 @@ class SettingsRepository(
    *
    * @return User settings data class with preferences data.
    */
-  private fun mapSettings(
-    preferences: Preferences
-  ) = preferences.run {
-
+  private fun mapSettings(preferences: Preferences) = preferences.run {
     val appVersion = this[PreferencesKeys.APP_VERSION] ?: ""
     val aboutEfectyUrlText = this[PreferencesKeys.ABOUT_EFECTY_URL] ?: ""
     val darkTheme = this[PreferencesKeys.DARK_THEME] ?: false
@@ -114,8 +110,7 @@ class SettingsRepository(
       aboutEfectyUrl = aboutEfectyUrlText,
       appVersion = appVersion,
       darkTheme = darkTheme,
-      dynamicColors = dynamicColors
+      dynamicColors = dynamicColors,
     )
   }
-
 }

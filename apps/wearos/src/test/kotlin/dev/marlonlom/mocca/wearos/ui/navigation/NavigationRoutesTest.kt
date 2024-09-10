@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.ui.navigation
 
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home

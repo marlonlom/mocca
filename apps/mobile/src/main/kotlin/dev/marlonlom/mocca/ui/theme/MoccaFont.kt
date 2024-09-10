@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.theme
 
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,32 +16,31 @@ import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 import dev.marlonlom.mocca.R
 
-
 /**
  * Brand font object specification for application.
  *
  * @author marlonlom
  */
 @ExperimentalMaterial3Api
-object MoccaFont {
+internal object MoccaFont {
 
   /** Application google font provider. */
   @ExperimentalMaterial3Api
   private val appFontProvider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
     providerPackage = "com.google.android.gms",
-    certificates = R.array.com_google_android_gms_fonts_certs
+    certificates = R.array.com_google_android_gms_fonts_certs,
   )
 
   /** Application font family. */
   private val appFontFamily = FontFamily(
     Font(
       googleFont = GoogleFont("Comfortaa"),
-      fontProvider = appFontProvider
+      fontProvider = appFontProvider,
     ),
     androidx.compose.ui.text.font.Font(
-      resId = R.font.comfortaa_variablefont_wght
-    )
+      resId = R.font.comfortaa_variablefont_wght,
+    ),
   )
 
   /** Default text styles. */
@@ -51,8 +49,8 @@ object MoccaFont {
     fontWeight = FontWeight.Normal,
     lineHeightStyle = LineHeightStyle(
       alignment = LineHeightStyle.Alignment.Center,
-      trim = LineHeightStyle.Trim.None
-    )
+      trim = LineHeightStyle.Trim.None,
+    ),
   )
 
   private const val NEGATIVE_ZERO_DOT_TWENTY_FIVE = -0.25
@@ -62,17 +60,17 @@ object MoccaFont {
     displayLarge = DEFAULT_TEXT_STYLE.copy(
       fontSize = 57.sp,
       lineHeight = 64.sp,
-      letterSpacing = NEGATIVE_ZERO_DOT_TWENTY_FIVE.sp
+      letterSpacing = NEGATIVE_ZERO_DOT_TWENTY_FIVE.sp,
     ),
     displayMedium = DEFAULT_TEXT_STYLE.copy(
       fontSize = 45.sp,
       lineHeight = 52.sp,
-      letterSpacing = 0.sp
+      letterSpacing = 0.sp,
     ),
     displaySmall = DEFAULT_TEXT_STYLE.copy(
       fontSize = 36.sp,
       lineHeight = 44.sp,
-      letterSpacing = 0.sp
+      letterSpacing = 0.sp,
     ),
     headlineLarge = DEFAULT_TEXT_STYLE.copy(
       fontSize = 32.sp,
@@ -146,6 +144,6 @@ object MoccaFont {
       fontSize = 11.sp,
       lineHeight = 16.sp,
       letterSpacing = 0.5.sp,
-    )
+    ),
   )
 }

@@ -2,8 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
-package dev.marlonlom.mocca.wearos.features.calculator_output
+package dev.marlonlom.mocca.wearos.features.calculator.output
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +33,7 @@ import dev.marlonlom.mocca.R
 internal fun FailureCalculatorOutput(
   scrollState: ScrollState,
   alertMessageText: String,
-  onBackNavigationAction: () -> Unit
+  onBackNavigationAction: () -> Unit,
 ) {
   Column(
     modifier = Modifier
@@ -42,12 +41,12 @@ internal fun FailureCalculatorOutput(
       .padding(horizontal = 20.dp)
       .verticalScroll(scrollState),
     verticalArrangement = Arrangement.spacedBy(10.dp),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     Icon(
       painter = painterResource(R.drawable.ic_rounded_error),
       tint = MaterialTheme.colorScheme.error,
-      contentDescription = null
+      contentDescription = null,
     )
     Text(
       modifier = Modifier
@@ -56,11 +55,11 @@ internal fun FailureCalculatorOutput(
       text = alertMessageText,
       color = MaterialTheme.colorScheme.error,
       textAlign = TextAlign.Center,
-      style = MaterialTheme.typography.bodyExtraSmall
+      style = MaterialTheme.typography.bodyExtraSmall,
     )
     BackNavigationButton(
       isFailure = true,
-      onBackNavigationAction = onBackNavigationAction
+      onBackNavigationAction = onBackNavigationAction,
     )
   }
 }

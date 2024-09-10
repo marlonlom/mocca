@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import android.content.ActivityNotFoundException
@@ -30,17 +29,16 @@ object FeedbackOpener {
         it.addFlags(
           Intent.FLAG_ACTIVITY_NO_HISTORY or
             Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
-            Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+            Intent.FLAG_ACTIVITY_MULTIPLE_TASK,
         )
       }
       context.startActivity(goToMarketIntent)
     } catch (exception: ActivityNotFoundException) {
       val goToWebIntent = Intent(
         Intent.ACTION_VIEW,
-        Uri.parse(context.getString(R.string.url_settings_feedback_website, context.packageName))
+        Uri.parse(context.getString(R.string.url_settings_feedback_website, context.packageName)),
       )
       context.startActivity(goToWebIntent)
     }
   }
-
 }

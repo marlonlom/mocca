@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.annotation.StringRes
@@ -20,13 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DefaultSettingsSlot(
-  @StringRes title: Int,
-  content: @Composable () -> Unit
-) {
+fun DefaultSettingsSlot(@StringRes title: Int, content: @Composable () -> Unit) {
   Column(
     modifier = Modifier.padding(bottom = 10.dp),
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     Text(
       modifier = Modifier

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.annotation.StringRes
@@ -33,9 +32,8 @@ fun ClickableTextRow(
   @StringRes title: Int,
   subtitle: String = "",
   icon: @Composable () -> Unit = {},
-  onClicked: () -> Unit = {}
+  onClicked: () -> Unit = {},
 ) {
-
   Row(
     modifier = Modifier
       .testTag("ClickableTextRow")

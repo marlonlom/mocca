@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.ui.theme
 
 import androidx.compose.ui.text.font.Font
@@ -24,7 +23,7 @@ internal object MoccaTypography {
 
   /** Display font family. */
   private val displayFontFamily = FontFamily(
-    Font(R.font.comfortaa_regular, style = FontStyle.Normal, weight = FontWeight.Normal)
+    Font(R.font.comfortaa_regular, style = FontStyle.Normal, weight = FontWeight.Normal),
   )
 
   /** App typography value. */
@@ -41,6 +40,6 @@ internal object MoccaTypography {
     bodyLarge = baseline.bodyLarge.copy(fontFamily = displayFontFamily),
     bodyMedium = baseline.bodyMedium.copy(fontFamily = displayFontFamily),
     bodySmall = baseline.bodySmall.copy(fontFamily = displayFontFamily),
-    bodyExtraSmall = baseline.bodyExtraSmall.copy(fontFamily = displayFontFamily)
+    bodyExtraSmall = baseline.bodyExtraSmall.copy(fontFamily = displayFontFamily),
   )
 }

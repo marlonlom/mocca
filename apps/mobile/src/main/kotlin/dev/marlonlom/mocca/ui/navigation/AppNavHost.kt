@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.navigation
 
 import androidx.compose.runtime.Composable
@@ -29,11 +28,11 @@ fun AppNavHost(
   navController: NavHostController,
   windowSizeInfo: WindowSizeInfo,
   mainActions: MainActions,
-  startDestination: String = AppRoute.Home.route
+  startDestination: String = AppRoute.Home.route,
 ) {
   NavHost(
     navController = navController,
-    startDestination = startDestination
+    startDestination = startDestination,
   ) {
     calculatorScreen(
       windowSizeInfo = windowSizeInfo,
@@ -43,7 +42,7 @@ fun AppNavHost(
       mainActions = mainActions,
       onBackNavigationAction = {
         navController.popBackStack()
-      }
+      },
     )
   }
 }
@@ -53,9 +52,7 @@ fun AppNavHost(
  *
  * @param windowSizeInfo Window size class.
  */
-private fun NavGraphBuilder.calculatorScreen(
-  windowSizeInfo: WindowSizeInfo,
-) {
+private fun NavGraphBuilder.calculatorScreen(windowSizeInfo: WindowSizeInfo) {
   composable(AppRoute.Home.route) {
     CalculatorRoute(windowSizeInfo = windowSizeInfo)
   }
@@ -69,13 +66,13 @@ private fun NavGraphBuilder.calculatorScreen(
 private fun NavGraphBuilder.settingsScreen(
   windowSizeInfo: WindowSizeInfo,
   mainActions: MainActions,
-  onBackNavigationAction: () -> Unit
+  onBackNavigationAction: () -> Unit,
 ) {
   composable(AppRoute.Settings.route) {
     SettingsRoute(
       windowSizeInfo = windowSizeInfo,
       mainActions = mainActions,
-      onBackNavigationAction = onBackNavigationAction
+      onBackNavigationAction = onBackNavigationAction,
     )
   }
 }

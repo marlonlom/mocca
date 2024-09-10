@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator.utils
 
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
@@ -24,7 +23,7 @@ object WindowSizeUtilityDefaults {
   val mobilePortrait
     get() = WindowSizeInfo(
       windowSizeClass = WindowSizeClass.calculateFromSize(
-        DpSize(360.dp, 640.dp)
+        DpSize(360.dp, 640.dp),
       ),
       devicePosture = DevicePosture.NormalPosture,
       isLandscape = false,

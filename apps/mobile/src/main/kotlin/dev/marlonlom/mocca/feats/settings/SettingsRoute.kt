@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings
 
 import androidx.activity.compose.BackHandler
@@ -48,8 +47,8 @@ fun SettingsRoute(
   onBackNavigationAction: () -> Unit = {},
   settingsViewModel: SettingsViewModel = viewModel(
     factory = SettingsViewModel.factory(
-      SettingsRepository(LocalContext.current.dataStore)
-    )
+      SettingsRepository(LocalContext.current.dataStore),
+    ),
   ),
 ) {
   BackHandler {
@@ -57,27 +56,30 @@ fun SettingsRoute(
   }
 
   val userPreferences by settingsViewModel.settingsUiState.collectAsStateWithLifecycle(
-    lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current,
   )
 
   val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
 
   Column(
     modifier = Modifier
-        .verticalScroll(rememberScrollState())
-        .padding(horizontal = horizontalPadding),
+      .verticalScroll(rememberScrollState())
+      .padding(horizontal = horizontalPadding),
     verticalArrangement = Arrangement.Top,
-    horizontalAlignment = Alignment.CenterHorizontally
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     SettingsHeaderText(windowSizeInfo)
     AppearanceSettingsSlot(
-      userPreferences = userPreferences, onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference
+      userPreferences = userPreferences,
+      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
     )
     LegalNotesSettingsSlot(
-      userPreferences = userPreferences, onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked
+      userPreferences = userPreferences,
+      onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked,
     )
     AboutSettingsSlot(
-      userPreferences = userPreferences, onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked
+      userPreferences = userPreferences,
+      onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked,
     )
   }
 }
@@ -90,10 +92,10 @@ fun SettingsRoute(
  * @return Horizontal padding value as DP.
  */
 @Composable
-private fun getSettingsContentHorizontalPadding(
-  wsi: WindowSizeInfo
-): Dp = when {
-  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane).and(wsi.windowSizeClass.isCompactHeight) -> 100.dp
+private fun getSettingsContentHorizontalPadding(wsi: WindowSizeInfo): Dp = when {
+  (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane).and(
+    wsi.windowSizeClass.isCompactHeight,
+  ) -> 100.dp
 
   (wsi.scaffoldInnerContentType is ScaffoldInnerContentType.SinglePane).and(wsi.windowSizeClass.isMediumWidth) -> 60.dp
 
@@ -107,4 +109,3 @@ private fun getSettingsContentHorizontalPadding(
 
   else -> 20.dp
 }
-

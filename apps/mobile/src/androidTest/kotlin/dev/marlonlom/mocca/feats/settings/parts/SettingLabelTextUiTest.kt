@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.settings.parts
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -36,7 +35,7 @@ internal class SettingLabelTextUiTest {
       setContent {
         SettingLabelText(
           title = R.string.text_settings_label_app_version,
-          subtitle = BuildConfig.VERSION_NAME
+          subtitle = BuildConfig.VERSION_NAME,
         )
       }
 
@@ -44,5 +43,4 @@ internal class SettingLabelTextUiTest {
       onNodeWithText(BuildConfig.VERSION_NAME).assertIsDisplayed()
     }
   }
-
 }

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator.util
 
 /**
@@ -11,7 +10,6 @@ package dev.marlonlom.mocca.calculator.util
  * @author marlonlom
  */
 object UsedNumbers {
-
   const val ZERO = 0.0
   const val ONE = 1.0
   private const val FOUR = 4.0

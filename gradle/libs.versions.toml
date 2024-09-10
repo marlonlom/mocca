@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.0"
 kotlin = "2.0.20"
+spotless = "6.25.0"
 
 [libraries]
 # implementation
@@ -59,6 +60,7 @@ android-test = { id = "com.android.test", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 
 [bundles]

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import android.content.Context
@@ -30,11 +29,10 @@ object CustomTabsOpener {
       .setShowTitle(true)
       .setInstantAppsEnabled(true)
       .setDefaultColorSchemeParams(
-        CustomTabColorSchemeParams.Builder().build()
+        CustomTabColorSchemeParams.Builder().build(),
       ).build()
 
     builder.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     builder.launchUrl(context, Uri.parse(url))
   }
-
 }

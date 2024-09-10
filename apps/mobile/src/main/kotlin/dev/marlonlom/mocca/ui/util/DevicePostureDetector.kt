@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import android.graphics.Rect
@@ -84,7 +83,6 @@ sealed interface DevicePosture {
     val hingeRatio: Float,
     val orientation: FoldingFeature.Orientation,
   ) : DevicePosture
-
 }
 
 /**
@@ -102,7 +100,6 @@ object DevicePostureDetector {
    */
   @JvmStatic
   fun fromLayoutInfo(foldingFeature: FoldingFeature?): DevicePosture = when {
-
     isBookPosture(foldingFeature) -> {
       DevicePosture.BookPosture(
         bounds = foldingFeature.bounds,
@@ -138,9 +135,7 @@ object DevicePostureDetector {
     else -> DevicePosture.NormalPosture
   }
 
-  private fun getHingeRatio(
-    foldFeature: FoldingFeature
-  ): Float = when (foldFeature.orientation) {
+  private fun getHingeRatio(foldFeature: FoldingFeature): Float = when (foldFeature.orientation) {
     FoldingFeature.Orientation.VERTICAL -> {
       val screenWidth = foldFeature.bounds.left + foldFeature.bounds.right
       foldFeature.bounds.left.toFloat() / screenWidth.toFloat()
@@ -154,21 +149,25 @@ object DevicePostureDetector {
 
   private fun isBookPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating && foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
+    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
+      foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
   }
 
   private fun isTableTopPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating && foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
+    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
+      foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
   }
 
   private fun isClosedBookPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.HALF_OPENED && foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
+    return foldFeature?.state == FoldingFeature.State.HALF_OPENED &&
+      foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
   }
 
   private fun isClosedFlipPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.HALF_OPENED && foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
+    return foldFeature?.state == FoldingFeature.State.HALF_OPENED &&
+      foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
   }
 }

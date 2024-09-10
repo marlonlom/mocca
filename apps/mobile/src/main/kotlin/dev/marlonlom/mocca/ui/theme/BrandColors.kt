@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.theme
 
 import androidx.compose.ui.graphics.Color
@@ -12,7 +11,7 @@ import androidx.compose.ui.graphics.Color
  *
  * @author marlonlom
  */
-object BrandColors {
+internal object BrandColors {
   /** Brand color value: Akaroa. */
   val akaroa = Color(0xFFD5C5A1)
 
@@ -120,5 +119,4 @@ object BrandColors {
 
   /** Brand color value: Zeus. */
   val zeus = Color(0xFF1E1B16)
-
 }

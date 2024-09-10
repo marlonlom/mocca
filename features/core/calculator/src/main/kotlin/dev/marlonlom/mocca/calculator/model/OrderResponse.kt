@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.calculator.model
 
 /**
@@ -12,7 +11,6 @@ package dev.marlonlom.mocca.calculator.model
  * @param T
  */
 sealed class OrderResponse<out T> {
-
   /**
    * Money order response object - None.
    *
@@ -38,7 +36,6 @@ sealed class OrderResponse<out T> {
    * @property item value related to the successful response.
    */
   data class Success<T>(val item: T) : OrderResponse<T>()
-
 }
 
 /**
@@ -53,5 +50,5 @@ sealed class OrderResponse<out T> {
 data class CalculationResult(
   val total: Double,
   val fixedFee: Double,
-  val variableFee: Double
+  val variableFee: Double,
 )

@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.ui.util
 
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
@@ -35,5 +34,4 @@ data class WindowSizeInfo(
   val isTabletLandscape get() = isTabletWidth and isLandscape
 
   val scaffoldInnerContentType get() = ScaffoldInnerContents.indicateInnerContent(windowSizeClass, devicePosture)
-
 }

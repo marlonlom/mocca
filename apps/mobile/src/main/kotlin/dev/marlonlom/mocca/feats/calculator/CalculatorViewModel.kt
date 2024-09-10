@@ -2,7 +2,6 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.feats.calculator
 
 import androidx.lifecycle.ViewModel
@@ -38,7 +37,7 @@ sealed class CalculatorUiState {
    */
   data class WithFailure(
     val amount: String,
-    val exception: CalculationException
+    val exception: CalculationException,
   ) : CalculatorUiState()
 
   /**
@@ -51,7 +50,7 @@ sealed class CalculatorUiState {
    */
   data class WithSuccess(
     val amount: String,
-    val response: CalculationResult
+    val response: CalculationResult,
   ) : CalculatorUiState()
 }
 
@@ -107,5 +106,4 @@ class CalculatorViewModel : ViewModel() {
       }
     }
   }
-
 }
