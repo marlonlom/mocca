@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package dev.marlonlom.mocca.wearos.features.calculator_input
+package dev.marlonlom.mocca.wearos.features.input
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import dev.marlonlom.mocca.wearos.features.calculator.input.CalculatorTextField
 import org.junit.Rule
 import org.junit.Test
 
