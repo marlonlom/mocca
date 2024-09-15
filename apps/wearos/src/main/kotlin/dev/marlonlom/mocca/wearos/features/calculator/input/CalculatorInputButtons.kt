@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.ButtonDefaults
@@ -70,7 +71,8 @@ fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
             }
             CompactButton(
               modifier = Modifier
-                .heightIn(max = 32.dp),
+                .heightIn(max = 32.dp)
+                .testTag("calculatorButton_$buttonTxt"),
               colors = ButtonDefaults.outlinedButtonColors(),
               onClick = { onButtonClick(buttonTxt) },
             ) {
