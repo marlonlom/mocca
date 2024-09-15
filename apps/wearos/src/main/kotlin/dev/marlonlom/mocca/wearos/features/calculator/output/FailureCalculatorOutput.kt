@@ -40,7 +40,7 @@ internal fun FailureCalculatorOutput(
       .padding(top = 30.dp, bottom = 20.dp)
       .padding(horizontal = 20.dp)
       .verticalScroll(scrollState),
-    verticalArrangement = Arrangement.spacedBy(10.dp),
+    verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     Icon(
@@ -51,7 +51,7 @@ internal fun FailureCalculatorOutput(
     Text(
       modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 10.dp, bottom = 20.dp),
+        .padding(vertical = 5.dp),
       text = alertMessageText,
       color = MaterialTheme.colorScheme.error,
       textAlign = TextAlign.Center,
