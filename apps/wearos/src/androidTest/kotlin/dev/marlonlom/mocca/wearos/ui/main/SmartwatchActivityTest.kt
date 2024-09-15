@@ -5,10 +5,12 @@
 package dev.marlonlom.mocca.wearos.ui.main
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToNode
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.FixMethodOrder
 import org.junit.Rule
@@ -91,6 +93,13 @@ internal class SmartwatchActivityTest {
       onNodeWithText("COP \$ 4700").assertIsDisplayed()
       onNodeWithText("Total to pay").assertIsDisplayed()
       onNodeWithText("COP \$ 49700").assertIsDisplayed()
+
+      onNodeWithTag("SuccessCalculatorOutputColumn").performScrollToNode(
+        hasTestTag("backButtonFromSuccess")
+      )
+      onNodeWithTag("backButtonFromSuccess").assertIsDisplayed().performClick()
+      onNodeWithText("Money amount").assertIsDisplayed()
+      onNodeWithText("45000").assertIsDisplayed()
     }
   }
 }
