@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.DpSize
@@ -103,7 +104,11 @@ internal fun BackNavigationButton(isFailure: Boolean, onBackNavigationAction: ()
     containerColor = if (isFailure) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.tertiary,
     contentColor = if (isFailure) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onTertiary,
   )
+  val btnTestTag = stringResource(
+    if (isFailure) R.string.text_back_button_failure else R.string.text_back_button_success,
+  )
   CompactButton(
+    modifier = Modifier.testTag(btnTestTag),
     colors = buttonColors,
     onClick = {
       onBackNavigationAction()

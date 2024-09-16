@@ -15,4 +15,6 @@
   <string name="text_result_label_fee">Transferring fee</string>
   <string name="text_result_label_total">Total to pay</string>
   <string name="text_cop_currency_value" translatable="false">COP $ %1$s</string>
+  <string name="text_back_button_failure" translatable="false">backButtonFromFailure</string>
+  <string name="text_back_button_success" translatable="false">backButtonFromSuccess</string>
 </resources>
