@@ -96,8 +96,8 @@ internal fun SuccessCalculatorOutput(
 private fun SuccessCalculationTexts(titleRes: Int, calculationResultValue: Double) {
   Text(
     modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 2.dp),
+      .fillMaxWidth()
+      .padding(bottom = 2.dp),
     text = stringResource(titleRes),
     maxLines = 1,
     color = MaterialTheme.colorScheme.tertiary,

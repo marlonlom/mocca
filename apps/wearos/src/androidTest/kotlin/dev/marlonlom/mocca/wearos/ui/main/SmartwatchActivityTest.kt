@@ -95,7 +95,7 @@ internal class SmartwatchActivityTest {
       onNodeWithText("COP \$ 49700").assertIsDisplayed()
 
       onNodeWithTag("SuccessCalculatorOutputColumn").performScrollToNode(
-        hasTestTag("backButtonFromSuccess")
+        hasTestTag("backButtonFromSuccess"),
       )
       onNodeWithTag("backButtonFromSuccess").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
