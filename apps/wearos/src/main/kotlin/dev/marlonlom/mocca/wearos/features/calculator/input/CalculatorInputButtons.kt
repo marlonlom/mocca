@@ -32,11 +32,10 @@ import androidx.wear.compose.material3.Text
 @Composable
 fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
   val buttonRows = listOf(
-    listOf("6", "7", "8", "9", "⌫"),
-    listOf("2", "3", "4", "5", "✔"),
-    listOf("", "0", "1", "", ""),
+    listOf("1", "2", "3", "4", "5"),
+    listOf("6", "7", "8", "9", "0"),
+    listOf("⌫", " ", "✔"),
   )
-
   Column(
     modifier = Modifier
       .background(MaterialTheme.colorScheme.surfaceContainerLow)
@@ -47,45 +46,62 @@ fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
       Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-          .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
       ) {
         buttonRow.forEach { buttonTxt ->
-          if (buttonTxt.isEmpty()) {
-            Text(
-              modifier = Modifier
-                .heightIn(max = 32.dp),
-              text = buttonTxt,
-              style = MaterialTheme.typography.bodyExtraSmall,
-            )
-          } else {
-            val buttonTextColor = when (buttonTxt) {
-              "⌫" -> MaterialTheme.colorScheme.onErrorContainer
-              "✔" -> MaterialTheme.colorScheme.onTertiaryContainer
-              else -> MaterialTheme.colorScheme.onSurface
-            }
-            val buttonFontWeight = when (buttonTxt) {
-              "⌫" -> FontWeight.Bold
-              "✔" -> FontWeight.Bold
-              else -> FontWeight.Normal
-            }
-            CompactButton(
-              modifier = Modifier
-                .heightIn(max = 32.dp)
-                .testTag("calculatorButton_$buttonTxt"),
-              colors = ButtonDefaults.outlinedButtonColors(),
-              onClick = { onButtonClick(buttonTxt) },
-            ) {
-              Text(
-                text = buttonTxt,
-                style = MaterialTheme.typography.bodySmall,
-                fontWeight = buttonFontWeight,
-                color = buttonTextColor,
-              )
-            }
-          }
+          CalculatorDigitButton(buttonTxt, onButtonClick)
         }
       }
+    }
+  }
+}
+
+/**
+ * Calculator digit button composable ui.
+ *
+ * @author marlonlom
+ *
+ * @param buttonTxt Button text.
+ * @param onButtonClick Action for button clicked.
+ */
+@Composable
+private fun CalculatorDigitButton(buttonTxt: String, onButtonClick: (String) -> Unit) {
+  val buttonFontWeight = when (buttonTxt) {
+    "⌫" -> FontWeight.Bold
+    "✔" -> FontWeight.Bold
+    else -> FontWeight.Normal
+  }
+  val buttonColors = when (buttonTxt) {
+    "⌫" -> ButtonDefaults.buttonColors(
+      containerColor = MaterialTheme.colorScheme.error,
+      contentColor = MaterialTheme.colorScheme.onError,
+    )
+
+    "✔" -> ButtonDefaults.buttonColors(
+      containerColor = MaterialTheme.colorScheme.tertiary,
+      contentColor = MaterialTheme.colorScheme.onTertiary,
+    )
+
+    else -> ButtonDefaults.outlinedButtonColors()
+  }
+  val buttonCommonModifier = Modifier.heightIn(max = 32.dp)
+  if (buttonTxt.trim().isEmpty()) {
+    Text(
+      modifier = buttonCommonModifier,
+      text = buttonTxt,
+    )
+  } else {
+    CompactButton(
+      modifier = buttonCommonModifier
+        .testTag("calculatorButton_$buttonTxt"),
+      colors = buttonColors,
+      onClick = { onButtonClick(buttonTxt) },
+    ) {
+      Text(
+        text = buttonTxt,
+        style = MaterialTheme.typography.bodySmall,
+        fontWeight = buttonFontWeight,
+      )
     }
   }
 }
