@@ -38,8 +38,8 @@ fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
   )
   Column(
     modifier = Modifier
-        .background(MaterialTheme.colorScheme.surfaceContainerLow)
-        .fillMaxSize(),
+      .background(MaterialTheme.colorScheme.surfaceContainerLow)
+      .fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     buttonRows.forEach { buttonRow ->

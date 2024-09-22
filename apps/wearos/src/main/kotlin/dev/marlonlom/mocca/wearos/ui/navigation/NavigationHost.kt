@@ -20,28 +20,27 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
  * @author marlonlom
  */
 @Composable
-fun NavigationHost(
-  navController: NavHostController = rememberSwipeDismissableNavController()
-) = SwipeDismissableNavHost(
-  navController = navController,
-  startDestination = Home.route,
-) {
-  composable(route = Home.route) {
-    CalculatorInputScreen(
-      onCalculationReadyAction = { amountText ->
-        navController.navigate(Result.makeRoute(amountText))
-      },
-    )
-  }
+fun NavigationHost(navController: NavHostController = rememberSwipeDismissableNavController()) =
+  SwipeDismissableNavHost(
+    navController = navController,
+    startDestination = Home.route,
+  ) {
+    composable(route = Home.route) {
+      CalculatorInputScreen(
+        onCalculationReadyAction = { amountText ->
+          navController.navigate(Result.makeRoute(amountText))
+        },
+      )
+    }
 
-  composable(
-    route = Result.route,
-    arguments = Result.navArguments,
-  ) { navBackStackEntry ->
-    val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
-    CalculatorOutputScreen(
-      amountText = amountText,
-      onBackNavigationAction = navController::popBackStack,
-    )
+    composable(
+      route = Result.route,
+      arguments = Result.navArguments,
+    ) { navBackStackEntry ->
+      val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
+      CalculatorOutputScreen(
+        amountText = amountText,
+        onBackNavigationAction = navController::popBackStack,
+      )
+    }
   }
-}
