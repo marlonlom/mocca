@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.ui.main.scaffold.ScaffoldInnerContentType
@@ -50,13 +51,7 @@ fun ButtonsContentSlot(
     listOf("9", "6", "3", "⌫"),
   )
 
-  val numberTextStyle = when {
-    windowSizeInfo.isLandscape.and(
-      windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane,
-    ) -> MaterialTheme.typography.headlineSmall
-    windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
-    else -> MaterialTheme.typography.headlineLarge
-  }
+  val numberTextStyle = getNumberTextStyle(windowSizeInfo)
 
   HorizontalDivider(
     modifier = Modifier
@@ -75,56 +70,106 @@ fun ButtonsContentSlot(
     cols.forEach { col ->
       Column(modifier = Modifier.weight(1f)) {
         col.forEach { itm ->
-          val textBtnBg = when (itm) {
-            "✔" -> MaterialTheme.colorScheme.tertiaryContainer
-            "⌫" -> MaterialTheme.colorScheme.secondaryContainer
-            else -> Color.Transparent
-          }
-          val textColor = when (itm) {
-            "✔" -> MaterialTheme.colorScheme.onTertiaryContainer
-            "⌫" -> MaterialTheme.colorScheme.onSecondaryContainer
-            else -> MaterialTheme.colorScheme.onPrimaryContainer
-          }
-          val buttonShape = when {
-            listOf("✔", "⌫").contains(itm) -> MaterialTheme.shapes.small
-            else -> RoundedCornerShape(0.dp)
-          }
-          TextButton(
-            modifier = Modifier
-              .weight(1f)
-              .fillMaxWidth()
-              .padding(4.dp),
-            shape = buttonShape,
-            enabled = numberTypingEnabledState.value,
-            colors = ButtonDefaults.textButtonColors(
-              containerColor = textBtnBg,
-              contentColor = textColor,
-              disabledContentColor = textColor.copy(alpha = 0.25f),
-            ),
-            onClick = {
-              when (itm) {
-                "✔" -> {
-                  onPerformCalculationAction()
-                }
-
-                "⌫" -> {
-                  onDeleteLastNumberAction()
-                }
-
-                else -> {
-                  onAppendNumberAction(itm)
-                }
-              }
-            },
-          ) {
-            Text(
-              text = itm,
-              fontWeight = FontWeight.Bold,
-              style = numberTextStyle,
-            )
-          }
+          CalculatorTextButton(
+            buttonText = itm,
+            numberTextStyle = numberTextStyle,
+            numberTypingEnabledState = numberTypingEnabledState,
+            onPerformCalculationAction = onPerformCalculationAction,
+            onDeleteLastNumberAction = onDeleteLastNumberAction,
+            onAppendNumberAction = onAppendNumberAction,
+            modifier = Modifier.weight(1f),
+          )
         }
       }
     }
   }
+}
+
+/**
+ * Calculator text button composable ui.
+ *
+ * @author marlonlom
+ *
+ * @param buttonText Calculator button text.
+ * @param numberTextStyle Calculator button text style.
+ * @param numberTypingEnabledState True/False as MutableState indicating if number appending is enabled.
+ * @param onPerformCalculationAction Action for calculation started action.
+ * @param onDeleteLastNumberAction Action for deleting last added digit when using the buttons.
+ * @param onAppendNumberAction Action for adding selected digit when using the buttons.
+ * @param modifier Modifier for this composable.
+ */
+@Composable
+private fun CalculatorTextButton(
+  buttonText: String,
+  numberTextStyle: TextStyle,
+  numberTypingEnabledState: MutableState<Boolean>,
+  onPerformCalculationAction: () -> Unit,
+  onDeleteLastNumberAction: () -> Unit,
+  onAppendNumberAction: (String) -> Unit,
+  modifier: Modifier,
+) {
+  val textBtnBg = when (buttonText) {
+    "✔" -> MaterialTheme.colorScheme.tertiaryContainer
+    "⌫" -> MaterialTheme.colorScheme.secondaryContainer
+    else -> Color.Transparent
+  }
+  val textColor = when (buttonText) {
+    "✔" -> MaterialTheme.colorScheme.onTertiaryContainer
+    "⌫" -> MaterialTheme.colorScheme.onSecondaryContainer
+    else -> MaterialTheme.colorScheme.onPrimaryContainer
+  }
+  val buttonShape = when {
+    listOf("✔", "⌫").contains(buttonText) -> MaterialTheme.shapes.small
+    else -> RoundedCornerShape(0.dp)
+  }
+  TextButton(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(4.dp),
+    shape = buttonShape,
+    enabled = numberTypingEnabledState.value,
+    colors = ButtonDefaults.textButtonColors(
+      containerColor = textBtnBg,
+      contentColor = textColor,
+      disabledContentColor = textColor.copy(alpha = 0.25f),
+    ),
+    onClick = {
+      when (buttonText) {
+        "✔" -> {
+          onPerformCalculationAction()
+        }
+
+        "⌫" -> {
+          onDeleteLastNumberAction()
+        }
+
+        else -> {
+          onAppendNumberAction(buttonText)
+        }
+      }
+    },
+  ) {
+    Text(
+      text = buttonText,
+      fontWeight = FontWeight.Bold,
+      style = numberTextStyle,
+    )
+  }
+}
+
+/**
+ * Returns calculator button text style for selected [windowSizeInfo].
+ *
+ * @author marlonlom
+ *
+ * @param windowSizeInfo Window size information.
+ */
+@Composable
+private fun getNumberTextStyle(windowSizeInfo: WindowSizeInfo) = when {
+  windowSizeInfo.isLandscape.and(
+    windowSizeInfo.scaffoldInnerContentType is ScaffoldInnerContentType.TwoPane,
+  ) -> MaterialTheme.typography.headlineSmall
+
+  windowSizeInfo.isMobileLandscape -> MaterialTheme.typography.titleLarge
+  else -> MaterialTheme.typography.headlineLarge
 }
