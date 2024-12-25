@@ -36,7 +36,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 
 # test-implementation
 junit = "junit:junit:4.13.2"
-kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.0"
+kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1"
 
 # android-test-implementation
 androidx-test-ext-junit = "androidx.test.ext:junit:1.2.1"
