@@ -15,6 +15,13 @@ java {
   targetCompatibility = JavaVersion.VERSION_17
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  @Suppress("DEPRECATION")
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_17.majorVersion
+  }
+}
+
 dependencies {
   testImplementation(libs.junit)
 }
