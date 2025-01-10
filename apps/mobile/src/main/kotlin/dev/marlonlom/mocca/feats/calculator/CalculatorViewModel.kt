@@ -35,10 +35,7 @@ sealed class CalculatorUiState {
    * @property amount Required amount as String.
    * @property exception Calculation exception.
    */
-  data class WithFailure(
-    val amount: String,
-    val exception: CalculationException,
-  ) : CalculatorUiState()
+  data class WithFailure(val amount: String, val exception: CalculationException) : CalculatorUiState()
 
   /**
    * Calculation failure data class.
@@ -48,10 +45,7 @@ sealed class CalculatorUiState {
    * @property amount Required amount as String.
    * @property response Calculation response.
    */
-  data class WithSuccess(
-    val amount: String,
-    val response: CalculationResult,
-  ) : CalculatorUiState()
+  data class WithSuccess(val amount: String, val response: CalculationResult) : CalculatorUiState()
 }
 
 /**
@@ -101,9 +95,7 @@ class CalculatorViewModel : ViewModel() {
     /** Factory for creating calculator view model instances. */
     val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
       @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CalculatorViewModel() as T
-      }
+      override fun <T : ViewModel> create(modelClass: Class<T>): T = CalculatorViewModel() as T
     }
   }
 }

@@ -15,15 +15,13 @@ import kotlinx.coroutines.CoroutineScope
 object TestablePreferencesDataStore {
   private var instance: DataStore<Preferences>? = null
 
-  fun getInstance(testCoroutineScope: CoroutineScope): DataStore<Preferences> {
-    return instance ?: synchronized(this) {
-      instance ?: PreferenceDataStoreFactory.create(
-        scope = testCoroutineScope,
-        produceFile = {
-          val testContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
-          testContext.preferencesDataStoreFile(name = "test_mocca_settings")
-        },
-      ).also { instance = it }
-    }
+  fun getInstance(testCoroutineScope: CoroutineScope): DataStore<Preferences> = instance ?: synchronized(this) {
+    instance ?: PreferenceDataStoreFactory.create(
+      scope = testCoroutineScope,
+      produceFile = {
+        val testContext: Context = InstrumentationRegistry.getInstrumentation().targetContext
+        testContext.preferencesDataStoreFile(name = "test_mocca_settings")
+      },
+    ).also { instance = it }
   }
 }
