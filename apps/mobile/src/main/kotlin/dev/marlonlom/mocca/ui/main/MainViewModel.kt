@@ -24,9 +24,7 @@ import kotlinx.coroutines.flow.stateIn
  *
  * @param repository Settings repository.
  */
-class MainViewModel(
-  repository: SettingsRepository,
-) : ViewModel() {
+class MainViewModel(repository: SettingsRepository) : ViewModel() {
 
   /** Main ui state. */
   val uiState: StateFlow<MainActivityUiState> = repository.settingsFlow
@@ -46,9 +44,7 @@ class MainViewModel(
      */
     fun factory(repository: SettingsRepository) = object : ViewModelProvider.Factory {
       @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(repository) as T
-      }
+      override fun <T : ViewModel> create(modelClass: Class<T>): T = MainViewModel(repository) as T
     }
   }
 }
@@ -68,7 +64,5 @@ sealed interface MainActivityUiState {
    *
    * @property userData User preferences data.
    */
-  data class Success(
-    val userData: UserPreferences,
-  ) : MainActivityUiState
+  data class Success(val userData: UserPreferences) : MainActivityUiState
 }

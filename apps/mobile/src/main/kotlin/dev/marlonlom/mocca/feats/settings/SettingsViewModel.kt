@@ -20,9 +20,7 @@ import kotlinx.coroutines.launch
  *
  * @property repository Settings repository.
  */
-class SettingsViewModel(
-  private val repository: SettingsRepository,
-) : ViewModel() {
+class SettingsViewModel(private val repository: SettingsRepository) : ViewModel() {
 
   /** Settings ui state. */
   val settingsUiState: StateFlow<UserPreferences> = repository.settingsFlow.stateIn(
@@ -63,9 +61,7 @@ class SettingsViewModel(
      */
     fun factory(repository: SettingsRepository) = object : ViewModelProvider.Factory {
       @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return SettingsViewModel(repository) as T
-      }
+      override fun <T : ViewModel> create(modelClass: Class<T>): T = SettingsViewModel(repository) as T
     }
   }
 }

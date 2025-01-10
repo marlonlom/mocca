@@ -32,9 +32,7 @@ sealed interface ScaffoldInnerContentType {
    *
    * @property hingeRatio Hinge ratio as percentage number.
    */
-  data class TwoPane(
-    val hingeRatio: Float = 0.5f,
-  ) : ScaffoldInnerContentType
+  data class TwoPane(val hingeRatio: Float = 0.5f) : ScaffoldInnerContentType
 }
 
 val WindowSizeClass.isExpandedWidth: Boolean

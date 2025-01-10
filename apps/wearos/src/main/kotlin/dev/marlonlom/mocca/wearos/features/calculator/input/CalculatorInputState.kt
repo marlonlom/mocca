@@ -38,9 +38,7 @@ fun rememberCalculatorInputState(initialText: String = CalculatorInputState.TEXT
  * @param initialText Default text for calculator input value.
  */
 @Stable
-class CalculatorInputState(
-  initialText: String = TEXT_ZERO,
-) {
+class CalculatorInputState(initialText: String = TEXT_ZERO) {
 
   /** Text value for calculator input state. */
   var textValue by mutableStateOf(initialText)

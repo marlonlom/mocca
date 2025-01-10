@@ -33,11 +33,8 @@ sealed interface DevicePosture {
    * @property hingeRatio hinge ratio for screen separation.
    * @property orientation folding feature axis orientation indication.
    */
-  data class BookPosture(
-    val bounds: Rect,
-    val hingeRatio: Float,
-    val orientation: FoldingFeature.Orientation,
-  ) : DevicePosture
+  data class BookPosture(val bounds: Rect, val hingeRatio: Float, val orientation: FoldingFeature.Orientation) :
+    DevicePosture
 
   /**
    * Closed Book posture of the device.
@@ -48,11 +45,8 @@ sealed interface DevicePosture {
    * @property hingeRatio hinge ratio for screen separation.
    * @property orientation folding feature axis orientation indication.
    */
-  data class ClosedBookPosture(
-    val bounds: Rect,
-    val hingeRatio: Float,
-    val orientation: FoldingFeature.Orientation,
-  ) : DevicePosture
+  data class ClosedBookPosture(val bounds: Rect, val hingeRatio: Float, val orientation: FoldingFeature.Orientation) :
+    DevicePosture
 
   /**
    * Table top posture of the device.
@@ -63,11 +57,8 @@ sealed interface DevicePosture {
    * @property hingeRatio hinge ratio for screen separation.
    * @property orientation folding feature axis orientation indication.
    */
-  data class TableTopPosture(
-    val bounds: Rect,
-    val hingeRatio: Float,
-    val orientation: FoldingFeature.Orientation,
-  ) : DevicePosture
+  data class TableTopPosture(val bounds: Rect, val hingeRatio: Float, val orientation: FoldingFeature.Orientation) :
+    DevicePosture
 
   /**
    * Closed flip posture of the device.
@@ -78,11 +69,8 @@ sealed interface DevicePosture {
    * @property hingeRatio hinge ratio for screen separation.
    * @property orientation folding feature axis orientation indication.
    */
-  data class ClosedFlipPosture(
-    val bounds: Rect,
-    val hingeRatio: Float,
-    val orientation: FoldingFeature.Orientation,
-  ) : DevicePosture
+  data class ClosedFlipPosture(val bounds: Rect, val hingeRatio: Float, val orientation: FoldingFeature.Orientation) :
+    DevicePosture
 }
 
 /**
@@ -149,13 +137,15 @@ object DevicePostureDetector {
 
   private fun isBookPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
+    return foldFeature?.state == FoldingFeature.State.FLAT &&
+      foldFeature.isSeparating &&
       foldFeature.orientation == FoldingFeature.Orientation.VERTICAL
   }
 
   private fun isTableTopPosture(foldFeature: FoldingFeature?): Boolean {
     contract { returns(true) implies (foldFeature != null) }
-    return foldFeature?.state == FoldingFeature.State.FLAT && foldFeature.isSeparating &&
+    return foldFeature?.state == FoldingFeature.State.FLAT &&
+      foldFeature.isSeparating &&
       foldFeature.orientation == FoldingFeature.Orientation.HORIZONTAL
   }
 

@@ -38,9 +38,7 @@ data class UserPreferences(
  *
  * @property dataStore Preferences datastore.
  */
-class SettingsRepository(
-  private val dataStore: DataStore<Preferences>,
-) {
+class SettingsRepository(private val dataStore: DataStore<Preferences>) {
 
   private object PreferencesKeys {
     val APP_VERSION = stringPreferencesKey("app_version")
