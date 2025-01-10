@@ -47,8 +47,4 @@ sealed class OrderResponse<out T> {
  * @property fixedFee fixed fee applied in calculation
  * @property variableFee variable fee applied in calculation
  */
-data class CalculationResult(
-  val total: Double,
-  val fixedFee: Double,
-  val variableFee: Double,
-)
+data class CalculationResult(val total: Double, val fixedFee: Double, val variableFee: Double)
