@@ -32,12 +32,7 @@ import kotlin.math.round
  * @property fixedFee fixed fee amount.
  * @property haveVariableFee true/false if include variable fee amount.
  */
-enum class OrderFees(
-  val min: Double,
-  val max: Double,
-  val fixedFee: Double,
-  val haveVariableFee: Boolean,
-) {
+enum class OrderFees(val min: Double, val max: Double, val fixedFee: Double, val haveVariableFee: Boolean) {
   /** First fee enum value */
   FIRST_FEE(
     min = MIN_VALUE,
