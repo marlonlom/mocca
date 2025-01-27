@@ -47,7 +47,7 @@ fun CalculatorTextField(inputValue: String) = Row(
     val textColorStyle = MaterialTheme.colorScheme.onSurfaceVariant
     Text(
       text = moneyInputTitle,
-      color = MaterialTheme.colorScheme.onPrimaryContainer,
+      color = textColorStyle,
       style = MaterialTheme.typography.bodyExtraSmall,
       textAlign = TextAlign.End,
       modifier = Modifier
@@ -62,7 +62,7 @@ fun CalculatorTextField(inputValue: String) = Row(
     ) {
       Text(
         text = currencyTitle,
-        color = MaterialTheme.colorScheme.onPrimary,
+        color = textColorStyle,
         fontWeight = FontWeight.Bold,
         style = MaterialTheme.typography.bodySmall,
       )
