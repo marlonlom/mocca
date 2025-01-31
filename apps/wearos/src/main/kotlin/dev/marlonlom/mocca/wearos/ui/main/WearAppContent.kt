@@ -5,11 +5,12 @@
 package dev.marlonlom.mocca.wearos.ui.main
 
 import androidx.compose.runtime.Composable
+import androidx.wear.compose.foundation.CurvedTextStyle
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.TimeText
-import androidx.wear.compose.material3.TimeTextDefaults
+import androidx.wear.compose.material3.timeTextCurvedText
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
 
 /**
@@ -23,12 +24,14 @@ fun WearAppContent() {
   AppScaffold(
     timeText = {
       if (!scalingLazyListState.isScrollInProgress) {
-        TimeText(
-          timeTextStyle = TimeTextDefaults.timeTextStyle(
-            fontSize = MaterialTheme.typography.bodySmall.fontSize,
-          ),
-        ) {
-          time()
+        val fontSize = MaterialTheme.typography.bodySmall.fontSize
+        TimeText { time ->
+          timeTextCurvedText(
+            time = time,
+            style = CurvedTextStyle(
+              fontSize = fontSize,
+            )
+          )
         }
       }
     },
