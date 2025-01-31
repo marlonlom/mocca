@@ -30,7 +30,7 @@ fun WearAppContent() {
             time = time,
             style = CurvedTextStyle(
               fontSize = fontSize,
-            )
+            ),
           )
         }
       }
