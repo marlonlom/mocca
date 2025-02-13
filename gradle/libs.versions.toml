@@ -48,7 +48,7 @@ google-truth = "com.google.truth:truth:1.4.4"
 google-play-services-wearable = "com.google.android.gms:play-services-wearable:19.0.0"
 androidx-wear-compose-foundation = "androidx.wear.compose:compose-foundation:1.4.0"
 androidx-wear-compose-material3 = "androidx.wear.compose:compose-material3:1.0.0-alpha32"
-androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.4.0"
+androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.4.1"
 
 # [macrobenchmark] implementation
 androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.3.0"
