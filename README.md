@@ -18,15 +18,19 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 ## Application modules
 
-**Mocca** contain tne following application modules:
+**Mocca** contain the following application modules:
 
-![mocca-github_screenshots-app_modules](https://github.com/marlonlom/mocca/assets/1868030/0cea31f4-f8f7-438c-9738-43387b03566a)
+```mermaid
+flowchart BT
+    fcc@{ shape: rounded, label: ":features:core:calculator" } --> appm(:apps:mobile)
+    fcc@{ shape: rounded, label: ":features:core:calculator" } --> appw(:apps:wearos)
+```
 
 | Module                      | Description                                                               |
 |-----------------------------|---------------------------------------------------------------------------|
 | `:features:core:calculator` | Core money transfers cost calculation implementation                      |
-| `:apps:mobile-app`          | Contains the user interface applied to Android mobile phones and tablets. |
-| `:apps:wearos-app`          | Contains the user interface applied to WearOS smartwatches.               |
+| `:apps:mobile`              | Contains the user interface applied to Android mobile phones and tablets. |
+| `:apps:wearos`              | Contains the user interface applied to WearOS smartwatches.               |
 
 ## Architecture
 
@@ -57,7 +61,49 @@ For the WearOS application module, you have the calculator functionality as a si
 In the ui design aspect, the material design current implementation (the compose-material library for wearos) works fine, but, in the future, it will be applied the `material3` implementation for wearos whet it gets available.
 
 ## Used Open-source libraries
-TBD
+
+
+| Category                     | Dependency                                     |
+| ---------------------------- | ---------------------------------------------- |
+| **Core Android Components** | androidx.activity:activity-compose:1.10.1       |
+|                              | androidx.appcompat:appcompat:1.7.0             |
+|                              | androidx.browser:browser:1.8.0                 |
+|                              | androidx.core:core-ktx:1.15.0                  |
+|                              | androidx.core:core-splashscreen:1.2.0-beta01   |
+|                              | androidx.datastore:datastore-preferences:1.1.3 |
+|                              | androidx.lifecycle:lifecycle-runtime-compose:2.8.7 |
+|                              | androidx.lifecycle:lifecycle-runtime-ktx:2.8.7   |
+|                              | androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7 |
+|                              | androidx.navigation:navigation-runtime-ktx:2.8.8 |
+|                              | androidx.window:window:1.3.0                     |
+| **Jetpack Compose** | androidx.compose:compose-bom:2025.02.00 (BOM)  |
+|                              | androidx.compose.material:material-icons-extended |
+|                              | androidx.compose.material3:material3           |
+|                              | androidx.compose.material3:material3-window-size-class |
+|                              | androidx.compose.ui:ui                          |
+|                              | androidx.compose.ui:ui-text-google-fonts       |
+|                              | androidx.compose.ui:ui-graphics                |
+|                              | androidx.compose.ui:ui-test-manifest           |
+|                              | androidx.compose.ui:ui-tooling                 |
+|                              | androidx.compose.ui:ui-tooling-preview         |
+|                              | androidx.compose.ui:ui-test-junit4             |
+|                              | androidx.navigation:navigation-compose        |
+| **Testing** | junit:junit:4.13.2                            |
+|                              | org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1 |
+|                              | androidx.test.ext:junit:1.2.1                  |
+|                              | androidx.test.espresso:espresso-core:3.6.1      |
+|                              | androidx.window:window-testing:1.3.0            |
+|                              | com.google.truth:truth:1.4.4                   |
+| **Wear OS** | com.google.android.gms:play-services-wearable:19.0.0 |
+|                              | androidx.wear.compose:compose-foundation:1.4.1   |
+|                              | androidx.wear.compose:compose-material3:1.0.0-alpha33 |
+|                              | androidx.wear.compose:compose-navigation:1.4.1  |
+| **Macrobenchmark** | androidx.test.uiautomator:uiautomator:2.3.0     |
+|                              | androidx.benchmark:benchmark-macro-junit4:1.3.3 |
+| **Other** | com.google.android.gms:play-services-oss-licenses:17.1.0 |
+|                              | com.google.android.gms:oss-licenses-plugin:0.10.6 |
+|                              | com.jakewharton.timber:timber:5.0.1             |
+
 
 # Documentation
 
