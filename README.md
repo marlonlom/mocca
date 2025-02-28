@@ -22,8 +22,8 @@ Android application for mobile phones and smartwatches, that showcases money tra
 
 ```mermaid
 flowchart BT
-    fcc@{ shape: rounded, label: ":features:core:calculator" } --> appm(:apps:mobile)
-    fcc@{ shape: rounded, label: ":features:core:calculator" } --> appw(:apps:wearos)
+    fcc@{ shape: rounded, label: ":features:core:calculator" }-->appm(:apps:mobile)
+    fcc@{ shape: rounded, label: ":features:core:calculator" }-->appw(:apps:wearos)
 ```
 
 | Module                      | Description                                                               |
