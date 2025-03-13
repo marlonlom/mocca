@@ -21,7 +21,7 @@ google-oss-licenses-plugin = "com.google.android.gms:oss-licenses-plugin:0.10.6"
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
 
 # androidx-compose-implementation-with-bom
-androidx-compose-bom = "androidx.compose:compose-bom:2025.02.00"
+androidx-compose-bom = "androidx.compose:compose-bom:2025.03.00"
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-wsc = { module = "androidx.compose.material3:material3-window-size-class" }
