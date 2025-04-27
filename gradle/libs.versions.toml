@@ -21,7 +21,7 @@ google-oss-licenses-plugin = "com.google.android.gms:oss-licenses-plugin:0.10.6"
 jakewharton-timber = "com.jakewharton.timber:timber:5.0.1"
 
 # androidx-compose-implementation-with-bom
-androidx-compose-bom = "androidx.compose:compose-bom:2025.04.00"
+androidx-compose-bom = "androidx.compose:compose-bom:2025.04.01"
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-wsc = { module = "androidx.compose.material3:material3-window-size-class" }
@@ -47,7 +47,7 @@ google-truth = "com.google.truth:truth:1.4.4"
 # [wearos] implementation
 google-play-services-wearable = "com.google.android.gms:play-services-wearable:19.0.0"
 androidx-wear-compose-foundation = "androidx.wear.compose:compose-foundation:1.4.1"
-androidx-wear-compose-material3 = "androidx.wear.compose:compose-material3:1.0.0-alpha36"
+androidx-wear-compose-material3 = "androidx.wear.compose:compose-material3:1.0.0-alpha37"
 androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.4.1"
 
 # [macrobenchmark] implementation
@@ -62,6 +62,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
-
 [bundles]
-
