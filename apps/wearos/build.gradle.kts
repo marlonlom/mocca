@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@file:Suppress("DSL_SCOPE_VIOLATION")
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
   alias(libs.plugins.android.application)
@@ -49,9 +51,6 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_17.majorVersion
-  }
   buildFeatures {
     compose = true
     buildConfig = true
@@ -60,6 +59,12 @@ android {
     resources {
       excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
+  }
+}
+
+tasks.withType<KotlinJvmCompile>().configureEach {
+  compilerOptions {
+    jvmTarget.set(JvmTarget.fromTarget(JavaVersion.VERSION_17.majorVersion))
   }
 }
 
