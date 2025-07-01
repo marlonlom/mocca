@@ -4,6 +4,7 @@
  */
 
 pluginManagement {
+  includeBuild("build-logic")
   repositories {
     google()
     mavenCentral()
@@ -25,4 +26,4 @@ include(":apps:mobile")
 include(":apps:wearos")
 include(":benchmarks:macro:mobile")
 include(":benchmarks:macro:wearos")
-include(":features:core:calculator")
+include(":features:core:calculator",":features:core:ui")
