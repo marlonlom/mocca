@@ -12,6 +12,7 @@ plugins {
 dependencies {
 
   implementation(project(":features:core:calculator"))
+  implementation(project(":features:core:preferences"))
 
   val composeBom = platform(libs.androidx.compose.bom)
   implementation(composeBom)
