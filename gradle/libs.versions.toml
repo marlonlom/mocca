@@ -54,6 +54,12 @@ androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.4
 androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.3.0"
 androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.3.4"
 
+#[libraries] gradle convention plugin
+android-gradlePlugin = "com.android.tools.build:gradle:8.11.0"
+kotlin-gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0"
+compose-compiler-gradlePlugin = "org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.2.0"
+spotless-gradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:7.0.4"
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
