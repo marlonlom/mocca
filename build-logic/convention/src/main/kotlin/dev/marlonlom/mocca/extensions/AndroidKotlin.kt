@@ -30,6 +30,7 @@ internal fun Project.configureAndroidKotlin(
 
       add("testImplementation", versionCatalog().findLibrary("junit").get())
       add("testImplementation", versionCatalog().findLibrary("kotlinx-coroutines-test").get())
+      add("testImplementation", versionCatalog().findLibrary("mockk").get())
 
       add("androidTestImplementation", versionCatalog().findLibrary("androidx-test-espresso-core").get())
       add("androidTestImplementation", versionCatalog().findLibrary("androidx-test-ext-junit").get())
