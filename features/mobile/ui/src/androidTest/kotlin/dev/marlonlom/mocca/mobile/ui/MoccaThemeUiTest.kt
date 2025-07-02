@@ -1,8 +1,7 @@
 /*
- * Copyright 2025 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.mobile.ui
 
 import androidx.compose.foundation.layout.padding
@@ -33,11 +32,11 @@ internal class MoccaThemeUiTest {
       setContent {
         MoccaTheme(
           darkTheme = false,
-          dynamicColor = false
+          dynamicColor = false,
         ) {
           Text(
             modifier = Modifier.padding(2.dp),
-            text = "MoccaTheme"
+            text = "MoccaTheme",
           )
         }
       }
