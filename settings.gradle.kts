@@ -24,7 +24,8 @@ dependencyResolutionManagement {
 rootProject.name = "Mocca"
 include(
   ":apps:mobile",
-  ":features:mobile:settings"
+  ":features:mobile:settings",
+  ":features:mobile:ui"
 )
 include(":apps:wearos")
 include(":benchmarks:macro:mobile")
