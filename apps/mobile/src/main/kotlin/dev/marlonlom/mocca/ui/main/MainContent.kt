@@ -7,8 +7,8 @@ package dev.marlonlom.mocca.ui.main
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
 import dev.marlonlom.mocca.ui.main.scaffold.AppScaffold
-import dev.marlonlom.mocca.ui.theme.MoccaTheme
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
 
 /**
