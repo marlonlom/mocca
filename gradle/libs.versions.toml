@@ -41,7 +41,7 @@ mockk = "io.mockk:mockk:1.14.5"
 
 # android-test-implementation
 androidx-test-ext-junit = "androidx.test.ext:junit:1.3.0"
-androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.6.1"
+androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
 androidx-window-testing = "androidx.window:window-testing:1.4.0"
 google-truth = "com.google.truth:truth:1.4.4"
 
