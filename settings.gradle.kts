@@ -24,6 +24,7 @@ dependencyResolutionManagement {
 rootProject.name = "Mocca"
 include(
   ":apps:mobile",
+  ":features:mobile:calculator-input",
   ":features:mobile:onboarding",
   ":features:mobile:settings",
   ":features:mobile:ui"
