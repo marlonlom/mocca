@@ -7,4 +7,8 @@
 <resources>
   <string translatable="false" name="url_feedback_market">market://details?id=%1$s</string>
   <string translatable="false" name="url_feedback_website">http://play.google.com/store/apps/details?id=%1$s</string>
+  <string name="text_calculate">Calculate</string>
+  <string name="text_history">History</string>
+  <string name="text_rates">Rates</string>
+  <string name="text_settings">Settings</string>
 </resources>
