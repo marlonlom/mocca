@@ -55,7 +55,6 @@ fun SettingsRoute(
 
   when (userPreferences) {
     SettingsUiState.Loading -> {
-
     }
 
     is SettingsUiState.Success -> {
@@ -82,11 +81,8 @@ fun SettingsRoute(
           onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked,
         )
       }
-
     }
   }
-
-
 }
 
 /**
