@@ -33,7 +33,7 @@ fun WideCalculateButton(buttonEnabled: Boolean, onButtonClicked: () -> Unit) = R
     onClick = onButtonClicked,
     border = BorderStroke(
       width = 1.dp,
-      color = if (buttonEnabled) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.surface
+      color = if (buttonEnabled) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.surface,
     ),
     colors = ButtonDefaults.buttonColors(
       containerColor = MaterialTheme.colorScheme.primaryContainer,
