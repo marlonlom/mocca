@@ -81,7 +81,7 @@ enum class OrderFees(val min: Double, val max: Double, val fixedFee: Double, val
      * @param orderValue requested order value.
      * @return found enum value of money order fee.
      */
-    fun forValue(orderValue: Double) = values().find {
+    fun forValue(orderValue: Double) = entries.find {
       betweenInclusive(
         rangeStartValue = it.min,
         rangeFinalValue = it.max,
