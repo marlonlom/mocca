@@ -12,6 +12,7 @@ import dev.marlonlom.mocca.calculator.model.OrderResponse
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.MAX_VALUE
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.MIN_VALUE
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.ZERO
+import dev.marlonlom.mocca.calculator.util.UsedNumbers.ONE
 import java.lang.Double.max
 import java.lang.Double.min
 
@@ -40,6 +41,13 @@ object Calculator {
   private fun orderValueIsInsideRange(request: RequestedQuantity) = request.orderValue.let {
     min(MIN_VALUE, it) == MIN_VALUE && max(MAX_VALUE, it) == MAX_VALUE
   }
+
+  /**
+   * Returns the valid range for calculator input amounts.
+   *
+   * @return A range from [ONE] to [MAX_VALUE] (inclusive).
+   */
+  fun calculatorAmountRange(): ClosedFloatingPointRange<Double> = ONE..MAX_VALUE
 
   /**
    * Performs money order response values calculation using order quantity.
