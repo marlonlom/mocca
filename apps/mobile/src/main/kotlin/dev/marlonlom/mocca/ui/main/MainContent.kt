@@ -4,8 +4,14 @@
  */
 package dev.marlonlom.mocca.ui.main
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
 import dev.marlonlom.mocca.ui.main.scaffold.AppScaffold
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
@@ -25,10 +31,32 @@ internal fun MainContent(mainUiState: MainUiState, windowSizeInfo: WindowSizeInf
     darkTheme = mainUiState.shouldUseDarkTheme(),
     dynamicColor = mainUiState.shouldUseDynamicTheming(),
   ) {
-    AppScaffold(
-      windowSizeInfo = windowSizeInfo,
-      mainActions = mainActions,
-    )
+    when (mainUiState) {
+      is MainUiState.Success -> {
+        when {
+          mainUiState.userData.isOnboarding -> {
+            Box(
+              modifier = Modifier
+                .fillMaxSize()
+                .safeContentPadding(),
+              contentAlignment = Alignment.Center
+            ) {
+              Text("Welcome")
+            }
+          }
+
+          else -> {
+            AppScaffold(
+              windowSizeInfo = windowSizeInfo,
+              mainActions = mainActions,
+            )
+          }
+        }
+      }
+
+      else -> {}
+    }
+
   }
 
 /**
