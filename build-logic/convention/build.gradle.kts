@@ -69,6 +69,10 @@ gradlePlugin {
       implementationClass = "dev.marlonlom.mocca.plugins.libs.MobileAndroidLibPlugin"
     }
     /* utility module conventions */
+    register("koin") {
+      id = "mocca.koin"
+      implementationClass = "dev.marlonlom.mocca.plugins.utils.KoinPlugin"
+    }
     register("spotless") {
       id = "mocca.spotless"
       implementationClass = "dev.marlonlom.mocca.plugins.utils.SpotlessPlugin"

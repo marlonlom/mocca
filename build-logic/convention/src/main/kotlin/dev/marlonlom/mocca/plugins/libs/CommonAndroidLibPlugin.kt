@@ -20,6 +20,7 @@ class CommonAndroidLibPlugin : Plugin<Project> {
       with(pluginManager) {
         apply("com.android.library")
         apply("kotlin-android")
+        apply("mocca.koin")
         apply("mocca.spotless")
       }
 
