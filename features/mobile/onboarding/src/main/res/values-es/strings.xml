@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_onboarding_welcome">¡Bienvenido!</string>
+  <string name="text_onboarding_detail">Calcula fácilmente los costos de envío de dinero de Efecty, estés donde estés.</string>
+  <string name="text_onboarding_button">Comenzar</string>
+</resources>
