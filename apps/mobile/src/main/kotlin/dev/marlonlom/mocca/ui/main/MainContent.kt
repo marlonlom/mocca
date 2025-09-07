@@ -16,19 +16,19 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
  *
  * @author marlonlom
  *
- * @param mainActivityUiState Main activity ui state.
+ * @param mainUiState Main activity ui state.
  * @param windowSizeInfo Window size information utility.
  */
 @ExperimentalMaterial3Api
 @Composable
 internal fun MainContent(
-  mainActivityUiState: MainActivityUiState,
+  mainUiState: MainUiState,
   windowSizeInfo: WindowSizeInfo,
   mainActions: MainActions,
 ) {
   MoccaTheme(
-    darkTheme = shouldUseDarkTheme(mainActivityUiState),
-    dynamicColor = shouldUseDynamicTheming(mainActivityUiState),
+    darkTheme = shouldUseDarkTheme(mainUiState),
+    dynamicColor = shouldUseDynamicTheming(mainUiState),
   ) {
     AppScaffold(
       windowSizeInfo = windowSizeInfo,
@@ -44,9 +44,9 @@ internal fun MainContent(
  * @return true/false
  */
 @Composable
-private fun shouldUseDynamicTheming(uiState: MainActivityUiState): Boolean = when (uiState) {
-  MainActivityUiState.Loading -> false
-  is MainActivityUiState.Success -> uiState.userData.dynamicColors
+private fun shouldUseDynamicTheming(uiState: MainUiState): Boolean = when (uiState) {
+  MainUiState.Loading -> false
+  is MainUiState.Success -> uiState.userData.useDynamicColor
 }
 
 /**
@@ -56,12 +56,12 @@ private fun shouldUseDynamicTheming(uiState: MainActivityUiState): Boolean = whe
  * @return true/false.
  */
 @Composable
-private fun shouldUseDarkTheme(uiState: MainActivityUiState): Boolean = if (isSystemInDarkTheme()) {
+private fun shouldUseDarkTheme(uiState: MainUiState): Boolean = if (isSystemInDarkTheme()) {
   true
 } else {
   when (uiState) {
-    MainActivityUiState.Loading -> isSystemInDarkTheme()
-    is MainActivityUiState.Success -> uiState.userData.darkTheme
+    MainUiState.Loading -> isSystemInDarkTheme()
+    is MainUiState.Success -> uiState.userData.useDarkTheme
   }
 }
 

@@ -10,7 +10,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
@@ -27,12 +26,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import dev.marlonlom.mocca.dataStore
-import dev.marlonlom.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.mocca.ui.util.CustomTabsOpener
+import dev.marlonlom.mocca.mobile.ui.util.CustomTabsOpener
+import dev.marlonlom.mocca.mobile.ui.util.FeedbackOpener
 import dev.marlonlom.mocca.ui.util.DevicePosture
 import dev.marlonlom.mocca.ui.util.DevicePostureDetector
-import dev.marlonlom.mocca.ui.util.FeedbackOpener
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
@@ -40,11 +37,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import kotlin.contracts.ExperimentalContracts
 
+
 /**
- * Main activity class.
+ * Mobile app main activity class.
  *
  * @author marlonlom
  */
@@ -54,9 +53,7 @@ import kotlin.contracts.ExperimentalContracts
 class MainActivity : ComponentActivity() {
 
   /** Main activity view model reference. */
-  private val mainViewModel by viewModels<MainViewModel> {
-    MainViewModel.factory(SettingsRepository(this.dataStore))
-  }
+  private val mainViewModel: MainViewModel by viewModel()
 
   private val devicePostureFlow = WindowInfoTracker
     .getOrCreate(this@MainActivity)
@@ -78,18 +75,18 @@ class MainActivity : ComponentActivity() {
 
     val splashScreen = installSplashScreen()
 
-    var mainActivityUiState: MainActivityUiState by mutableStateOf(MainActivityUiState.Loading)
+    var mainUiState: MainUiState by mutableStateOf(MainUiState.Loading)
 
     lifecycleScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-        mainViewModel.uiState.onEach { mainActivityUiState = it }.collect()
+        mainViewModel.uiState.onEach { mainUiState = it }.collect()
       }
     }
 
     splashScreen.setKeepOnScreenCondition {
-      when (mainActivityUiState) {
-        MainActivityUiState.Loading -> true
-        is MainActivityUiState.Success -> false
+      when (mainUiState) {
+        MainUiState.Loading -> true
+        is MainUiState.Success -> false
       }
     }
 
@@ -109,7 +106,7 @@ class MainActivity : ComponentActivity() {
       )
       Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
       MainContent(
-        mainActivityUiState = mainActivityUiState,
+        mainUiState = mainUiState,
         windowSizeInfo = windowSizeInfo,
         mainActions = MainActions(
           onOssLicencesSettingLinkClicked = {
