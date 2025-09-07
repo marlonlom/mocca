@@ -60,5 +60,4 @@ class SettingsViewModel(private val repository: PreferencesRepository) : ViewMod
       )
     }
   }
-
 }

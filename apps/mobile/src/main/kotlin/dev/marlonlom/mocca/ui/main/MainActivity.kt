@@ -41,7 +41,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import kotlin.contracts.ExperimentalContracts
 
-
 /**
  * Mobile app main activity class.
  *

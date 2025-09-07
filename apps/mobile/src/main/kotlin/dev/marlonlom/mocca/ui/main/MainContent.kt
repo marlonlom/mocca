@@ -4,7 +4,6 @@
  */
 package dev.marlonlom.mocca.ui.main
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
@@ -21,49 +20,16 @@ import dev.marlonlom.mocca.ui.util.WindowSizeInfo
  */
 @ExperimentalMaterial3Api
 @Composable
-internal fun MainContent(
-  mainUiState: MainUiState,
-  windowSizeInfo: WindowSizeInfo,
-  mainActions: MainActions,
-) {
+internal fun MainContent(mainUiState: MainUiState, windowSizeInfo: WindowSizeInfo, mainActions: MainActions) =
   MoccaTheme(
-    darkTheme = shouldUseDarkTheme(mainUiState),
-    dynamicColor = shouldUseDynamicTheming(mainUiState),
+    darkTheme = mainUiState.shouldUseDarkTheme(),
+    dynamicColor = mainUiState.shouldUseDynamicTheming(),
   ) {
     AppScaffold(
       windowSizeInfo = windowSizeInfo,
       mainActions = mainActions,
     )
   }
-}
-
-/**
- * Returns `true` if the dynamic color is used, as a function of the [uiState].
- *
- * @param uiState Main activity ui state.
- * @return true/false
- */
-@Composable
-private fun shouldUseDynamicTheming(uiState: MainUiState): Boolean = when (uiState) {
-  MainUiState.Loading -> false
-  is MainUiState.Success -> uiState.userData.useDynamicColor
-}
-
-/**
- * Returns `true` if the dark theme is used, as a function of the [uiState].
- *
- * @param uiState Main activity ui state.
- * @return true/false.
- */
-@Composable
-private fun shouldUseDarkTheme(uiState: MainUiState): Boolean = if (isSystemInDarkTheme()) {
-  true
-} else {
-  when (uiState) {
-    MainUiState.Loading -> isSystemInDarkTheme()
-    is MainUiState.Success -> uiState.userData.useDarkTheme
-  }
-}
 
 /**
  * Main actions data class.

@@ -1,8 +1,7 @@
 /*
- * Copyright 2025 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.di
 
 import dev.marlonlom.mocca.core.preferences.di.preferencesKoinModule
