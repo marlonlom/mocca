@@ -5,10 +5,8 @@
 package dev.marlonlom.mocca.ui.main
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import dev.marlonlom.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.mocca.feats.settings.UserPreferences
+import dev.marlonlom.mocca.core.preferences.repository.PreferencesRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -24,45 +22,14 @@ import kotlinx.coroutines.flow.stateIn
  *
  * @param repository Settings repository.
  */
-class MainViewModel(repository: SettingsRepository) : ViewModel() {
+class MainViewModel(repository: PreferencesRepository) : ViewModel() {
 
   /** Main ui state. */
-  val uiState: StateFlow<MainActivityUiState> = repository.settingsFlow
-    .map { MainActivityUiState.Success(it) }
+  val uiState: StateFlow<MainUiState> = repository.preferencesFlow
+    .map { MainUiState.Success(it) }
     .stateIn(
       scope = viewModelScope,
-      initialValue = MainActivityUiState.Loading,
+      initialValue = MainUiState.Loading,
       started = SharingStarted.WhileSubscribed(5_000),
     )
-
-  companion object {
-
-    /**
-     * Factory for creating main view model instances.
-     *
-     * @param repository Settings repository.
-     */
-    fun factory(repository: SettingsRepository) = object : ViewModelProvider.Factory {
-      @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel> create(modelClass: Class<T>): T = MainViewModel(repository) as T
-    }
-  }
-}
-
-/**
- * Main activity ui state sealed class.
- *
- * @author marlonlom
- */
-sealed interface MainActivityUiState {
-
-  /** Main activity ui state: Loading */
-  data object Loading : MainActivityUiState
-
-  /**
-   * Main activity ui state: Success
-   *
-   * @property userData User preferences data.
-   */
-  data class Success(val userData: UserPreferences) : MainActivityUiState
 }
