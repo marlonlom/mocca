@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 /**
  * Main activity view model.
@@ -22,7 +23,7 @@ import kotlinx.coroutines.flow.stateIn
  *
  * @param repository Settings repository.
  */
-class MainViewModel(repository: PreferencesRepository) : ViewModel() {
+class MainViewModel(private val repository: PreferencesRepository) : ViewModel() {
 
   /** Main ui state. */
   val uiState: StateFlow<MainUiState> = repository.preferencesFlow
@@ -32,4 +33,13 @@ class MainViewModel(repository: PreferencesRepository) : ViewModel() {
       initialValue = MainUiState.Loading,
       started = SharingStarted.WhileSubscribed(5_000),
     )
+
+  /**
+   * Marks the onboarding process as complete by setting the "is_onboarding" preference to false.
+   */
+  fun setOnboardingComplete() {
+    viewModelScope.launch {
+      repository.toggleBooleanSetting("is_onboarding", false)
+    }
+  }
 }

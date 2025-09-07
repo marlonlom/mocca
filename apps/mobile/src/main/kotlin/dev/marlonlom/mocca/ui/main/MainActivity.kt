@@ -106,6 +106,7 @@ class MainActivity : ComponentActivity() {
       Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
       MainContent(
         mainUiState = mainUiState,
+        onOnboarded = mainViewModel::setOnboardingComplete,
         windowSizeInfo = windowSizeInfo,
         mainActions = MainActions(
           onOssLicencesSettingLinkClicked = {
