@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_cop_signature" translatable="false">cop $</string>
+  <string name="text_headline">Estimate your transfer cost!</string>
+  <string name="text_input_label">How much do you want to send?</string>
+</resources>
