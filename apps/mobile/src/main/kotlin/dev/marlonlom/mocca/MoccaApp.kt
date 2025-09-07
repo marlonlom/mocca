@@ -5,15 +5,12 @@
 package dev.marlonlom.mocca
 
 import android.app.Application
-import android.content.Context
-import android.os.Build
-import androidx.datastore.preferences.preferencesDataStore
-import dev.marlonlom.mocca.feats.settings.SettingsRepository
-import dev.marlonlom.mocca.feats.settings.UserPreferences
+import dev.marlonlom.mocca.di.appKoinModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import timber.log.Timber
-
-/** Datastore instance for user settings. */
-val Context.dataStore by preferencesDataStore("mocca_settings")
 
 /**
  * Mocca application class.
@@ -25,19 +22,17 @@ class MoccaApp : Application() {
 
   override fun onCreate() {
     super.onCreate()
+    this.setupKoin()
     setupTimber()
-    saveDefaultSettings()
   }
 
-  private fun saveDefaultSettings() {
-    SettingsRepository(this.dataStore).saveDefaults(
-      UserPreferences(
-        aboutEfectyUrl = this.getString(R.string.text_settings_efecty_about_url),
-        appVersion = BuildConfig.VERSION_NAME,
-        darkTheme = false,
-        dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
-      ),
-    )
+  /** Setup Koin module context feature. */
+  private fun setupKoin() {
+    startKoin {
+      androidContext(this@MoccaApp)
+      androidLogger(Level.DEBUG)
+      modules(appKoinModule)
+    }
   }
 
   /** Setup timber logging feature. */
