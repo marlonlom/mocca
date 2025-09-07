@@ -6,11 +6,11 @@ package dev.marlonlom.mocca.feats.settings.slots
 
 import androidx.compose.runtime.Composable
 import dev.marlonlom.mocca.R
-import dev.marlonlom.mocca.feats.settings.UserPreferences
+import dev.marlonlom.mocca.core.preferences.model.UserSettings
 import dev.marlonlom.mocca.feats.settings.parts.ClickableTextRow
 
 @Composable
-fun LegalNotesSettingsSlot(userPreferences: UserPreferences, onOssLicencesSettingLinkClicked: () -> Unit) {
+fun LegalNotesSettingsSlot(userPreferences: UserSettings, onOssLicencesSettingLinkClicked: () -> Unit) {
   DefaultSettingsSlot(
     title = R.string.text_settings_title_legal,
   ) {

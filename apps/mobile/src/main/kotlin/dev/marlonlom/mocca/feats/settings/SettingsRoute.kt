@@ -14,12 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.marlonlom.mocca.dataStore
 import dev.marlonlom.mocca.feats.settings.parts.SettingsHeaderText
 import dev.marlonlom.mocca.feats.settings.slots.AboutSettingsSlot
 import dev.marlonlom.mocca.feats.settings.slots.AppearanceSettingsSlot
@@ -30,6 +27,7 @@ import dev.marlonlom.mocca.ui.main.scaffold.isCompactHeight
 import dev.marlonlom.mocca.ui.main.scaffold.isExpandedWidth
 import dev.marlonlom.mocca.ui.main.scaffold.isMediumWidth
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
+import org.koin.androidx.compose.koinViewModel
 
 /**
  * Settings screen route composable ui.
@@ -45,11 +43,7 @@ fun SettingsRoute(
   windowSizeInfo: WindowSizeInfo,
   mainActions: MainActions,
   onBackNavigationAction: () -> Unit = {},
-  settingsViewModel: SettingsViewModel = viewModel(
-    factory = SettingsViewModel.factory(
-      SettingsRepository(LocalContext.current.dataStore),
-    ),
-  ),
+  settingsViewModel: SettingsViewModel = koinViewModel(),
 ) {
   BackHandler {
     onBackNavigationAction()
@@ -59,29 +53,40 @@ fun SettingsRoute(
     lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current,
   )
 
-  val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
+  when (userPreferences) {
+    SettingsUiState.Loading -> {
 
-  Column(
-    modifier = Modifier
-      .verticalScroll(rememberScrollState())
-      .padding(horizontal = horizontalPadding),
-    verticalArrangement = Arrangement.Top,
-    horizontalAlignment = Alignment.CenterHorizontally,
-  ) {
-    SettingsHeaderText(windowSizeInfo)
-    AppearanceSettingsSlot(
-      userPreferences = userPreferences,
-      onBooleanSettingChanged = settingsViewModel::toggleBooleanPreference,
-    )
-    LegalNotesSettingsSlot(
-      userPreferences = userPreferences,
-      onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked,
-    )
-    AboutSettingsSlot(
-      userPreferences = userPreferences,
-      onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked,
-    )
+    }
+
+    is SettingsUiState.Success -> {
+      val horizontalPadding = getSettingsContentHorizontalPadding(windowSizeInfo)
+      val userSettings = (userPreferences as SettingsUiState.Success).settings
+      Column(
+        modifier = Modifier
+          .verticalScroll(rememberScrollState())
+          .padding(horizontal = horizontalPadding),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
+      ) {
+        SettingsHeaderText(windowSizeInfo)
+        AppearanceSettingsSlot(
+          userPreferences = userSettings,
+          onBooleanSettingChanged = settingsViewModel::toggleBooleanInfo,
+        )
+        LegalNotesSettingsSlot(
+          userPreferences = userSettings,
+          onOssLicencesSettingLinkClicked = mainActions.onOssLicencesSettingLinkClicked,
+        )
+        AboutSettingsSlot(
+          userPreferences = userSettings,
+          onFeedbackSettingLinkClicked = mainActions.onFeedbackSettingLinkClicked,
+        )
+      }
+
+    }
   }
+
+
 }
 
 /**

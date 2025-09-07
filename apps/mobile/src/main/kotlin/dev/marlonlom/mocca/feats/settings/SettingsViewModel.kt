@@ -4,12 +4,12 @@
  */
 package dev.marlonlom.mocca.feats.settings
 
-import android.os.Build
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import dev.marlonlom.mocca.core.preferences.repository.PreferencesRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -20,14 +20,16 @@ import kotlinx.coroutines.launch
  *
  * @property repository Settings repository.
  */
-class SettingsViewModel(private val repository: SettingsRepository) : ViewModel() {
+class SettingsViewModel(private val repository: PreferencesRepository) : ViewModel() {
 
   /** Settings ui state. */
-  val settingsUiState: StateFlow<UserPreferences> = repository.settingsFlow.stateIn(
-    scope = viewModelScope,
-    started = SharingStarted.Eagerly,
-    initialValue = Default,
-  )
+  val settingsUiState: StateFlow<SettingsUiState> = repository.preferencesFlow
+    .map { prefs -> SettingsUiState.Success(prefs) }
+    .stateIn(
+      scope = viewModelScope,
+      started = SharingStarted.Eagerly,
+      initialValue = SettingsUiState.Loading,
+    )
 
   /**
    * Updates boolean preference using provided key.
@@ -35,33 +37,28 @@ class SettingsViewModel(private val repository: SettingsRepository) : ViewModel(
    * @param preferenceKey Preference key text.
    * @param booleanValue true/false.
    */
-  fun toggleBooleanPreference(preferenceKey: String, booleanValue: Boolean) {
+  fun toggleBooleanInfo(preferenceKey: String, booleanValue: Boolean) {
     viewModelScope.launch {
-      repository.toggleBooleanPreference(
-        preferenceKey = preferenceKey,
-        newValue = booleanValue,
+      repository.toggleBooleanSetting(
+        booleanKey = preferenceKey,
+        newBooleanValue = booleanValue,
       )
     }
   }
 
-  companion object {
-
-    /** Default user preferences instance. */
-    val Default = UserPreferences(
-      aboutEfectyUrl = "",
-      appVersion = "",
-      darkTheme = false,
-      dynamicColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
-    )
-
-    /**
-     * Factory for creating calculator view model instances.
-     *
-     * @param repository Settings repository.
-     */
-    fun factory(repository: SettingsRepository) = object : ViewModelProvider.Factory {
-      @Suppress("UNCHECKED_CAST")
-      override fun <T : ViewModel> create(modelClass: Class<T>): T = SettingsViewModel(repository) as T
+  /**
+   * Updates boolean preference using provided key.
+   *
+   * @param preferenceKey Preference key text.
+   * @param stringValue String preference value for update.
+   */
+  fun updateStringInfo(preferenceKey: String, stringValue: String) {
+    viewModelScope.launch {
+      repository.updateStringSetting(
+        stringKey = preferenceKey,
+        newStringValue = stringValue,
+      )
     }
   }
+
 }

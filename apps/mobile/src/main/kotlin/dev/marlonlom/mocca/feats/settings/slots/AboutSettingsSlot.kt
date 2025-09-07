@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.R
-import dev.marlonlom.mocca.feats.settings.UserPreferences
+import dev.marlonlom.mocca.core.preferences.model.UserSettings
 import dev.marlonlom.mocca.feats.settings.parts.ClickableTextRow
 
 /**
@@ -27,7 +27,7 @@ import dev.marlonlom.mocca.feats.settings.parts.ClickableTextRow
  * @param onFeedbackSettingLinkClicked Action for feedback setting button clicked.
  */
 @Composable
-fun AboutSettingsSlot(userPreferences: UserPreferences, onFeedbackSettingLinkClicked: () -> Unit) {
+fun AboutSettingsSlot(userPreferences: UserSettings, onFeedbackSettingLinkClicked: () -> Unit) {
   DefaultSettingsSlot(
     title = R.string.text_settings_title_app_info,
   ) {
@@ -49,7 +49,7 @@ fun AboutSettingsSlot(userPreferences: UserPreferences, onFeedbackSettingLinkCli
     )
     ClickableTextRow(
       title = R.string.text_settings_label_app_version,
-      subtitle = userPreferences.appVersion,
+      subtitle = "1.0.0",
       icon = {
         Icon(
           imageVector = Icons.TwoTone.Info,

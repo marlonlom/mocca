@@ -7,7 +7,7 @@ package dev.marlonlom.mocca.feats.settings.slots
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import dev.marlonlom.mocca.R
-import dev.marlonlom.mocca.feats.settings.UserPreferences
+import dev.marlonlom.mocca.core.preferences.model.UserSettings
 import dev.marlonlom.mocca.feats.settings.parts.BooleanSettingSwitch
 
 /**
@@ -19,7 +19,7 @@ import dev.marlonlom.mocca.feats.settings.parts.BooleanSettingSwitch
  * @param onBooleanSettingChanged Action for boolean setting value changed.
  */
 @Composable
-fun AppearanceSettingsSlot(userPreferences: UserPreferences, onBooleanSettingChanged: (String, Boolean) -> Unit) {
+fun AppearanceSettingsSlot(userPreferences: UserSettings, onBooleanSettingChanged: (String, Boolean) -> Unit) {
   DefaultSettingsSlot(
     title = R.string.text_settings_title_appearance,
   ) {
@@ -27,7 +27,7 @@ fun AppearanceSettingsSlot(userPreferences: UserPreferences, onBooleanSettingCha
     BooleanSettingSwitch(
       title = R.string.text_settings_label_dark_theme,
       subtitle = R.string.text_settings_hint_system_dark_theme,
-      checked = userPreferences.darkTheme,
+      checked = userPreferences.useDarkTheme,
       onChecked = { checked ->
         onBooleanSettingChanged("dark_theme", checked)
       },
@@ -38,7 +38,7 @@ fun AppearanceSettingsSlot(userPreferences: UserPreferences, onBooleanSettingCha
     BooleanSettingSwitch(
       title = R.string.text_settings_label_dynamic_color,
       subtitle = R.string.text_settings_hint_dynamic_color,
-      checked = userPreferences.dynamicColors,
+      checked = userPreferences.useDynamicColor,
       onChecked = { checked ->
         onBooleanSettingChanged("dynamic_colors", checked)
       },
