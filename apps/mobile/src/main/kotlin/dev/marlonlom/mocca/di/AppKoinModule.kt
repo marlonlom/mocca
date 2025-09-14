@@ -6,6 +6,7 @@ package dev.marlonlom.mocca.di
 
 import dev.marlonlom.mocca.core.preferences.di.preferencesKoinModule
 import dev.marlonlom.mocca.feats.settings.SettingsViewModel
+import dev.marlonlom.mocca.mobile.calculator.input.di.calculatorInputKoinModule
 import dev.marlonlom.mocca.ui.main.MainViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
@@ -17,6 +18,7 @@ import org.koin.dsl.module
  */
 val appKoinModule = module {
   includes(preferencesKoinModule)
+  includes(calculatorInputKoinModule)
   viewModelOf(::SettingsViewModel)
   viewModelOf(::MainViewModel)
 }
