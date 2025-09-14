@@ -7,15 +7,19 @@ package dev.marlonlom.mocca.ui.main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.onboarding.OnboardingScreen
+import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffold
 import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
-import dev.marlonlom.mocca.ui.main.scaffold.AppScaffold
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
 
 /**
@@ -53,9 +57,30 @@ internal fun MainContent(
         }
 
         else -> {
-          AppScaffold(
-            windowSizeInfo = windowSizeInfo,
-            mainActions = mainActions,
+          MainScaffold(
+            listPaneContent = { mobileWindowSize, foldState ->
+              CalculatorInputScreen(
+                mobileWindowSize = mobileWindowSize,
+                onCalculationReady = {},
+                onHistoryButtonClicked = {},
+                onRatesButtonClicked = {},
+                onSettingsButtonClicked = {},
+              )
+            },
+            detailPaneContent = { mobileWindowSize, foldState ->
+              Box(
+                modifier = Modifier
+                  .fillMaxSize()
+                  .background(MaterialTheme.colorScheme.surfaceVariant)
+                  .padding(20.dp),
+                contentAlignment = Alignment.Center,
+              ) {
+                Text(
+                  text = "$mobileWindowSize\n$foldState",
+                  color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+              }
+            },
           )
         }
       }
