@@ -54,7 +54,7 @@ mockk = "io.mockk:mockk:1.14.5"
 androidx-test-ext-junit = "androidx.test.ext:junit:1.3.0"
 androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
 androidx-window-testing = "androidx.window:window-testing:1.4.0"
-google-truth = "com.google.truth:truth:1.4.4"
+google-truth = "com.google.truth:truth:1.4.5"
 
 # [wearos] implementation
 google-play-services-wearable = "com.google.android.gms:play-services-wearable:19.0.0"
