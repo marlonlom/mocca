@@ -5,6 +5,6 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-  <string name="text_headline">¡Calcula el costo de tu transferencia!</string>
+  <string name="text_headline">¡Calcula el costo de tu giro!</string>
   <string name="text_input_label">¿Cuánto quieres enviar?</string>
 </resources>
