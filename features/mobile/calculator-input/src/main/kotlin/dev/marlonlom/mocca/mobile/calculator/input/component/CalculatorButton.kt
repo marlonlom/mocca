@@ -5,7 +5,7 @@
 package dev.marlonlom.mocca.mobile.calculator.input.component
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 internal fun CalculatorButton(onButtonClicked: (String) -> Unit, buttonText: String, modifier: Modifier = Modifier) =
   Button(
     modifier = modifier
-      .size(64.dp)
+      .sizeIn(maxWidth = 64.dp, maxHeight = 64.dp)
       .padding(4.dp),
     onClick = { onButtonClicked(buttonText) },
     shape = CircleShape,
