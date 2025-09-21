@@ -1,8 +1,7 @@
 /*
- * Copyright 2025 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.mobile.ui.navigation
 
 /**
@@ -43,4 +42,3 @@ sealed class AppDestination {
    */
   data object Settings : AppDestination()
 }
-

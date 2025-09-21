@@ -1,8 +1,7 @@
 /*
- * Copyright 2025 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.mobile.ui.navigation
 
 import androidx.compose.foundation.background
@@ -11,7 +10,9 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,20 +31,24 @@ import dev.marlonlom.mocca.mobile.ui.window.MobileWindowSize
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun MainScaffold(
-  listPaneContent: @Composable (MobileWindowSize, FoldState) -> Unit,
-  detailPaneContent: @Composable (MobileWindowSize, FoldState) -> Unit,
+  listPaneContent: @Composable (MainScaffoldAction) -> Unit,
+  detailPaneContent: @Composable (MainScaffoldAction) -> Unit,
 ) {
-  val navigator = rememberListDetailPaneScaffoldNavigator<AppDestination>()
+  val navigator: ThreePaneScaffoldNavigator<AppDestination> =
+    rememberListDetailPaneScaffoldNavigator<AppDestination>()
   val adaptiveInfo = currentWindowAdaptiveInfo()
-  val mobileWindowSize: MobileWindowSize = MobileWindowSize.fromWindowSizeClass(adaptiveInfo.windowSizeClass)
+  val mobileWindowSize: MobileWindowSize =
+    MobileWindowSize.fromWindowSizeClass(adaptiveInfo.windowSizeClass)
   val foldState: FoldState = FoldablePosture.getFoldState(adaptiveInfo.windowPosture)
+  val scaffoldAction = MainScaffoldAction(mobileWindowSize, foldState, navigator)
   NavigableListDetailPaneScaffold(
     modifier = Modifier
       .background(MaterialTheme.colorScheme.background)
       .fillMaxWidth()
       .safeContentPadding(),
     navigator = navigator,
-    listPane = { listPaneContent(mobileWindowSize, foldState) },
-    detailPane = { detailPaneContent(mobileWindowSize, foldState) },
+    defaultBackBehavior = BackNavigationBehavior.PopUntilScaffoldValueChange,
+    listPane = { listPaneContent(scaffoldAction) },
+    detailPane = { detailPaneContent(scaffoldAction) },
   )
 }
