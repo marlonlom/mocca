@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -54,45 +55,45 @@ internal fun LandscapeCalculatorInput(
   onRatesButtonClicked: () -> Unit,
   onSettingsButtonClicked: () -> Unit,
   modifier: Modifier = Modifier,
+) = Column(
+  modifier = modifier
+    .background(MaterialTheme.colorScheme.background)
+    .padding(horizontal = 20.dp)
+    .consumeWindowInsets(WindowInsets.systemBars),
+  horizontalAlignment = Alignment.CenterHorizontally,
 ) {
-  Column(
-    modifier = modifier
-      .background(MaterialTheme.colorScheme.background)
-      .padding(20.dp)
-      .consumeWindowInsets(WindowInsets.systemBars),
-    horizontalAlignment = Alignment.CenterHorizontally,
+  TopBar(
+    title = {
+      Text(
+        text = stringResource(R.string.text_headline),
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+      )
+    },
+    isMedium = false,
+    navigationActions = {
+      HistoryIconButton(onButtonClicked = { onHistoryButtonClicked() })
+      RatesIconButton(onButtonClicked = { onRatesButtonClicked() })
+      SettingsIconButton(onButtonClicked = { onSettingsButtonClicked() })
+    },
+  )
+  Row(
+    modifier = Modifier
+      .fillMaxHeight()
+      .widthIn(max = 720.dp),
   ) {
-    TopBar(
-      title = {
-        Text(
-          text = stringResource(R.string.text_headline),
-          overflow = TextOverflow.Ellipsis,
-          maxLines = 1,
-        )
-      },
-      isMedium = false,
-      navigationActions = {
-        HistoryIconButton(onButtonClicked = { onHistoryButtonClicked() })
-        RatesIconButton(onButtonClicked = { onRatesButtonClicked() })
-        SettingsIconButton(onButtonClicked = { onSettingsButtonClicked() })
-      },
-    )
-    Row(
-      modifier = Modifier.fillMaxHeight(),
-    ) {
-      Column(modifier = Modifier.weight(1.0f)) {
-        CalculatorTextInput(amountText = amountUiState.formattedAmount)
-        WideCalculateButton(
-          buttonEnabled = amountUiState.isValidRange,
-          onButtonClicked = {
-            onCalculationReady(amountUiState.plainAmount)
-          },
-        )
-      }
-      Spacer(Modifier.width(20.dp))
-      Column(modifier = Modifier.weight(1.0f)) {
-        CalculatorButtonsGrid(onButtonClicked = { onCalculationButtonClicked(it) })
-      }
+    Column(modifier = Modifier.weight(1.0f)) {
+      CalculatorTextInput(amountText = amountUiState.formattedAmount)
+      WideCalculateButton(
+        buttonEnabled = amountUiState.isValidRange,
+        onButtonClicked = {
+          onCalculationReady(amountUiState.plainAmount)
+        },
+      )
+    }
+    Spacer(Modifier.width(20.dp))
+    Column(modifier = Modifier.weight(1.0f)) {
+      CalculatorButtonsGrid(onButtonClicked = { onCalculationButtonClicked(it) })
     }
   }
 }
