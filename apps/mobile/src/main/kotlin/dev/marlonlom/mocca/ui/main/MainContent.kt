@@ -13,14 +13,20 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.marlonlom.mocca.feats.settings.SettingsRoute
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.onboarding.OnboardingScreen
+import dev.marlonlom.mocca.mobile.ui.navigation.AppDestination
 import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffold
+import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffoldAction
 import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
 import dev.marlonlom.mocca.ui.util.WindowSizeInfo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * Main content composable ui.
@@ -51,34 +57,75 @@ internal fun MainContent(
               .background(MaterialTheme.colorScheme.background)
               .safeContentPadding(),
             contentAlignment = Alignment.Center,
-          ) {
-            OnboardingScreen { onOnboarded() }
-          }
+            content = {
+              OnboardingScreen { onOnboarded() }
+            },
+          )
         }
 
         else -> {
+          val coroutineScope = rememberCoroutineScope()
+          val listPane: @Composable (CoroutineScope, MainScaffoldAction) -> Unit = { scope, action ->
+            CalculatorInputScreen(
+              mobileWindowSize = action.mobileWindowSize,
+              onCalculationReady = { amountText ->
+                scope.launch {
+                  action.gotoDetail(AppDestination.Calculating(amountText))
+                }
+              },
+              onHistoryButtonClicked = {},
+              onRatesButtonClicked = {},
+              onSettingsButtonClicked = {
+                scope.launch {
+                  action.gotoDetail(AppDestination.Settings)
+                }
+              },
+            )
+          }
+
           MainScaffold(
-            listPaneContent = { mobileWindowSize, foldState ->
-              CalculatorInputScreen(
-                mobileWindowSize = mobileWindowSize,
-                onCalculationReady = {},
-                onHistoryButtonClicked = {},
-                onRatesButtonClicked = {},
-                onSettingsButtonClicked = {},
-              )
-            },
-            detailPaneContent = { mobileWindowSize, foldState ->
-              Box(
-                modifier = Modifier
-                  .fillMaxSize()
-                  .background(MaterialTheme.colorScheme.surfaceVariant)
-                  .padding(20.dp),
-                contentAlignment = Alignment.Center,
-              ) {
-                Text(
-                  text = "$mobileWindowSize\n$foldState",
-                  color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            listPaneContent = { scaffoldAction -> listPane(coroutineScope, scaffoldAction) },
+            detailPaneContent = { scaffoldAction ->
+              val currentDestination = scaffoldAction.currentDestination
+              when (currentDestination) {
+                is AppDestination.Calculating -> {
+                  Box(
+                    contentAlignment = Alignment.Center,
+                  ) {
+                    Text(
+                      text = "amountText:${currentDestination.amountText}\n" +
+                        "\n${scaffoldAction.mobileWindowSize}\n${scaffoldAction.foldState}",
+                      color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                  }
+                }
+
+                AppDestination.History -> {}
+
+                AppDestination.Settings -> {
+                  SettingsRoute(
+                    windowSizeInfo = windowSizeInfo,
+                    mainActions = mainActions,
+                    onBackNavigationAction = {
+                      coroutineScope.launch { scaffoldAction.goBack() }
+                    },
+                  )
+                }
+
+                else -> {
+                  Box(
+                    modifier = Modifier
+                      .fillMaxSize()
+                      .background(MaterialTheme.colorScheme.surfaceVariant)
+                      .padding(20.dp),
+                    contentAlignment = Alignment.Center,
+                  ) {
+                    Text(
+                      text = "${scaffoldAction.mobileWindowSize}\n${scaffoldAction.foldState}",
+                      color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                  }
+                }
               }
             },
           )
