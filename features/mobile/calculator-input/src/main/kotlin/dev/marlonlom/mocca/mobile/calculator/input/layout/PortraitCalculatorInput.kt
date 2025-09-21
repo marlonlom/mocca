@@ -44,7 +44,6 @@ internal fun PortraitCalculatorInput(
   modifier = modifier
     .fillMaxWidth()
     .background(MaterialTheme.colorScheme.background)
-    .padding(horizontal = 20.dp)
     .consumeWindowInsets(WindowInsets.systemBars),
   verticalArrangement = Arrangement.Center,
   horizontalAlignment = Alignment.CenterHorizontally,
