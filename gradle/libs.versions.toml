@@ -58,9 +58,9 @@ google-truth = "com.google.truth:truth:1.4.5"
 
 # [wearos] implementation
 google-play-services-wearable = "com.google.android.gms:play-services-wearable:19.0.0"
-androidx-wear-compose-foundation = "androidx.wear.compose:compose-foundation:1.5.1"
-androidx-wear-compose-material3 = "androidx.wear.compose:compose-material3:1.5.1"
-androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.5.1"
+androidx-wear-compose-foundation = "androidx.wear.compose:compose-foundation:1.5.2"
+androidx-wear-compose-material3 = "androidx.wear.compose:compose-material3:1.5.2"
+androidx-wear-compose-navigation = "androidx.wear.compose:compose-navigation:1.5.2"
 
 # [macrobenchmark] implementation
 androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.3.0"
