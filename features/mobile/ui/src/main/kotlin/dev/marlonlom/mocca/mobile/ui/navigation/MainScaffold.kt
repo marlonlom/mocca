@@ -13,7 +13,6 @@ import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
-import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
@@ -63,7 +62,6 @@ fun MainScaffold(
       .fillMaxWidth()
       .safeContentPadding(),
     navigator = navigator,
-    defaultBackBehavior = BackNavigationBehavior.PopUntilScaffoldValueChange,
     listPane = { listPaneContent(scaffoldAction) },
     detailPane = { detailPaneContent(scaffoldAction) },
   )

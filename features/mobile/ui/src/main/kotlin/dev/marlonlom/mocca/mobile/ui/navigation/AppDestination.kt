@@ -4,18 +4,22 @@
  */
 package dev.marlonlom.mocca.mobile.ui.navigation
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * Represents the different navigation destinations within the mobile app.
  *
  * @author marlonlom
  */
-sealed class AppDestination {
+sealed class AppDestination : Parcelable {
 
   /**
    * Destination representing the main Calculator screen.
    *
    * @author marlonlom
    */
+  @Parcelize
   data object Calculator : AppDestination()
 
   /**
@@ -26,6 +30,7 @@ sealed class AppDestination {
    *
    * @param amountText The input or result currently being calculated.
    */
+  @Parcelize
   data class Calculating(val amountText: String) : AppDestination()
 
   /**
@@ -33,6 +38,7 @@ sealed class AppDestination {
    *
    * @author marlonlom
    */
+  @Parcelize
   data object History : AppDestination()
 
   /**
@@ -40,5 +46,6 @@ sealed class AppDestination {
    *
    * @author marlonlom
    */
+  @Parcelize
   data object Settings : AppDestination()
 }
