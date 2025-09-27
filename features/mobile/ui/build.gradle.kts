@@ -6,6 +6,7 @@
 plugins {
   id("mocca.android.lib.mobile")
   id("mocca.compose.lib")
+  id("kotlin-parcelize")
 }
 
 android {
