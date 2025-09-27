@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_cop_value" translatable="false">cop $ %1$s</string>
+  <string name="text_perform_calculation">Perform a calculation</string>
+  <string name="text_input_amount_for_calculation">Enter the amount of the transfer to calculate the cost.</string>
+  <!-- calculation success texts -->
+  <string name="text_calculation_successful">Calculation successful</string>
+  <string name="text_review_success_detail">See the details below.</string>
+  <string name="text_label_requested_amount">Requested amount:</string>
+  <string name="text_label_fee">Transferring fee:</string>
+  <string name="text_label_total">Total to pay:</string>
+  <string name="text_close_success">Do another calculation</string>
+  <!-- calculation failed texts -->
+  <string name="text_calculation_failed">Calculation failed</string>
+  <string name="text_above_range_error">You cannot send more than $3,000,000.</string>
+  <string name="text_below_range_error">You cannot send less than $5,000.</string>
+  <string name="text_negative_amount_error">You cannot send negative amounts.</string>
+  <string name="text_close_failed">Try again</string>
+
+</resources>
