@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.feats.settings.SettingsRoute
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
+import dev.marlonlom.mocca.mobile.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.mobile.onboarding.OnboardingScreen
 import dev.marlonlom.mocca.mobile.ui.navigation.AppDestination
 import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffold
@@ -89,15 +90,15 @@ internal fun MainContent(
               val currentDestination = scaffoldAction.currentDestination
               when (currentDestination) {
                 is AppDestination.Calculating -> {
-                  Box(
-                    contentAlignment = Alignment.Center,
-                  ) {
-                    Text(
-                      text = "amountText:${currentDestination.amountText}\n" +
-                        "\n${scaffoldAction.mobileWindowSize}\n${scaffoldAction.foldState}",
-                      color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                  }
+                  CalculatorOutputScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    requestedAmount = currentDestination.amountText,
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
+                    },
+                  )
                 }
 
                 AppDestination.History -> {}
