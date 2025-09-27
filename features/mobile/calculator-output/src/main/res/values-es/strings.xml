@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_perform_calculation">Calcula el costo del giro</string>
+  <string name="text_input_amount_for_calculation">Ingresa el monto del giro para calcular el costo.</string>
+  <!-- calculation success texts -->
+  <string name="text_calculation_successful">Cálculo exitoso</string>
+  <string name="text_review_success_detail">Revisa los detalles a continuación.</string>
+  <string name="text_label_requested_amount">Monto a enviar:</string>
+  <string name="text_label_fee">Costo del envío:</string>
+  <string name="text_label_total">Total a pagar:</string>
+  <string name="text_close_success">Realiza otro cálculo</string>
+  <!-- calculation failed texts -->
+  <string name="text_calculation_failed">Cálculo fallido</string>
+  <string name="text_above_range_error">No puede enviar más de $3,000,000.</string>
+  <string name="text_below_range_error">No puede enviar menos de $5,000.</string>
+  <string name="text_negative_amount_error">No puede enviar cantidades negativas.</string>
+  <string name="text_close_failed">Inténtalo de nuevo</string>
+</resources>
