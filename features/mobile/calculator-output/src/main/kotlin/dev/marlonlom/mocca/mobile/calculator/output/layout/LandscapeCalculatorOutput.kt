@@ -35,54 +35,53 @@ import dev.marlonlom.mocca.mobile.ui.component.spacer.FullWidthSpacer
  * @param onCloseButtonClicked The action to perform when the close button is clicked.
  */
 @Composable
-internal fun LandscapeCalculatorOutput(
-  calculationState: CalculatorOutputState, onCloseButtonClicked: () -> Unit
-) = Column(
-  modifier = Modifier
-    .background(MaterialTheme.colorScheme.background)
-    .padding(horizontal = 20.dp)
-    .consumeWindowInsets(WindowInsets.systemBars),
-  horizontalAlignment = Alignment.CenterHorizontally,
-) {
-  Row(
+internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, onCloseButtonClicked: () -> Unit) =
+  Column(
     modifier = Modifier
-      .fillMaxHeight()
-      .widthIn(max = 720.dp),
+      .background(MaterialTheme.colorScheme.background)
+      .padding(horizontal = 20.dp)
+      .consumeWindowInsets(WindowInsets.systemBars),
+    horizontalAlignment = Alignment.CenterHorizontally,
   ) {
-    Column(modifier = Modifier.weight(1.0f)) {
-      FullWidthSpacer()
-      CalculationOutputImage(uiState = calculationState)
-      if (calculationState.isSuccess()) {
-        CalculationOutputTitle(uiState = calculationState)
-      }
-      FullWidthSpacer()
-    }
-    Spacer(Modifier.width(20.dp))
-    Column(modifier = Modifier.weight(1.0f)) {
-      FullWidthSpacer()
-
-      if (calculationState.isSuccess().not()) {
-        CalculationOutputTitle(uiState = calculationState)
-        CalculationOutputDescription(uiState = calculationState)
-      }
-
-      if (calculationState.isSuccess()) {
-        val successState = calculationState as CalculatorOutputState.WithSuccess
-        CalculationSuccessDetailsSlot(uiState = successState)
+    Row(
+      modifier = Modifier
+        .fillMaxHeight()
+        .widthIn(max = 720.dp),
+    ) {
+      Column(modifier = Modifier.weight(1.0f)) {
+        FullWidthSpacer()
+        CalculationOutputImage(uiState = calculationState)
+        if (calculationState.isSuccess()) {
+          CalculationOutputTitle(uiState = calculationState)
+        }
         FullWidthSpacer()
       }
-
-      if (calculationState.isDefault().not()) {
-        CalculationOutputCloseButton(
-          uiState = calculationState,
-          buttonEnabled = calculationState.isDefault().not(),
-          onButtonClicked = { onCloseButtonClicked() },
-        )
-      }
-
-      if (calculationState.isSuccess().not()) {
+      Spacer(Modifier.width(20.dp))
+      Column(modifier = Modifier.weight(1.0f)) {
         FullWidthSpacer()
+
+        if (calculationState.isSuccess().not()) {
+          CalculationOutputTitle(uiState = calculationState)
+          CalculationOutputDescription(uiState = calculationState)
+        }
+
+        if (calculationState.isSuccess()) {
+          val successState = calculationState as CalculatorOutputState.WithSuccess
+          CalculationSuccessDetailsSlot(uiState = successState)
+          FullWidthSpacer()
+        }
+
+        if (calculationState.isDefault().not()) {
+          CalculationOutputCloseButton(
+            uiState = calculationState,
+            buttonEnabled = calculationState.isDefault().not(),
+            onButtonClicked = { onCloseButtonClicked() },
+          )
+        }
+
+        if (calculationState.isSuccess().not()) {
+          FullWidthSpacer()
+        }
       }
     }
   }
-}

@@ -44,13 +44,12 @@ fun CalculatorOutputScreen(
   when (mobileWindowSize) {
     MobileWindowSize.MOBILE_LANDSCAPE -> LandscapeCalculatorOutput(
       calculationState = calculationState,
-      onCloseButtonClicked = onCloseButtonClicked
+      onCloseButtonClicked = onCloseButtonClicked,
     )
 
     else -> PortraitCalculatorOutput(
       calculationState = calculationState,
-      onCloseButtonClicked = onCloseButtonClicked
+      onCloseButtonClicked = onCloseButtonClicked,
     )
   }
-
 }

@@ -25,40 +25,39 @@ import dev.marlonlom.mocca.mobile.calculator.output.slot.CalculationSuccessDetai
 import dev.marlonlom.mocca.mobile.ui.component.spacer.FullWidthSpacer
 
 @Composable
-internal fun PortraitCalculatorOutput(
-  calculationState: CalculatorOutputState, onCloseButtonClicked: () -> Unit
-) = Column(
-  modifier = Modifier
-    .background(MaterialTheme.colorScheme.surface)
-    .fillMaxSize()
-    .padding(horizontal = 20.dp),
-  verticalArrangement = Arrangement.Top,
-) {
-  FullWidthSpacer()
+internal fun PortraitCalculatorOutput(calculationState: CalculatorOutputState, onCloseButtonClicked: () -> Unit) =
+  Column(
+    modifier = Modifier
+      .background(MaterialTheme.colorScheme.surface)
+      .fillMaxSize()
+      .padding(horizontal = 20.dp),
+    verticalArrangement = Arrangement.Top,
+  ) {
+    FullWidthSpacer()
 
-  CalculationOutputImage(uiState = calculationState)
+    CalculationOutputImage(uiState = calculationState)
 
-  Spacer(
-    Modifier
-      .fillMaxWidth()
-      .height(48.dp),
-  )
-
-  CalculationOutputTitle(uiState = calculationState)
-  CalculationOutputDescription(uiState = calculationState)
-
-  if (calculationState.isSuccess()) {
-    val successState = calculationState as CalculatorOutputState.WithSuccess
-    CalculationSuccessDetailsSlot(uiState = successState)
-  }
-
-  FullWidthSpacer()
-
-  if (calculationState.isDefault().not()) {
-    CalculationOutputCloseButton(
-      uiState = calculationState,
-      buttonEnabled = calculationState.isDefault().not(),
-      onButtonClicked = { onCloseButtonClicked() },
+    Spacer(
+      Modifier
+        .fillMaxWidth()
+        .height(48.dp),
     )
+
+    CalculationOutputTitle(uiState = calculationState)
+    CalculationOutputDescription(uiState = calculationState)
+
+    if (calculationState.isSuccess()) {
+      val successState = calculationState as CalculatorOutputState.WithSuccess
+      CalculationSuccessDetailsSlot(uiState = successState)
+    }
+
+    FullWidthSpacer()
+
+    if (calculationState.isDefault().not()) {
+      CalculationOutputCloseButton(
+        uiState = calculationState,
+        buttonEnabled = calculationState.isDefault().not(),
+        onButtonClicked = { onCloseButtonClicked() },
+      )
+    }
   }
-}
