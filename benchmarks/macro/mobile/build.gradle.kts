@@ -3,7 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+@file:Suppress("UnstableApiUsage")
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
   alias(libs.plugins.android.test)
@@ -12,21 +15,16 @@ plugins {
 
 android {
   namespace = "dev.marlonlom.mocca.macrobenchmarks.mobile"
-  compileSdk = 35
+  compileSdk = 36
 
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
 
-  kotlinOptions {
-    jvmTarget = JavaVersion.VERSION_17.majorVersion
-  }
-
   defaultConfig {
     minSdk = 24
-    //noinspection OldTargetApi
-    targetSdk = 35
+    targetSdk = 36
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
@@ -43,6 +41,12 @@ android {
 
   targetProjectPath = ":apps:mobile"
   experimentalProperties["android.experimental.self-instrumenting"] = true
+}
+
+tasks.withType<KotlinJvmCompile>().configureEach {
+  compilerOptions {
+    jvmTarget.set(JvmTarget.JVM_11)
+  }
 }
 
 dependencies {
