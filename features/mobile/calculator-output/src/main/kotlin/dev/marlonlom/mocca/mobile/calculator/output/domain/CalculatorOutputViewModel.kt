@@ -41,7 +41,10 @@ class CalculatorOutputViewModel(
     key = UI_STATE_KEY,
     initialValue = NO_AMOUNT,
   ).map { amountText ->
-    when (val orderResponse = doCalculation(amountText.toDouble())) {
+    if (amountText.isEmpty()) {
+      return@map CalculatorOutputState.Empty
+    }
+    return@map when (val orderResponse = doCalculation(amountText.toDouble())) {
       is OrderResponse.Success<CalculationResult> -> CalculatorOutputState.WithSuccess(
         amount = amountText,
         response = orderResponse.item,
