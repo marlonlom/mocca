@@ -74,7 +74,11 @@ internal fun MainContent(
                   action.gotoDetail(AppDestination.Calculating(amountText))
                 }
               },
-              onHistoryButtonClicked = {},
+              onHistoryButtonClicked = {
+                scope.launch {
+                  action.gotoDetail(AppDestination.History)
+                }
+              },
               onRatesButtonClicked = {},
               onSettingsButtonClicked = {
                 scope.launch {
@@ -89,31 +93,7 @@ internal fun MainContent(
             detailPaneContent = { scaffoldAction ->
               val currentDestination = scaffoldAction.currentDestination
               when (currentDestination) {
-                is AppDestination.Calculating -> {
-                  CalculatorOutputScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    requestedAmount = currentDestination.amountText,
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                  )
-                }
-
-                AppDestination.History -> {}
-
-                AppDestination.Settings -> {
-                  SettingsRoute(
-                    windowSizeInfo = windowSizeInfo,
-                    mainActions = mainActions,
-                    onBackNavigationAction = {
-                      coroutineScope.launch { scaffoldAction.goBack() }
-                    },
-                  )
-                }
-
-                else -> {
+                AppDestination.History -> {
                   Box(
                     modifier = Modifier
                       .fillMaxSize()
@@ -126,6 +106,40 @@ internal fun MainContent(
                       color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                   }
+                }
+
+                AppDestination.Settings -> {
+                  SettingsRoute(
+                    windowSizeInfo = windowSizeInfo,
+                    mainActions = mainActions,
+                    onBackNavigationAction = {
+                      coroutineScope.launch { scaffoldAction.goBack() }
+                    },
+                  )
+                }
+
+                is AppDestination.Calculating -> {
+                  CalculatorOutputScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    requestedAmount = currentDestination.amountText,
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
+                    },
+                  )
+                }
+
+                else -> {
+                  CalculatorOutputScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    requestedAmount = "",
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
+                    },
+                  )
                 }
               }
             },
