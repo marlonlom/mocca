@@ -9,4 +9,7 @@
   <string name="text_history">Historial</string>
   <string name="text_rates">Tarifas</string>
   <string name="text_settings">Configuración</string>
+  <string name="text_close">Cerrar</string>
+  <string name="text_unknown_version">Versión desconocida</string>
+  <string name="app_version_format">%1$s (Compilación %2$d)</string>
 </resources>
