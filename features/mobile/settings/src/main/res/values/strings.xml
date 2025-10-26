@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <!-- section: appearance -->
+  <string name="text_settings_appearance">Appearance</string>
+  <string name="text_dark_theme">Dark theme</string>
+  <string name="hint_dark_theme">Controlled by the OS</string>
+  <string name="text_dynamic_colors">Dynamic colors</string>
+  <string name="hint_dynamic_colors">Enabled in Android 12 or above</string>
+  <string name="text_color_contrast">Color contrast</string>
+  <!-- section: legal -->
+  <string name="text_settings_legal">Security and Privacy</string>
+  <string name="text_privacy_policy">Privacy policy</string>
+  <string name="url_privacy_policy" translatable="false">https://www.freeprivacypolicy.com/live/ed0ecb72-4021-4673-b878-a5f49562fd33</string>
+  <string name="text_terms_conditions">Terms and Conditions</string>
+  <string name="utl_terms_conditions" translatable="false">https://www.termsfeed.com/live/1e14e031-3c67-42cb-a627-a45971678202</string>
+  <!-- section: general -->
+  <string name="text_settings_general">General</string>
+  <string name="text_oss_licences">Open source licences</string>
+  <string name="text_app_version">Application version</string>
+  <string name="text_feedback">Feedback</string>
+  <!-- section: other -->
+</resources>
