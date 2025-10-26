@@ -4,41 +4,23 @@
  */
 package dev.marlonlom.mocca.ui.main
 
-import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.window.layout.FoldingFeature
-import androidx.window.layout.WindowInfoTracker
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import dev.marlonlom.mocca.mobile.ui.util.CustomTabsOpener
-import dev.marlonlom.mocca.mobile.ui.util.FeedbackOpener
-import dev.marlonlom.mocca.ui.util.DevicePosture
-import dev.marlonlom.mocca.ui.util.DevicePostureDetector
-import dev.marlonlom.mocca.ui.util.WindowSizeInfo
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 import kotlin.contracts.ExperimentalContracts
 
 /**
@@ -53,21 +35,6 @@ class MainActivity : ComponentActivity() {
 
   /** Main activity view model reference. */
   private val mainViewModel: MainViewModel by viewModel()
-
-  private val devicePostureFlow = WindowInfoTracker
-    .getOrCreate(this@MainActivity)
-    .windowLayoutInfo(this@MainActivity)
-    .flowWithLifecycle(lifecycle)
-    .map { layoutInfo ->
-      val foldingFeature =
-        layoutInfo.displayFeatures.filterIsInstance<FoldingFeature>().firstOrNull()
-      DevicePostureDetector.fromLayoutInfo(foldingFeature)
-    }
-    .stateIn(
-      scope = lifecycleScope,
-      started = SharingStarted.Eagerly,
-      initialValue = DevicePosture.NormalPosture,
-    )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -89,43 +56,12 @@ class MainActivity : ComponentActivity() {
       }
     }
 
-    enableEdgeToEdge()
+    WindowCompat.enableEdgeToEdge(window)
 
     setContent {
-      val configuration = LocalConfiguration.current
-      val windowSizeClass = calculateWindowSizeClass(activity = this)
-      val devicePostureState by devicePostureFlow.collectAsStateWithLifecycle(
-        lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current,
-      )
-      val windowSizeInfo = WindowSizeInfo(
-        windowSizeClass = windowSizeClass,
-        devicePosture = devicePostureState,
-        isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE,
-        isTabletWidth = configuration.smallestScreenWidthDp >= 600,
-      )
-      Timber.d("[MainActivity] devicePosture=$devicePostureState; windowSizeClass=$windowSizeClass")
       MainContent(
         mainUiState = mainUiState,
         onOnboarded = mainViewModel::setOnboardingComplete,
-        windowSizeInfo = windowSizeInfo,
-        mainActions = MainActions(
-          onOssLicencesSettingLinkClicked = {
-            Timber.d("[MainActivity] opening oss licenses window")
-            startActivity(
-              Intent(this@MainActivity, OssLicensesMenuActivity::class.java),
-            )
-          },
-          onOpeningExternalUrlSettingClicked = { urlText ->
-            Timber.d("[MainActivity] opening external url: $urlText")
-            if (urlText.isNotEmpty()) {
-              CustomTabsOpener.openUrl(this@MainActivity, urlText)
-            }
-          },
-          onFeedbackSettingLinkClicked = {
-            Timber.d("[MainActivity] opening feedback window")
-            FeedbackOpener.rate(this@MainActivity)
-          },
-        ),
       )
     }
   }

@@ -7,6 +7,7 @@ package dev.marlonlom.mocca.ui.main
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
+import dev.marlonlom.mocca.core.preferences.model.UserColorContrasts
 import dev.marlonlom.mocca.core.preferences.model.UserSettings
 
 /**
@@ -51,4 +52,16 @@ fun MainUiState.shouldUseDarkTheme(): Boolean = if (isSystemInDarkTheme()) {
     MainUiState.Loading -> isSystemInDarkTheme()
     is MainUiState.Success -> userData.useDarkTheme
   }
+}
+
+/**
+ * Returns the color contrast mode for the current UI state.<br/>
+ * Defaults to standard if loading.
+ * @return the name of the color contrast mode.
+ */
+@Composable
+@ReadOnlyComposable
+fun MainUiState.shouldUseColorContrast(): String = when (this) {
+  MainUiState.Loading -> UserColorContrasts.STANDARD.name
+  is MainUiState.Success -> userData.colorContrast
 }
