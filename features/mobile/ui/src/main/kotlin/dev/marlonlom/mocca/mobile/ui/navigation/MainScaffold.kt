@@ -6,7 +6,7 @@ package dev.marlonlom.mocca.mobile.ui.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
@@ -60,7 +60,7 @@ fun MainScaffold(
     modifier = Modifier
       .background(MaterialTheme.colorScheme.background)
       .fillMaxWidth()
-      .safeContentPadding(),
+      .systemBarsPadding(),
     navigator = navigator,
     listPane = { listPaneContent(scaffoldAction) },
     detailPane = { detailPaneContent(scaffoldAction) },
