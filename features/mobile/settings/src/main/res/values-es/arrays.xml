@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <array name="array_color_contrasts">
+    <item>Normal</item>
+    <item>Medio</item>
+    <item>Alto</item>
+  </array>
+</resources>
