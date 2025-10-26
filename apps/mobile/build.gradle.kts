@@ -13,9 +13,10 @@ dependencies {
 
   implementation(project(":features:core:calculator"))
   implementation(project(":features:core:preferences"))
-  implementation(project(":features:mobile:onboarding"))
   implementation(project(":features:mobile:calculator-input"))
   implementation(project(":features:mobile:calculator-output"))
+  implementation(project(":features:mobile:onboarding"))
+  implementation(project(":features:mobile:settings"))
   implementation(project(":features:mobile:ui"))
 
   val composeBom = platform(libs.androidx.compose.bom)
