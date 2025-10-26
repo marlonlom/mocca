@@ -4,11 +4,12 @@
  */
 package dev.marlonlom.mocca.ui.main
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,18 +17,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import dev.marlonlom.mocca.feats.settings.SettingsRoute
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.mobile.onboarding.OnboardingScreen
+import dev.marlonlom.mocca.mobile.settings.SettingsScreen
+import dev.marlonlom.mocca.mobile.settings.domain.SettingActions
 import dev.marlonlom.mocca.mobile.ui.navigation.AppDestination
 import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffold
 import dev.marlonlom.mocca.mobile.ui.navigation.MainScaffoldAction
 import dev.marlonlom.mocca.mobile.ui.theme.MoccaTheme
-import dev.marlonlom.mocca.ui.util.WindowSizeInfo
+import dev.marlonlom.mocca.mobile.ui.util.CustomTabsOpener
+import dev.marlonlom.mocca.mobile.ui.util.FeedbackOpener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Main content composable ui.
@@ -35,18 +41,14 @@ import kotlinx.coroutines.launch
  * @author marlonlom
  *
  * @param mainUiState Main activity ui state.
- * @param windowSizeInfo Window size information utility.
+ * @param onOnboarded Action for onboarding finished.
  */
 @ExperimentalMaterial3Api
 @Composable
-internal fun MainContent(
-  mainUiState: MainUiState,
-  onOnboarded: () -> Unit,
-  windowSizeInfo: WindowSizeInfo,
-  mainActions: MainActions,
-) = MoccaTheme(
+internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = MoccaTheme(
   darkTheme = mainUiState.shouldUseDarkTheme(),
   dynamicColor = mainUiState.shouldUseDynamicTheming(),
+  colorContrast = mainUiState.shouldUseColorContrast(),
 ) {
   when (mainUiState) {
     is MainUiState.Success -> {
@@ -56,7 +58,7 @@ internal fun MainContent(
             modifier = Modifier
               .fillMaxSize()
               .background(MaterialTheme.colorScheme.background)
-              .safeContentPadding(),
+              .systemBarsPadding(),
             contentAlignment = Alignment.Center,
             content = {
               OnboardingScreen { onOnboarded() }
@@ -109,12 +111,33 @@ internal fun MainContent(
                 }
 
                 AppDestination.Settings -> {
-                  SettingsRoute(
-                    windowSizeInfo = windowSizeInfo,
-                    mainActions = mainActions,
-                    onBackNavigationAction = {
-                      coroutineScope.launch { scaffoldAction.goBack() }
+                  val currentCtx = LocalContext.current
+                  SettingsScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
                     },
+                    actions = SettingActions(
+                      onOssLicencesDisplayed = {
+                        Timber.d("[MainActivity] opening oss licenses window")
+                        currentCtx.startActivity(
+                          Intent(currentCtx, OssLicensesMenuActivity::class.java),
+                        )
+                      },
+                      onOpeningExternalUrl = { urlText ->
+                        Timber.d("[MainActivity] opening external url: $urlText")
+                        if (urlText.isNotEmpty()) {
+                          CustomTabsOpener.openUrl(currentCtx, urlText)
+                        }
+                      },
+                      onFeedbackDisplayed = {
+                        Timber.d("[MainActivity] opening feedback window")
+                        FeedbackOpener.rate(currentCtx)
+                      },
+                    ),
                   )
                 }
 
@@ -151,18 +174,3 @@ internal fun MainContent(
     else -> {}
   }
 }
-
-/**
- * Main actions data class.
- *
- * @author marlonlom
- *
- * @property onOssLicencesSettingLinkClicked Action for oss licences setting clicked.
- * @property onOpeningExternalUrlSettingClicked Action for opening external url.
- * @property onFeedbackSettingLinkClicked Action for feedback setting clicked.
- */
-data class MainActions(
-  val onOssLicencesSettingLinkClicked: () -> Unit,
-  val onOpeningExternalUrlSettingClicked: (String) -> Unit,
-  val onFeedbackSettingLinkClicked: () -> Unit,
-)
