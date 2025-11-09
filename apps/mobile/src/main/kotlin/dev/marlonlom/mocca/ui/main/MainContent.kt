@@ -7,7 +7,10 @@ package dev.marlonlom.mocca.ui.main
 import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,7 +61,8 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
             modifier = Modifier
               .fillMaxSize()
               .background(MaterialTheme.colorScheme.background)
-              .systemBarsPadding(),
+              .systemBarsPadding()
+              .consumeWindowInsets(WindowInsets.navigationBars),
             contentAlignment = Alignment.Center,
             content = {
               OnboardingScreen { onOnboarded() }
@@ -93,8 +97,7 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
           MainScaffold(
             listPaneContent = { scaffoldAction -> listPane(coroutineScope, scaffoldAction) },
             detailPaneContent = { scaffoldAction ->
-              val currentDestination = scaffoldAction.currentDestination
-              when (currentDestination) {
+              when (val currentDestination = scaffoldAction.currentDestination) {
                 AppDestination.History -> {
                   Box(
                     modifier = Modifier
