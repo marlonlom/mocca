@@ -28,10 +28,10 @@ import dev.marlonlom.mocca.mobile.calculator.input.component.CalculatorTextInput
 import dev.marlonlom.mocca.mobile.calculator.input.domain.CalculatorAmountUiState
 import dev.marlonlom.mocca.mobile.calculator.input.slot.CalculatorButtonsGrid
 import dev.marlonlom.mocca.mobile.ui.component.button.WideCalculateButton
+import dev.marlonlom.mocca.mobile.ui.component.header.HeaderBar
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.HistoryIconButton
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.RatesIconButton
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.SettingsIconButton
-import dev.marlonlom.mocca.mobile.ui.component.topbar.TopBar
 
 /**
  * A composable function for the calculator input UI in landscape orientation.
@@ -62,7 +62,7 @@ internal fun LandscapeCalculatorInput(
     .consumeWindowInsets(WindowInsets.systemBars),
   horizontalAlignment = Alignment.CenterHorizontally,
 ) {
-  TopBar(
+  HeaderBar(
     title = {
       Text(
         text = stringResource(R.string.text_headline),
@@ -83,7 +83,7 @@ internal fun LandscapeCalculatorInput(
       .widthIn(max = 720.dp),
   ) {
     Column(modifier = Modifier.weight(1.0f)) {
-      CalculatorTextInput(amountText = amountUiState.formattedAmount)
+      CalculatorTextInput(amountText = { amountUiState.formattedAmount })
       WideCalculateButton(
         buttonEnabled = amountUiState.isValidRange,
         onButtonClicked = {
