@@ -7,6 +7,7 @@ package dev.marlonlom.mocca.mobile.calculator.input.component
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,7 +32,12 @@ import dev.marlonlom.mocca.mobile.calculator.input.R
  * @param amountText The text to display in the input field. Defaults to "0".
  */
 @Composable
-internal fun CalculatorTextInput(amountText: String = 0.toString()) {
+internal fun CalculatorTextInput(amountText: () -> String = { 0.toString() }) = Column(
+  modifier = Modifier
+    .fillMaxWidth()
+    .padding(horizontal = 20.dp),
+  horizontalAlignment = Alignment.CenterHorizontally,
+) {
   Text(
     modifier = Modifier
       .fillMaxWidth()
@@ -70,7 +76,7 @@ internal fun CalculatorTextInput(amountText: String = 0.toString()) {
         .height(36.dp),
       color = MaterialTheme.colorScheme.onBackground,
       textAlign = TextAlign.End,
-      text = amountText,
+      text = amountText(),
       overflow = TextOverflow.Ellipsis,
       style = MaterialTheme.typography.headlineMedium,
       minLines = 1,

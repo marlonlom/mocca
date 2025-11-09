@@ -29,7 +29,7 @@ internal fun CalculatorButtonsGrid(
 ) = FlowRow(
   modifier = Modifier
     .fillMaxWidth()
-    .padding(vertical = 10.dp),
+    .padding(vertical = 10.dp, horizontal = 20.dp),
   maxItemsInEachRow = 3,
   itemVerticalAlignment = Alignment.CenterVertically,
 ) {
