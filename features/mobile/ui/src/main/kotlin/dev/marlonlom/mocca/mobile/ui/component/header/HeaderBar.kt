@@ -16,9 +16,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays a top app header bar with optional navigation and action content.
+ *
+ * @author marlonlom
+ *
+ * @param title Composable content shown as the title.
+ * @param isMedium Whether to use a medium-style header bar.
+ * @param navigationIcon Composable for the navigation icon (e.g., back button).
+ * @param navigationActions Composables for action items on the right side.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(
+fun HeaderBar(
   title: @Composable (() -> Unit),
   isMedium: Boolean = false,
   navigationIcon: @Composable (() -> Unit) = {},
