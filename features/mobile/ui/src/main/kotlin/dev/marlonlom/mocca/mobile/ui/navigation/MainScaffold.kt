@@ -5,16 +5,22 @@
 package dev.marlonlom.mocca.mobile.ui.navigation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.currentWindowDpSize
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,15 +37,16 @@ import dev.marlonlom.mocca.mobile.ui.window.MobileWindowSize
  * @param detailPaneContent The composable content to be displayed in the detail pane.
  * @param adaptiveInfo The [WindowAdaptiveInfo] used to determine the layout. Defaults to the current window adaptive info.
  */
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+@OptIn(ExperimentalMaterial3AdaptiveApi::class, ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun MainScaffold(
   listPaneContent: @Composable (MainScaffoldAction) -> Unit,
   detailPaneContent: @Composable (MainScaffoldAction) -> Unit,
   adaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
-  val mobileWindowSize: MobileWindowSize =
-    MobileWindowSize.fromWindowSizeClass(adaptiveInfo.windowSizeClass)
+  val mobileWindowSize: MobileWindowSize = MobileWindowSize.fromWindowSizeClass(
+    WindowSizeClass.calculateFromSize(currentWindowDpSize()),
+  )
   val foldState: FoldState = FoldablePosture.getFoldState(adaptiveInfo.windowPosture)
   val navigator = rememberListDetailPaneScaffoldNavigator<AppDestination>(
     scaffoldDirective = when (mobileWindowSize) {
@@ -60,7 +67,8 @@ fun MainScaffold(
     modifier = Modifier
       .background(MaterialTheme.colorScheme.background)
       .fillMaxWidth()
-      .systemBarsPadding(),
+      .systemBarsPadding()
+      .consumeWindowInsets(WindowInsets.navigationBars),
     navigator = navigator,
     listPane = { listPaneContent(scaffoldAction) },
     detailPane = { detailPaneContent(scaffoldAction) },
