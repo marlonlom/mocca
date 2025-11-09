@@ -10,6 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+/**
+ * Adds a spacer that fills the full available width within a [ColumnScope].
+ *
+ * @author marlonlom
+ */
 @Composable
 fun ColumnScope.FullWidthSpacer() = Spacer(
   modifier = Modifier
