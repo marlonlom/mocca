@@ -43,6 +43,44 @@ enum class MobileWindowSize {
      * @param windowSizeClass The classification of the current window dimensions.
      * @return The matching [MobileWindowSize] for the given size classes.
      */
+    fun fromWindowSizeClass(
+      windowSizeClass: androidx.compose.material3.windowsizeclass.WindowSizeClass,
+    ): MobileWindowSize = windowSizeClass.let {
+      val widthClass = it.widthSizeClass
+      val heightClass = it.heightSizeClass
+      return when {
+        widthClass == androidx.compose.material3.windowsizeclass.WindowWidthSizeClass.Compact &&
+          arrayOf(
+            androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Medium,
+            androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Expanded,
+          ).contains(heightClass) -> MOBILE_PORTRAIT
+
+        arrayOf(
+          androidx.compose.material3.windowsizeclass.WindowWidthSizeClass.Medium,
+          androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Expanded,
+        ).contains(widthClass) &&
+          heightClass == androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Compact
+        -> MOBILE_LANDSCAPE
+
+        widthClass == androidx.compose.material3.windowsizeclass.WindowWidthSizeClass.Medium &&
+          arrayOf(
+            androidx.compose.material3.windowsizeclass.WindowWidthSizeClass.Medium,
+            androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Expanded,
+          ).contains(heightClass) -> TABLET_PORTRAIT
+
+        widthClass == androidx.compose.material3.windowsizeclass.WindowWidthSizeClass.Expanded &&
+          heightClass == androidx.compose.material3.windowsizeclass.WindowHeightSizeClass.Medium -> TABLET_LANDSCAPE
+
+        else -> DESKTOP
+      }
+    }
+
+    /**
+     * Maps a [WindowSizeClass] to a [MobileWindowSize] based on width and height size classes.
+     *
+     * @param windowSizeClass The classification of the current window dimensions.
+     * @return The matching [MobileWindowSize] for the given size classes.
+     */
     fun fromWindowSizeClass(windowSizeClass: WindowSizeClass): MobileWindowSize = windowSizeClass.let {
       val widthClass = it.windowWidthSizeClass
       val heightClass = it.windowHeightSizeClass
