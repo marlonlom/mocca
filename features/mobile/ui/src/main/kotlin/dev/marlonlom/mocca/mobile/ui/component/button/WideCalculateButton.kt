@@ -19,6 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.mobile.ui.R
 
+/**
+ * Displays a wide calculate button.
+ *
+ * @author marlonlom
+ *
+ * @param buttonEnabled Whether the button is enabled for user interaction.
+ * @param onButtonClicked Callback invoked when the button is clicked.
+ */
 @Composable
 fun WideCalculateButton(buttonEnabled: Boolean, onButtonClicked: () -> Unit) = Row(
   modifier = Modifier
@@ -28,7 +36,8 @@ fun WideCalculateButton(buttonEnabled: Boolean, onButtonClicked: () -> Unit) = R
   Button(
     modifier = Modifier
       .weight(1.0f)
-      .padding(4.dp),
+      .padding(4.dp)
+      .padding(horizontal = 20.dp),
     enabled = buttonEnabled,
     onClick = onButtonClicked,
     border = BorderStroke(
