@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.widthIn
@@ -37,8 +38,8 @@ import dev.marlonlom.mocca.mobile.settings.component.SettingLink
 import dev.marlonlom.mocca.mobile.settings.component.SettingSwitch
 import dev.marlonlom.mocca.mobile.settings.domain.SettingActions
 import dev.marlonlom.mocca.mobile.settings.slot.SettingsGroupSlot
+import dev.marlonlom.mocca.mobile.ui.component.header.HeaderBar
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.ExitIconButton
-import dev.marlonlom.mocca.mobile.ui.component.topbar.TopBar
 import dev.marlonlom.mocca.mobile.ui.util.GeneralUtil
 import dev.marlonlom.mocca.mobile.ui.window.MobileWindowSize
 import dev.marlonlom.mocca.mobile.ui.R as mobileUiR
@@ -74,7 +75,7 @@ internal fun PortraitSettings(
     .consumeWindowInsets(WindowInsets.systemBars),
   horizontalAlignment = Alignment.CenterHorizontally,
 ) {
-  TopBar(
+  HeaderBar(
     title = { Text(text = stringResource(mobileUiR.string.text_settings)) },
     isMedium = mobileWindowSize != MobileWindowSize.MOBILE_LANDSCAPE,
     navigationIcon = {
