@@ -67,7 +67,7 @@ androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.3.0"
 androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.4.1"
 
 #[libraries] gradle convention plugin
-android-gradlePlugin = "com.android.tools.build:gradle:8.13.1"
+android-gradlePlugin = "com.android.tools.build:gradle:8.13.2"
 kotlin-gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.21"
 compose-compiler-gradlePlugin = "org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.2.21"
 spotless-gradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:8.1.0"
