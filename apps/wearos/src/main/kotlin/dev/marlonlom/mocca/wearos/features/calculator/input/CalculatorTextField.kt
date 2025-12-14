@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -36,8 +36,8 @@ fun CalculatorTextField(inputValue: String) = Row(
     .padding(vertical = 2.dp, horizontal = 24.dp),
   verticalAlignment = Alignment.Bottom,
 ) {
-  val moneyInputTitle = LocalContext.current.getString(R.string.text_calculator_input_money_amount)
-  val currencyTitle = LocalContext.current.getString(R.string.text_calculator_input_currency)
+  val moneyInputTitle = LocalResources.current.getString(R.string.text_calculator_input_money_amount)
+  val currencyTitle = LocalResources.current.getString(R.string.text_calculator_input_currency)
 
   Column(
     modifier = Modifier.fillMaxWidth(),
