@@ -28,7 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.core.preferences.model.UserSettings
@@ -134,17 +134,17 @@ internal fun PortraitSettings(
     SettingsGroupSlot(
       headerText = R.string.text_settings_legal,
       content = {
-        val context = LocalContext.current
+        val resources = LocalResources.current
         SettingLink(
           title = stringResource(R.string.text_privacy_policy),
           onClicked = {
-            actions.onOpeningExternalUrl(context.getString(R.string.url_privacy_policy))
+            actions.onOpeningExternalUrl(resources.getString(R.string.url_privacy_policy))
           },
         )
         SettingLink(
           title = stringResource(R.string.text_terms_conditions),
           onClicked = {
-            actions.onOpeningExternalUrl(context.getString(R.string.utl_terms_conditions))
+            actions.onOpeningExternalUrl(resources.getString(R.string.utl_terms_conditions))
           },
         )
       },
@@ -183,7 +183,7 @@ internal fun PortraitSettings(
         )
         SettingLink(
           title = stringResource(R.string.text_app_version),
-          subtitle = GeneralUtil.getAppVersionText(LocalContext.current),
+          subtitle = GeneralUtil.getAppVersionText(LocalResources.current),
           icon = {
             Icon(
               imageVector = Icons.TwoTone.Info,
