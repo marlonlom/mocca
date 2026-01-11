@@ -50,7 +50,7 @@ internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, 
       modifier = Modifier
         .fillMaxHeight()
         .widthIn(max = 720.dp),
-      verticalAlignment = Alignment.CenterVertically
+      verticalAlignment = Alignment.CenterVertically,
     ) {
       Column(modifier = Modifier.weight(1.0f)) {
         FullWidthSpacer()
@@ -65,7 +65,7 @@ internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, 
         modifier = Modifier
           .weight(1.0f)
           .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.SpaceAround
+        verticalArrangement = Arrangement.SpaceAround,
       ) {
         if (calculationState.isSuccess().not()) {
           CalculationOutputTitle(uiState = calculationState)
