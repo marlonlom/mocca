@@ -5,6 +5,7 @@
 package dev.marlonlom.mocca.mobile.calculator.output.layout
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -49,6 +50,7 @@ internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, 
       modifier = Modifier
         .fillMaxHeight()
         .widthIn(max = 720.dp),
+      verticalAlignment = Alignment.CenterVertically
     ) {
       Column(modifier = Modifier.weight(1.0f)) {
         FullWidthSpacer()
@@ -63,9 +65,8 @@ internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, 
         modifier = Modifier
           .weight(1.0f)
           .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceAround
       ) {
-        FullWidthSpacer()
-
         if (calculationState.isSuccess().not()) {
           CalculationOutputTitle(uiState = calculationState)
           CalculationOutputDescription(uiState = calculationState)
@@ -73,20 +74,17 @@ internal fun LandscapeCalculatorOutput(calculationState: CalculatorOutputState, 
 
         if (calculationState.isSuccess()) {
           val successState = calculationState as CalculatorOutputState.WithSuccess
-          CalculationSuccessDetailsSlot(uiState = successState)
           FullWidthSpacer()
+          CalculationSuccessDetailsSlot(uiState = successState)
         }
 
         if (calculationState.isDefault().not()) {
+          FullWidthSpacer()
           CalculationOutputCloseButton(
             uiState = calculationState,
             buttonEnabled = calculationState.isDefault().not(),
             onButtonClicked = { onCloseButtonClicked() },
           )
-        }
-
-        if (calculationState.isSuccess().not()) {
-          FullWidthSpacer()
         }
       }
     }
