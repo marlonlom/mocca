@@ -9,8 +9,19 @@ import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
+/**
+ * Configures Jetpack Compose for an Android project.
+ *
+ * This function enables the Compose build feature and adds the necessary
+ * dependencies—including the BOM, UI, and Tooling—using the project's version catalog.
+ *
+ * @author marlonlom
+ *
+ * @param extension The Android [CommonExtension] to be configured (Application or Library).
+ *
+ */
 internal fun Project.configureAndroidCompose(
-  extension: CommonExtension<*, *, *, *, *, *>,
+  extension: CommonExtension,
 ) {
   val vc = versionCatalog()
   with(extension) {

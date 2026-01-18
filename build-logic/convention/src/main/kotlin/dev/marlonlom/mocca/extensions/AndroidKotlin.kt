@@ -13,8 +13,18 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
+/**
+ * Configures common Kotlin and JVM settings for Android modules.
+ *
+ * This function standardizes the Kotlin compiler options, JVM target versions,
+ * and Java toolchain settings across Application and Library extensions.
+ *
+ * @author marlonlom
+ *
+ * @param extension The Android [CommonExtension] to be configured with Kotlin-specific settings.
+ */
 internal fun Project.configureAndroidKotlin(
-  extension: CommonExtension<*, *, *, *, *, *>
+  extension: CommonExtension
 ) {
   with(extension) {
 
