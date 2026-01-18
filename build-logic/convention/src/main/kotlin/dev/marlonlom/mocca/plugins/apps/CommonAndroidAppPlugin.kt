@@ -24,7 +24,6 @@ class CommonAndroidAppPlugin : Plugin<Project> {
     with(project) {
       with(pluginManager) {
         apply("com.android.application")
-        apply("kotlin-android")
         apply("mocca.koin")
         apply("mocca.spotless")
       }
