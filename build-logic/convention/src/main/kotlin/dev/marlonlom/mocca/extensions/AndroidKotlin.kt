@@ -17,10 +17,9 @@ internal fun Project.configureAndroidKotlin(
   extension: CommonExtension<*, *, *, *, *, *>
 ) {
   with(extension) {
-    compileOptions {
-      sourceCompatibility = Config.jvm.javaVersion
-      targetCompatibility = Config.jvm.javaVersion
-    }
+
+    compileOptions.sourceCompatibility = Config.jvm.javaVersion
+    compileOptions.targetCompatibility = Config.jvm.javaVersion
 
     packaging.resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
 
