@@ -9,7 +9,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
   id("com.android.library")
-  id("kotlin-android")
   id("mocca.compose.lib")
 }
 
