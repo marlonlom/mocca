@@ -1,7 +1,7 @@
 [versions]
 agp = "9.0.0"
 kotlin = "2.3.0"
-spotless = "8.1.0"
+spotless = "8.2.0"
 
 [libraries]
 # implementation
