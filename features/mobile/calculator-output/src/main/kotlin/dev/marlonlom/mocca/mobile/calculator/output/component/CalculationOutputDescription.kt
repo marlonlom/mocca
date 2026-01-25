@@ -26,6 +26,7 @@ import dev.marlonlom.mocca.mobile.calculator.output.domain.CalculatorOutputState
 internal fun CalculationOutputDescription(uiState: CalculatorOutputState) {
   val descriptionText = when {
     uiState.isSuccess() -> R.string.text_review_success_detail
+
     uiState.isFailure() -> {
       val errorTextRes = when ((uiState as CalculatorOutputState.WithFailure).exception) {
         is CalculationException.AboveQuantityRange -> R.string.text_above_range_error
