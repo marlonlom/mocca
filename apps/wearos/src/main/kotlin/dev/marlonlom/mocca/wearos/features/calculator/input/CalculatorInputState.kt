@@ -52,7 +52,9 @@ class CalculatorInputState(initialText: String = TEXT_ZERO) {
   fun update(digitText: String) {
     textValue = when {
       textValue == TEXT_ZERO -> if (isDeleteOrDoneButtonText(digitText)) TEXT_ZERO else digitText
+
       digitText == "⌫" -> if (textValue.length == 1) TEXT_ZERO else textValue.substring(0, textValue.length - 1)
+
       else -> {
         textValue.plus(
           if ((textValue.length >= 7).or(isDeleteOrDoneButtonText(digitText))) {
