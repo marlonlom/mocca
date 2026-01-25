@@ -53,6 +53,7 @@ class CalculatorInputViewModel(private val amountRange: ClosedFloatingPointRange
       }
 
       current == ZERO -> input
+
       else -> {
         val nextAmount = current + input
         if (nextAmount.length >= MAX_DIGITS) current else nextAmount
