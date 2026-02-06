@@ -68,8 +68,8 @@ androidx-benchmark-macro-junit4 = "androidx.benchmark:benchmark-macro-junit4:1.4
 
 #[libraries] gradle convention plugin
 android-gradlePlugin = "com.android.tools.build:gradle:9.0.0"
-kotlin-gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0"
-compose-compiler-gradlePlugin = "org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.3.0"
+kotlin-gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10"
+compose-compiler-gradlePlugin = "org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.3.10"
 spotless-gradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:8.2.0"
 
 [plugins]
