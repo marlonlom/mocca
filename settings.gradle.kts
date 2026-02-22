@@ -23,6 +23,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mocca"
 include(
+  ":features:core:calculator",
+  ":features:core:database",
+  ":features:core:preferences",
+  ":features:core:ui"
+)
+include(
   ":apps:mobile",
   ":features:mobile:calculator-input",
   ":features:mobile:calculator-output",
@@ -30,7 +36,6 @@ include(
   ":features:mobile:settings",
   ":features:mobile:ui"
 )
-include(":apps:wearos")
 include(":benchmarks:macro:mobile")
+include(":apps:wearos")
 include(":benchmarks:macro:wearos")
-include(":features:core:calculator", ":features:core:preferences", ":features:core:ui")
