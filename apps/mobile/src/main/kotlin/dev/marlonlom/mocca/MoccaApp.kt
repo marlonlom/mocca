@@ -32,5 +32,4 @@ class MoccaApp : Application() {
       modules(appKoinModule)
     }
   }
-
 }
