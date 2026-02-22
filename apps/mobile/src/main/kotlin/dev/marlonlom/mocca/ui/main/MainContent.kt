@@ -5,6 +5,7 @@
 package dev.marlonlom.mocca.ui.main
 
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
@@ -36,7 +37,6 @@ import dev.marlonlom.mocca.mobile.ui.util.CustomTabsOpener
 import dev.marlonlom.mocca.mobile.ui.util.FeedbackOpener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 /**
  * Main content composable ui.
@@ -125,19 +125,19 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
                     },
                     actions = SettingActions(
                       onOssLicencesDisplayed = {
-                        Timber.d("[MainActivity] opening oss licenses window")
+                        Log.d("MainContent", "Opening oss licenses window")
                         currentCtx.startActivity(
                           Intent(currentCtx, OssLicensesMenuActivity::class.java),
                         )
                       },
                       onOpeningExternalUrl = { urlText ->
-                        Timber.d("[MainActivity] opening external url: $urlText")
+                        Log.d("MainContent", "Opening external url: $urlText")
                         if (urlText.isNotEmpty()) {
                           CustomTabsOpener.openUrl(currentCtx, urlText)
                         }
                       },
                       onFeedbackDisplayed = {
-                        Timber.d("[MainActivity] opening feedback window")
+                        Log.d("MainContent", "Opening feedback window")
                         FeedbackOpener.rate(currentCtx)
                       },
                     ),

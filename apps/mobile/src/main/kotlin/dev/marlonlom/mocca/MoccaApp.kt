@@ -10,7 +10,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import timber.log.Timber
 
 /**
  * Mocca application class.
@@ -23,7 +22,6 @@ class MoccaApp : Application() {
   override fun onCreate() {
     super.onCreate()
     this.setupKoin()
-    setupTimber()
   }
 
   /** Setup Koin module context feature. */
@@ -35,10 +33,4 @@ class MoccaApp : Application() {
     }
   }
 
-  /** Setup timber logging feature. */
-  private fun setupTimber() {
-    if (BuildConfig.DEBUG) {
-      Timber.plant(Timber.DebugTree())
-    }
-  }
 }
