@@ -18,11 +18,14 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 internal class SuccessfulCalculationHistoryLocalDataSourceTest {
 
   private lateinit var dataSource: LocalDataSource
   private val calculationHistoryDao: SuccessfulCalculationHistoryDao = mockk()
+  private val isoFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
 
   @Before
   fun setup() {
@@ -37,7 +40,7 @@ internal class SuccessfulCalculationHistoryLocalDataSourceTest {
       fixedFee = 10,
       variableFee = 5,
       total = 115,
-      createdAt = "2026-02-22T12:00:00",
+      createdAt = isoFormatter.parse("2026-02-22T12:00:00"),
     )
     coEvery { calculationHistoryDao.insert(any()) } returns Unit
     every { calculationHistoryDao.getAllSuccessCalculationHistory() } returns flowOf(listOf(calculation))
