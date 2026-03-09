@@ -65,7 +65,7 @@ internal fun LandscapeCalculatorInput(
   HeaderBar(
     title = {
       Text(
-        text = stringResource(R.string.text_headline),
+        text = stringResource(R.string.text_input_title),
         overflow = TextOverflow.Ellipsis,
         maxLines = 1,
       )

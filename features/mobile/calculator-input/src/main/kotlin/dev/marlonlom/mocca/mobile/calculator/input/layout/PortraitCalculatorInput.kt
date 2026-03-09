@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
@@ -63,7 +62,7 @@ internal fun PortraitCalculatorInput(
   HeaderBar(
     title = {
       Text(
-        text = stringResource(R.string.text_headline),
+        text = stringResource(R.string.text_input_title),
       )
     },
     isMedium = true,
