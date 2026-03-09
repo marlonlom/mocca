@@ -5,40 +5,6 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-  <color name="brand_akaroa">#FFD5C5A1</color>
-  <color name="brand_armadillo">#FF4C4639</color>
-  <color name="brand_aths_special">#FFEBE1CF</color>
-  <color name="brand_axolotl">#FF47664A</color>
-  <color name="brand_black">#FF000000</color>
-  <color name="brand_celtic">#FF19361F</color>
-  <color name="brand_cinnamon">#FF745B00</color>
-  <color name="brand_cola">#FF241A00</color>
-  <color name="brand_cola_2">#FF3D2F00</color>
-  <color name="brand_cornflower_lilac">#FFFFB4AB</color>
-  <color name="brand_dune">#FF33302A</color>
-  <color name="brand_english_holly">#FF03210B</color>
-  <color name="brand_fringy_flower">#FFC8ECC9</color>
-  <color name="brand_jacko_bean">#FF231B04</color>
-  <color name="brand_lisbon_brown">#FF50462A</color>
-  <color name="brand_merino">#FFF7F0E7</color>
-  <color name="brand_mikado">#FF392F15</color>
-  <color name="brand_pablo">#FF7E7667</color>
-  <color name="brand_pale_oyster">#FF989080</color>
-  <color name="brand_peach_schnapps">#FFFFDAD6</color>
-  <color name="brand_pearl_bush">#FFE8E1D9</color>
-  <color name="brand_ronchi">#FFEBC248</color>
-  <color name="brand_rosewood">#FF690005</color>
-  <color name="brand_saddle_brown">#FF584400</color>
-  <color name="brand_salomie">#FFFFE08C</color>
-  <color name="brand_sangria">#FF93000A</color>
-  <color name="brand_sidecar">#FFF2E1BB</color>
-  <color name="brand_soft_amber">#FFCFC5B4</color>
-  <color name="brand_spring_rain">#FFADCFAE</color>
-  <color name="brand_temptress">#FF410002</color>
-  <color name="brand_thunderbird">#FFBA1A1A</color>
-  <color name="brand_tobacco_brown">#FF695D3F</color>
-  <color name="brand_tom_thumb">#FF304D34</color>
   <color name="brand_tutu">#FFFFFBFF</color>
-  <color name="brand_white">#FFFFFFFF</color>
   <color name="brand_zeus">#FF1E1B16</color>
 </resources>

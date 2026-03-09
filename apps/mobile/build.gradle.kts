@@ -12,7 +12,9 @@ plugins {
 dependencies {
 
   implementation(project(":features:core:calculator"))
+  implementation(project(":features:core:database"))
   implementation(project(":features:core:preferences"))
+  implementation(project(":features:mobile:calculator-history"))
   implementation(project(":features:mobile:calculator-input"))
   implementation(project(":features:mobile:calculator-output"))
   implementation(project(":features:mobile:onboarding"))
