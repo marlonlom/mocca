@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_amount_with_fee" translatable="false">Amount: $%1$d + Fee: $%2$d</string>
+  <string name="text_amount_total" translatable="false">$%1$,d</string>
+  <string name="text_clear_history">Clear history</string>
+  <string name="text_delete_history">Delete</string>
+  <string name="text_empty_history_title">Nothing here</string>
+  <string name="text_empty_history_detail">Start calculating and your history will show up here.</string>
+</resources>
