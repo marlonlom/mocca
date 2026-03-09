@@ -4,7 +4,9 @@
  */
 package dev.marlonlom.mocca.di
 
+import dev.marlonlom.mocca.core.database.di.databaseKoinModule
 import dev.marlonlom.mocca.core.preferences.di.preferencesKoinModule
+import dev.marlonlom.mocca.mobile.calculator.history.di.calculatorHistoryKoinModule
 import dev.marlonlom.mocca.mobile.calculator.input.di.calculatorInputKoinModule
 import dev.marlonlom.mocca.mobile.calculator.output.di.calculatorOutputKoinModule
 import dev.marlonlom.mocca.mobile.settings.di.settingsMobileKoinModule
@@ -18,9 +20,11 @@ import org.koin.dsl.module
  * @author marlonlom
  */
 val appKoinModule = module {
+  includes(databaseKoinModule)
   includes(preferencesKoinModule)
   includes(calculatorInputKoinModule)
   includes(calculatorOutputKoinModule)
+  includes(calculatorHistoryKoinModule)
   includes(settingsMobileKoinModule)
   viewModelOf(::MainViewModel)
 }
