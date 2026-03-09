@@ -6,7 +6,6 @@ package dev.marlonlom.mocca.mobile.calculator.input
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.marlonlom.mocca.mobile.calculator.input.domain.CalculatorInputViewModel
 import dev.marlonlom.mocca.mobile.calculator.input.layout.LandscapeCalculatorInput
@@ -32,7 +31,6 @@ fun CalculatorInputScreen(
   onHistoryButtonClicked: () -> Unit,
   onRatesButtonClicked: () -> Unit,
   onSettingsButtonClicked: () -> Unit,
-  modifier: Modifier = Modifier,
   viewModel: CalculatorInputViewModel = koinViewModel(),
 ) {
   val amountUiState by viewModel.amountUiState.collectAsStateWithLifecycle()
