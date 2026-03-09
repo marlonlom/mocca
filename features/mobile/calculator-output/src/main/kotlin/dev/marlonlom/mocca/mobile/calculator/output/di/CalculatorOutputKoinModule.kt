@@ -7,6 +7,7 @@ package dev.marlonlom.mocca.mobile.calculator.output.di
 import androidx.lifecycle.SavedStateHandle
 import dev.marlonlom.mocca.calculator.Calculator
 import dev.marlonlom.mocca.calculator.RequestedQuantity
+import dev.marlonlom.mocca.core.database.datasource.LocalDataSource
 import dev.marlonlom.mocca.mobile.calculator.output.domain.CalculatorOutputViewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -21,6 +22,7 @@ val calculatorOutputKoinModule = module {
     CalculatorOutputViewModel(
       savedStateHandle = SavedStateHandle(),
       doCalculation = { Calculator.calculate(RequestedQuantity(orderValue = it)) },
+      historyDataSource = get<LocalDataSource>(),
     )
   } bind CalculatorOutputViewModel::class
 }
