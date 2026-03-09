@@ -9,10 +9,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.marlonlom.mocca.calculator.model.CalculationResult
 import dev.marlonlom.mocca.calculator.model.OrderResponse
+import dev.marlonlom.mocca.core.database.datasource.LocalDataSource
+import dev.marlonlom.mocca.core.database.entities.SuccessfulCalculationHistory
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import java.util.Date
 
 /**
  * A [ViewModel] that handles the business logic and UI state for the calculation output screen.
@@ -28,6 +32,7 @@ import kotlinx.coroutines.flow.stateIn
  */
 class CalculatorOutputViewModel(
   private val savedStateHandle: SavedStateHandle,
+  private val historyDataSource: LocalDataSource,
   private val doCalculation: (Double) -> OrderResponse<CalculationResult>,
 ) : ViewModel() {
 
@@ -45,10 +50,13 @@ class CalculatorOutputViewModel(
       return@map CalculatorOutputState.Empty
     }
     return@map when (val orderResponse = doCalculation(amountText.toDouble())) {
-      is OrderResponse.Success<CalculationResult> -> CalculatorOutputState.WithSuccess(
-        amount = amountText,
-        response = orderResponse.item,
-      )
+      is OrderResponse.Success<CalculationResult> -> {
+        saveForHistory(amountText, orderResponse.item)
+        CalculatorOutputState.WithSuccess(
+          amount = amountText,
+          response = orderResponse.item,
+        )
+      }
 
       is OrderResponse.Failure -> CalculatorOutputState.WithFailure(
         amount = amountText,
@@ -77,6 +85,28 @@ class CalculatorOutputViewModel(
    */
   fun onReset() {
     savedStateHandle[UI_STATE_KEY] = NO_AMOUNT
+  }
+
+  /**
+   * Saves a successful calculation entry to history.
+   * The operation is executed asynchronously within [viewModelScope].
+   *
+   * @param amountText The original amount as a string.
+   * @param calculationResult The calculation result containing fees and total.
+   *
+   */
+  private fun saveForHistory(amountText: String, calculationResult: CalculationResult) {
+    viewModelScope.launch {
+      historyDataSource.insertSuccessCalculationHistory(
+        SuccessfulCalculationHistory(
+          createdAt = Date(),
+          amount = amountText.toLong(),
+          fixedFee = calculationResult.fixedFee.toLong(),
+          variableFee = calculationResult.variableFee.toLong(),
+          total = calculationResult.total.toLong(),
+        ),
+      )
+    }
   }
 
   /**
