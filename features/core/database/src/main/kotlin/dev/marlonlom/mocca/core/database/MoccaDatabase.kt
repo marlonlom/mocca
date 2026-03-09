@@ -8,6 +8,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import dev.marlonlom.mocca.core.database.converters.DateConverters
 import dev.marlonlom.mocca.core.database.dao.SuccessfulCalculationHistoryDao
 import dev.marlonlom.mocca.core.database.entities.SuccessfulCalculationHistory
 
@@ -20,9 +22,10 @@ import dev.marlonlom.mocca.core.database.entities.SuccessfulCalculationHistory
   entities = [
     SuccessfulCalculationHistory::class,
   ],
-  version = 1,
+  version = 2,
   exportSchema = false,
 )
+@TypeConverters(DateConverters::class)
 abstract class MoccaDatabase : RoomDatabase() {
 
   /**
