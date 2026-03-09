@@ -12,18 +12,16 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import dev.marlonlom.mocca.mobile.calculator.history.CalculatorHistoryScreen
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.mobile.onboarding.OnboardingScreen
@@ -99,18 +97,15 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
             detailPaneContent = { scaffoldAction ->
               when (val currentDestination = scaffoldAction.currentDestination) {
                 AppDestination.History -> {
-                  Box(
-                    modifier = Modifier
-                      .fillMaxSize()
-                      .background(MaterialTheme.colorScheme.surfaceVariant)
-                      .padding(20.dp),
-                    contentAlignment = Alignment.Center,
-                  ) {
-                    Text(
-                      text = "${scaffoldAction.mobileWindowSize}\n${scaffoldAction.foldState}",
-                      color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                  }
+                  CalculatorHistoryScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
+                    },
+                  )
                 }
 
                 AppDestination.Settings -> {
