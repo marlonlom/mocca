@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_clear_history">Limpiar historial</string>
+  <string name="text_delete_history">Borrar</string>
+  <string name="text_empty_history_title">No hay nada aquí</string>
+  <string name="text_empty_history_detail">Empieza a calcular y tu historial aparecerá aquí.</string>
+</resources>
