@@ -28,7 +28,7 @@ androidx-compose-bom = "2026.03.01"
 navigation-compose = "2.9.7"
 m3-adaptive = "1.2.0"
 m3-adaptive-suite = "1.4.0"
-wearos-compose = "1.6.0"
+wearos-compose = "1.6.1"
 
 # Koin & Third Party
 koin-bom = "4.2.1"
