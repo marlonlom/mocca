@@ -31,7 +31,7 @@ m3-adaptive-suite = "1.4.0"
 wearos-compose = "1.6.0"
 
 # Koin & Third Party
-koin-bom = "4.2.0"
+koin-bom = "4.2.1"
 oss-plugin = "0.10.9"
 oss-services = "17.4.0"
 google-play-wearable = "19.0.0"
