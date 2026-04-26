@@ -7,7 +7,7 @@
 # Infrastructure & Tooling
 agp = "9.2.0"
 kotlin = "2.3.21"
-ksp = "2.3.6"
+ksp = "2.3.7"
 spotless = "8.4.0"
 
 # AndroidX Core & UI
@@ -32,8 +32,8 @@ wearos-compose = "1.6.1"
 
 # Koin & Third Party
 koin-bom = "4.2.1"
-oss-plugin = "0.10.9"
-oss-services = "17.5.0"
+oss-plugin = "0.11.0"
+oss-services = "17.5.1"
 google-play-wearable = "19.0.0"
 
 # Testing & Benchmark
