@@ -34,7 +34,7 @@ wearos-compose = "1.6.1"
 koin-bom = "4.2.1"
 oss-plugin = "0.11.0"
 oss-services = "17.5.1"
-google-play-wearable = "19.0.0"
+google-play-wearable = "20.0.1"
 
 # Testing & Benchmark
 junit = "4.13.2"
