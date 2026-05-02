@@ -133,24 +133,21 @@ internal fun CalculationHistoryItem(
  * @param modifier Optional [Modifier] for styling and layout.
  */
 @Composable
-private fun DateWithLine(
-  text: String,
-  modifier: Modifier = Modifier
-) = Row(
+private fun DateWithLine(text: String, modifier: Modifier = Modifier) = Row(
   modifier = modifier.fillMaxWidth(),
-  verticalAlignment = Alignment.CenterVertically
+  verticalAlignment = Alignment.CenterVertically,
 ) {
   Text(
     modifier = Modifier.padding(end = 8.dp),
     maxLines = 1,
     style = MaterialTheme.typography.labelSmall,
     color = MaterialTheme.colorScheme.onBackground,
-    text = text
+    text = text,
   )
 
   HorizontalDivider(
     modifier = Modifier.weight(1f),
     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.25f),
-    thickness = 1.dp
+    thickness = 1.dp,
   )
 }

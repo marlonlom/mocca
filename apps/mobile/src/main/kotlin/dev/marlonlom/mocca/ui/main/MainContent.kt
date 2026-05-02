@@ -124,7 +124,9 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
                     actions = SettingActions(
                       onOssLicencesDisplayed = {
                         Log.d("MainContent", "Opening oss licenses window")
-                        OssLicensesMenuActivity.setActivityTitle(currentRes.getString(R.string.text_open_source_licenses))
+                        OssLicensesMenuActivity.setActivityTitle(
+                          currentRes.getString(R.string.text_open_source_licenses),
+                        )
                         currentCtx.startActivity(
                           Intent(currentCtx, OssLicensesMenuActivity::class.java),
                         )
