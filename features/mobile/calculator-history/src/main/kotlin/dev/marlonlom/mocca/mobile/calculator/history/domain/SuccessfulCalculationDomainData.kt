@@ -46,16 +46,22 @@ data class SuccessfulCalculationDomainData(
    * - If the date is today, returns only the time (`HH:mm`).
    * - Otherwise, returns day, abbreviated month, and time (`dd MMM, HH:mm`).
    *
-   * @param locale Locale to use for month names. Defaults to [Locale.US].
+   * @param locale Locale to use for month names. Defaults to [Locale.getDefault].
    * @return Formatted date string.
    */
   fun formattedCreationDate(locale: Locale = Locale.getDefault()): String {
     val calendar = Calendar.getInstance(TimeZone.getDefault())
     calendar.time = createdAt
-    val today = Calendar.getInstance(TimeZone.getDefault())
+    val today = Calendar.getInstance(locale)
     val isToday = calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
       calendar.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
-    val pattern = if (isToday) "HH:mm" else "dd MMM, HH:mm"
+    val isSameYear = calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+      calendar.get(Calendar.DAY_OF_YEAR) != today.get(Calendar.DAY_OF_YEAR)
+    val pattern = when {
+      isToday -> "HH:mm"
+      isSameYear -> "dd MMM, HH:mm"
+      else -> "dd MMM ''yy, HH:mm"
+    }
     val formatter = SimpleDateFormat(pattern, locale).apply {
       timeZone = TimeZone.getDefault()
     }
