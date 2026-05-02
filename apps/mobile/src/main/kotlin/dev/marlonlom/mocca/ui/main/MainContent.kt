@@ -20,7 +20,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
+import dev.marlonlom.mocca.R
 import dev.marlonlom.mocca.mobile.calculator.history.CalculatorHistoryScreen
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.calculator.output.CalculatorOutputScreen
@@ -110,6 +112,7 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
 
                 AppDestination.Settings -> {
                   val currentCtx = LocalContext.current
+                  val currentRes = LocalResources.current
                   SettingsScreen(
                     mobileWindowSize = scaffoldAction.mobileWindowSize,
                     showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
@@ -121,7 +124,9 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
                     actions = SettingActions(
                       onOssLicencesDisplayed = {
                         Log.d("MainContent", "Opening oss licenses window")
-                        OssLicensesMenuActivity.setActivityTitle("Legal Notices")
+                        OssLicensesMenuActivity.setActivityTitle(
+                          currentRes.getString(R.string.text_open_source_licenses),
+                        )
                         currentCtx.startActivity(
                           Intent(currentCtx, OssLicensesMenuActivity::class.java),
                         )

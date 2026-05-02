@@ -5,6 +5,5 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-  <string name="app_name" translatable="false">Mocca</string>
-  <string name="text_open_source_licenses">Open source licenses</string>
+  <string name="text_open_source_licenses">Licencias de código abierto</string>
 </resources>
