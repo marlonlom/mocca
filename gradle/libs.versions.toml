@@ -7,7 +7,7 @@
 # Infrastructure & Tooling
 agp = "9.2.1"
 kotlin = "2.3.21"
-ksp = "2.3.8"
+ksp = "2.3.9"
 spotless = "8.5.1"
 
 # AndroidX Core & UI
