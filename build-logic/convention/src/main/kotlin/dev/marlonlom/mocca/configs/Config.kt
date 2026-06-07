@@ -44,8 +44,8 @@ object Config {
  */
 data class AndroidConfig(
   val minSdkVersion: Int,
-  val targetSdkVersion: Int = 36,
-  val compileSdkVersion: Int = 36,
+  val targetSdkVersion: Int = 37,
+  val compileSdkVersion: Int = 37,
   val applicationId: String = "dev.marlonlom.mocca",
   val versionCode: Int = 1,
   val versionName: String = "1.0.0",
