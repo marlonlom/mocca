@@ -5,6 +5,7 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+  <string name="text_amount_with_fee">Cantidad: $%1$d + comisión: $%2$d</string>
   <string name="text_clear_history">Limpiar historial</string>
   <string name="text_delete_history">Borrar</string>
   <string name="text_empty_history_title">No hay nada aquí</string>
