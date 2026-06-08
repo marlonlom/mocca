@@ -5,7 +5,7 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-  <string name="text_amount_with_fee" translatable="false">Amount: $%1$d + Fee: $%2$d</string>
+  <string name="text_amount_with_fee">Amount: $%1$d + fee: $%2$d</string>
   <string name="text_amount_total" translatable="false">$%1$,d</string>
   <string name="text_clear_history">Clear history</string>
   <string name="text_delete_history">Delete</string>
