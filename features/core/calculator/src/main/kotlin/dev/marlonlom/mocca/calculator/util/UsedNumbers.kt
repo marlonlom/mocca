@@ -12,7 +12,7 @@ package dev.marlonlom.mocca.calculator.util
 internal object UsedNumbers {
   const val ZERO = 0.0
   const val ONE = 1.0
-  private const val FOUR = 4.0
+  const val FOUR = 4.0
   const val ONE_HUNDRED = 100
 
   const val MIN_VALUE = 5_000.0
