@@ -42,6 +42,14 @@ sealed class AppDestination : Parcelable {
   data object History : AppDestination()
 
   /**
+   * Destination representing the Rates screen.
+   *
+   * @author marlonlom
+   */
+  @Parcelize
+  data object Rates : AppDestination()
+
+  /**
    * Destination representing the Settings screen.
    *
    * @author marlonlom
