@@ -24,8 +24,8 @@ import dev.marlonlom.mocca.mobile.calculator.input.domain.CalculatorAmountUiStat
 import dev.marlonlom.mocca.mobile.calculator.input.slot.CalculatorButtonsGrid
 import dev.marlonlom.mocca.mobile.ui.component.button.WideCalculateButton
 import dev.marlonlom.mocca.mobile.ui.component.header.HeaderBar
+import dev.marlonlom.mocca.mobile.ui.component.iconbutton.FeesIconButton
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.HistoryIconButton
-import dev.marlonlom.mocca.mobile.ui.component.iconbutton.RatesIconButton
 import dev.marlonlom.mocca.mobile.ui.component.iconbutton.SettingsIconButton
 import dev.marlonlom.mocca.mobile.ui.component.spacer.FullWidthSpacer
 
@@ -68,7 +68,7 @@ internal fun PortraitCalculatorInput(
     isMedium = true,
     navigationActions = {
       HistoryIconButton(onButtonClicked = { onHistoryButtonClicked() })
-      RatesIconButton(onButtonClicked = { onRatesButtonClicked() })
+      FeesIconButton(onButtonClicked = { onRatesButtonClicked() })
       SettingsIconButton(onButtonClicked = { onSettingsButtonClicked() })
     },
   )
