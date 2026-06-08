@@ -33,6 +33,7 @@ include(
   ":features:mobile:calculator-input",
   ":features:mobile:calculator-output",
   ":features:mobile:calculator-history",
+  ":features:mobile:calculator-fees",
   ":features:mobile:onboarding",
   ":features:mobile:settings",
   ":features:mobile:ui"

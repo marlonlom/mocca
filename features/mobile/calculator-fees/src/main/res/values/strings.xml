@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_fee_amount" translatable="false">$%1$,.0f</string>
+  <string name="text_price_range">Between $%1$,.0f and $%2$,.0f</string>
+  <string name="text_fee_percentage">%1$.0f%% of the value</string>
+  <string name="text_empty_fees_title">No rates available</string>
+  <string name="text_empty_fees_detail">There are no rates registered at the moment.</string>
+</resources>
