@@ -7,7 +7,7 @@
 <resources>
   <string name="text_calculate">Calcular</string>
   <string name="text_history">Historial</string>
-  <string name="text_rates">Tarifas</string>
+  <string name="text_fees">Tarifas</string>
   <string name="text_settings">Configuración</string>
   <string name="text_close">Cerrar</string>
   <string name="text_unknown_version">Versión desconocida</string>

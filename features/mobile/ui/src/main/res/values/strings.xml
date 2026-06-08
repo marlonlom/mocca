@@ -9,7 +9,7 @@
   <string translatable="false" name="url_feedback_website">http://play.google.com/store/apps/details?id=%1$s</string>
   <string name="text_calculate">Calculate</string>
   <string name="text_history">History</string>
-  <string name="text_rates">Rates</string>
+  <string name="text_fees">Fees</string>
   <string name="text_settings">Settings</string>
   <string name="text_close">Close</string>
   <string name="text_unknown_version">Unknown version</string>
