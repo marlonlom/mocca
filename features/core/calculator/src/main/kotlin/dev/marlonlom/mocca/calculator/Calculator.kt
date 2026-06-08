@@ -9,6 +9,7 @@ import dev.marlonlom.mocca.calculator.model.CalculationException.BelowQuantityRa
 import dev.marlonlom.mocca.calculator.model.CalculationException.NegativeQuantity
 import dev.marlonlom.mocca.calculator.model.OrderFees
 import dev.marlonlom.mocca.calculator.model.OrderResponse
+import dev.marlonlom.mocca.calculator.util.UsedNumbers
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.MAX_VALUE
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.MIN_VALUE
 import dev.marlonlom.mocca.calculator.util.UsedNumbers.ZERO
@@ -41,6 +42,9 @@ object Calculator {
   private fun orderValueIsInsideRange(request: RequestedQuantity) = request.orderValue.let {
     min(MIN_VALUE, it) == MIN_VALUE && max(MAX_VALUE, it) == MAX_VALUE
   }
+
+  /** Variable fee factor. */
+  const val VARIABLE_FEE_FACTOR: Double = UsedNumbers.FOUR
 
   /**
    * Returns the valid range for calculator input amounts.
