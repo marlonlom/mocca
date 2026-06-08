@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
 import dev.marlonlom.mocca.R
+import dev.marlonlom.mocca.mobile.calculator.fees.CalculatorFeesScreen
 import dev.marlonlom.mocca.mobile.calculator.history.CalculatorHistoryScreen
 import dev.marlonlom.mocca.mobile.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.mobile.calculator.output.CalculatorOutputScreen
@@ -85,7 +86,11 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
                   action.gotoDetail(AppDestination.History)
                 }
               },
-              onRatesButtonClicked = {},
+              onRatesButtonClicked = {
+                scope.launch {
+                  action.gotoDetail(AppDestination.Fees)
+                }
+              },
               onSettingsButtonClicked = {
                 scope.launch {
                   action.gotoDetail(AppDestination.Settings)
@@ -98,6 +103,18 @@ internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = Mo
             listPaneContent = { scaffoldAction -> listPane(coroutineScope, scaffoldAction) },
             detailPaneContent = { scaffoldAction ->
               when (val currentDestination = scaffoldAction.currentDestination) {
+                AppDestination.Fees -> {
+                  CalculatorFeesScreen(
+                    mobileWindowSize = scaffoldAction.mobileWindowSize,
+                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                    onCloseButtonClicked = {
+                      coroutineScope.launch {
+                        scaffoldAction.goBack()
+                      }
+                    },
+                  )
+                }
+
                 AppDestination.History -> {
                   CalculatorHistoryScreen(
                     mobileWindowSize = scaffoldAction.mobileWindowSize,
