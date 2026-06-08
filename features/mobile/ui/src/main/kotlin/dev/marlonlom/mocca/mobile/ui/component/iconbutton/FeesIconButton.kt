@@ -14,17 +14,17 @@ import androidx.compose.ui.res.stringResource
 import dev.marlonlom.mocca.mobile.ui.R
 
 /**
- * A composable function that displays a rates icon button.
+ * A composable function that displays a fees icon button.
  *
  * @author marlonlom
  *
  * @param onButtonClicked Action invoked when the button is clicked.
  */
 @Composable
-fun RatesIconButton(onButtonClicked: () -> Unit) = IconButton(onClick = onButtonClicked) {
+fun FeesIconButton(onButtonClicked: () -> Unit) = IconButton(onClick = onButtonClicked) {
   Icon(
     imageVector = Icons.Rounded.TableChart,
-    contentDescription = stringResource(R.string.text_rates),
+    contentDescription = stringResource(R.string.text_fees),
     tint = MaterialTheme.colorScheme.primary,
   )
 }
