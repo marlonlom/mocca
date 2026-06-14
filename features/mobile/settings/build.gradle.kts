@@ -13,10 +13,6 @@ android {
 }
 
 dependencies {
-  implementation(project(":features:core:preferences"))
-  implementation(project(":features:core:ui"))
   implementation(project(":features:mobile:ui"))
-  implementation(libs.androidx.compose.material3)
-  implementation(libs.androidx.compose.material3.wsc)
-  implementation(libs.bundles.m3.adaptive)
+  implementation(project(":features:core:preferences"))
 }
