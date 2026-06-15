@@ -18,7 +18,6 @@ android {
 }
 
 dependencies {
-  implementation(libs.androidx.appcompat)
   implementation(libs.bundles.database.room)
 
   ksp(libs.androidx.room.compiler)
