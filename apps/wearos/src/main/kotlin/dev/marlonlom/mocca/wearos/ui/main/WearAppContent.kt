@@ -12,7 +12,7 @@ import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.material3.timeTextCurvedText
 import dev.marlonlom.mocca.wearos.calculator.input.CalculatorInputScreen
-import dev.marlonlom.mocca.wearos.features.calculator.output.CalculatorOutputScreen
+import dev.marlonlom.mocca.wearos.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
 
 /**
