@@ -12,3 +12,7 @@ plugins {
 android {
   namespace = "dev.marlonlom.mocca.wearos.ui"
 }
+
+dependencies {
+  implementation(libs.androidx.wear.compose.navigation)
+}
