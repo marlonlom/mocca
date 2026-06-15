@@ -4,13 +4,14 @@
  */
 
 plugins {
-  id("mocca.android.app.wearos")
   id("mocca.compose.app")
+  id("mocca.android.app.wearos")
 }
 
 dependencies {
 
   implementation(project(":features:core:calculator"))
+  implementation(project(":features:wearos:ui"))
 
   val composeBom = platform(libs.androidx.compose.bom)
   implementation(composeBom)
