@@ -6,7 +6,7 @@ package dev.marlonlom.mocca.wearos.ui.main
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -39,7 +39,7 @@ internal class SmartwatchActivityTest {
       onNodeWithTag("calculatorButton_9").performClick().performClick().performClick()
       onNodeWithText("✔").performClick()
 
-      onNodeWithText("You cannot send less than COP \$5,000.").assertIsDisplayed()
+      onNodeWithText("You cannot send less than COP $5,000.").assertIsDisplayed()
     }
   }
 
@@ -53,7 +53,7 @@ internal class SmartwatchActivityTest {
         .performClick().performClick().performClick()
       onNodeWithText("✔").performClick()
 
-      onNodeWithText("You cannot send more than COP \$3,000,000.").assertIsDisplayed()
+      onNodeWithText("You cannot send more than COP $3,000,000.").assertIsDisplayed()
     }
   }
 
@@ -67,9 +67,9 @@ internal class SmartwatchActivityTest {
       onNodeWithText("✔").performClick()
 
       onNodeWithText("Transferring fee").assertIsDisplayed()
-      onNodeWithText("COP \$ 4700").assertIsDisplayed()
+      onNodeWithText("COP $ 4700").assertIsDisplayed()
       onNodeWithText("Total to pay").assertIsDisplayed()
-      onNodeWithText("COP \$ 49700").assertIsDisplayed()
+      onNodeWithText("COP $ 49700").assertIsDisplayed()
     }
   }
 
@@ -83,16 +83,16 @@ internal class SmartwatchActivityTest {
       onNodeWithTag("calculatorButton_0").performClick().performClick()
       onNodeWithText("✔").performClick()
 
-      onNodeWithText("You cannot send less than COP \$5,000.").assertIsDisplayed()
+      onNodeWithText("You cannot send less than COP $5,000.").assertIsDisplayed()
 
       onNodeWithTag("backButtonFromFailure").assertIsDisplayed().performClick()
       onNodeWithTag("calculatorButton_0").performClick()
       onNodeWithText("✔").performClick()
 
       onNodeWithText("Transferring fee").assertIsDisplayed()
-      onNodeWithText("COP \$ 4700").assertIsDisplayed()
+      onNodeWithText("COP $ 4700").assertIsDisplayed()
       onNodeWithText("Total to pay").assertIsDisplayed()
-      onNodeWithText("COP \$ 49700").assertIsDisplayed()
+      onNodeWithText("COP $ 49700").assertIsDisplayed()
 
       onNodeWithTag("SuccessCalculatorOutputColumn").performScrollToNode(
         hasTestTag("backButtonFromSuccess"),
