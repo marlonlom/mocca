@@ -25,7 +25,6 @@ androidx-room = "2.8.4"
 
 # Compose & Navigation
 androidx-compose-bom = "2026.05.01"
-navigation-compose = "2.9.8"
 m3-adaptive = "1.2.0"
 m3-adaptive-suite = "1.4.0"
 wearos-compose = "1.6.2"
@@ -75,7 +74,6 @@ androidx-compose-ui-googlefonts = { module = "androidx.compose.ui:ui-text-google
 androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 
 # Material3 Adaptive
 androidx-m3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "m3-adaptive" }
