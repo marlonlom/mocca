@@ -40,6 +40,7 @@ include(
 )
 include(
   ":apps:wearos",
+  ":features:wearos:calculator-input",
   ":features:wearos:ui"
 )
 include(":benchmarks:macro:mobile")
