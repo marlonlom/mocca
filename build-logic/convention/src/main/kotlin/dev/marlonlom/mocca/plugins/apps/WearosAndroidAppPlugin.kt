@@ -24,13 +24,7 @@ class WearosAndroidAppPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
       pluginManager.apply("mocca.android.app.common")
-      val vc = versionCatalog()
-      dependencies {
-        add("implementation", vc.findLibrary("androidx-wear-compose-foundation").get())
-        add("implementation", vc.findLibrary("androidx-wear-compose-material3").get())
-        add("implementation", vc.findLibrary("androidx-wear-compose-navigation").get())
-        add("implementation", vc.findLibrary("google-play-services-wearable").get())
-      }
+
       extensions.configure<ApplicationExtension> {
         namespace = Config.wearos.nameSpace
         compileSdk = Config.wearos.compileSdkVersion
@@ -45,6 +39,14 @@ class WearosAndroidAppPlugin : Plugin<Project> {
         }
 
         configureWearosAndroidKotlin(this)
+
+        dependencies {
+          val vc = versionCatalog()
+          add("implementation", vc.findLibrary("androidx-wear-compose-foundation").get())
+          add("implementation", vc.findLibrary("androidx-wear-compose-material3").get())
+          add("implementation", vc.findLibrary("androidx-wear-compose-navigation").get())
+          add("implementation", vc.findLibrary("google-play-services-wearable").get())
+        }
       }
     }
   }
