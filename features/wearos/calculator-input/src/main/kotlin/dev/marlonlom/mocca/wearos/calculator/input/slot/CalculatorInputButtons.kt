@@ -2,7 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-package dev.marlonlom.mocca.wearos.features.calculator.input
+package dev.marlonlom.mocca.wearos.calculator.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
