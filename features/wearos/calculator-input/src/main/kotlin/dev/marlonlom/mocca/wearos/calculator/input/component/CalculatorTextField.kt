@@ -1,8 +1,8 @@
 /*
- * Copyright 2024 Marlonlom
+ * Copyright 2026 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-package dev.marlonlom.mocca.wearos.features.calculator.input
+package dev.marlonlom.mocca.wearos.calculator.input
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
-import dev.marlonlom.mocca.R
 
 /**
  * Calculator text field composable ui.
