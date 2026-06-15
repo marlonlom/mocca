@@ -7,9 +7,12 @@ package dev.marlonlom.mocca.plugins.apps
 
 import com.android.build.api.dsl.ApplicationExtension
 import dev.marlonlom.mocca.configs.Config
+import dev.marlonlom.mocca.extensions.configureMobileAndroidKotlin
+import dev.marlonlom.mocca.extensions.versionCatalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 
 /**
  * A convention plugin specifically for configuring mobile Android application conventions.
@@ -32,6 +35,22 @@ class MobileAndroidAppPlugin : Plugin<Project> {
           versionCode = Config.mobile.versionCode
           versionName = Config.mobile.versionName
           testInstrumentationRunner = Config.mobile.testInstrumentationRunner
+        }
+
+        configureMobileAndroidKotlin(this)
+
+        dependencies {
+          val vc = versionCatalog()
+          add("implementation", vc.findLibrary("androidx-appcompat").get())
+          add("implementation", vc.findLibrary("androidx-browser").get())
+          add("implementation", vc.findLibrary("androidx-compose-material3").get())
+          add("implementation", vc.findLibrary("androidx-compose-material3-wsc").get())
+          add("implementation", vc.findLibrary("androidx-compose-ui-googlefonts").get())
+          add("implementation", vc.findLibrary("androidx-lifecycle-runtime-compose").get())
+          add("implementation", vc.findLibrary("androidx-lifecycle-viewmodel-compose").get())
+          add("implementation", vc.findLibrary("androidx-window").get())
+          add("implementation", vc.findLibrary("google-oss-licenses").get())
+          add("androidTestImplementation", vc.findLibrary("androidx-window-testing").get())
         }
       }
     }

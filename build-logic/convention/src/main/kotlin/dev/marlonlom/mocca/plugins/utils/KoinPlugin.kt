@@ -18,9 +18,10 @@ class KoinPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {
       dependencies {
-        val composeBom = platform(versionCatalog().findLibrary("koin-bom").get())
-        add("implementation", composeBom)
-        add("implementation", versionCatalog().findBundle("koin").get())
+        val vc = versionCatalog()
+        val koinBom = platform(vc.findLibrary("koin-bom").get())
+        add("implementation", koinBom)
+        add("implementation", vc.findBundle("koin").get())
       }
     }
   }
