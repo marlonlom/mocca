@@ -41,6 +41,7 @@ include(
 include(
   ":apps:wearos",
   ":features:wearos:calculator-input",
+  ":features:wearos:calculator-output",
   ":features:wearos:ui"
 )
 include(":benchmarks:macro:mobile")
