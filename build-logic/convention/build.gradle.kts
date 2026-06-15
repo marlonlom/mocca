@@ -68,6 +68,10 @@ gradlePlugin {
       id = "mocca.android.lib.mobile"
       implementationClass = "dev.marlonlom.mocca.plugins.libs.MobileAndroidLibPlugin"
     }
+    register("androidWearosLib") {
+      id = "mocca.android.lib.wearos"
+      implementationClass = "dev.marlonlom.mocca.plugins.libs.WearosAndroidLibPlugin"
+    }
     /* utility module conventions */
     register("koin") {
       id = "mocca.koin"
