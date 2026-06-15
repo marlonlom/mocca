@@ -9,8 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import dev.marlonlom.mocca.wearos.features.calculator.input.CalculatorInputScreen
-import dev.marlonlom.mocca.wearos.features.calculator.output.CalculatorOutputScreen
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
 
@@ -18,29 +16,33 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
  * Application navigation host composable.
  *
  * @author marlonlom
+ *
+ * @param calculatorInput Calculator input composable.
+ * @param calculatorOutput Calculator output composable.
+ * @param navController Navigation controller.
  */
 @Composable
-fun NavigationHost(navController: NavHostController = rememberSwipeDismissableNavController()) =
-  SwipeDismissableNavHost(
-    navController = navController,
-    startDestination = Home.route,
-  ) {
-    composable(route = Home.route) {
-      CalculatorInputScreen(
-        onCalculationReadyAction = { amountText ->
-          navController.navigate(Result.makeRoute(amountText))
-        },
-      )
-    }
-
-    composable(
-      route = Result.route,
-      arguments = Result.navArguments,
-    ) { navBackStackEntry ->
-      val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
-      CalculatorOutputScreen(
-        amountText = amountText,
-        onBackNavigationAction = navController::popBackStack,
-      )
-    }
+fun NavigationHost(
+  calculatorInput: @Composable ((String) -> Unit) -> Unit,
+  calculatorOutput: @Composable (String, () -> Unit) -> Unit,
+  navController: NavHostController = rememberSwipeDismissableNavController(),
+) = SwipeDismissableNavHost(
+  navController = navController,
+  startDestination = Home.route,
+) {
+  composable(route = Home.route) {
+    calculatorInput(
+      { amountText ->
+        navController.navigate(Result.makeRoute(amountText))
+      },
+    )
   }
+
+  composable(
+    route = Result.route,
+    arguments = Result.navArguments,
+  ) { navBackStackEntry ->
+    val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
+    calculatorOutput(amountText, navController::popBackStack)
+  }
+}
