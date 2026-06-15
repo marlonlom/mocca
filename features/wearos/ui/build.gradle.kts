@@ -12,6 +12,3 @@ plugins {
 android {
   namespace = "dev.marlonlom.mocca.wearos.ui"
 }
-
-dependencies {
-}
