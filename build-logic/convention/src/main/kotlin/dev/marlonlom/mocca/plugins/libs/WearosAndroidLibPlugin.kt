@@ -28,6 +28,7 @@ class WearosAndroidLibPlugin : Plugin<Project> {
         val vc = versionCatalog()
         add("implementation", vc.findLibrary("androidx-wear-compose-foundation").get())
         add("implementation", vc.findLibrary("androidx-wear-compose-material3").get())
+        add("implementation", vc.findLibrary("androidx-wear-compose-navigation").get())
       }
       extensions.configure<LibraryExtension> {
         namespace = Config.wearos.nameSpace
