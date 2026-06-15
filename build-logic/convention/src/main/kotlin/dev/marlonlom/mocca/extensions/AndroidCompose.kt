@@ -39,7 +39,6 @@ internal fun Project.configureAndroidCompose(
 
       add("androidTestImplementation", vc.findLibrary("android-arch-core-testing").get())
       add("androidTestImplementation", vc.findLibrary("androidx-compose-ui-test-junit4").get())
-      add("androidTestImplementation", vc.findLibrary("google-truth").get())
 
       add("debugImplementation", vc.findLibrary("androidx-compose-ui-tooling").get())
       add("debugImplementation", vc.findLibrary("androidx-compose-ui-test-manifest").get())

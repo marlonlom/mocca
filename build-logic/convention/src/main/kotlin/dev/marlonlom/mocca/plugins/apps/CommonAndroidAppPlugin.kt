@@ -6,7 +6,6 @@
 package dev.marlonlom.mocca.plugins.apps
 
 import com.android.build.api.dsl.ApplicationExtension
-import dev.marlonlom.mocca.extensions.configureAndroidKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
@@ -31,7 +30,6 @@ class CommonAndroidAppPlugin : Plugin<Project> {
       extensions.configure<ApplicationExtension> {
         defaultConfig.vectorDrawables.useSupportLibrary = true
         buildFeatures.buildConfig = true
-        configureAndroidKotlin(this)
 
         buildTypes {
 

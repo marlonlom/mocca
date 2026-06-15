@@ -6,13 +6,17 @@
 package dev.marlonlom.mocca.plugins.libs
 
 import com.android.build.api.dsl.LibraryExtension
-import dev.marlonlom.mocca.extensions.configureAndroidKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 
+/**
+ * A convention plugin for configuring common Android libraries.
+ *
+ * @author marlonlom
+ */
 class CommonAndroidLibPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
@@ -27,7 +31,6 @@ class CommonAndroidLibPlugin : Plugin<Project> {
 
       extensions.configure<LibraryExtension> {
         defaultConfig.vectorDrawables.useSupportLibrary = true
-        configureAndroidKotlin(this)
         buildTypes {
           release {
             isMinifyEnabled = false
