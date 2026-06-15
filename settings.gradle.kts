@@ -38,6 +38,9 @@ include(
   ":features:mobile:settings",
   ":features:mobile:ui"
 )
+include(
+  ":apps:wearos",
+  ":features:wearos:ui"
+)
 include(":benchmarks:macro:mobile")
-include(":apps:wearos")
 include(":benchmarks:macro:wearos")
