@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_calculator_input_money_amount">Money amount</string>
+  <string name="text_calculator_input_currency" translatable="false">"COP $ "</string>
+</resources>

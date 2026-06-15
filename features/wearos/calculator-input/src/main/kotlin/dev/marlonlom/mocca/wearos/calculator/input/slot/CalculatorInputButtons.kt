@@ -2,7 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-package dev.marlonlom.mocca.wearos.calculator.input
+package dev.marlonlom.mocca.wearos.calculator.input.slot
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,7 +30,7 @@ import androidx.wear.compose.material3.Text
  * @param onButtonClick Action for calculator button clicked.
  */
 @Composable
-fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
+internal fun CalculatorInputButtons(onButtonClick: (String) -> Unit) {
   val buttonRows = listOf(
     listOf("1", "2", "3", "4", "5"),
     listOf("6", "7", "8", "9", "0"),

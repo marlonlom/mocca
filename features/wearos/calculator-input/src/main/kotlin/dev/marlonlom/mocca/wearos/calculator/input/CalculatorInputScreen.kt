@@ -2,7 +2,7 @@
  * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-package dev.marlonlom.mocca.wearos.features.calculator.input
+package dev.marlonlom.mocca.wearos.calculator.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.MaterialTheme
+import dev.marlonlom.mocca.wearos.calculator.input.component.CalculatorTextField
+import dev.marlonlom.mocca.wearos.calculator.input.domain.CalculatorInputState
+import dev.marlonlom.mocca.wearos.calculator.input.domain.rememberCalculatorInputState
+import dev.marlonlom.mocca.wearos.calculator.input.slot.CalculatorInputButtons
 
 /**
  * Calculator input screen composable ui.
