@@ -31,11 +31,9 @@ fun NavigationHost(
   startDestination = Home.route,
 ) {
   composable(route = Home.route) {
-    calculatorInput(
-      { amountText ->
-        navController.navigate(Result.makeRoute(amountText))
-      },
-    )
+    calculatorInput { amountText ->
+      navController.navigate(Result.makeRoute(amountText))
+    }
   }
 
   composable(
