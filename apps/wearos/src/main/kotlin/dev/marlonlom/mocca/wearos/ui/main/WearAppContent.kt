@@ -33,13 +33,13 @@ fun WearAppContent() {
   AppScaffold(
     timeText = {
       if (!scalingLazyListState.isScrollInProgress) {
-        val fontSize = MaterialTheme.typography.bodySmall.fontSize
+        val fontStyle = MaterialTheme.typography.bodySmall
         if (isRound) {
           TimeText { time ->
             timeTextCurvedText(
               time = time,
               style = CurvedTextStyle(
-                fontSize = fontSize,
+                fontSize = fontStyle.fontSize,
               ),
             )
           }
@@ -49,7 +49,7 @@ fun WearAppContent() {
             modifier = Modifier.fillMaxWidth(),
             text = time,
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodySmall,
+            style = fontStyle,
           )
         }
       }
