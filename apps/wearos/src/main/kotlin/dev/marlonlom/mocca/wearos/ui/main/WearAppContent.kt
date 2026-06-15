@@ -4,12 +4,18 @@
  */
 package dev.marlonlom.mocca.wearos.ui.main
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.style.TextAlign
 import androidx.wear.compose.foundation.CurvedTextStyle
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.TimeText
+import androidx.wear.compose.material3.TimeTextDefaults
 import androidx.wear.compose.material3.timeTextCurvedText
 import dev.marlonlom.mocca.wearos.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.wearos.calculator.output.CalculatorOutputScreen
@@ -22,17 +28,28 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
  */
 @Composable
 fun WearAppContent() {
+  val isRound = LocalConfiguration.current.isScreenRound
   val scalingLazyListState = rememberScalingLazyListState()
   AppScaffold(
     timeText = {
       if (!scalingLazyListState.isScrollInProgress) {
         val fontSize = MaterialTheme.typography.bodySmall.fontSize
-        TimeText { time ->
-          timeTextCurvedText(
-            time = time,
-            style = CurvedTextStyle(
-              fontSize = fontSize,
-            ),
+        if (isRound) {
+          TimeText { time ->
+            timeTextCurvedText(
+              time = time,
+              style = CurvedTextStyle(
+                fontSize = fontSize,
+              ),
+            )
+          }
+        } else {
+          val time = TimeTextDefaults.rememberTimeSource(TimeTextDefaults.timeFormat()).currentTime()
+          Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = time,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodySmall,
           )
         }
       }
