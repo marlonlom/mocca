@@ -1,8 +1,8 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-package dev.marlonlom.mocca.wearos.calculator.input
+package dev.marlonlom.mocca.wearos.calculator.input.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
+import dev.marlonlom.mocca.wearos.calculator.input.R
 
 /**
  * Calculator text field composable ui.
@@ -29,7 +30,7 @@ import androidx.wear.compose.material3.Text
  *
  */
 @Composable
-fun CalculatorTextField(inputValue: String) = Row(
+internal fun CalculatorTextField(inputValue: String) = Row(
   modifier = Modifier
     .fillMaxHeight(0.45f)
     .padding(vertical = 2.dp, horizontal = 24.dp),
