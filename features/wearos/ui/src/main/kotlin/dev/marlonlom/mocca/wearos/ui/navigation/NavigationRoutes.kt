@@ -20,7 +20,21 @@ sealed class NavigationRoutes(val route: String) {
    *
    * @author marlonlom
    */
-  data object Home : NavigationRoutes(route = "calculator_input")
+  data object Home : NavigationRoutes(route = "welcome")
+
+  /**
+   * Calculation fees listing navigation route single object.
+   *
+   * @author marlonlom
+   */
+  data object ViewFees : NavigationRoutes(route = "calculator_fees")
+
+  /**
+   * Calculation input navigation route single object.
+   *
+   * @author marlonlom
+   */
+  data object Calculator : NavigationRoutes(route = "calculator_input")
 
   /**
    * Calculation result navigation route single object.

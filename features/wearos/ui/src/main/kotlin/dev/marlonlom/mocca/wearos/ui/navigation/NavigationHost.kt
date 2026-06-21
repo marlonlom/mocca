@@ -9,8 +9,10 @@ import androidx.navigation.NavHostController
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Calculator
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
 
 /**
  * Application navigation host composable.
@@ -23,14 +25,31 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
  */
 @Composable
 fun NavigationHost(
+  home: @Composable (() -> Unit, () -> Unit) -> Unit,
   calculatorInput: @Composable ((String) -> Unit) -> Unit,
   calculatorOutput: @Composable (String, () -> Unit) -> Unit,
+  viewFees: @Composable (() -> Unit) -> Unit,
   navController: NavHostController = rememberSwipeDismissableNavController(),
 ) = SwipeDismissableNavHost(
   navController = navController,
   startDestination = Home.route,
 ) {
   composable(route = Home.route) {
+    home(
+      {
+        navController.navigate(Calculator.route)
+      },
+      {
+        navController.navigate(ViewFees.route)
+      },
+    )
+  }
+
+  composable(route = ViewFees.route) {
+    viewFees(navController::popBackStack)
+  }
+
+  composable(route = Calculator.route) {
     calculatorInput { amountText ->
       navController.navigate(Result.makeRoute(amountText))
     }
