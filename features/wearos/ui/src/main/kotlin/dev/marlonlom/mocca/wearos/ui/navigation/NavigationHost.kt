@@ -15,13 +15,15 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
 
 /**
- * Application navigation host composable.
+ * Navigation host that wires together app screens using a NavHostController.
  *
  * @author marlonlom
  *
- * @param calculatorInput Calculator input composable.
- * @param calculatorOutput Calculator output composable.
- * @param navController Navigation controller.
+ * @param home Home screen with primary and secondary navigation actions.
+ * @param calculatorInput Screen for entering calculation input.
+ * @param calculatorOutput Screen for displaying results and handling navigation.
+ * @param viewFees Screen showing fee information.
+ * @param navController Navigation controller (defaults to swipe-dismissable controller).
  */
 @Composable
 fun NavigationHost(
