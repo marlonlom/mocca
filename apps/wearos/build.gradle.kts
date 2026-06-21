@@ -11,6 +11,7 @@ plugins {
 dependencies {
 
   implementation(project(":features:core:calculator"))
+  implementation(project(":features:wearos:calculator-fees"))
   implementation(project(":features:wearos:calculator-input"))
   implementation(project(":features:wearos:calculator-output"))
   implementation(project(":features:wearos:ui"))
