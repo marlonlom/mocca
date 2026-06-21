@@ -33,7 +33,7 @@ class AndroidMacroBenchmarkPlugin : Plugin<Project> {
       }
 
       extensions.configure<TestExtension> {
-        compileSdk = Config.mobile.compileSdkVersion
+        compileSdk = Config.macrobenchmark.compileSdkVersion
 
         compileOptions {
           sourceCompatibility = Config.jvm.javaVersion
@@ -41,9 +41,9 @@ class AndroidMacroBenchmarkPlugin : Plugin<Project> {
         }
 
         defaultConfig {
-          minSdk = Config.mobile.minSdkVersion
-          targetSdk = Config.mobile.targetSdkVersion
-          testInstrumentationRunner = Config.mobile.testInstrumentationRunner
+          minSdk = Config.macrobenchmark.minSdkVersion
+          targetSdk = Config.macrobenchmark.targetSdkVersion
+          testInstrumentationRunner = Config.macrobenchmark.testInstrumentationRunner
         }
 
         buildTypes {
