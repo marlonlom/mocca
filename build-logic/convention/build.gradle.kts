@@ -81,5 +81,10 @@ gradlePlugin {
       id = "mocca.spotless"
       implementationClass = "dev.marlonlom.mocca.plugins.utils.SpotlessPlugin"
     }
+    /* benchmark modules */
+    register("androidMacroBenchmark") {
+      id = "mocca.android.macrobenchmark"
+      implementationClass = "dev.marlonlom.mocca.plugins.benchmarks.AndroidMacroBenchmarkPlugin"
+    }
   }
 }
