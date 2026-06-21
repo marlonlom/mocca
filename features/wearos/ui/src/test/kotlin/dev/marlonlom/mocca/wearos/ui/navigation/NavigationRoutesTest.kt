@@ -4,8 +4,10 @@
  */
 package dev.marlonlom.mocca.wearos.ui.navigation
 
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Calculator
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
+import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -13,7 +15,17 @@ internal class NavigationRoutesTest {
 
   @Test
   fun `Should assert home destination route`() {
-    assertEquals("calculator_input", Home.route)
+    assertEquals("welcome", Home.route)
+  }
+
+  @Test
+  fun `Should assert fees listing destination route`() {
+    assertEquals("calculator_fees", ViewFees.route)
+  }
+
+  @Test
+  fun `Should assert calculator input destination route`() {
+    assertEquals("calculator_input", Calculator.route)
   }
 
   @Test
