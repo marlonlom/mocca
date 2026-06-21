@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyListState
-import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.MaterialTheme
 import dev.marlonlom.mocca.wearos.onboarding.component.StartCalculationButton
 import dev.marlonlom.mocca.wearos.onboarding.component.ViewFeesButton
@@ -24,12 +23,12 @@ import dev.marlonlom.mocca.wearos.onboarding.component.ViewFeesButton
  *
  * @author marlonlom
  *
+ * @param listState Lazy column state.
  * @param onCalculateClick Invoked when the user selects the calculate action.
  * @param onViewFeesClick Invoked when the user selects the view fees action.
  */
 @Composable
-fun OnboardingScreen(onCalculateClick: () -> Unit, onViewFeesClick: () -> Unit) {
-  val listState: ScalingLazyListState = rememberScalingLazyListState()
+fun OnboardingScreen(listState: ScalingLazyListState, onCalculateClick: () -> Unit, onViewFeesClick: () -> Unit) =
   ScalingLazyColumn(
     state = listState,
     modifier = Modifier
@@ -47,4 +46,3 @@ fun OnboardingScreen(onCalculateClick: () -> Unit, onViewFeesClick: () -> Unit) 
       ViewFeesButton(onClicked = onViewFeesClick)
     }
   }
-}

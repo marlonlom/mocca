@@ -9,6 +9,7 @@ import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import com.google.common.truth.Truth.assertThat
 import org.junit.FixMethodOrder
 import org.junit.Rule
@@ -27,6 +28,7 @@ internal class OnboardingScreenUiTest {
       var clicked = false
       setContent {
         OnboardingScreen(
+          listState = rememberScalingLazyListState(),
           onCalculateClick = { clicked = true },
           onViewFeesClick = { },
         )
@@ -45,6 +47,7 @@ internal class OnboardingScreenUiTest {
       var clicked = false
       setContent {
         OnboardingScreen(
+          listState = rememberScalingLazyListState(),
           onCalculateClick = { },
           onViewFeesClick = { clicked = true },
         )
