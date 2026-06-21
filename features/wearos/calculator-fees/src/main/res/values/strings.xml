@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_fee_percentage" translatable="false">%1$.0f%%</string>
+  <string name="text_fees">Fees (COP)</string>
+  <string name="text_price_range">From %1$s to %2$s</string>
+</resources>
