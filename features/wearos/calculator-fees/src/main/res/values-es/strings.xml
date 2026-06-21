@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_fees">Tarifas (COP)</string>
+  <string name="text_price_range">De %1$s a %2$s</string>
+</resources>
