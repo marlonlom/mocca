@@ -24,6 +24,11 @@ object Config {
     minSdkVersion = 30
   )
 
+  /** Configuration for Android macrobenchmark build parameters. */
+  val macrobenchmark = AndroidConfig(
+    minSdkVersion = 24
+  )
+
   /** Configuration for JVM-related build parameters. */
   val jvm = JvmConfig()
 }
