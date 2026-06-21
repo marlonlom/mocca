@@ -17,8 +17,10 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.TimeText
 import androidx.wear.compose.material3.TimeTextDefaults
 import androidx.wear.compose.material3.timeTextCurvedText
+import dev.marlonlom.mocca.wearos.calculator.fees.CalculatorFeesListScreen
 import dev.marlonlom.mocca.wearos.calculator.input.CalculatorInputScreen
 import dev.marlonlom.mocca.wearos.calculator.output.CalculatorOutputScreen
+import dev.marlonlom.mocca.wearos.onboarding.OnboardingScreen
 import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
 
 /**
@@ -56,6 +58,19 @@ fun WearAppContent() {
     },
     content = {
       NavigationHost(
+        home = { onCalculateClick, onViewFeesClick ->
+          OnboardingScreen(
+            listState = scalingLazyListState,
+            onCalculateClick = onCalculateClick,
+            onViewFeesClick = onViewFeesClick,
+          )
+        },
+        viewFees = { onBackNavigationAction ->
+          CalculatorFeesListScreen(
+            listState = scalingLazyListState,
+            onBackNavigationAction = onBackNavigationAction,
+          )
+        },
         calculatorInput = { onCalculationReadyAction ->
           CalculatorInputScreen(onCalculationReadyAction = onCalculationReadyAction)
         },
