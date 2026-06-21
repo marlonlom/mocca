@@ -28,6 +28,7 @@ internal class SmartwatchActivityTest {
   @Test
   fun shouldDisplayActivityContents() {
     with(androidComposeTestRule) {
+      onNodeWithTag("start_calculation_action_button").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
     }
   }
@@ -35,6 +36,7 @@ internal class SmartwatchActivityTest {
   @Test
   fun shouldShowCalculationBelowRangeFailure() {
     with(androidComposeTestRule) {
+      onNodeWithTag("start_calculation_action_button").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
       onNodeWithTag("calculatorButton_9").performClick().performClick().performClick()
       onNodeWithText("✔").performClick()
@@ -46,6 +48,7 @@ internal class SmartwatchActivityTest {
   @Test
   fun shouldShowCalculationAboveRangeFailure() {
     with(androidComposeTestRule) {
+      onNodeWithTag("start_calculation_action_button").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
       onNodeWithTag("calculatorButton_4").performClick()
       onNodeWithTag("calculatorButton_5").performClick()
@@ -60,6 +63,7 @@ internal class SmartwatchActivityTest {
   @Test
   fun shouldShowCalculationSuccess() {
     with(androidComposeTestRule) {
+      onNodeWithTag("start_calculation_action_button").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
       onNodeWithTag("calculatorButton_4").performClick()
       onNodeWithTag("calculatorButton_5").performClick()
@@ -76,6 +80,7 @@ internal class SmartwatchActivityTest {
   @Test
   fun shouldShowFailureThenSuccessMakingCalculation() {
     with(androidComposeTestRule) {
+      onNodeWithTag("start_calculation_action_button").assertIsDisplayed().performClick()
       onNodeWithText("Money amount").assertIsDisplayed()
 
       onNodeWithTag("calculatorButton_4").performClick()
