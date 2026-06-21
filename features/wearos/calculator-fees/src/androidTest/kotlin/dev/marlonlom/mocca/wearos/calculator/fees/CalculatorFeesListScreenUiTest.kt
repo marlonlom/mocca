@@ -1,8 +1,7 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.calculator.fees
 
 import androidx.compose.ui.test.junit4.v2.createComposeRule
@@ -26,5 +25,4 @@ internal class CalculatorFeesListScreenUiTest {
       onNodeWithText("Fees (COP)").assertExists()
     }
   }
-
 }

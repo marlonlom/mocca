@@ -34,10 +34,7 @@ import dev.marlonlom.mocca.wearos.calculator.fees.domain.ColombianPesoFormatter
  * @param domainItem The domain data model containing the fee information to be rendered.
  */
 @Composable
-internal fun CalculationFeeListItem(
-  position: Int,
-  domainItem: CalculatingFeesDomainData,
-) = Box(
+internal fun CalculationFeeListItem(position: Int, domainItem: CalculatingFeesDomainData) = Box(
   modifier = Modifier
     .testTag("calculation_fee_list_item_$position")
     .fillMaxWidth()

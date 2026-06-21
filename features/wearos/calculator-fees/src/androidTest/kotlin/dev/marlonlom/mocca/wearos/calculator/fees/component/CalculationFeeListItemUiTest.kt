@@ -1,8 +1,7 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.calculator.fees.component
 
 import androidx.compose.ui.test.assertIsDisplayed
@@ -29,8 +28,8 @@ internal class CalculationFeeListItemUiTest {
             max = 50000.0,
             fixedFee = 4700.0,
             haveVariableFee = false,
-            variableFeeFactor = 0.0
-          )
+            variableFeeFactor = 0.0,
+          ),
         )
       }
       onNodeWithText("4%").assertIsNotDisplayed()
@@ -50,8 +49,8 @@ internal class CalculationFeeListItemUiTest {
             max = 3_000_000.0,
             fixedFee = 0.0,
             haveVariableFee = true,
-            variableFeeFactor = 4.0
-          )
+            variableFeeFactor = 4.0,
+          ),
         )
       }
 
