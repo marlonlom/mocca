@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.ScalingLazyListState
 import androidx.wear.compose.foundation.lazy.itemsIndexed
-import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.Text
 import dev.marlonlom.mocca.wearos.calculator.fees.component.CalculationFeeListItem
@@ -33,18 +33,18 @@ import dev.marlonlom.mocca.wearos.calculator.fees.domain.CalculatorFeesProvider
  *
  * @author marlonlom
  *
+ * @param listState Lazy column state.
  * @param onBackNavigationAction Callback invoked when the user requests to navigate
  * back to the previous screen.
  */
 @Composable
-fun CalculatorFeesListScreen(onBackNavigationAction: () -> Unit) {
+fun CalculatorFeesListScreen(listState: ScalingLazyListState, onBackNavigationAction: () -> Unit) {
   BackHandler {
     onBackNavigationAction()
   }
   val feesListingsState: List<CalculatingFeesDomainData> = remember {
     CalculatorFeesProvider.provideFees()
   }
-  val listState = rememberScalingLazyListState()
   ScalingLazyColumn(
     state = listState,
     modifier = Modifier

@@ -6,6 +6,7 @@ package dev.marlonlom.mocca.wearos.calculator.fees
 
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import org.junit.Rule
 import org.junit.Test
 
@@ -19,6 +20,7 @@ internal class CalculatorFeesListScreenUiTest {
     with(rule) {
       setContent {
         CalculatorFeesListScreen(
+          listState = rememberScalingLazyListState(),
           onBackNavigationAction = {},
         )
       }
