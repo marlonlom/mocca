@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_start_calculation">Iniciar cálculo</string>
+  <string name="text_view_fees">Ver tarifas</string>
+</resources>
