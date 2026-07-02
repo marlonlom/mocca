@@ -43,7 +43,7 @@ arch-testing = "1.1.1"
 coroutines-test = "1.11.0"
 mockk = "1.14.11"
 truth = "1.4.5"
-uiautomator = "2.3.0"
+uiautomator = "2.4.0"
 benchmark = "1.4.1"
 
 [libraries]
