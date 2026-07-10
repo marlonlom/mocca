@@ -31,7 +31,7 @@ wearos-compose = "1.6.2"
 
 # Koin & Third Party
 koin-bom = "4.2.2"
-oss-plugin = "0.12.0"
+oss-plugin = "0.13.0"
 oss-services = "17.5.1"
 google-play-wearable = "20.0.1"
 
