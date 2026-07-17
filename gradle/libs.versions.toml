@@ -6,7 +6,7 @@
 [versions]
 # Infrastructure & Tooling
 agp = "9.3.0"
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 ksp = "2.3.10"
 spotless = "8.8.0"
 
