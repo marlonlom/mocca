@@ -8,7 +8,7 @@
 agp = "9.4.0"
 kotlin = "2.4.10"
 ksp = "2.3.11"
-spotless = "8.10.0"
+spotless = "8.10.1"
 
 # AndroidX Core & UI
 androidx-core = "1.19.0"
