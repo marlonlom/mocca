@@ -44,7 +44,7 @@ coroutines-test = "1.11.0"
 mockk = "1.14.11"
 truth = "1.4.5"
 uiautomator = "2.4.0"
-benchmark = "1.4.1"
+benchmark = "1.5.0"
 
 [libraries]
 # AndroidX Implementation
