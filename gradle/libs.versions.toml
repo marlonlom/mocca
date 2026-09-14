@@ -21,7 +21,7 @@ androidx-window = "1.5.1"
 androidx-browser = "1.10.0"
 
 # Room & Database
-androidx-room = "2.8.4"
+androidx-room = "2.8.5"
 
 # Compose & Navigation
 androidx-compose-bom = "2026.08.00"
