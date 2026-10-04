@@ -53,7 +53,7 @@ data class AndroidConfig(
   val compileSdkVersion: Int = 37,
   val applicationId: String = "dev.marlonlom.mocca",
   val versionCode: Int = 1,
-  val versionName: String = "1.0.0",
+  val versionName: String = "1.0.2",
   val nameSpace: String = applicationId,
   val testInstrumentationRunner: String = "androidx.test.runner.AndroidJUnitRunner"
 )

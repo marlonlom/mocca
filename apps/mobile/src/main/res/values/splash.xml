@@ -11,5 +11,7 @@
     <item name="windowSplashScreenAnimatedIcon">@drawable/img_app_brand</item>
     <item name="windowSplashScreenAnimationDuration">1000</item>
     <item name="postSplashScreenTheme">@style/Theme.Mocca</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>
   </style>
 </resources>

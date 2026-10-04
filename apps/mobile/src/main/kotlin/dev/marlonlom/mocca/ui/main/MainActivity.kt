@@ -7,6 +7,7 @@ package dev.marlonlom.mocca.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.getValue
@@ -37,9 +38,9 @@ class MainActivity : ComponentActivity() {
   private val mainViewModel: MainViewModel by viewModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
     val splashScreen = installSplashScreen()
+    super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
 
     var mainUiState: MainUiState by mutableStateOf(MainUiState.Loading)
 
@@ -55,8 +56,6 @@ class MainActivity : ComponentActivity() {
         is MainUiState.Success -> false
       }
     }
-
-    WindowCompat.enableEdgeToEdge(window)
 
     setContent {
       MainContent(
