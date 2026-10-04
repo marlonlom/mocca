@@ -6,8 +6,12 @@ package dev.marlonlom.mocca.mobile.onboarding.layout
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.safeContent
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +38,8 @@ internal fun OnboardingColumnContent(
 ) = Column(
   modifier = Modifier
     .fillMaxWidth(widthFraction)
-    .fillMaxHeight(heightFraction),
+    .fillMaxHeight(heightFraction)
+    .consumeWindowInsets(WindowInsets.safeContent),
   verticalArrangement = Arrangement.Center,
   horizontalAlignment = Alignment.CenterHorizontally,
 ) {

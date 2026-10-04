@@ -16,8 +16,9 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher"
     android:supportsRtl="true"
-    android:theme="@style/Theme.App.Starting"
-    tools:targetApi="31">
+    android:theme="@style/Theme.Mocca"
+    tools:targetApi="31"
+    android:windowSoftInputMode="adjustResize">
 
     <profileable
       android:shell="true"
@@ -25,7 +26,8 @@
 
     <activity
       android:name=".ui.main.MainActivity"
-      android:exported="true">
+      android:exported="true"
+      android:theme="@style/Theme.App.Starting">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

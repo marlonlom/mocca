@@ -13,8 +13,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.currentWindowDpSize
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
@@ -23,6 +22,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.dp
 import dev.marlonlom.mocca.mobile.ui.folding.FoldState
 import dev.marlonlom.mocca.mobile.ui.folding.FoldablePosture
@@ -42,10 +42,10 @@ import dev.marlonlom.mocca.mobile.ui.window.MobileWindowSize
 fun MainScaffold(
   listPaneContent: @Composable (MainScaffoldAction) -> Unit,
   detailPaneContent: @Composable (MainScaffoldAction) -> Unit,
-  adaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
+  adaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfoV2(),
 ) {
   val mobileWindowSize: MobileWindowSize = MobileWindowSize.fromWindowSizeClass(
-    WindowSizeClass.calculateFromSize(currentWindowDpSize()),
+    WindowSizeClass.calculateFromSize(LocalWindowInfo.current.containerDpSize),
   )
   val foldState: FoldState = FoldablePosture.getFoldState(adaptiveInfo.windowPosture)
   val navigator = rememberListDetailPaneScaffoldNavigator<AppDestination>(
