@@ -36,7 +36,7 @@ fun OnboardingScreen(onOnboarded: () -> Unit) {
     MobileWindowSize.MOBILE_PORTRAIT -> {
       OnboardingColumnContent(
         widthFraction = 0.85f,
-        onOnboarded = { onOnboarded() }
+        onOnboarded = { onOnboarded() },
       )
     }
 
