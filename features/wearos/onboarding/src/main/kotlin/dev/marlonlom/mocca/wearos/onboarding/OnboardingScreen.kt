@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyListState
 import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.ScreenScaffold
 import dev.marlonlom.mocca.wearos.onboarding.component.StartCalculationButton
 import dev.marlonlom.mocca.wearos.onboarding.component.ViewFeesButton
 
@@ -29,20 +30,24 @@ import dev.marlonlom.mocca.wearos.onboarding.component.ViewFeesButton
  */
 @Composable
 fun OnboardingScreen(listState: ScalingLazyListState, onCalculateClick: () -> Unit, onViewFeesClick: () -> Unit) =
-  ScalingLazyColumn(
-    state = listState,
-    modifier = Modifier
-      .fillMaxSize()
-      .background(MaterialTheme.colorScheme.background),
-    verticalArrangement = Arrangement.spacedBy(8.dp),
+  ScreenScaffold(
+    scrollState = listState,
   ) {
-    item {
-      Spacer(Modifier.height(20.dp))
-    }
-    item {
-      StartCalculationButton(onClicked = onCalculateClick)
-    }
-    item {
-      ViewFeesButton(onClicked = onViewFeesClick)
+    ScalingLazyColumn(
+      state = listState,
+      modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.background),
+      verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+      item {
+        Spacer(Modifier.height(20.dp))
+      }
+      item {
+        StartCalculationButton(onClicked = onCalculateClick)
+      }
+      item {
+        ViewFeesButton(onClicked = onViewFeesClick)
+      }
     }
   }
