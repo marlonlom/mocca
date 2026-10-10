@@ -23,6 +23,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyListState
 import androidx.wear.compose.foundation.lazy.itemsIndexed
 import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.Text
 import dev.marlonlom.mocca.wearos.calculator.fees.component.CalculationFeeListItem
 import dev.marlonlom.mocca.wearos.calculator.fees.domain.CalculatingFeesDomainData
@@ -45,30 +46,34 @@ fun CalculatorFeesListScreen(listState: ScalingLazyListState, onBackNavigationAc
   val feesListingsState: List<CalculatingFeesDomainData> = remember {
     CalculatorFeesProvider.provideFees()
   }
-  ScalingLazyColumn(
-    state = listState,
-    modifier = Modifier
-      .fillMaxSize()
-      .background(MaterialTheme.colorScheme.background),
-    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 20.dp),
-    verticalArrangement = Arrangement.spacedBy(10.dp),
+  ScreenScaffold(
+    scrollState = listState,
   ) {
-    item {
-      Text(
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.bodyMedium,
-        text = stringResource(R.string.text_fees),
-        overflow = TextOverflow.Ellipsis,
-        maxLines = 1,
-      )
-      Spacer(Modifier.height(10.dp))
-    }
-    itemsIndexed(items = feesListingsState) { position, item ->
-      CalculationFeeListItem(
-        position = position,
-        domainItem = item,
-      )
+    ScalingLazyColumn(
+      state = listState,
+      modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.background),
+      contentPadding = PaddingValues(horizontal = 10.dp, vertical = 20.dp),
+      verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+      item {
+        Text(
+          modifier = Modifier.fillMaxWidth(),
+          textAlign = TextAlign.Center,
+          style = MaterialTheme.typography.bodyMedium,
+          text = stringResource(R.string.text_fees),
+          overflow = TextOverflow.Ellipsis,
+          maxLines = 1,
+        )
+        Spacer(Modifier.height(10.dp))
+      }
+      itemsIndexed(items = feesListingsState) { position, item ->
+        CalculationFeeListItem(
+          position = position,
+          domainItem = item,
+        )
+      }
     }
   }
 }

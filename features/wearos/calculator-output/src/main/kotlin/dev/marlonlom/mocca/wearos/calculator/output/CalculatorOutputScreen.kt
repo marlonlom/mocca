@@ -23,6 +23,7 @@ import androidx.wear.compose.material3.ButtonDefaults
 import androidx.wear.compose.material3.CompactButton
 import androidx.wear.compose.material3.Icon
 import androidx.wear.compose.material3.MaterialTheme
+import androidx.wear.compose.material3.ScreenScaffold
 import dev.marlonlom.mocca.calculator.Calculator
 import dev.marlonlom.mocca.calculator.RequestedQuantity
 import dev.marlonlom.mocca.calculator.model.CalculationException
@@ -52,40 +53,43 @@ fun CalculatorOutputScreen(amountText: String, onBackNavigationAction: () -> Uni
     Calculator.calculate(RequestedQuantity(amountText.toDouble()))
   }
 
-  Box(
-    modifier = Modifier
-      .fillMaxSize()
-      .padding(horizontal = 20.dp),
-    contentAlignment = Alignment.Center,
-  ) {
-    val scrollState = rememberScrollState()
+  val scrollState = rememberScrollState()
 
-    when (calculationResultState) {
-      is OrderResponse.Failure -> {
-        val alertMessageText = when (calculationResultState.exception) {
-          is CalculationException.AboveQuantityRange -> errorTextAboveRange
-          is CalculationException.BelowQuantityRange -> errorTextBelowRange
-          is CalculationException.NegativeQuantity -> errorTextNegative
+  ScreenScaffold(scrollState = scrollState) { contentPadding ->
+    Box(
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(contentPadding)
+        .padding(horizontal = 20.dp),
+      contentAlignment = Alignment.Center,
+    ) {
+      when (calculationResultState) {
+        is OrderResponse.Failure -> {
+          val alertMessageText = when (calculationResultState.exception) {
+            is CalculationException.AboveQuantityRange -> errorTextAboveRange
+            is CalculationException.BelowQuantityRange -> errorTextBelowRange
+            is CalculationException.NegativeQuantity -> errorTextNegative
+          }
+
+          FailureCalculatorOutput(
+            scrollState = scrollState,
+            alertMessageText = alertMessageText,
+            onBackNavigationAction = onBackNavigationAction,
+          )
         }
 
-        FailureCalculatorOutput(
+        is OrderResponse.Success -> SuccessCalculatorOutput(
           scrollState = scrollState,
-          alertMessageText = alertMessageText,
+          calculationResult = calculationResultState.item,
+          onBackNavigationAction = onBackNavigationAction,
+        )
+
+        else -> FailureCalculatorOutput(
+          scrollState = scrollState,
+          alertMessageText = errorTextInternal,
           onBackNavigationAction = onBackNavigationAction,
         )
       }
-
-      is OrderResponse.Success -> SuccessCalculatorOutput(
-        scrollState = scrollState,
-        calculationResult = calculationResultState.item,
-        onBackNavigationAction = onBackNavigationAction,
-      )
-
-      else -> FailureCalculatorOutput(
-        scrollState = scrollState,
-        alertMessageText = errorTextInternal,
-        onBackNavigationAction = onBackNavigationAction,
-      )
     }
   }
 }
