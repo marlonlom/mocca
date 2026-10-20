@@ -19,6 +19,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.Date
 
 @RunWith(AndroidJUnit4::class)
 internal class SuccessfulCalculationHistoryDaoTest {
@@ -50,7 +53,7 @@ internal class SuccessfulCalculationHistoryDaoTest {
       fixedFee = 10,
       variableFee = 5,
       total = 115,
-      createdAt = java.time.LocalDateTime.now().toString(),
+      createdAt = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()),
     )
     dao.insert(calculation)
     val result = dao.getAllSuccessCalculationHistory().first()
