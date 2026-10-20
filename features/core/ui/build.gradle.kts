@@ -16,6 +16,11 @@ android {
   namespace = "dev.marlonlom.mocca.core.ui"
   compileSdk = Config.mobile.compileSdkVersion
 
+  defaultConfig {
+    minSdk = Config.mobile.minSdkVersion
+    multiDexEnabled = true
+  }
+
   compileOptions {
     sourceCompatibility = Config.jvm.javaVersion
     targetCompatibility = Config.jvm.javaVersion
