@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -44,6 +44,7 @@ class AndroidMacroBenchmarkPlugin : Plugin<Project> {
           minSdk = Config.macrobenchmark.minSdkVersion
           targetSdk = Config.macrobenchmark.targetSdkVersion
           testInstrumentationRunner = Config.macrobenchmark.testInstrumentationRunner
+          multiDexEnabled = true
         }
 
         buildTypes {
