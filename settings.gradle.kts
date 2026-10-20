@@ -43,6 +43,7 @@ include(
   ":features:wearos:calculator-input",
   ":features:wearos:calculator-fees",
   ":features:wearos:calculator-output",
+  ":features:wearos:calculator-tile",
   ":features:wearos:onboarding",
   ":features:wearos:ui"
 )
