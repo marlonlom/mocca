@@ -33,7 +33,7 @@ internal fun buildTitleSlot(
   colorScheme: ColorScheme,
 ): LayoutElement = when {
   !WatchScreenHelper.isSmallScreen(deviceParameters) -> {
-    titleSlotText(context, colorScheme)
+    titleSlotText(context, deviceParameters, colorScheme)
   }
 
   else -> {
