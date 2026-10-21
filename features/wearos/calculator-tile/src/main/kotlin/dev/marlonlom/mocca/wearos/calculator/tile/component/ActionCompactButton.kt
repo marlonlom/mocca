@@ -1,8 +1,7 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.calculator.tile.component
 
 import android.content.Context
@@ -41,12 +40,12 @@ internal fun actionCompactButton(
 ): LayoutElement = materialScope(
   context = context,
   deviceConfiguration = deviceParameters,
-  defaultColorScheme = colorScheme
+  defaultColorScheme = colorScheme,
 ) {
   compactButton(
     labelContent = { text(actionText.layoutString) },
     colors = actionButtonColors,
     width = wrap(),
-    onClick = onActionButtonClicked
+    onClick = onActionButtonClicked,
   )
 }

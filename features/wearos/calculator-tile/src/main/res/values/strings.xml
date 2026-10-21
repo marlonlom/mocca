@@ -8,5 +8,5 @@
   <string name="text_calculator_tile_label" translatable="false">Mocca calculator</string>
   <string name="text_calculator_tile_description">Quick access to Mocca calculator</string>
   <string name="text_calculator_input_money_amount">Money amount</string>
-  <string name="text_calculator_input_currency" translatable="false">"COP $ "</string>
+  <string name="text_calculator_input_currency" translatable="false">"cop $ "</string>
 </resources>
