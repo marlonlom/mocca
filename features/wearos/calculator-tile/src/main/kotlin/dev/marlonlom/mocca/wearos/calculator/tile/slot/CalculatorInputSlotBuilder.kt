@@ -65,7 +65,7 @@ internal fun buildCalculatorInputSlot(
             context = context,
             deviceParameters = deviceConfiguration,
             colorScheme = colorScheme,
-            numberText = digit,
+            numberText = digit + 1,
             onNumberButtonClicked = onNumberButtonClicked(digit),
           )
         }
@@ -82,7 +82,7 @@ internal fun buildCalculatorInputSlot(
             context = context,
             deviceParameters = deviceConfiguration,
             colorScheme = colorScheme,
-            numberText = digit,
+            numberText = if (digit == 9) 0 else digit,
             onNumberButtonClicked = onNumberButtonClicked(digit),
           )
         }
