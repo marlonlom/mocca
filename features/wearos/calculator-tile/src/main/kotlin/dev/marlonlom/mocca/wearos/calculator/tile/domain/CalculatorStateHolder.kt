@@ -1,8 +1,7 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.calculator.tile.domain
 
 import kotlin.math.absoluteValue
@@ -25,9 +24,7 @@ internal object CalculatorStateHolder {
    *
    * @property amount The input amount as a Long, limited to a maximum of 6 digits.
    */
-  data class State(
-    val amount: Long,
-  )
+  data class State(val amount: Long)
 
   /**
    * Initializes and returns a [State] instance from the given typed text.
