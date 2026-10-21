@@ -61,12 +61,13 @@ internal fun buildCalculatorInputSlot(
     ) {
       (0..4).forEach { digit ->
         buttonGroupItem {
+          val digitValue: (Int) -> Int = { d -> d + 1 }
           numberCompactButton(
             context = context,
             deviceParameters = deviceConfiguration,
             colorScheme = colorScheme,
-            numberText = digit + 1,
-            onNumberButtonClicked = onNumberButtonClicked(digit),
+            numberText = digitValue(digit),
+            onNumberButtonClicked = onNumberButtonClicked(digitValue(digit)),
           )
         }
       }
@@ -78,12 +79,13 @@ internal fun buildCalculatorInputSlot(
     ) {
       (5..9).forEach { digit ->
         buttonGroupItem {
+          val digitValue: (Int) -> Int = { d -> if (d == 9) 0 else d + 1 }
           numberCompactButton(
             context = context,
             deviceParameters = deviceConfiguration,
             colorScheme = colorScheme,
-            numberText = if (digit == 9) 0 else digit,
-            onNumberButtonClicked = onNumberButtonClicked(digit),
+            numberText = digitValue(digit),
+            onNumberButtonClicked = onNumberButtonClicked(digitValue(digit)),
           )
         }
       }
