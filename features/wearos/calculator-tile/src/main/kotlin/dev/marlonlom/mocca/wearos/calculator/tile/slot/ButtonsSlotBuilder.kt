@@ -1,8 +1,7 @@
 /*
- * Copyright 2026 Marlonlom
+ * Copyright 2024 Marlonlom
  * SPDX-License-Identifier: Apache-2.0
  */
-
 package dev.marlonlom.mocca.wearos.calculator.tile.slot
 
 import android.content.Context
@@ -38,11 +37,11 @@ internal fun buildButtonsSlot(
   deviceParameters: DeviceParameters,
   colorScheme: ColorScheme,
   onCalculateButtonClicked: ModifiersBuilders.Clickable,
-  onDeleteButtonClicked: ModifiersBuilders.Clickable
+  onDeleteButtonClicked: ModifiersBuilders.Clickable,
 ): LayoutElement = materialScope(
   context = context,
   deviceConfiguration = deviceParameters,
-  defaultColorScheme = colorScheme
+  defaultColorScheme = colorScheme,
 ) {
   LayoutElementBuilders.Row.Builder().setHeight(wrap()).addContent(
     actionCompactButton(
@@ -54,7 +53,7 @@ internal fun buildButtonsSlot(
         containerColor = colorScheme.surfaceContainer,
         labelColor = colorScheme.errorDim,
       ),
-      onActionButtonClicked = onDeleteButtonClicked
+      onActionButtonClicked = onDeleteButtonClicked,
     ),
   ).addContent(
     LayoutElementBuilders.Spacer.Builder().setWidth(dp(8f)).build(),
@@ -67,7 +66,7 @@ internal fun buildButtonsSlot(
         containerColor = colorScheme.surfaceContainer,
         labelColor = colorScheme.tertiaryDim,
       ),
-      onActionButtonClicked = onCalculateButtonClicked
+      onActionButtonClicked = onCalculateButtonClicked,
     ),
   ).build()
 }
