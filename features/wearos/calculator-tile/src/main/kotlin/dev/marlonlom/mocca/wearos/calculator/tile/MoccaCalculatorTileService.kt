@@ -43,17 +43,13 @@ class MoccaCalculatorTileService :
     val state = CalculatorStateHolder.from(
       selectedText = requestParams.currentState.stateMap[stringAppDataKey(CALCULATOR_KEY)],
     )
-    val number = state.amount.toInt()
-    if (number > 0) {
-      android.util.Log.d("MoccaCalculatorTileService", "number=$number")
-    }
     return tile(
       timeline = fromLayoutElement(
         calculatorLayout(
           context = this@MoccaCalculatorTileService,
           deviceParameters = deviceConfiguration,
           colorScheme = colorScheme,
-          provideInputAmount = { number },
+          provideInputAmount = { state.amount.toInt() },
           onNumberButtonClicked = { digit ->
             clickable(
               action = loadAction(
