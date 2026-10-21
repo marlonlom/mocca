@@ -36,7 +36,7 @@ import dev.marlonlom.mocca.wearos.calculator.tile.component.numberCompactButton
  * @return The layout element representing the main content section of the tile.
  */
 @OptIn(ProtoLayoutExperimental::class)
-fun buildCalculatorInputSlot(
+internal fun buildCalculatorInputSlot(
   context: Context,
   deviceParameters: DeviceParameters,
   colorScheme: ColorScheme,
