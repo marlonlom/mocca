@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+  <uses-feature android:name="android.hardware.type.watch" />
+
+  <application>
+    <service
+      android:name="dev.marlonlom.mocca.wearos.calculator.tile.MoccaCalculatorTileService"
+      android:label="@string/text_calculator_tile_label"
+      android:description="@string/text_calculator_tile_description"
+      android:exported="true"
+      android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER">
+      <intent-filter>
+        <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+      </intent-filter>
+      <meta-data
+        android:name="androidx.wear.tiles.PREVIEW"
+        android:resource="@drawable/tile_preview" />
+    </service>
+  </application>
+</manifest>
