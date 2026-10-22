@@ -32,7 +32,7 @@ internal class ActivityResolverTest {
       activities = arrayOf(
         ActivityInfo().apply {
           name = "$packageName.MainActivity"
-        }
+        },
       )
     }
 
