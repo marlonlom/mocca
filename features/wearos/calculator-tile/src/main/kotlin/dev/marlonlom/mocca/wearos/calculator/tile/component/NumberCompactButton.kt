@@ -6,6 +6,7 @@ package dev.marlonlom.mocca.wearos.calculator.tile.component
 
 import android.content.Context
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
+import androidx.wear.protolayout.DimensionBuilders.dp
 import androidx.wear.protolayout.DimensionBuilders.expand
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ModifiersBuilders
@@ -16,7 +17,6 @@ import androidx.wear.protolayout.material3.materialScope
 import androidx.wear.protolayout.material3.text
 import androidx.wear.protolayout.material3.textButton
 import androidx.wear.protolayout.types.layoutString
-import dev.marlonlom.mocca.wearos.calculator.tile.util.DpProps
 
 /**
  * Creates a compact action button for the main slot, it displays the number used in calculation.
@@ -54,7 +54,7 @@ internal fun numberCompactButton(
       labelColor = colorScheme.onSurface,
     ),
     width = expand(),
-    height = DpProps.dp24(),
+    height = dp(24f),
     onClick = onNumberButtonClicked,
   )
 }
