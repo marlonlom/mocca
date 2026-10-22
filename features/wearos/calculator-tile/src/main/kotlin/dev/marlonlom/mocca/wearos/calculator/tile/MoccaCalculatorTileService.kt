@@ -4,8 +4,8 @@
  */
 package dev.marlonlom.mocca.wearos.calculator.tile
 
-import androidx.wear.protolayout.ActionBuilders
-import androidx.wear.protolayout.ModifiersBuilders
+import androidx.wear.protolayout.ActionBuilders.launchAction
+import androidx.wear.protolayout.ActionBuilders.stringExtra
 import androidx.wear.protolayout.TimelineBuilders.Timeline.fromLayoutElement
 import androidx.wear.protolayout.expression.dynamicDataMapOf
 import androidx.wear.protolayout.expression.mapTo
@@ -20,12 +20,16 @@ import androidx.wear.tiles.tile
 import dev.marlonlom.mocca.wearos.calculator.tile.domain.CalculatorStateHolder
 import dev.marlonlom.mocca.wearos.calculator.tile.layout.calculatorLayout
 import dev.marlonlom.mocca.wearos.calculator.tile.theme.MoccaColorSchemes
+import dev.marlonlom.mocca.wearos.calculator.tile.util.ActivityResolver
 
 /** Key used to store and retrieve the calculator state. */
 private const val CALCULATOR_KEY = "calculating_key"
 
 /** Action symbol representing a delete or backspace operation. */
 private const val ACTION_DELETE = "-"
+
+/** Amount currently being calculated. */
+private const val CALCULATING_AMOUNT = "calculatingAmount"
 
 /**
  * Tile service that provides quick access to the mocca calculator.
@@ -66,9 +70,17 @@ class MoccaCalculatorTileService :
               ),
             ),
           ),
-          onCalculateButtonClicked = ModifiersBuilders.Clickable.Builder()
-            .setOnClick(ActionBuilders.LoadAction.Builder().build())
-            .build(),
+          onCalculateButtonClicked = clickable(
+            action = launchAction(
+              ActivityResolver.findComponent(
+                this@MoccaCalculatorTileService,
+                "SmartwatchActivity",
+              )!!,
+              mapOf(
+                CALCULATING_AMOUNT to stringExtra(state.amount.toString()),
+              ),
+            ),
+          ),
         ),
       ),
     )
