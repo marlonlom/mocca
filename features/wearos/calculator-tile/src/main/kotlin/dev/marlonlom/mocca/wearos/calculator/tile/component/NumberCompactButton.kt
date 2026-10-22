@@ -6,8 +6,8 @@ package dev.marlonlom.mocca.wearos.calculator.tile.component
 
 import android.content.Context
 import androidx.wear.protolayout.DeviceParametersBuilders.DeviceParameters
-import androidx.wear.protolayout.DimensionBuilders.dp
 import androidx.wear.protolayout.DimensionBuilders.expand
+import androidx.wear.protolayout.DimensionBuilders.wrap
 import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ModifiersBuilders
 import androidx.wear.protolayout.material3.ButtonColors
@@ -54,7 +54,7 @@ internal fun numberCompactButton(
       labelColor = colorScheme.onSurface,
     ),
     width = expand(),
-    height = dp(24f),
+    height = wrap(),
     onClick = onNumberButtonClicked,
   )
 }
