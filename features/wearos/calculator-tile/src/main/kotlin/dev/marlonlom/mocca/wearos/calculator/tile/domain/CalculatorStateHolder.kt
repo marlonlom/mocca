@@ -19,6 +19,11 @@ internal object CalculatorStateHolder {
   /** Currently accumulated input text displayed in the calculator tile. */
   private var accumulatedText: String = 0.toString()
 
+  /** Reset accumulated text to initial zero state. */
+  internal fun reset() {
+    accumulatedText = 0.toString()
+  }
+
   /**
    * Calculator state data containing the amount.
    *
