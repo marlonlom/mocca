@@ -11,10 +11,13 @@ import androidx.wear.protolayout.LayoutElementBuilders.LayoutElement
 import androidx.wear.protolayout.ModifiersBuilders
 import androidx.wear.protolayout.material3.ButtonColors
 import androidx.wear.protolayout.material3.ColorScheme
+import androidx.wear.protolayout.material3.Typography.BODY_EXTRA_SMALL
 import androidx.wear.protolayout.material3.compactButton
 import androidx.wear.protolayout.material3.materialScope
 import androidx.wear.protolayout.material3.text
+import androidx.wear.protolayout.material3.textButton
 import androidx.wear.protolayout.types.layoutString
+import dev.marlonlom.mocca.wearos.calculator.tile.util.WatchScreenHelper
 
 /**
  * Creates a compact action button for the tile bottom slot.
@@ -42,10 +45,31 @@ internal fun actionCompactButton(
   deviceConfiguration = deviceParameters,
   defaultColorScheme = colorScheme,
 ) {
-  compactButton(
-    labelContent = { text(actionText.layoutString) },
-    colors = actionButtonColors,
-    width = wrap(),
-    onClick = onActionButtonClicked,
-  )
+  when {
+    WatchScreenHelper.isSmallScreen(deviceParameters) -> {
+      textButton(
+        labelContent = {
+          text(
+            text = actionText.layoutString,
+            typography = BODY_EXTRA_SMALL,
+          )
+        },
+        colors = actionButtonColors,
+        width = wrap(),
+        height = wrap(),
+        onClick = onActionButtonClicked,
+      )
+    }
+
+    else -> {
+      compactButton(
+        labelContent = {
+          text(text = actionText.layoutString)
+        },
+        colors = actionButtonColors,
+        width = wrap(),
+        onClick = onActionButtonClicked,
+      )
+    }
+  }
 }
