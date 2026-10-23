@@ -59,7 +59,7 @@ internal fun buildCalculatorInputSlot(
       width = expand(),
       height = wrap(),
     ) {
-      (0..4).forEach { digit ->
+      for (digit in 0..4) {
         buttonGroupItem {
           val digitValue: (Int) -> Int = { d -> d + 1 }
           numberCompactButton(
@@ -77,7 +77,7 @@ internal fun buildCalculatorInputSlot(
       width = expand(),
       height = wrap(),
     ) {
-      (5..9).forEach { digit ->
+      for (digit in 5..9) {
         buttonGroupItem {
           val digitValue: (Int) -> Int = { d -> if (d == 9) 0 else d + 1 }
           numberCompactButton(
