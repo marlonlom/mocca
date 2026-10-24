@@ -12,27 +12,32 @@ import androidx.compose.material3.adaptive.Posture
  *
  * @author marlonlom
  */
-sealed class FoldState {
+sealed interface FoldState {
+
   /**
    * The device is fully open and flat, or fully closed.
    *
    * @author marlonlom
    */
-  data object Flat : FoldState()
+  data object Flat : FoldState
 
   /**
    * The device is half-opened in a horizontal (tent or tabletop) orientation.
    *
+   * @property hingeHeight The hinge information for the horizontal hinge.
+   *
    * @author marlonlom
    */
-  data object Tabletop : FoldState()
+  data class Tabletop(val hingeHeight: HingeInfo) : FoldState
 
   /**
    * The device is half-opened in a vertical (book) orientation.
    *
+   * @property hingeWidth The hinge information for the vertical hinge.
+   *
    * @author marlonlom
    */
-  data object Book : FoldState()
+  data class Book(val hingeWidth: HingeInfo) : FoldState
 }
 
 /**
@@ -52,9 +57,17 @@ object FoldablePosture {
     val firstHinge: HingeInfo? = windowPosture.hingeList.firstOrNull()
     return when {
       firstHinge == null -> FoldState.Flat
+
       firstHinge.isFlat -> FoldState.Flat
-      firstHinge.isVertical && firstHinge.isSeparating -> FoldState.Book
-      firstHinge.isVertical.not() && firstHinge.isSeparating -> FoldState.Tabletop
+
+      firstHinge.isVertical && firstHinge.isSeparating -> FoldState.Book(
+        hingeWidth = firstHinge,
+      )
+
+      firstHinge.isVertical.not() && firstHinge.isSeparating -> FoldState.Tabletop(
+        hingeHeight = firstHinge,
+      )
+
       else -> FoldState.Flat
     }
   }

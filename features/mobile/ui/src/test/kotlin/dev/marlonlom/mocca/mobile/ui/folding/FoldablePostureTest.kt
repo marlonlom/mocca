@@ -42,7 +42,7 @@ internal class FoldablePostureTest {
     val posture = mockk<Posture>()
     every { posture.hingeList } returns listOf(hingeInfo)
     val foldState = FoldablePosture.getFoldState(posture)
-    assertEquals(FoldState.Book, foldState)
+    assertEquals(FoldState.Book(hingeInfo), foldState)
   }
 
   @Test
@@ -55,7 +55,7 @@ internal class FoldablePostureTest {
     val posture = mockk<Posture>()
     every { posture.hingeList } returns listOf(hingeInfo)
     val foldState = FoldablePosture.getFoldState(posture)
-    assertEquals(FoldState.Tabletop, foldState)
+    assertEquals(FoldState.Tabletop(hingeInfo), foldState)
   }
 
   @Test
