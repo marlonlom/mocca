@@ -24,6 +24,14 @@ import dev.marlonlom.mocca.mobile.calculator.output.domain.CalculatorOutputState
 import dev.marlonlom.mocca.mobile.calculator.output.slot.CalculationSuccessDetailsSlot
 import dev.marlonlom.mocca.mobile.ui.component.spacer.FullWidthSpacer
 
+/**
+ * Displays the calculation output screen optimized for portrait mode.
+ *
+ * @author marlonlom
+ *
+ * @param calculationState The state containing the result of the calculation.
+ * @param onCloseButtonClicked The action to perform when the close button is clicked.
+ */
 @Composable
 internal fun PortraitCalculatorOutput(calculationState: CalculatorOutputState, onCloseButtonClicked: () -> Unit) =
   Column(

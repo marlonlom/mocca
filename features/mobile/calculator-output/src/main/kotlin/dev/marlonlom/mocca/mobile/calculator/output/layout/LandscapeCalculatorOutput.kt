@@ -34,6 +34,8 @@ import dev.marlonlom.mocca.mobile.ui.component.spacer.FullWidthSpacer
 /**
  * Displays the calculation output screen optimized for landscape mode.
  *
+ * @author marlonlom
+ *
  * @param calculationState The state containing the result of the calculation.
  * @param onCloseButtonClicked The action to perform when the close button is clicked.
  */
