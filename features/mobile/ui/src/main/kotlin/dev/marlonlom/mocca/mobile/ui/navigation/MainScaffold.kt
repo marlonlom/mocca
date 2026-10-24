@@ -50,7 +50,6 @@ fun MainScaffold(
     WindowSizeClass.calculateFromSize(LocalWindowInfo.current.containerDpSize),
   )
   val foldState: FoldState = FoldablePosture.getFoldState(adaptiveInfo.windowPosture)
-  Log.d("MainScaffold", "mobileWindowSize: $mobileWindowSize")
   val navigator = rememberListDetailPaneScaffoldNavigator<AppDestination>(
     scaffoldDirective = when {
       mobileWindowSize == MobileWindowSize.MOBILE_LANDSCAPE -> PaneScaffoldDirective(
