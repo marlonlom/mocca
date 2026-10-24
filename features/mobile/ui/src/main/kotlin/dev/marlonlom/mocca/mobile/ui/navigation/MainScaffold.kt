@@ -4,6 +4,7 @@
  */
 package dev.marlonlom.mocca.mobile.ui.navigation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -14,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfoV2
+import androidx.compose.material3.adaptive.layout.HingePolicy
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
@@ -48,15 +50,26 @@ fun MainScaffold(
     WindowSizeClass.calculateFromSize(LocalWindowInfo.current.containerDpSize),
   )
   val foldState: FoldState = FoldablePosture.getFoldState(adaptiveInfo.windowPosture)
+  Log.d("MainScaffold", "mobileWindowSize: $mobileWindowSize")
   val navigator = rememberListDetailPaneScaffoldNavigator<AppDestination>(
-    scaffoldDirective = when (mobileWindowSize) {
-      MobileWindowSize.MOBILE_LANDSCAPE -> PaneScaffoldDirective(
+    scaffoldDirective = when {
+      mobileWindowSize == MobileWindowSize.MOBILE_LANDSCAPE -> PaneScaffoldDirective(
         maxHorizontalPartitions = 1,
         horizontalPartitionSpacerSize = 0.dp,
         maxVerticalPartitions = 1,
         verticalPartitionSpacerSize = 0.dp,
         defaultPanePreferredWidth = 360.dp,
         excludedBounds = emptyList(),
+      )
+
+      foldState is FoldState.Book -> calculatePaneScaffoldDirective(
+        windowAdaptiveInfo = adaptiveInfo,
+        verticalHingePolicy = HingePolicy.AlwaysAvoid
+      ).copy(
+        maxHorizontalPartitions = 2,
+        horizontalPartitionSpacerSize = 24.dp,
+        defaultPanePreferredWidth = 320.dp,
+        excludedBounds = listOf(foldState.hingeWidth.bounds),
       )
 
       else -> calculatePaneScaffoldDirective(adaptiveInfo)
