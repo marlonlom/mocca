@@ -63,7 +63,7 @@ fun MainScaffold(
 
       foldState is FoldState.Book -> calculatePaneScaffoldDirective(
         windowAdaptiveInfo = adaptiveInfo,
-        verticalHingePolicy = HingePolicy.AlwaysAvoid
+        verticalHingePolicy = HingePolicy.AlwaysAvoid,
       ).copy(
         maxHorizontalPartitions = 2,
         horizontalPartitionSpacerSize = 24.dp,
