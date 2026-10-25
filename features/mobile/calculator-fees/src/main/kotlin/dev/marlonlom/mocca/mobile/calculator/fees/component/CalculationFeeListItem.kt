@@ -36,51 +36,49 @@ internal fun CalculationFeeListItem(
   itemPosition: Int,
   domainItem: SuccessfulFeesDomainData,
   modifier: Modifier = Modifier,
+) = Column(
+  modifier = modifier
+    .fillMaxWidth()
+    .padding(horizontal = 20.dp),
 ) {
-  Column(
-    modifier = modifier
+  DateWithLine("#${itemPosition.plus(1)}", Modifier)
+  println(domainItem)
+  Text(
+    modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 20.dp),
-  ) {
-    DateWithLine("#${itemPosition.plus(1)}", Modifier)
-    println(domainItem)
-    Text(
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(vertical = 8.dp),
-      fontStyle = FontStyle.Italic,
-      style = MaterialTheme.typography.labelMedium,
-      textAlign = TextAlign.End,
-      maxLines = 1,
-      color = MaterialTheme.colorScheme.onBackground,
-      text = stringResource(
-        R.string.text_price_range,
-        domainItem.min,
-        domainItem.max,
-      ),
-    )
-    Text(
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 8.dp),
-      style = MaterialTheme.typography.displaySmall,
-      color = MaterialTheme.colorScheme.onBackground,
-      fontWeight = FontWeight.Bold,
-      textAlign = TextAlign.End,
-      maxLines = 1,
-      text = if (domainItem.haveVariableFee) {
-        stringResource(
-          R.string.text_fee_percentage,
-          domainItem.variableFeeFactor,
-        )
-      } else {
-        stringResource(
-          R.string.text_fee_amount,
-          domainItem.fixedFee,
-        )
-      },
-    )
-  }
+      .padding(vertical = 8.dp),
+    fontStyle = FontStyle.Italic,
+    style = MaterialTheme.typography.labelMedium,
+    textAlign = TextAlign.End,
+    maxLines = 1,
+    color = MaterialTheme.colorScheme.onBackground,
+    text = stringResource(
+      R.string.text_price_range,
+      domainItem.min,
+      domainItem.max,
+    ),
+  )
+  Text(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(bottom = 8.dp),
+    style = MaterialTheme.typography.displaySmall,
+    color = MaterialTheme.colorScheme.onBackground,
+    fontWeight = FontWeight.Bold,
+    textAlign = TextAlign.End,
+    maxLines = 1,
+    text = if (domainItem.haveVariableFee) {
+      stringResource(
+        R.string.text_fee_percentage,
+        domainItem.variableFeeFactor,
+      )
+    } else {
+      stringResource(
+        R.string.text_fee_amount,
+        domainItem.fixedFee,
+      )
+    },
+  )
 }
 
 /**

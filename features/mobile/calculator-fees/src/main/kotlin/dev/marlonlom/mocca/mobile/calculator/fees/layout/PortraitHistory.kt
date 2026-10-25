@@ -55,17 +55,21 @@ internal fun PortraitHistory(
     .consumeWindowInsets(WindowInsets.systemBars),
   horizontalAlignment = Alignment.CenterHorizontally,
 ) {
-  HeaderBar(title = {
-    Text(
-      text = stringResource(mobileUiR.string.text_fees),
-      overflow = TextOverflow.Ellipsis,
-      maxLines = 1,
-    )
-  }, isMedium = mobileWindowSize != MobileWindowSize.MOBILE_LANDSCAPE, navigationIcon = {
-    if (showCloseButton) {
-      ExitIconButton(onButtonClicked = onCloseButtonClicked)
-    }
-  })
+  HeaderBar(
+    title = {
+      Text(
+        text = stringResource(mobileUiR.string.text_fees),
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+      )
+    },
+    isMedium = mobileWindowSize != MobileWindowSize.MOBILE_LANDSCAPE,
+    navigationIcon = {
+      if (showCloseButton) {
+        ExitIconButton(onButtonClicked = onCloseButtonClicked)
+      }
+    },
+  )
   val data = feesData()
   when {
     data.isEmpty() -> {
