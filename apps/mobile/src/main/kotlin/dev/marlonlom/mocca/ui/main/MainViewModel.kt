@@ -16,18 +16,15 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 /**
- * Main activity view model.
+ * Main activity view model class.
  *
  * @author marlonlom
- *
- * @constructor
- * Constructs an instance of main activity view model.
  *
  * @param repository Settings repository.
  */
 class MainViewModel(private val repository: PreferencesRepository) : ViewModel() {
 
-  /** Internal flow for tracking whether fees screen should be opened via shortcut. */
+  /** Internal flow for tracking whether the fees screen should be opened via a shortcut. */
   private val shouldOpenFees = MutableStateFlow(false)
 
   /** Main ui state. */
@@ -54,7 +51,7 @@ class MainViewModel(private val repository: PreferencesRepository) : ViewModel()
   /**
    * Handles the app shortcut action based on the given [shortcutId].
    *
-   * @param shortcutId The shortcut identifier string received from intent.
+   * @param shortcutId The shortcut identifier string received from intent, or null.
    */
   fun handleShortcut(shortcutId: String?) {
     when (AppShortcut.fromId(shortcutId)) {
@@ -67,7 +64,7 @@ class MainViewModel(private val repository: PreferencesRepository) : ViewModel()
   }
 
   /**
-   * Consumes the shortcut action, resetting the flag that should open fees flag to false.
+   * Consumes the shortcut action, resetting the should-open-fees flag to false.
    */
   fun consumeShortcut() {
     shouldOpenFees.value = false
