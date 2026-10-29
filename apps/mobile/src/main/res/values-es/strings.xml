@@ -6,4 +6,8 @@
 -->
 <resources>
   <string name="text_open_source_licenses">Licencias de código abierto</string>
+  <!-- Accesos directos: consultar tarifas -->
+  <string name="shortcut_fees_short_label">Tarifas</string>
+  <string name="shortcut_fees_long_label">Ver cálculo de tarifas</string>
+  <string name="shortcut_fees_disabled_message">Tarifas no disponibles</string>
 </resources>
