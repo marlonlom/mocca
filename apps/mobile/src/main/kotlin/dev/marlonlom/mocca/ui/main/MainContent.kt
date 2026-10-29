@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,152 +47,160 @@ import kotlinx.coroutines.launch
  *
  * @param mainUiState Main activity ui state.
  * @param onOnboarded Action for onboarding finished.
+ * @param onShortcutConsumed Action for shortcut action consumed.
  */
 @ExperimentalMaterial3Api
 @Composable
-internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit) = MoccaTheme(
-  darkTheme = mainUiState.shouldUseDarkTheme(),
-  dynamicColor = mainUiState.shouldUseDynamicTheming(),
-  colorContrast = mainUiState.shouldUseColorContrast(),
-) {
-  when (mainUiState) {
-    is MainUiState.Success -> {
-      when {
-        mainUiState.userData.isOnboarding -> {
-          Box(
-            modifier = Modifier
-              .fillMaxSize()
-              .background(MaterialTheme.colorScheme.background)
-              .systemBarsPadding()
-              .consumeWindowInsets(WindowInsets.navigationBars),
-            contentAlignment = Alignment.Center,
-            content = {
-              OnboardingScreen { onOnboarded() }
-            },
-          )
-        }
-
-        else -> {
-          val coroutineScope = rememberCoroutineScope()
-          val listPane: @Composable (CoroutineScope, MainScaffoldAction) -> Unit = { scope, action ->
-            CalculatorInputScreen(
-              mobileWindowSize = action.mobileWindowSize,
-              onCalculationReady = { amountText ->
-                scope.launch {
-                  action.gotoDetail(AppDestination.Calculating(amountText))
-                }
-              },
-              onHistoryButtonClicked = {
-                scope.launch {
-                  action.gotoDetail(AppDestination.History)
-                }
-              },
-              onRatesButtonClicked = {
-                scope.launch {
-                  action.gotoDetail(AppDestination.Fees)
-                }
-              },
-              onSettingsButtonClicked = {
-                scope.launch {
-                  action.gotoDetail(AppDestination.Settings)
-                }
+internal fun MainContent(mainUiState: MainUiState, onOnboarded: () -> Unit, onShortcutConsumed: () -> Unit) =
+  MoccaTheme(
+    darkTheme = mainUiState.shouldUseDarkTheme(),
+    dynamicColor = mainUiState.shouldUseDynamicTheming(),
+    colorContrast = mainUiState.shouldUseColorContrast(),
+  ) {
+    when (mainUiState) {
+      is MainUiState.Success -> {
+        when {
+          mainUiState.userData.isOnboarding -> {
+            Box(
+              modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .systemBarsPadding()
+                .consumeWindowInsets(WindowInsets.navigationBars),
+              contentAlignment = Alignment.Center,
+              content = {
+                OnboardingScreen { onOnboarded() }
               },
             )
           }
 
-          MainScaffold(
-            listPaneContent = { scaffoldAction -> listPane(coroutineScope, scaffoldAction) },
-            detailPaneContent = { scaffoldAction ->
-              when (val currentDestination = scaffoldAction.currentDestination) {
-                AppDestination.Fees -> {
-                  CalculatorFeesScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                  )
-                }
-
-                AppDestination.History -> {
-                  CalculatorHistoryScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                  )
-                }
-
-                AppDestination.Settings -> {
-                  val currentCtx = LocalContext.current
-                  val currentRes = LocalResources.current
-                  SettingsScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                    actions = SettingActions(
-                      onOssLicencesDisplayed = {
-                        Log.d("MainContent", "Opening oss licenses window")
-                        OssLicensesMenuActivity.setActivityTitle(
-                          currentRes.getString(R.string.text_open_source_licenses),
-                        )
-                        currentCtx.startActivity(
-                          Intent(currentCtx, OssLicensesMenuActivity::class.java),
-                        )
-                      },
-                      onOpeningExternalUrl = { urlText ->
-                        Log.d("MainContent", "Opening external url: $urlText")
-                        if (urlText.isNotEmpty()) {
-                          CustomTabsOpener.openUrl(currentCtx, urlText)
-                        }
-                      },
-                      onFeedbackDisplayed = {
-                        Log.d("MainContent", "Opening feedback window")
-                        FeedbackOpener.rate(currentCtx)
-                      },
-                    ),
-                  )
-                }
-
-                is AppDestination.Calculating -> {
-                  CalculatorOutputScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    requestedAmount = currentDestination.amountText,
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                  )
-                }
-
-                else -> {
-                  CalculatorOutputScreen(
-                    mobileWindowSize = scaffoldAction.mobileWindowSize,
-                    requestedAmount = "",
-                    onCloseButtonClicked = {
-                      coroutineScope.launch {
-                        scaffoldAction.goBack()
-                      }
-                    },
-                  )
+          else -> {
+            val coroutineScope = rememberCoroutineScope()
+            val listPane: @Composable (CoroutineScope, MainScaffoldAction) -> Unit = { scope, action ->
+              if (mainUiState.shouldOpenFees) {
+                LaunchedEffect(Unit) {
+                  action.gotoDetail(AppDestination.Fees)
+                  onShortcutConsumed()
                 }
               }
-            },
-          )
+              CalculatorInputScreen(
+                mobileWindowSize = action.mobileWindowSize,
+                onCalculationReady = { amountText ->
+                  scope.launch {
+                    action.gotoDetail(AppDestination.Calculating(amountText))
+                  }
+                },
+                onHistoryButtonClicked = {
+                  scope.launch {
+                    action.gotoDetail(AppDestination.History)
+                  }
+                },
+                onRatesButtonClicked = {
+                  scope.launch {
+                    action.gotoDetail(AppDestination.Fees)
+                  }
+                },
+                onSettingsButtonClicked = {
+                  scope.launch {
+                    action.gotoDetail(AppDestination.Settings)
+                  }
+                },
+              )
+            }
+
+            MainScaffold(
+              listPaneContent = { scaffoldAction -> listPane(coroutineScope, scaffoldAction) },
+              detailPaneContent = { scaffoldAction ->
+                when (val currentDestination = scaffoldAction.currentDestination) {
+                  AppDestination.Fees -> {
+                    CalculatorFeesScreen(
+                      mobileWindowSize = scaffoldAction.mobileWindowSize,
+                      showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                      onCloseButtonClicked = {
+                        coroutineScope.launch {
+                          scaffoldAction.goBack()
+                        }
+                      },
+                    )
+                  }
+
+                  AppDestination.History -> {
+                    CalculatorHistoryScreen(
+                      mobileWindowSize = scaffoldAction.mobileWindowSize,
+                      showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                      onCloseButtonClicked = {
+                        coroutineScope.launch {
+                          scaffoldAction.goBack()
+                        }
+                      },
+                    )
+                  }
+
+                  AppDestination.Settings -> {
+                    val currentCtx = LocalContext.current
+                    val currentRes = LocalResources.current
+                    SettingsScreen(
+                      mobileWindowSize = scaffoldAction.mobileWindowSize,
+                      showCloseButton = scaffoldAction.arePrimarySecondaryPanesExpanded().not(),
+                      onCloseButtonClicked = {
+                        coroutineScope.launch {
+                          scaffoldAction.goBack()
+                        }
+                      },
+                      actions = SettingActions(
+                        onOssLicencesDisplayed = {
+                          Log.d("MainContent", "Opening oss licenses window")
+                          OssLicensesMenuActivity.setActivityTitle(
+                            currentRes.getString(R.string.text_open_source_licenses),
+                          )
+                          currentCtx.startActivity(
+                            Intent(currentCtx, OssLicensesMenuActivity::class.java),
+                          )
+                        },
+                        onOpeningExternalUrl = { urlText ->
+                          Log.d("MainContent", "Opening external url: $urlText")
+                          if (urlText.isNotEmpty()) {
+                            CustomTabsOpener.openUrl(currentCtx, urlText)
+                          }
+                        },
+                        onFeedbackDisplayed = {
+                          Log.d("MainContent", "Opening feedback window")
+                          FeedbackOpener.rate(currentCtx)
+                        },
+                      ),
+                    )
+                  }
+
+                  is AppDestination.Calculating -> {
+                    CalculatorOutputScreen(
+                      mobileWindowSize = scaffoldAction.mobileWindowSize,
+                      requestedAmount = currentDestination.amountText,
+                      onCloseButtonClicked = {
+                        coroutineScope.launch {
+                          scaffoldAction.goBack()
+                        }
+                      },
+                    )
+                  }
+
+                  else -> {
+                    CalculatorOutputScreen(
+                      mobileWindowSize = scaffoldAction.mobileWindowSize,
+                      requestedAmount = "",
+                      onCloseButtonClicked = {
+                        coroutineScope.launch {
+                          scaffoldAction.goBack()
+                        }
+                      },
+                    )
+                  }
+                }
+              },
+            )
+          }
         }
       }
-    }
 
-    else -> {}
+      else -> {}
+    }
   }
-}

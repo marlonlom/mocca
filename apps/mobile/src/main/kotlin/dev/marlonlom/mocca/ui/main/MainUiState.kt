@@ -17,15 +17,23 @@ import dev.marlonlom.mocca.core.preferences.model.UserSettings
  */
 sealed interface MainUiState {
 
-  /** Main activity ui state: Loading */
+  /**
+   * Main activity ui state: Loading
+   *
+   * @author marlonlom
+   *
+   */
   data object Loading : MainUiState
 
   /**
    * Main activity ui state: Success
    *
+   * @author marlonlom
+   *
    * @property userData User preferences data.
+   * @property shouldOpenFees Whether the app should navigate/open fees view via shortcut.
    */
-  data class Success(val userData: UserSettings) : MainUiState
+  data class Success(val userData: UserSettings, val shouldOpenFees: Boolean = false) : MainUiState
 }
 
 /**
@@ -45,13 +53,9 @@ fun MainUiState.shouldUseDynamicTheming(): Boolean = when (this) {
  */
 @Composable
 @ReadOnlyComposable
-fun MainUiState.shouldUseDarkTheme(): Boolean = if (isSystemInDarkTheme()) {
-  true
-} else {
-  when (this) {
-    MainUiState.Loading -> isSystemInDarkTheme()
-    is MainUiState.Success -> userData.useDarkTheme
-  }
+fun MainUiState.shouldUseDarkTheme(): Boolean = isSystemInDarkTheme() || when (this) {
+  MainUiState.Loading -> isSystemInDarkTheme()
+  is MainUiState.Success -> userData.useDarkTheme
 }
 
 /**

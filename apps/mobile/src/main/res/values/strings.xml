@@ -7,4 +7,8 @@
 <resources>
   <string name="app_name" translatable="false">Mocca</string>
   <string name="text_open_source_licenses">Open source licenses</string>
+  <!-- Shortcuts: View fees -->
+  <string name="shortcut_fees_short_label">Fees</string>
+  <string name="shortcut_fees_long_label">View fee calculations</string>
+  <string name="shortcut_fees_disabled_message">Fees currently unavailable</string>
 </resources>

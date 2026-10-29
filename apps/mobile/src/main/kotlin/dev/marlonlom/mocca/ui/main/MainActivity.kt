@@ -14,7 +14,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -56,11 +55,13 @@ class MainActivity : ComponentActivity() {
         is MainUiState.Success -> false
       }
     }
+    mainViewModel.handleShortcut(intent.getStringExtra("shortcut_id"))
 
     setContent {
       MainContent(
         mainUiState = mainUiState,
         onOnboarded = mainViewModel::setOnboardingComplete,
+        onShortcutConsumed = mainViewModel::consumeShortcut,
       )
     }
   }
