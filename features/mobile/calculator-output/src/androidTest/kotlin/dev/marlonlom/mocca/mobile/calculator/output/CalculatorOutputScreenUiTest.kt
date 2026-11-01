@@ -35,6 +35,7 @@ internal class CalculatorOutputScreenUiTest {
 
   @Before
   fun setUp() {
+    stopKoin()
     startKoin {
       androidContext(InstrumentationRegistry.getInstrumentation().targetContext.applicationContext)
       modules(
