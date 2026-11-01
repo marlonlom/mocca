@@ -16,12 +16,8 @@ import androidx.compose.remote.creation.compose.modifier.padding
 import androidx.compose.remote.creation.compose.modifier.width
 import androidx.compose.remote.creation.compose.state.rdp
 import androidx.compose.remote.creation.compose.state.rf
-import androidx.compose.remote.creation.compose.state.rs
 import androidx.compose.remote.foundation.layout.RemoteSpacer
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.style.TextAlign
-import androidx.wear.compose.remote.material3.RemoteMaterialTheme
-import androidx.wear.compose.remote.material3.RemoteText
 import dev.marlonlom.mocca.wearos.calculator.widget.component.DoCalculationRemoteButton
 import dev.marlonlom.mocca.wearos.calculator.widget.component.ShowFeesRemoteButton
 
@@ -34,28 +30,20 @@ import dev.marlonlom.mocca.wearos.calculator.widget.component.ShowFeesRemoteButt
  */
 @RemoteComposable
 @Composable
-internal fun MoccaCalculatorWidgetContent(
-  modifier: RemoteModifier = RemoteModifier,
-  isSmallScreen: Boolean = false,
-) = RemoteColumn(
-  modifier = modifier
-    .fillMaxSize()
-    .padding(if (isSmallScreen) 2.rdp else 4.rdp),
-  horizontalAlignment = RemoteAlignment.CenterHorizontally,
-) {
-  RemoteText(
-    modifier = RemoteModifier.fillMaxWidth().padding(bottom = 2.rdp),
-    text = "Mocca".rs,
-    color = RemoteMaterialTheme.colorScheme.primary,
-    style = RemoteMaterialTheme.typography.labelSmall,
-    textAlign = TextAlign.Start,
-  )
-  RemoteRow(
-    modifier = RemoteModifier.fillMaxWidth(),
-    horizontalArrangement = RemoteArrangement.SpaceBetween,
+internal fun MoccaCalculatorWidgetContent(modifier: RemoteModifier = RemoteModifier, isSmallScreen: Boolean = false) =
+  RemoteColumn(
+    modifier = modifier
+      .fillMaxSize()
+      .padding(if (isSmallScreen) 2.rdp else 4.rdp),
+    horizontalAlignment = RemoteAlignment.CenterHorizontally,
+    verticalArrangement = RemoteArrangement.Center,
   ) {
-    DoCalculationRemoteButton(isSmallScreen = isSmallScreen, modifier = RemoteModifier.weight(1f.rf))
-    RemoteSpacer(modifier = RemoteModifier.width(8.rdp))
-    ShowFeesRemoteButton()
+    RemoteRow(
+      modifier = RemoteModifier.fillMaxWidth(),
+      horizontalArrangement = RemoteArrangement.SpaceBetween,
+    ) {
+      DoCalculationRemoteButton(isSmallScreen = isSmallScreen, modifier = RemoteModifier.weight(1f.rf))
+      RemoteSpacer(modifier = RemoteModifier.width(8.rdp))
+      ShowFeesRemoteButton()
+    }
   }
-}
