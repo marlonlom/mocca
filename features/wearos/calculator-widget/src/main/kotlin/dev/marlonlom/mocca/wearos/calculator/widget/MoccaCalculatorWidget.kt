@@ -56,4 +56,4 @@ internal class MoccaCalculatorWidget : GlanceWearWidget() {
 @Composable
 internal fun MoccaCalculatorWidgetPreview(
   @PreviewParameter(SquircleAllWidgetPreviewParams::class) params: WearWidgetParams,
-) = WearWidgetPreview(MoccaCalculatorWidget(), params)
+) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
