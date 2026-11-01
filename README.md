@@ -13,7 +13,7 @@
 ## ✨ Features
 - 💰 **Smart Calculator**: Real-time fee calculation with range validation.
 - 🕒 **History**: Keep track of your successful calculations locally.
-- ⌚ **Wear OS Support**: A streamlined version optimized for your wrist.
+- ⌚ **Wear OS Support & Widgets**: A streamlined version optimized for your wrist, featuring widgets, tiles, Glance Wear, and Remote Compose.
 - 🎨 **Material 3**: Full support for Dynamic Colors and Adaptive Layouts.
 - 🌓 **Theme Support**: Seamless switching between Light and Dark modes.
 
@@ -73,7 +73,7 @@ The application is built with the following cutting-edge technologies:
 - **Local Database**: [Room](https://developer.android.com/training/data-storage/room) `2.8.5`
 - **Data Storage**: [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) `1.3.0`
 - **Adaptive Layouts**: [Material 3 Adaptive](https://developer.android.com/develop/ui/compose/layouts/adaptive) `1.3.0`
-- **Wear OS**: [Compose for Wear OS](https://developer.android.com/training/wearables/compose) `1.7.1`
+- **Wear OS**: [Compose for Wear OS](https://developer.android.com/training/wearables/compose) `1.7.1` (with Glance Wear `1.0.0-alpha20` & Remote Compose `1.0.0-alpha21`)
 - **Infrastructure**: [Android Gradle Plugin](https://developer.android.com/studio/releases/gradle-plugin) `9.5.0`
 
 ## 📂 Project Structure

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<wearwidget-provider
+  description="@string/text_calculator_widget_description"
+  group="mocca-calculator"
+  label="@string/text_calculator_widget_label"
+  preferredType="SMALL">
+
+  <container
+    type="SMALL"
+    previewImage="@drawable/calculator_widget_small" />
+
+  <container
+    type="LARGE"
+    previewImage="@drawable/calculator_widget_large" />
+
+</wearwidget-provider>

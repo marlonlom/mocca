@@ -15,6 +15,7 @@ dependencies {
   implementation(project(":features:wearos:calculator-input"))
   implementation(project(":features:wearos:calculator-output"))
   implementation(project(":features:wearos:calculator-tile"))
+  implementation(project(":features:wearos:calculator-widget"))
   implementation(project(":features:wearos:onboarding"))
   implementation(project(":features:wearos:ui"))
 }

@@ -44,6 +44,7 @@ include(
   ":features:wearos:calculator-fees",
   ":features:wearos:calculator-output",
   ":features:wearos:calculator-tile",
+  ":features:wearos:calculator-widget",
   ":features:wearos:onboarding",
   ":features:wearos:ui"
 )

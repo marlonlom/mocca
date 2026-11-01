@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Copyright 2024 Marlonlom
+  SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+  <string name="text_calculator_widget_label" translatable="false">Mocca</string>
+  <string name="text_calculator_widget_description">Mocca widget</string>
+  <string name="text_start_calculation_widget">Calculation</string>
+  <string name="text_show_fees_table_widget">Show fees table</string>
+</resources>
