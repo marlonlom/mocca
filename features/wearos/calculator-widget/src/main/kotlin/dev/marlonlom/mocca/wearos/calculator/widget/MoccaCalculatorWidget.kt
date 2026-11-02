@@ -52,6 +52,11 @@ internal class MoccaCalculatorWidget : GlanceWearWidget() {
   }
 }
 
+/**
+ * Previews the Mocca calculator widget using different widget configurations.
+ *
+ * @param params The widget parameters used to configure the preview.
+ */
 @Preview
 @Composable
 internal fun MoccaCalculatorWidgetPreview(
