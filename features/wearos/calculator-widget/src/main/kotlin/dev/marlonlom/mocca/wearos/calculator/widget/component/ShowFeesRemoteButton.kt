@@ -29,6 +29,9 @@ import dev.marlonlom.mocca.wearos.calculator.widget.util.rememberVectorBitmap
  * on the watch activity.
  *
  * @author marlonlom
+ *
+ * @param modifier The [RemoteModifier] to be applied to the layout.
+ *
  */
 @RemoteComposable
 @Composable

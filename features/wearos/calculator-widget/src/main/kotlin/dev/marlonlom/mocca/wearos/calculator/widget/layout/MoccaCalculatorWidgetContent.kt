@@ -27,6 +27,8 @@ import dev.marlonlom.mocca.wearos.calculator.widget.component.ShowFeesRemoteButt
  *
  * @author marlonlom
  *
+ * @param modifier The [RemoteModifier] to be applied to the layout.
+ * @param isSmallScreen Whether the layout is displayed on a small screen.
  */
 @RemoteComposable
 @Composable
