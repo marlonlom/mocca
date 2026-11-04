@@ -29,7 +29,6 @@ class CommonAndroidAppPlugin : Plugin<Project> {
       dependencies.add("implementation", project(":features:core:ui"))
       extensions.configure<ApplicationExtension> {
         defaultConfig.vectorDrawables.useSupportLibrary = true
-        defaultConfig.multiDexEnabled = true
         buildFeatures.buildConfig = true
 
         buildTypes {
