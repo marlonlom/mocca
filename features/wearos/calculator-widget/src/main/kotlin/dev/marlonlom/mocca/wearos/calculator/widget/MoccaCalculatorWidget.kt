@@ -12,6 +12,8 @@ import androidx.glance.wear.GlanceWearWidget
 import androidx.glance.wear.WearWidgetData
 import androidx.glance.wear.WearWidgetDocument
 import androidx.glance.wear.core.WearWidgetParams
+import androidx.glance.wear.tooling.preview.RectangularAllWidgetPreviewParams
+import androidx.glance.wear.tooling.preview.RoundAllWidgetPreviewParams
 import androidx.glance.wear.tooling.preview.SquircleAllWidgetPreviewParams
 import androidx.glance.wear.tooling.preview.WearWidgetPreview
 import androidx.wear.compose.remote.material3.RemoteMaterialTheme
@@ -56,9 +58,43 @@ internal class MoccaCalculatorWidget : GlanceWearWidget() {
  * Previews the Mocca calculator widget using different widget configurations.
  *
  * @param params The widget parameters used to configure the preview.
+ *
+ * @author marlonlom
+ *
+ * @see WearWidgetPreview
  */
 @Preview
 @Composable
 internal fun MoccaCalculatorWidgetPreview(
   @PreviewParameter(SquircleAllWidgetPreviewParams::class) params: WearWidgetParams,
+) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
+
+/**
+ * Previews the Mocca calculator widget with rectangular screen configurations using [WearWidgetPreview].
+ *
+ * @param params The widget parameters used to configure the rectangular preview.
+ *
+ * @author marlonlom
+ *
+ * @see WearWidgetPreview
+ */
+@Preview
+@Composable
+internal fun MoccaCalculatorRectangularAllWidgetPreview(
+  @PreviewParameter(RectangularAllWidgetPreviewParams::class) params: WearWidgetParams,
+) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
+
+/**
+ * Previews the Mocca calculator widget with round screen configurations using [WearWidgetPreview].
+ *
+ * @param params The widget parameters used to configure the round preview.
+ *
+ * @author marlonlom
+ *
+ * @see WearWidgetPreview
+ */
+@Preview
+@Composable
+internal fun MoccaCalculatorRoundAllWidgetPreview(
+  @PreviewParameter(RoundAllWidgetPreviewParams::class) params: WearWidgetParams,
 ) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)

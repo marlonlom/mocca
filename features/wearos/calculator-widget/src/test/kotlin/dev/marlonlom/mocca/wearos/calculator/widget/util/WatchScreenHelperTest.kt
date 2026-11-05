@@ -4,37 +4,39 @@
  */
 package dev.marlonlom.mocca.wearos.calculator.widget.util
 
+import androidx.glance.wear.core.ContainerInfo
 import androidx.glance.wear.core.WearWidgetParams
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertFalse
-import org.junit.FixMethodOrder
+import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.junit.runners.MethodSorters
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 internal class WatchScreenHelperTest {
 
   @Test
   fun `Should return true when container type is small`() {
     val params = mockk<WearWidgetParams> {
+      every { containerType } returns ContainerInfo.CONTAINER_TYPE_SMALL
       every { widthDp } returns 220f
     }
-    assertFalse(WatchScreenHelper.isSmallScreen(params))
+    assertTrue(WatchScreenHelper.isSmallScreen(params))
   }
 
   @Test
   fun `Should return true when screen width is less than 182dp`() {
     val params = mockk<WearWidgetParams> {
-      every { widthDp } returns 190f
+      every { containerType } returns ContainerInfo.CONTAINER_TYPE_LARGE
+      every { widthDp } returns 170f
     }
-    assertFalse(WatchScreenHelper.isSmallScreen(params))
+    assertTrue(WatchScreenHelper.isSmallScreen(params))
   }
 
   @Test
   fun `Should return false when container type is large and width is equal to 182dp`() {
     val params = mockk<WearWidgetParams> {
-      every { widthDp } returns 200f
+      every { containerType } returns ContainerInfo.CONTAINER_TYPE_LARGE
+      every { widthDp } returns 182f
     }
     assertFalse(WatchScreenHelper.isSmallScreen(params))
   }
@@ -42,6 +44,7 @@ internal class WatchScreenHelperTest {
   @Test
   fun `Should return false when container type is large and width is greater than 182dp`() {
     val params = mockk<WearWidgetParams> {
+      every { containerType } returns ContainerInfo.CONTAINER_TYPE_LARGE
       every { widthDp } returns 220f
     }
     assertFalse(WatchScreenHelper.isSmallScreen(params))
