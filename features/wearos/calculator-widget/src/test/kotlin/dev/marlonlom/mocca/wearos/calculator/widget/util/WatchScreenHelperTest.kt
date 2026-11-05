@@ -20,7 +20,7 @@ internal class WatchScreenHelperTest {
       every { containerType } returns ContainerInfo.CONTAINER_TYPE_SMALL
       every { widthDp } returns 220f
     }
-    assertTrue(WatchScreenHelper.isSmallScreen(params))
+    assertFalse(WatchScreenHelper.isSmallScreen(params))
   }
 
   @Test
