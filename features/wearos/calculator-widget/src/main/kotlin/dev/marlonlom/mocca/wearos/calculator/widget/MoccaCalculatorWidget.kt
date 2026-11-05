@@ -63,9 +63,12 @@ internal class MoccaCalculatorWidget : GlanceWearWidget() {
  *
  * @see WearWidgetPreview
  */
-@Preview
+@Preview(
+  name = "Squircle",
+  device = "spec:width=1000dp,height=1000dp,dpi=320",
+)
 @Composable
-internal fun MoccaCalculatorWidgetPreview(
+internal fun MoccaCalculatorSquircleWidgetPreview(
   @PreviewParameter(SquircleAllWidgetPreviewParams::class) params: WearWidgetParams,
 ) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
 
@@ -78,9 +81,12 @@ internal fun MoccaCalculatorWidgetPreview(
  *
  * @see WearWidgetPreview
  */
-@Preview
+@Preview(
+  name = "Widget Preview Asset",
+  device = "spec:width=1000dp,height=1000dp,dpi=320",
+)
 @Composable
-internal fun MoccaCalculatorRectangularAllWidgetPreview(
+internal fun MoccaCalculatorRectangularWidgetPreview(
   @PreviewParameter(RectangularAllWidgetPreviewParams::class) params: WearWidgetParams,
 ) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
 
@@ -93,8 +99,11 @@ internal fun MoccaCalculatorRectangularAllWidgetPreview(
  *
  * @see WearWidgetPreview
  */
-@Preview
+@Preview(
+  name = "Round",
+  device = "spec:width=1000dp,height=1000dp,dpi=320",
+)
 @Composable
-internal fun MoccaCalculatorRoundAllWidgetPreview(
+internal fun MoccaCalculatorRoundWidgetPreview(
   @PreviewParameter(RoundAllWidgetPreviewParams::class) params: WearWidgetParams,
 ) = WearWidgetPreview(widget = MoccaCalculatorWidget(), params = params)
