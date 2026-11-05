@@ -46,22 +46,24 @@ import dev.marlonlom.mocca.wearos.calculator.widget.util.rememberVectorBitmap
 internal fun DoCalculationRemoteButton(isSmallScreen: Boolean, modifier: RemoteModifier = RemoteModifier) {
   val remoteImage:
     @RemoteComposable @Composable
-      () -> Unit = {
-    RemoteImage(
-      remoteBitmap = rememberVectorBitmap(
-        imageVector = Icons.Rounded.AttachMoney,
-        size = 16.dp,
-        tint = androidx.compose.ui.graphics.Color(0xFF3C2F00),
-      ).rb,
-      contentDescription = stringResource(R.string.text_start_calculation_widget).rs,
-    )
-  }
+    () -> Unit = {
+      RemoteImage(
+        remoteBitmap = rememberVectorBitmap(
+          imageVector = Icons.Rounded.AttachMoney,
+          size = 16.dp,
+          tint = androidx.compose.ui.graphics.Color(0xFF3C2F00),
+        ).rb,
+        contentDescription = stringResource(R.string.text_start_calculation_widget).rs,
+      )
+    }
+
   val pendingIntent: (Context) -> PendingIntent = { context ->
     createActionWatchActivityPendingIntent(
       context = context,
       widgetAction = INPUT_CALCULATION,
     )
   }
+
   when {
     isSmallScreen -> RemoteIconButton(
       modifier = modifier,

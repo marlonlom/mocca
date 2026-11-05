@@ -31,7 +31,6 @@ import dev.marlonlom.mocca.wearos.calculator.widget.util.rememberVectorBitmap
  * @author marlonlom
  *
  * @param modifier The [RemoteModifier] to be applied to the layout.
- *
  */
 @RemoteComposable
 @Composable
