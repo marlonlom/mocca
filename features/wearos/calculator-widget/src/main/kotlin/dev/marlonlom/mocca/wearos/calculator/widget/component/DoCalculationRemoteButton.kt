@@ -48,7 +48,7 @@ internal fun DoCalculationRemoteButton(isSmallScreen: Boolean, modifier: RemoteM
     @RemoteComposable @Composable
     () -> Unit = {
       RemoteImage(
-        remoteBitmap = rememberVectorBitmap(
+        bitmap = rememberVectorBitmap(
           imageVector = Icons.Rounded.AttachMoney,
           size = 16.dp,
           tint = androidx.compose.ui.graphics.Color(0xFF3C2F00),

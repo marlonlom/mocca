@@ -11,7 +11,6 @@ import androidx.compose.remote.creation.compose.layout.RemoteComposable
 import androidx.compose.remote.creation.compose.layout.RemoteImage
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
 import androidx.compose.remote.creation.compose.state.rb
-import androidx.compose.remote.creation.compose.state.rdp
 import androidx.compose.remote.creation.compose.state.rs
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
@@ -48,7 +47,7 @@ internal fun ShowFeesRemoteButton(modifier: RemoteModifier = RemoteModifier) = R
   ),
   content = {
     RemoteImage(
-      remoteBitmap = rememberVectorBitmap(
+      bitmap = rememberVectorBitmap(
         imageVector = Icons.Rounded.TableChart,
         size = 16.dp,
         tint = androidx.compose.ui.graphics.Color(0xFFDADCE0),
