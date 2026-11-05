@@ -8,7 +8,7 @@
 agp = "9.5.0"
 kotlin = "2.4.21"
 ksp = "2.3.13"
-spotless = "8.10.4"
+spotless = "8.11.0"
 
 # AndroidX Core & UI
 androidx-core = "1.19.1"
@@ -27,7 +27,6 @@ androidx-room = "2.8.5"
 androidx-compose-bom = "2026.09.00"
 m3-adaptive = "1.3.0"
 m3-adaptive-suite = "1.4.0"
-wearos-compose = "1.7.1"
 
 # Koin & Third Party
 koin-bom = "4.2.2"
@@ -43,12 +42,17 @@ arch-testing = "1.1.1"
 coroutines-test = "1.11.0"
 mockk = "1.14.11"
 truth = "1.4.5"
-uiautomator = "2.4.0"
+uiautomator = "2.4.1"
 benchmark = "1.5.0"
 
 # WearOS
-wear-tiles = "1.6.2"
-wear-protolayout = "1.4.2"
+compose-remote = "1.0.0-alpha23"
+glance-wear = "1.0.0-alpha22"
+wearos-compose = "1.7.1"
+wearos-compose-remote = "1.0.0-alpha15"
+wearos-protolayout = "1.4.2"
+wearos-tiles = "1.6.2"
+wearos-tooling-preview = "1.0.0-alpha22"
 
 [libraries]
 # AndroidX Implementation
@@ -103,17 +107,26 @@ androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-mani
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 
 # WearOS
-google-play-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.ref = "google-play-wearable" }
+androidx-compose-remote-creation-compose = { module = "androidx.compose.remote:remote-creation-compose", version.ref = "compose-remote" }
+androidx-compose-remote-core = { module = "androidx.compose.remote:remote-core", version.ref = "compose-remote" }
+androidx-compose-remote-tooling-preview = { module = "androidx.compose.remote:remote-tooling-preview", version.ref = "compose-remote" }
+androidx-glance-wear = { module = "androidx.glance.wear:wear", version.ref = "glance-wear" }
+androidx-glance-wear-core = { module = "androidx.glance.wear:wear-core", version.ref = "glance-wear" }
+androidx-glance-wear-tooling-preview = { group = "androidx.glance.wear", name = "wear-tooling-preview", version.ref = "wearos-tooling-preview" }
 androidx-wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearos-compose" }
 androidx-wear-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearos-compose" }
 androidx-wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearos-compose" }
-androidx-wear-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "wear-tiles" }
-androidx-wear-protolayout = { module = "androidx.wear.protolayout:protolayout", version.ref = "wear-protolayout" }
-androidx-wear-protolayout-material = { module = "androidx.wear.protolayout:protolayout-material", version.ref = "wear-protolayout" }
-androidx-wear-protolayout-material3 = { module = "androidx.wear.protolayout:protolayout-material3", version.ref = "wear-protolayout" }
-androidx-wear-protolayout-expression = { module = "androidx.wear.protolayout:protolayout-expression", version.ref = "wear-protolayout" }
-androidx-wear-tiles-renderer = { module = "androidx.wear.tiles:tiles-renderer", version.ref = "wear-tiles" }
-androidx-wear-tiles-testing = { module = "androidx.wear.tiles:tiles-testing", version.ref = "wear-tiles" }
+androidx-wear-compose-remote-material3 = { module = "androidx.wear.compose.remote:remote-material3", version.ref = "wearos-compose-remote" }
+androidx-wear-compose-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "wearos-compose" }
+androidx-wear-protolayout = { module = "androidx.wear.protolayout:protolayout", version.ref = "wearos-protolayout" }
+androidx-wear-protolayout-expression = { module = "androidx.wear.protolayout:protolayout-expression", version.ref = "wearos-protolayout" }
+androidx-wear-protolayout-material = { module = "androidx.wear.protolayout:protolayout-material", version.ref = "wearos-protolayout" }
+androidx-wear-protolayout-material3 = { module = "androidx.wear.protolayout:protolayout-material3", version.ref = "wearos-protolayout" }
+androidx-wear-tiles = { module = "androidx.wear.tiles:tiles", version.ref = "wearos-tiles" }
+androidx-wear-tiles-renderer = { module = "androidx.wear.tiles:tiles-renderer", version.ref = "wearos-tiles" }
+androidx-wear-tiles-testing = { module = "androidx.wear.tiles:tiles-testing", version.ref = "wearos-tiles" }
+androidx-wear-tiles-tooling-preview = { module = "androidx.wear.tiles:tiles-tooling-preview", version.ref = "wearos-tiles" }
+google-play-services-wearable = { module = "com.google.android.gms:play-services-wearable", version.ref = "google-play-wearable" }
 
 # Macrobenchmark
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
