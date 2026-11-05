@@ -56,7 +56,6 @@ internal fun DoCalculationRemoteButton(isSmallScreen: Boolean, modifier: RemoteM
         contentDescription = stringResource(R.string.text_start_calculation_widget).rs,
       )
     }
-
   val pendingIntent: (Context) -> PendingIntent = { context ->
     createActionWatchActivityPendingIntent(
       context = context,
