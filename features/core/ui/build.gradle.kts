@@ -18,7 +18,6 @@ android {
 
   defaultConfig {
     minSdk = Config.mobile.minSdkVersion
-    multiDexEnabled = true
   }
 
   compileOptions {

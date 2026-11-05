@@ -31,7 +31,6 @@ class CommonAndroidLibPlugin : Plugin<Project> {
 
       extensions.configure<LibraryExtension> {
         defaultConfig.vectorDrawables.useSupportLibrary = true
-        defaultConfig.multiDexEnabled = true
         buildTypes {
           release {
             isMinifyEnabled = false
