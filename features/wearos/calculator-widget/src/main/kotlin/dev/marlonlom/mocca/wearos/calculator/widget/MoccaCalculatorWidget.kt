@@ -55,9 +55,9 @@ internal class MoccaCalculatorWidget : GlanceWearWidget() {
 }
 
 /**
- * Previews the Mocca calculator widget using different widget configurations.
+ * Previews the Mocca calculator widget with squircle screen configurations using [WearWidgetPreview].
  *
- * @param params The widget parameters used to configure the preview.
+ * @param params The widget parameters used to configure the squircle preview.
  *
  * @author marlonlom
  *
