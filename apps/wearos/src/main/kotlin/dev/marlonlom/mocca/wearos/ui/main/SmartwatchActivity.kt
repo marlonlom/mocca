@@ -5,7 +5,6 @@
 package dev.marlonlom.mocca.wearos.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -22,7 +21,6 @@ class SmartwatchActivity : ComponentActivity() {
     installSplashScreen()
     super.onCreate(savedInstanceState)
     val wearAppState = WearAppState.fromIntent(intent = intent)
-    Log.d("SmartwatchActivity", "WearAppState=$wearAppState")
     setContent {
       MoccaWearosTheme {
         WearAppContent(wearAppState = wearAppState)
