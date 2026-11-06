@@ -4,7 +4,6 @@
  */
 package dev.marlonlom.mocca.wearos.ui.main
 
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,13 +29,13 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
  *
  * @author marlonlom
  *
- * @param calculatingAmount Optional amount text passed from calculator tile action intent.
+ * @param wearAppState Wear application UI state.
  * @param isRound Whether the device screen is round.
  * @param scalingLazyListState State holder for ScalingLazyColumn scroll position.
  */
 @Composable
 fun WearAppContent(
-  calculatingAmount: String? = null,
+  wearAppState: WearAppState,
   isRound: Boolean = LocalConfiguration.current.isScreenRound,
   scalingLazyListState: ScalingLazyListState = rememberScalingLazyListState(),
 ) = AppScaffold(
@@ -64,37 +63,30 @@ fun WearAppContent(
     }
   },
   content = {
-    if (!calculatingAmount.isNullOrEmpty()) {
-      val activity = LocalActivity.current
-      CalculatorOutputScreen(
-        amountText = calculatingAmount,
-        onBackNavigationAction = { activity?.finish() },
-      )
-    } else {
-      NavigationHost(
-        home = { onCalculateClick, onViewFeesClick ->
-          OnboardingScreen(
-            listState = scalingLazyListState,
-            onCalculateClick = onCalculateClick,
-            onViewFeesClick = onViewFeesClick,
-          )
-        },
-        viewFees = { onBackNavigationAction ->
-          CalculatorFeesListScreen(
-            listState = scalingLazyListState,
-            onBackNavigationAction = onBackNavigationAction,
-          )
-        },
-        calculatorInput = { onCalculationReadyAction ->
-          CalculatorInputScreen(onCalculationReadyAction = onCalculationReadyAction)
-        },
-        calculatorOutput = { amountText, onBackNavigationAction ->
-          CalculatorOutputScreen(
-            amountText = amountText,
-            onBackNavigationAction = onBackNavigationAction,
-          )
-        },
-      )
-    }
+    NavigationHost(
+      home = { onCalculateClick, onViewFeesClick ->
+        OnboardingScreen(
+          listState = scalingLazyListState,
+          onCalculateClick = onCalculateClick,
+          onViewFeesClick = onViewFeesClick,
+        )
+      },
+      targetDestination = wearAppState.toRoutePair(),
+      calculatorInput = { onCalculationReadyAction ->
+        CalculatorInputScreen(onCalculationReadyAction = onCalculationReadyAction)
+      },
+      calculatorOutput = { amountText, onBackNavigationAction ->
+        CalculatorOutputScreen(
+          amountText = amountText,
+          onBackNavigationAction = onBackNavigationAction,
+        )
+      },
+      viewFees = { onBackNavigationAction ->
+        CalculatorFeesListScreen(
+          listState = scalingLazyListState,
+          onBackNavigationAction = onBackNavigationAction,
+        )
+      },
+    )
   },
 )

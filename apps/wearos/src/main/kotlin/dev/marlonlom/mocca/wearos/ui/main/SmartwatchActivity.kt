@@ -5,13 +5,11 @@
 package dev.marlonlom.mocca.wearos.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dev.marlonlom.mocca.wearos.ui.theme.MoccaWearosTheme
-
-/** Amount currently being calculated. */
-private const val CALCULATING_AMOUNT = "calculatingAmount"
 
 /**
  * Smartwatch activity class.
@@ -23,10 +21,11 @@ class SmartwatchActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     installSplashScreen()
     super.onCreate(savedInstanceState)
-    val calculatingAmount = intent?.getStringExtra(CALCULATING_AMOUNT)
+    val wearAppState = WearAppState.fromIntent(intent = intent)
+    Log.d("SmartwatchActivity", "WearAppState=$wearAppState")
     setContent {
       MoccaWearosTheme {
-        WearAppContent(calculatingAmount = calculatingAmount)
+        WearAppContent(wearAppState = wearAppState)
       }
     }
   }

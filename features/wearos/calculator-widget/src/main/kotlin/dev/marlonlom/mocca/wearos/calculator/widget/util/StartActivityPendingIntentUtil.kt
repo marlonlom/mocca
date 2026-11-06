@@ -31,7 +31,7 @@ internal fun createActionWatchActivityPendingIntent(
   }.let { intent ->
     PendingIntent.getActivity(
       context,
-      0,
+      System.currentTimeMillis().toInt() + widgetAction.ordinal,
       intent,
       PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
     )
