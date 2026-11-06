@@ -2,7 +2,8 @@
 
 <div align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a>
-  <a href="https://android-arsenal.com/api?level=33"><img src="https://img.shields.io/badge/API-33%2B-blue?logo=android-studio" alt="API"></a>
+  <a href="https://developer.android.com/about/versions/17"><img src="https://img.shields.io/badge/Android-17_(API_37)-blue?logo=android" alt="Android 17 (API 37)"></a>
+  <img src="https://img.shields.io/badge/kotlin-2.4.21-blue?logo=kotlin" alt="Kotlin version" >
   <img src="https://img.shields.io/github/actions/workflow/status/marlonlom/mocca/build.yml" alt="Build Status">
   <img src="https://img.shields.io/github/repo-size/marlonlom/mocca" alt="Repo Size">
   <a href="https://www.codefactor.io/repository/github/marlonlom/mocca/overview/main"><img src="https://www.codefactor.io/repository/github/marlonlom/mocca/badge/main" alt="CodeFactor"></a>
