@@ -4,6 +4,7 @@
  */
 package dev.marlonlom.mocca.wearos.ui.navigation
 
+import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
@@ -19,11 +20,12 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
  *
  * @author marlonlom
  *
- * @param home Home screen with primary and secondary navigation actions.
- * @param calculatorInput Screen for entering calculation input.
- * @param calculatorOutput Screen for displaying results and handling navigation.
- * @param viewFees Screen showing fee information.
- * @param navController Navigation controller (defaults to swipe-dismissable controller).
+ * @param home Composable for the home screen, receiving navigation/action callbacks.
+ * @param calculatorInput Composable for entering calculator data, receiving a submit callback.
+ * @param calculatorOutput Composable for displaying calculation results, receiving the output and a back callback.
+ * @param viewFees Composable for viewing fees, receiving a back callback.
+ * @param targetDestination A pair containing the target screen identifier and optional route payload.
+ * @param navController The navigation controller used to manage app state, defaulting to a swipe-dismissable controller.
  */
 @Composable
 fun NavigationHost(
@@ -31,10 +33,16 @@ fun NavigationHost(
   calculatorInput: @Composable ((String) -> Unit) -> Unit,
   calculatorOutput: @Composable (String, () -> Unit) -> Unit,
   viewFees: @Composable (() -> Unit) -> Unit,
+  targetDestination: Pair<Int, String>,
   navController: NavHostController = rememberSwipeDismissableNavController(),
 ) = SwipeDismissableNavHost(
   navController = navController,
-  startDestination = Home.route,
+  startDestination = when (targetDestination.first) {
+    1 -> Calculator.route
+    2 -> ViewFees.route
+    3 -> Result.makeRoute(targetDestination.second)
+    else -> Home.route
+  },
 ) {
   composable(route = Home.route) {
     home(
@@ -48,7 +56,12 @@ fun NavigationHost(
   }
 
   composable(route = ViewFees.route) {
-    viewFees(navController::popBackStack)
+    val activity = LocalActivity.current
+    viewFees {
+      if (!navController.popBackStack()) {
+        activity?.finish()
+      }
+    }
   }
 
   composable(route = Calculator.route) {
