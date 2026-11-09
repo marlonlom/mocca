@@ -67,14 +67,17 @@ internal fun CalculationOutputCloseButton(
     modifier = Modifier
       .fillMaxWidth()
       .padding(vertical = 20.dp),
-    horizontalArrangement = Arrangement.Center
+    horizontalArrangement = Arrangement.Center,
   ) {
     Button(
       modifier = Modifier
         .testTag("calc_output_close_btn")
         .then(
-          if (isTablet) Modifier
-          else Modifier.weight(1f)
+          if (isTablet) {
+            Modifier
+          } else {
+            Modifier.weight(1f)
+          },
         )
         .padding(4.dp),
       enabled = buttonEnabled,
