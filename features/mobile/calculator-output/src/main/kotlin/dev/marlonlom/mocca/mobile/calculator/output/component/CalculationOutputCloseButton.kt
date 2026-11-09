@@ -5,6 +5,7 @@
 package dev.marlonlom.mocca.mobile.calculator.output.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -59,15 +61,21 @@ internal fun CalculationOutputCloseButton(
 
     else -> ButtonDefaults.buttonColors()
   }
+  val isTablet = LocalWindowInfo.current.containerSize.width >= 600
 
   Row(
     modifier = Modifier
       .fillMaxWidth()
       .padding(vertical = 20.dp),
+    horizontalArrangement = Arrangement.Center
   ) {
     Button(
-      modifier = Modifier.testTag("calc_output_close_btn")
-        .weight(1.0f)
+      modifier = Modifier
+        .testTag("calc_output_close_btn")
+        .then(
+          if (isTablet) Modifier
+          else Modifier.weight(1f)
+        )
         .padding(4.dp),
       enabled = buttonEnabled,
       onClick = onButtonClicked,
