@@ -6,7 +6,7 @@
 -->
 <wearwidget-provider
   description="@string/text_calculator_widget_description"
-  group="mocca-calculator"
+  group="dev.marlonlom.mocca.wearos.calculator.tile.MoccaCalculatorTileService"
   label="@string/text_calculator_widget_label"
   preferredType="SMALL">
 

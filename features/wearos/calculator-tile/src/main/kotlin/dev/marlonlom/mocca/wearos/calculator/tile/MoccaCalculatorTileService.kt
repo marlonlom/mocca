@@ -74,7 +74,6 @@ class MoccaCalculatorTileService :
             action = launchAction(
               ActivityResolver.findComponent(
                 this@MoccaCalculatorTileService,
-                "SmartwatchActivity",
               )!!,
               mapOf(
                 CALCULATING_AMOUNT to stringExtra(state.amount.toString()),

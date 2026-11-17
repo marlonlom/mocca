@@ -44,7 +44,7 @@ class WearosAndroidAppPlugin : Plugin<Project> {
           val vc = versionCatalog()
           add("implementation", vc.findLibrary("androidx-wear-compose-foundation").get())
           add("implementation", vc.findLibrary("androidx-wear-compose-material3").get())
-          add("implementation", vc.findLibrary("androidx-wear-compose-navigation").get())
+          add("implementation", vc.findLibrary("androidx-wear-compose-nav3").get())
           add("implementation", vc.findLibrary("google-play-services-wearable").get())
         }
       }

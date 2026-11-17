@@ -22,7 +22,7 @@ internal object ActivityResolver {
    * @param activityName The short name of the activity.
    * @return The resolved [ComponentName], or null if not found.
    */
-  fun findComponent(context: Context, activityName: String): ComponentName? {
+  fun findComponent(context: Context, activityName: String = "SmartwatchActivity"): ComponentName? {
     val packageInfo = context.packageManager.getPackageInfo(
       context.packageName,
       PackageManager.GET_ACTIVITIES,

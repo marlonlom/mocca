@@ -7,6 +7,7 @@ plugins {
   id("mocca.compose.lib")
   id("mocca.android.lib.wearos")
   id("kotlin-parcelize")
+  alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -14,5 +15,8 @@ android {
 }
 
 dependencies {
-  implementation(libs.androidx.wear.compose.navigation)
+  implementation(libs.androidx.nav3.runtime)
+  implementation(libs.androidx.nav3.ui)
+  implementation(libs.androidx.wear.compose.nav3)
+  implementation(libs.kotlinx.serialization.json)
 }
