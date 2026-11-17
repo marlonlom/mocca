@@ -29,13 +29,13 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationHost
  *
  * @author marlonlom
  *
- * @param wearAppState Wear application UI state.
+ * @param wearAppState Lambda provider for Wear application UI state.
  * @param isRound Whether the device screen is round.
  * @param scalingLazyListState State holder for ScalingLazyColumn scroll position.
  */
 @Composable
 fun WearAppContent(
-  wearAppState: WearAppState,
+  wearAppState: () -> WearAppState,
   isRound: Boolean = LocalConfiguration.current.isScreenRound,
   scalingLazyListState: ScalingLazyListState = rememberScalingLazyListState(),
 ) = AppScaffold(
@@ -71,7 +71,7 @@ fun WearAppContent(
           onViewFeesClick = onViewFeesClick,
         )
       },
-      targetDestination = wearAppState.toRoutePair(),
+      targetDestination = wearAppState().toRoutePair(),
       calculatorInput = { onCalculationReadyAction ->
         CalculatorInputScreen(onCalculationReadyAction = onCalculationReadyAction)
       },

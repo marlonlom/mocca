@@ -6,12 +6,13 @@ package dev.marlonlom.mocca.wearos.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dev.marlonlom.mocca.wearos.ui.theme.MoccaWearosTheme
@@ -47,12 +48,13 @@ class SmartwatchActivity : ComponentActivity() {
         val wearAppState = remember(currentIntent) {
           derivedStateOf {
             val state = WearAppState.fromIntent(intent = currentIntent)
+            Log.d("SmartwatchActivity", "state=$state")
             currentIntent?.removeExtra(WearAppState.EXTRA_CALCULATING_AMOUNT)
             currentIntent?.removeExtra(WearAppState.EXTRA_WIDGET_ACTION)
             state
           }
         }
-        WearAppContent(wearAppState = wearAppState.value)
+        WearAppContent(wearAppState = { wearAppState.value })
       }
     }
   }
