@@ -49,10 +49,10 @@ sealed interface WearAppState {
    */
   companion object {
     /** Intent extra containing the calculation amount. */
-    private const val EXTRA_CALCULATING_AMOUNT = "calculatingAmount"
+    internal const val EXTRA_CALCULATING_AMOUNT = "calculatingAmount"
 
     /** Intent extra identifying the widget action. */
-    private const val EXTRA_WIDGET_ACTION = "widget_action"
+    internal const val EXTRA_WIDGET_ACTION = "widget_action"
 
     /** Widget action to display the calculation input screen. */
     private const val ACTION_INPUT_CALCULATION = "INPUT_CALCULATION"
