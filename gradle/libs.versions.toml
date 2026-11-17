@@ -7,6 +7,7 @@
 # Infrastructure & Tooling
 agp = "9.5.1"
 kotlin = "2.4.21"
+serializationJson = "1.12.0"
 ksp = "2.3.13"
 spotless = "8.11.0"
 
@@ -27,6 +28,7 @@ androidx-room = "2.8.5"
 androidx-compose-bom = "2026.09.00"
 m3-adaptive = "1.3.0"
 m3-adaptive-suite = "1.4.0"
+nav3Core = "1.2.1"
 
 # Koin & Third Party
 koin-bom = "4.2.2"
@@ -49,6 +51,7 @@ benchmark = "1.5.0"
 compose-remote = "1.0.0-alpha23"
 glance-wear = "1.0.0-alpha22"
 wearos-compose = "1.7.1"
+wearos-compose-navigation3 = "1.7.1"
 wearos-compose-remote = "1.0.0-alpha15"
 wearos-protolayout = "1.4.2"
 wearos-tiles = "1.6.2"
@@ -89,6 +92,13 @@ androidx-m3-adaptive-layout = { module = "androidx.compose.material3.adaptive:ad
 androidx-m3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "m3-adaptive" }
 androidx-m3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite", version.ref = "m3-adaptive-suite" }
 
+# Core Navigation 3 libraries
+androidx-nav3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-nav3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+
+# Kotlin / KotlinX
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
+
 # Koin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-core = { module = "io.insert-koin:koin-core" }
@@ -116,6 +126,7 @@ androidx-glance-wear-tooling-preview = { group = "androidx.glance.wear", name = 
 androidx-wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "wearos-compose" }
 androidx-wear-compose-material3 = { module = "androidx.wear.compose:compose-material3", version.ref = "wearos-compose" }
 androidx-wear-compose-navigation = { module = "androidx.wear.compose:compose-navigation", version.ref = "wearos-compose" }
+androidx-wear-compose-nav3 = { module = "androidx.wear.compose:compose-navigation3", version.ref = "wearos-compose-navigation3" }
 androidx-wear-compose-remote-material3 = { module = "androidx.wear.compose.remote:remote-material3", version.ref = "wearos-compose-remote" }
 androidx-wear-compose-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "wearos-compose" }
 androidx-wear-protolayout = { module = "androidx.wear.protolayout:protolayout", version.ref = "wearos-protolayout" }
@@ -145,10 +156,11 @@ google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 
 [bundles]
 database-room = ["androidx-room-ktx", "androidx-room-runtime"]
 m3-adaptive = ["androidx-m3-adaptive", "androidx-m3-adaptive-layout", "androidx-m3-adaptive-navigation", "androidx-m3-adaptive-navigation-suite"]
 koin = ["koin-core", "koin-androidx-compose"]
-wearos = ["androidx-wear-compose-foundation", "androidx-wear-compose-material3", "androidx-wear-compose-navigation"]
+wearos = ["androidx-wear-compose-foundation", "androidx-wear-compose-material3", "androidx-wear-compose-navigation", "androidx-wear-compose-nav3"]

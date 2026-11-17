@@ -6,17 +6,16 @@ package dev.marlonlom.mocca.wearos.ui.navigation
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.wear.compose.navigation.SwipeDismissableNavHost
-import androidx.wear.compose.navigation.composable
-import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Calculator
-import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Home
-import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.Result
-import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.ui.NavDisplay
+import androidx.wear.compose.navigation3.SwipeDismissableSceneStrategy
+import androidx.wear.compose.navigation3.rememberSwipeDismissableSceneStrategy
 
 /**
- * Navigation host that wires together app screens using a NavHostController.
+ * Navigation host that wires together app screens using Navigation 3 and Wear Compose navigation.
  *
  * @author marlonlom
  *
@@ -25,7 +24,8 @@ import dev.marlonlom.mocca.wearos.ui.navigation.NavigationRoutes.ViewFees
  * @param calculatorOutput Composable for displaying calculation results, receiving the output and a back callback.
  * @param viewFees Composable for viewing fees, receiving a back callback.
  * @param targetDestination A pair containing the target screen identifier and optional route payload.
- * @param navController The navigation controller used to manage app state, defaulting to a swipe-dismissable controller.
+ * @param backStack The navigation back stack used to manage app state, defaulting to a swipe-dismissable back stack with Home.
+ * @param strategy The scene strategy used for transitions and swipe-to-dismiss behavior.
  */
 @Composable
 fun NavigationHost(
@@ -34,47 +34,55 @@ fun NavigationHost(
   calculatorOutput: @Composable (String, () -> Unit) -> Unit,
   viewFees: @Composable (() -> Unit) -> Unit,
   targetDestination: Pair<Int, String>,
-  navController: NavHostController = rememberSwipeDismissableNavController(),
-) = SwipeDismissableNavHost(
-  navController = navController,
-  startDestination = when (targetDestination.first) {
-    1 -> Calculator.route
-    2 -> ViewFees.route
-    3 -> Result.makeRoute(targetDestination.second)
-    else -> Home.route
-  },
-) {
-  composable(route = Home.route) {
-    home(
-      {
-        navController.navigate(Calculator.route)
-      },
-      {
-        navController.navigate(ViewFees.route)
-      },
-    )
-  }
-
-  composable(route = ViewFees.route) {
-    val activity = LocalActivity.current
-    viewFees {
-      if (!navController.popBackStack()) {
-        activity?.finish()
+  backStack: NavBackStack<NavKey> = rememberNavBackStack(
+    when (targetDestination.first) {
+      1 -> NavigationRoute.Calculator
+      2 -> NavigationRoute.ViewFees
+      3 -> NavigationRoute.Result(targetDestination.second)
+      else -> NavigationRoute.Home
+    } as NavKey,
+  ),
+  strategy: SwipeDismissableSceneStrategy<NavKey> = rememberSwipeDismissableSceneStrategy(),
+) = NavDisplay(
+  backStack = backStack,
+  sceneStrategies = listOf(strategy),
+  entryProvider = entryProvider {
+    entry<NavigationRoute.Home> {
+      home(
+        {
+          backStack.add(NavigationRoute.Calculator)
+        },
+        {
+          backStack.add(NavigationRoute.ViewFees)
+        },
+      )
+    }
+    entry<NavigationRoute.Calculator> {
+      calculatorInput { amountText ->
+        backStack.add(NavigationRoute.Result(amountText))
       }
     }
-  }
-
-  composable(route = Calculator.route) {
-    calculatorInput { amountText ->
-      navController.navigate(Result.makeRoute(amountText))
+    entry<NavigationRoute.ViewFees> {
+      val activity = LocalActivity.current
+      viewFees {
+        if (backStack.size <= 1) {
+          activity?.finish()
+        } else {
+          backStack.removeLastOrNull()
+        }
+      }
     }
-  }
-
-  composable(
-    route = Result.route,
-    arguments = Result.navArguments,
-  ) { navBackStackEntry ->
-    val amountText = navBackStackEntry.arguments?.getString(Result.INPUT_AMOUNT_ARG)!!
-    calculatorOutput(amountText, navController::popBackStack)
-  }
-}
+    entry<NavigationRoute.Result> { route ->
+      val activity = LocalActivity.current
+      calculatorOutput(
+        route.amountText,
+      ) {
+        if (backStack.size <= 1) {
+          activity?.finish()
+        } else {
+          backStack.removeLastOrNull()
+        }
+      }
+    }
+  },
+)
