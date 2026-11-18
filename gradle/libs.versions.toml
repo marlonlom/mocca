@@ -7,7 +7,7 @@
 # Infrastructure & Tooling
 agp = "9.5.1"
 kotlin = "2.4.21"
-serializationJson = "1.12.0"
+serializationJson = "1.13.0"
 ksp = "2.3.14"
 spotless = "8.11.0"
 
