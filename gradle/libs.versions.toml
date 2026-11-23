@@ -49,7 +49,7 @@ benchmark = "1.5.0"
 
 # WearOS
 compose-remote = "1.0.0-alpha23"
-glance-wear = "1.0.0-alpha22"
+glance-wear = "1.0.0-alpha23"
 wearos-compose = "1.7.1"
 wearos-compose-navigation3 = "1.7.1"
 wearos-compose-remote = "1.0.0-alpha15"
