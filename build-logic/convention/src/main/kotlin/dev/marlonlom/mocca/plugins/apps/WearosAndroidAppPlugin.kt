@@ -28,6 +28,7 @@ class WearosAndroidAppPlugin : Plugin<Project> {
       extensions.configure<ApplicationExtension> {
         namespace = Config.wearos.nameSpace
         compileSdk = Config.wearos.compileSdkVersion
+        compileSdkMinor = Config.wearos.compileSdkVersionMinor
 
         defaultConfig.apply {
           applicationId = Config.wearos.applicationId
