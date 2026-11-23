@@ -6,7 +6,7 @@ package dev.marlonlom.mocca.wearos.calculator.widget.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.TableChart
-import androidx.compose.remote.creation.compose.action.pendingIntentAction
+import androidx.compose.remote.creation.compose.action.rememberPendingIntentAction
 import androidx.compose.remote.creation.compose.layout.RemoteComposable
 import androidx.compose.remote.creation.compose.layout.RemoteImage
 import androidx.compose.remote.creation.compose.modifier.RemoteModifier
@@ -35,7 +35,7 @@ import dev.marlonlom.mocca.wearos.calculator.widget.util.rememberVectorBitmap
 @Composable
 internal fun ShowFeesRemoteButton(modifier: RemoteModifier = RemoteModifier) = RemoteIconButton(
   modifier = modifier,
-  onClick = pendingIntentAction { context ->
+  onClick = rememberPendingIntentAction { context ->
     createActionWatchActivityPendingIntent(
       context = context,
       widgetAction = SHOW_FEES,

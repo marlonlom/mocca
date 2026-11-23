@@ -41,6 +41,7 @@ object Config {
  * @property minSdkVersion The minimum Android SDK version the app supports.
  * @property targetSdkVersion The target Android SDK version the app is optimized for.
  * @property compileSdkVersion The Android SDK version used to compile the app.
+ * @property compileSdkVersionMinor The minor version of the compile SDK.
  * @property applicationId The unique package name used to identify the app on the device and Play Store.
  * @property versionCode An integer value that represents the version of the application code.
  * @property versionName A human-readable version string shown to users.
@@ -51,6 +52,7 @@ data class AndroidConfig(
   val minSdkVersion: Int,
   val targetSdkVersion: Int = 37,
   val compileSdkVersion: Int = 37,
+  val compileSdkVersionMinor: Int = 2,
   val applicationId: String = "dev.marlonlom.mocca",
   val versionCode: Int = 1,
   val versionName: String = "2.0.0",

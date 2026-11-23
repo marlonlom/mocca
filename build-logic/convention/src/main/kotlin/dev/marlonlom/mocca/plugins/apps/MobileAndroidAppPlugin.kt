@@ -27,6 +27,7 @@ class MobileAndroidAppPlugin : Plugin<Project> {
       extensions.configure<ApplicationExtension> {
         namespace = Config.mobile.nameSpace
         compileSdk = Config.mobile.compileSdkVersion
+        compileSdkMinor = Config.mobile.compileSdkVersionMinor
 
         defaultConfig.apply {
           applicationId = Config.mobile.applicationId
