@@ -5,16 +5,16 @@
 
 [versions]
 # Infrastructure & Tooling
-agp = "9.5.1"
+agp = "9.5.2"
 kotlin = "2.4.21"
 serializationJson = "1.13.0"
 ksp = "2.3.14"
-spotless = "8.11.0"
+spotless = "8.12.0"
 
 # AndroidX Core & UI
 androidx-core = "1.19.1"
 androidx-appcompat = "1.8.0"
-androidx-lifecycle = "2.11.0"
+androidx-lifecycle = "2.11.1"
 androidx-activity = "1.13.0"
 androidx-splash = "1.2.0"
 androidx-datastore = "1.3.0"
@@ -25,10 +25,10 @@ androidx-browser = "1.10.0"
 androidx-room = "2.8.5"
 
 # Compose & Navigation
-androidx-compose-bom = "2026.09.00"
+androidx-compose-bom = "2026.11.01"
 m3-adaptive = "1.3.0"
-m3-adaptive-suite = "1.4.0"
-nav3Core = "1.2.1"
+m3-adaptive-suite = "1.5.0"
+nav3Core = "1.2.2"
 
 # Koin & Third Party
 koin-bom = "4.2.2"
@@ -48,14 +48,14 @@ uiautomator = "2.4.1"
 benchmark = "1.5.0"
 
 # WearOS
-compose-remote = "1.0.0-alpha23"
-glance-wear = "1.0.0-alpha22"
-wearos-compose = "1.7.1"
-wearos-compose-navigation3 = "1.7.1"
-wearos-compose-remote = "1.0.0-alpha15"
+compose-remote = "1.0.0-alpha24"
+glance-wear = "1.0.0-alpha23"
+wearos-compose = "1.7.2"
+wearos-compose-navigation3 = "1.7.2"
+wearos-compose-remote = "1.0.0-alpha16"
 wearos-protolayout = "1.4.2"
 wearos-tiles = "1.6.2"
-wearos-tooling-preview = "1.0.0-alpha22"
+wearos-tooling-preview = "1.0.0-alpha23"
 
 [libraries]
 # AndroidX Implementation
