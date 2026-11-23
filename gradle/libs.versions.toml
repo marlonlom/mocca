@@ -55,7 +55,7 @@ wearos-compose-navigation3 = "1.7.1"
 wearos-compose-remote = "1.0.0-alpha15"
 wearos-protolayout = "1.4.2"
 wearos-tiles = "1.6.2"
-wearos-tooling-preview = "1.0.0-alpha22"
+wearos-tooling-preview = "1.0.0-alpha23"
 
 [libraries]
 # AndroidX Implementation
