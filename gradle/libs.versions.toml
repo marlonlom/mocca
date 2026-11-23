@@ -5,7 +5,7 @@
 
 [versions]
 # Infrastructure & Tooling
-agp = "9.5.1"
+agp = "9.5.2"
 kotlin = "2.4.21"
 serializationJson = "1.13.0"
 ksp = "2.3.14"
