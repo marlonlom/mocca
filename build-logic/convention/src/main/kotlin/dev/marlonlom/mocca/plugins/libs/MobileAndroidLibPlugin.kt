@@ -28,6 +28,7 @@ class MobileAndroidLibPlugin : Plugin<Project> {
       extensions.configure<LibraryExtension> {
         namespace = Config.mobile.nameSpace
         compileSdk = Config.mobile.compileSdkVersion
+        compileSdkMinor = Config.mobile.compileSdkVersionMinor
 
         defaultConfig {
           minSdk = Config.mobile.minSdkVersion

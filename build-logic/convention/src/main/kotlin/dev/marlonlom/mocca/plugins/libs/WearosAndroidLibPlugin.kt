@@ -32,6 +32,7 @@ class WearosAndroidLibPlugin : Plugin<Project> {
       extensions.configure<LibraryExtension> {
         namespace = Config.wearos.nameSpace
         compileSdk = Config.wearos.compileSdkVersion
+        compileSdkMinor = Config.wearos.compileSdkVersionMinor
 
         defaultConfig {
           minSdk = Config.wearos.minSdkVersion
