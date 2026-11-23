@@ -15,6 +15,7 @@ plugins {
 android {
   namespace = "dev.marlonlom.mocca.core.ui"
   compileSdk = Config.mobile.compileSdkVersion
+  compileSdkMinor = Config.mobile.compileSdkVersionMinor
 
   defaultConfig {
     minSdk = Config.mobile.minSdkVersion
